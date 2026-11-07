@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F26522">
+<meta name="mobile-web-app-capable" content="yes">
+<title>ETIS / KHUCHU04</title>
+<style>
+:root{
+  --brand:#F26522;--brand-d:#c94f14;--brand-l:#fff2ea;
+  --ink:#1b2232;--muted:#6b7385;--line:#e6e9ef;--bg:#f4f6fa;--card:#fff;
+  --good:#16a34a;--good-l:#e7f6ec;--warn:#d98a00;--warn-l:#fff5df;--bad:#dc2626;--bad-l:#fdecec;
+  --blue:#2563eb;--blue-l:#eaf1ff;--na:#9aa3b2;--wa:#128c4a;--wa-l:#e5f6ec;
+  --r:16px;--sh:0 1px 2px rgba(16,24,40,.04),0 6px 18px rgba(16,24,40,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%}
+body{font-family:-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+svg{width:100%;height:100%;display:block}
+.hidden{display:none!important}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+
+/* LOGIN */
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px;background:radial-gradient(circle at 15% 10%,#ffe3d1 0,transparent 40%),radial-gradient(circle at 90% 90%,#e3ecff 0,transparent 45%),var(--bg)}
+.lcard{width:100%;max-width:400px;background:#fff;border-radius:22px;box-shadow:0 20px 50px rgba(16,24,40,.12);padding:32px 26px 24px}
+.logo{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,var(--brand),#ff9a4d);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:26px;box-shadow:0 8px 20px rgba(242,101,34,.35);margin-bottom:18px}
+.lcard h1{font-size:26px;letter-spacing:-.5px}
+.lcard h1 span{color:var(--brand)}
+.lsub{color:var(--muted);font-size:13.5px;margin:4px 0 24px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+.inwrap{position:relative;display:flex;align-items:center}
+.inwrap .ic{position:absolute;left:13px;width:18px;height:18px;color:var(--na)}
+.inwrap input{width:100%;height:50px;border:1.5px solid var(--line);border-radius:12px;padding:0 44px 0 42px;font-size:16px;background:#fafbfc;outline:none}
+.inwrap input:focus{border-color:var(--brand);background:#fff;box-shadow:0 0 0 4px rgba(242,101,34,.12)}
+.eye{position:absolute;right:8px;width:34px;height:34px;padding:7px;color:var(--muted);border-radius:8px}
+.btn{height:50px;border-radius:12px;font-weight:700;font-size:16px;width:100%;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-p{background:var(--brand);color:#fff;box-shadow:0 8px 18px rgba(242,101,34,.3)}
+.btn-p:active{transform:scale(.98);background:var(--brand-d)}
+.lerr{color:var(--bad);font-size:13.5px;min-height:20px;margin:2px 0 8px;font-weight:600}
+.demo{margin-top:18px;background:var(--blue-l);color:#1e3a8a;border-radius:12px;padding:10px 14px;font-size:13px}
+.shake{animation:shake .35s}
+@keyframes shake{20%,60%{transform:translateX(-7px)}40%,80%{transform:translateX(7px)}}
+
+/* SHELL */
+.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topin{max-width:1100px;margin:0 auto;height:60px;display:flex;align-items:center;gap:8px;padding:0 10px}
+.tb-btn{width:40px;height:40px;border-radius:12px;padding:9px;flex:none}
+.tb-btn:hover{background:var(--bg)}
+.tb-brand{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#ff9a4d);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex:none;margin-left:4px}
+.tb-t{flex:1;min-width:0}
+.tb-t b{display:block;font-size:16.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-t small{display:block;color:var(--muted);font-size:12px;margin-top:-1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.saved{font-size:12px;color:var(--good);font-weight:600;opacity:0;transition:opacity .3s;white-space:nowrap}
+.saved.on{opacity:1}
+.tb-ic{width:38px;height:38px;border-radius:10px;padding:9px;color:var(--muted);border:1px solid var(--line);background:#fff;flex:none}
+.logout{color:var(--bad);border-color:#f5d0d0}
+.wrap{max-width:1100px;margin:0 auto;padding:18px 14px 56px}
+
+/* CARDS & COMMON */
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);border:1px solid #eef0f4;padding:18px;min-width:0}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.mt{margin-top:14px}
+.sec-title{font-size:12.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);font-weight:800;margin:24px 2px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.hero{border-radius:20px;padding:22px 20px;color:#fff;background:linear-gradient(130deg,#F26522 0%,#ff8a3d 55%,#ffb070 100%);display:flex;justify-content:space-between;align-items:center;gap:14px;position:relative;overflow:hidden;box-shadow:0 12px 28px rgba(242,101,34,.25)}
+.hero:after{content:"";position:absolute;right:-50px;top:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.12)}
+.hero>div{position:relative;z-index:1;min-width:0}
+.hero-k{font-size:13.5px;opacity:.92}
+.hero h1{font-size:23px;letter-spacing:-.4px;margin:2px 0}
+.hero-s{font-size:13px;opacity:.9}
+.score{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:16px;padding:10px 14px;text-align:center;min-width:100px}
+.score b{display:block;font-size:24px;line-height:1.1}
+.score small{font-size:11px;opacity:.95;text-transform:uppercase;letter-spacing:.4px}
+.navcard{display:block;text-align:left;width:100%;cursor:pointer;transition:transform .15s,box-shadow .15s}
+.navcard:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(16,24,40,.1)}
+.nc-h{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.nc-h>div{min-width:0}
+.icotile{width:48px;height:48px;border-radius:14px;padding:12px;flex:none}
+.it-o{background:var(--brand-l);color:var(--brand)}.it-b{background:var(--blue-l);color:var(--blue)}.it-g{background:var(--good-l);color:var(--good)}.it-p{background:#f3e8ff;color:#7c3aed}.it-y{background:var(--warn-l);color:var(--warn)}
+.nc-h h2{font-size:18px;letter-spacing:-.3px}
+.nc-h p{font-size:13px;color:var(--muted)}
+.nc-go{margin-left:auto;width:30px;height:30px;padding:6px;border-radius:50%;background:var(--bg);color:var(--muted);flex:none}
+.mini{display:flex;align-items:center;gap:10px;margin-top:9px;font-size:13.5px}
+.mini span:first-child{width:96px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini .bar{flex:1}
+.mini b{width:58px;text-align:right}
+.tstats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.tstat{background:var(--bg);border-radius:12px;padding:10px;min-width:0}
+.tstat small{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;font-weight:600}
+.tstat b{font-size:16px;word-break:break-word}
+.bar{height:8px;border-radius:99px;background:#edf0f5;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;transition:width .35s}
+.b-good{background:var(--good)}.b-warn{background:var(--warn)}.b-bad{background:var(--bad)}.b-na{background:var(--na)}.b-brand{background:var(--brand)}.b-grey{background:#a8b0bf}
+.s-good{color:var(--good)}.s-warn{color:var(--warn)}.s-bad{color:var(--bad)}.s-na{color:var(--na)}
+.pill{display:inline-block;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.p-good{background:var(--good-l);color:#166534}.p-warn{background:var(--warn-l);color:#8a5600}.p-bad{background:var(--bad-l);color:#991b1b}.p-na{background:#eef0f4;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;padding:5px 10px;border-radius:99px;font-weight:600;display:inline-flex;gap:5px;align-items:center}
+.c-good{background:var(--good-l);color:#166534}.c-bad{background:var(--bad-l);color:#991b1b}.c-warn{background:var(--warn-l);color:#8a5600}.c-blue{background:var(--blue-l);color:#1e40af}
+.sec-h{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.sec-h h3{font-size:16.5px}
+.btn-s{height:38px;padding:0 13px;border-radius:10px;background:var(--brand-l);color:var(--brand-d);font-weight:700;font-size:13.5px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-s i{width:16px;height:16px;display:block}
+.btn-o{min-height:46px;padding:8px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14.5px;text-align:center}
+.btn-o i{width:18px;height:18px;display:block;flex:none}
+.btn-wa{background:var(--wa);border-color:var(--wa);color:#fff}
+.btn-danger{color:var(--bad);border-color:#f3c6c6}
+.btn-blue{color:var(--blue);border-color:#c9d8fb}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions>*{flex:1 1 200px}
+.icbtn{width:40px;height:40px;border-radius:10px;padding:10px;flex:none;display:inline-flex;align-items:center;justify-content:center}
+.icbtn.call{background:var(--blue-l);color:var(--blue)}
+.icbtn.wa{background:var(--wa-l);color:var(--wa)}
+.icbtn.del{background:var(--bad-l);color:var(--bad)}
+.cbox{display:inline-flex;gap:6px}
+.cbox:empty{display:none}
+.notice{background:var(--warn-l);border:1px solid #f3dca4;color:#6e4500;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px;font-size:13.5px}
+.notice .sp{flex:1 1 220px}
+.notice button{font-weight:700;font-size:13px;padding:7px 12px;border-radius:9px;background:#fff;border:1px solid #f3dca4}
+.addcard{border:2px dashed #d3d9e3;border-radius:var(--r);display:flex;align-items:center;justify-content:center;gap:8px;min-height:110px;color:var(--brand);font-weight:700;background:transparent;width:100%}
+.addcard i{width:22px;height:22px;display:block}
+.addcard:hover{background:#fffaf6;border-color:var(--brand)}
+.badge-now{font-size:11px;font-weight:800;background:var(--brand);color:#fff;border-radius:99px;padding:2px 8px;text-transform:uppercase;letter-spacing:.4px}
+.mhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
+.mhead b{font-size:17px}
+.mrow{display:flex;justify-content:space-between;align-items:baseline;margin:8px 0 6px;gap:8px}
+.mrow .big{font-size:24px;font-weight:800;letter-spacing:-.5px}
+.kcard{position:relative}
+.kdel{position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:9px;padding:8px;color:var(--na)}
+.kdel:hover{background:var(--bad-l);color:var(--bad)}
+.msel{height:42px;border:1.5px solid var(--line);border-radius:11px;padding:0 10px;background:#fff;font-weight:600;max-width:100%}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.stat{background:#fff;border-radius:14px;padding:14px;border:1px solid #eef0f4;box-shadow:var(--sh);position:relative;overflow:hidden;min-width:0}
+.stat:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c,var(--brand))}
+.stat small{display:block;font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:700}
+.stat b{display:block;font-size:22px;letter-spacing:-.5px;margin-top:2px;word-break:break-word}
+.stat em{font-style:normal;font-size:12px;color:var(--muted)}
+.overall .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;gap:8px;flex-wrap:wrap}
+.overall .bar{height:12px}
+.seg{display:flex;background:var(--bg);border-radius:12px;padding:4px;gap:2px;flex-wrap:wrap}
+.seg button{padding:7px 11px;border-radius:9px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button.on{background:#fff;color:var(--brand);box-shadow:0 1px 4px rgba(16,24,40,.1)}
+
+/* KPI TABLE */
+table.rso{width:100%;border-collapse:separate;border-spacing:0}
+table.rso th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);font-weight:700;padding:10px 8px;border-bottom:1px solid var(--line);background:#fafbfc}
+table.rso td{padding:8px;border-bottom:1px solid #f0f2f6;vertical-align:middle}
+.cell{width:100%;height:42px;border:1.5px solid var(--line);border-radius:10px;padding:0 10px;font-size:16px;background:#fff;outline:none;min-width:0}
+.cell:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(242,101,34,.12)}
+.cell.n{max-width:130px;text-align:right;font-variant-numeric:tabular-nums}
+.namec{display:flex;align-items:center;gap:8px}
+.nlink{text-align:left;min-width:0}
+.nlink b{display:block;font-size:14.5px}
+.nlink small{display:block;font-size:11.5px;color:var(--muted)}
+.nlink:hover b{color:var(--brand)}
+.rank{width:28px;height:28px;border-radius:8px;background:var(--bg);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none;color:var(--muted)}
+.rank.r1{background:#fff3c4;color:#92400e}
+.gapv{font-weight:700}
+.ahead{color:var(--good);font-weight:700;font-size:13.5px}
+.pcell{min-width:120px}
+.pcell .pv{font-weight:800;font-size:14.5px;margin-bottom:5px}
+
+/* LIST ROWS */
+.trow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px;border-radius:12px;border:1px solid var(--line);background:#fff;margin-bottom:8px;cursor:pointer;transition:.15s}
+.trow:hover{border-color:var(--brand);background:#fffaf6}
+.trow .tn{flex:1;min-width:0}
+.trow .tn b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14.5px}
+.trow .tn small{display:block;color:var(--muted);font-size:12px}
+.trow .tn .bar{height:6px;margin-top:6px}
+.trow .tr{text-align:right;font-weight:700;font-size:14.5px;white-space:nowrap}
+.trow .tr small{display:block;color:var(--muted);font-weight:500;font-size:11.5px}
+.trow .go{width:20px;height:20px;color:var(--na);flex:none}
+.empty{color:var(--muted);font-size:13.5px;padding:14px;text-align:center;background:var(--bg);border-radius:12px}
+.badge{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:28px;padding:0 8px;border-radius:9px;font-weight:800;font-size:14px}
+.bA{background:var(--good-l);color:var(--good)}.bB{background:var(--warn-l);color:var(--warn)}
+.catcol h3{display:flex;align-items:center;gap:8px;font-size:16px;margin-bottom:10px}
+.rule{font-size:13.5px;color:var(--muted);background:#fff;border:1px dashed #d8dde6;border-radius:12px;padding:10px 12px;margin:14px 0;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rule input{width:130px;height:38px}
+
+/* FIELDS */
+.frow{display:grid;grid-template-columns:170px 1fr;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid #f0f2f6}
+.frow:last-child{border-bottom:0}
+.flbl{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.3px;word-break:break-word}
+.fin{display:flex;gap:6px;align-items:center;min-width:0}
+.fin .cell{flex:1}
+.phead{display:flex;gap:14px;align-items:center}
+.avatar{width:58px;height:58px;border-radius:16px;background:var(--brand-l);color:var(--brand);font-weight:800;font-size:23px;display:flex;align-items:center;justify-content:center;flex:none}
+.phead small{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;font-weight:700;letter-spacing:.4px}
+.phead h2{font-size:21px;letter-spacing:-.3px;word-break:break-word}
+.rsorow{display:grid;grid-template-columns:34px 1.2fr 1fr auto 26px;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid #f0f2f6}
+.rsorow:last-child{border:0}
+.rsorow .go{width:24px;height:24px;padding:3px;color:var(--na);border-radius:6px}
+.rsorow label{display:block;font-size:10.5px;color:var(--muted);font-weight:700;text-transform:uppercase;margin-bottom:3px}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.kv div{background:#fff;border:1px solid #eef0f4;border-radius:14px;padding:12px;text-align:center;box-shadow:var(--sh);min-width:0}
+.kv small{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:700;letter-spacing:.3px}
+.kv b{font-size:18px;word-break:break-word}
+.detail-hero{text-align:center;padding:24px 18px}
+.detail-hero .badge{font-size:22px;height:54px;min-width:54px;border-radius:16px;margin-bottom:10px}
+.detail-hero h2{font-size:21px;word-break:break-word}
+.detail-hero .rev{font-size:30px;font-weight:800;color:var(--brand);margin-top:4px}
+.kline{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:12px 0;border-bottom:1px solid #f0f2f6;align-items:center}
+.kline:last-child{border:0}
+.kline .bar{grid-column:1/-1}
+.kline small{color:var(--muted);font-size:12.5px}
+.hist{display:grid;grid-template-columns:110px 1fr 64px;gap:10px;align-items:center;padding:7px 0}
+.hist b{text-align:right}
+.msbar{display:grid;grid-template-columns:100px 1fr 56px;gap:10px;align-items:center;margin:8px 0}
+.msbar .bar{height:14px}
+.msbar b{text-align:right}
+textarea.cell{height:110px;padding:10px;font-size:13px;font-family:ui-monospace,Menlo,Consolas,monospace;resize:vertical}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:22px;font-size:12.5px;color:var(--muted)}
+
+/* SHEET + TOAST */
+#sheet{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center}
+.sh-back{position:absolute;inset:0;background:rgba(15,20,30,.45)}
+.sh-card{position:relative;background:#fff;width:100%;max-width:480px;border-radius:20px 20px 0 0;padding:18px 18px calc(20px + env(safe-area-inset-bottom,0px));max-height:90vh;overflow:auto;animation:up .2s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:.5}}
+.sh-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.sh-h b{font-size:18px}
+.sh-f{display:block;margin-bottom:12px}
+.sh-f span{display:block;font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
+.sh-f input,.sh-f select{width:100%;height:48px;border:1.5px solid var(--line);border-radius:12px;padding:0 12px;font-size:16px;background:#fff;outline:none}
+.sh-f input:focus,.sh-f select:focus{border-color:var(--brand)}
+.sh-err{color:var(--bad);font-size:13px;min-height:18px;margin-bottom:6px;font-weight:600}
+#toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:#1b2232;color:#fff;padding:11px 18px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;transition:.25s;z-index:60;pointer-events:none;max-width:90vw;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media (min-width:600px){#sheet{align-items:center}.sh-card{border-radius:20px}}
+
+/* MOBILE */
+@media (max-width:760px){
+  .stats{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat b{font-size:19px}
+  .hero h1{font-size:20px}
+  .score b{font-size:20px}
+  table.rso thead{display:none}
+  table.rso,table.rso tbody,table.rso tr,table.rso td{display:block;width:100%}
+  table.rso tr{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
+  table.rso td{padding:0;border:0}
+  table.rso td.c-name,table.rso td.pc{grid-column:1/-1}
+  table.rso td::before{content:attr(data-label);display:block;font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+  table.rso td.c-name::before{display:none}
+  .cell.n{max-width:none;text-align:left}
+  .tablecard{background:none!important;box-shadow:none!important;border:0!important;padding:0!important}
+  .frow{grid-template-columns:1fr;gap:5px}
+  .rsorow{grid-template-columns:30px 1fr 26px;row-gap:8px}
+  .rsorow .r-it{grid-column:2/3}
+  .rsorow .cbox{grid-column:2/3}
+  .rsorow .go{grid-row:1;grid-column:3}
+}
+@media (max-width:380px){
+  .kv,.tstats{grid-template-columns:1fr 1fr}
+  .hist{grid-template-columns:92px 1fr 56px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div id="login" class="hidden">
+  <form class="lcard" id="loginForm" autocomplete="off">
+    <div class="logo">E</div>
+    <h1>ETIS <span>/</span> KHUCHU04</h1>
+    <p class="lsub">Emon's Territory Intelligence System</p>
+    <div class="field">
+      <label for="lu">Username</label>
+      <div class="inwrap">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
+        <input id="lu" type="text" placeholder="Enter username" autocapitalize="none" spellcheck="false">
+      </div>
+    </div>
+    <div class="field">
+      <label for="lp">Password</label>
+      <div class="inwrap">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+        <input id="lp" type="password" placeholder="Enter password">
+        <button type="button" class="eye" id="eye" aria-label="Show password"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      </div>
+    </div>
+    <div class="lerr" id="lerr"></div>
+    <button class="btn btn-p" type="submit">Login</button>
+    <div class="demo" id="demo">Default login → Username: <b>admin</b> · Password: <b>123456</b><br>Change it any time from Settings.</div>
+  </form>
+</div>
+
+<div id="shell" class="hidden">
+  <header class="topbar">
+    <div class="topin">
+      <button class="tb-btn hidden" id="tbBack" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <div class="tb-brand" id="tbBrand">E</div>
+      <div class="tb-t"><b id="tbTitle">ETIS</b><small id="tbSub"></small></div>
+      <span class="saved" id="saved">✓ Saved</span>
+      <button class="tb-ic" id="setBtn" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
+      <button class="tb-ic logout" id="logoutBtn" aria-label="Logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+    </div>
+  </header>
+  <main class="wrap" id="view"></main>
+</div>
+
+<div id="sheet" class="hidden"></div>
+<div id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+var KEY='etis_data_v2', AUTH='etis_auth_v2';
+var $=function(s){return document.querySelector(s);};
+var view=$('#view');
+
+/* ================= HELPERS ================= */
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function num(v){var n=parseFloat(v);return isFinite(n)&&n>0?n:0;}
+function fmt(n){return Math.round(+n||0).toLocaleString('en-IN');}
+function tk(n){return '৳'+fmt(n);}
+function pctTxt(p){return p==null?'—':p.toFixed(1)+'%';}
+function status(p){return p==null?'na':p>=90?'good':p>=70?'warn':'bad';}
+var STLBL={good:'On track',warn:'Medium',bad:'Behind',na:'No target'};
+var DOT={good:'🟢',warn:'🟡',bad:'🔴',na:'⚪'};
+function avg(a){return a.reduce(function(s,x){return s+x;},0)/a.length;}
+function uid(){return Date.now().toString(36).slice(-5)+Math.random().toString(36).slice(2,7);}
+function mkey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0');}
+function curKey(){return mkey(new Date());}
+function mlabel(k){var p=k.split('-');return new Date(+p[0],+p[1]-1,1).toLocaleDateString('en-GB',{month:'long',year:'numeric'});}
+function daysLeft(){var n=new Date();return new Date(n.getFullYear(),n.getMonth()+1,0).getDate()-n.getDate()+1;}
+function arpuTxt(a){return a==null?'—':'৳'+a.toFixed(1);}
+var store={
+  get:function(k){try{return localStorage.getItem(k);}catch(e){return null;}},
+  set:function(k,v){try{localStorage.setItem(k,v);return true;}catch(e){return false;}},
+  del:function(k){try{localStorage.removeItem(k);}catch(e){}}
+};
+function SV(p){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>';}
+var I={
+  kpi:SV('<path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/>'),
+  cal:SV('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
+  trophy:SV('<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>'),
+  tower:SV('<path d="M12 11v11M8.5 22L12 11l3.5 11M9.6 17.5h4.8"/><path d="M6.3 4.7a8 8 0 0 0 0 10.6M17.7 4.7a8 8 0 0 1 0 10.6M9.2 7.4a4 4 0 0 0 0 5.2M14.8 7.4a4 4 0 0 1 0 5.2"/><circle cx="12" cy="10" r="1.3"/>'),
+  team:SV('<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-5.8 6.5-5.8s6.5 2.2 6.5 5.8"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.3c2.6.2 4.5 2 4.5 4.7"/>'),
+  globe:SV('<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>'),
+  user:SV('<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/>'),
+  go:SV('<path d="M9 6l6 6-6 6"/>'),
+  plus:SV('<path d="M12 5v14M5 12h14"/>'),
+  x:SV('<path d="M6 6l12 12M18 6L6 18"/>'),
+  trash:SV('<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>'),
+  phone:SV('<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>'),
+  wa:SV('<path d="M3.5 20.5l1.3-4A8.5 8.5 0 1 1 8 19.3l-4.5 1.2z"/><path d="M9 8.6c.2-.4.5-.5.8-.5h.5l1 2.2-.6.9a5 5 0 0 0 2.3 2.2l.9-.6 2.1 1v.6c0 .4-.3.9-1 1.1-.9.3-2.6-.1-4.2-1.6S8.5 10.6 8.7 9.6z"/>'),
+  pin:SV('<path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/>'),
+  gps:SV('<circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>'),
+  edit:SV('<path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M13 7l4 4"/>'),
+  dl:SV('<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>'),
+  ul:SV('<path d="M12 21V9M7 14l5-5 5 5M4 3h16"/>'),
+  copy:SV('<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>'),
+  key:SV('<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/>')
+};
+
+/* ================= DATA ================= */
+var RSO_NAMES=['Rashed','Sohag','Shilon','Tuhin','Akimul','Masud','Hridoy','Rafid'];
+function F(k,v,type,c){return {id:uid(),k:k,v:v||'',type:type||'text',fixed:true,c:c||''};}
+function seed(){
+  var rsos=RSO_NAMES.map(function(n,i){return {id:'r'+(i+1),name:n,itop:'',fields:[]};});
+  var sample={
+    'C2C':[[120,132],[110,96],[100,71],[130,118],[90,94],[115,62],[105,88],[95,79]],
+    'GA':[[60,54],[55,58],[50,31],[65,49],[45,40],[60,22],[50,51],[45,36]],
+    'FWA Router':[[8,6],[6,7],[5,2],[8,8],[4,1],[6,3],[5,5],[0,1]]
+  };
+  var kpis=Object.keys(sample).map(function(name){
+    var rows={};rsos.forEach(function(r,i){rows[r.id]={t:sample[name][i][0],a:sample[name][i][1]};});
+    return {id:uid(),name:name,rows:rows};
+  });
+  var months={};months[curKey()]={kpis:kpis};
+  return {
+    v:2,auth:{user:'admin',pass:'123456'},rsos:rsos,
+    people:{
+      distributor:{title:'Distributor',fields:[F('Name','','text','name'),F('Mobile','','phone'),F('Email','','email'),F('Address','')]},
+      manager:{title:'Manager',fields:[F('Name','Naim','text','name'),F('Mobile','','phone')]},
+      accountant:{title:'Accountant',fields:[F('Name','','text','name'),F('Mobile','','phone'),F('Email','','email')]}
+    },
+    months:months,
+    towers:[
+      {id:uid(),name:'Sample BTS-01',rev:485000,sub:6200,lat:'',lng:''},
+      {id:uid(),name:'Sample BTS-02',rev:412000,sub:5600,lat:'',lng:''},
+      {id:uid(),name:'Sample BTS-03',rev:362000,sub:5100,lat:'',lng:''},
+      {id:uid(),name:'Sample BTS-04',rev:298500,sub:4800,lat:'',lng:''},
+      {id:uid(),name:'Sample BTS-05',rev:142500,sub:2900,lat:'',lng:''}
+    ],
+    towerA:400000,
+    territory:{fields:[
+      F('Banglalink Market Share (%)','','text','bl'),F('GP Market Share (%)','','text','gp'),F('Robi Market Share (%)','','text','robi'),F('Teletalk Market Share (%)','','text','tt'),
+      F('Total Population',''),F('Upazilas Covered',''),F('Unions Covered',''),F('Total Retailers','')
+    ]},
+    sort:{kpi:'default'},sampleNotice:true
+  };
+}
+function valid(d){return d&&d.v===2&&Array.isArray(d.rsos)&&d.rsos.length&&d.months&&typeof d.months==='object'&&Array.isArray(d.towers);}
+function fix(d){
+  var s=seed();
+  d.auth=d.auth&&d.auth.user?d.auth:s.auth;
+  d.people=d.people||s.people;
+  ['distributor','manager','accountant'].forEach(function(k){if(!d.people[k])d.people[k]=s.people[k];});
+  d.territory=d.territory||s.territory;
+  d.sort=d.sort||{kpi:'default'};
+  if(!num(d.towerA))d.towerA=400000;
+  d.rsos.forEach(function(r){r.fields=r.fields||[];if(r.itop==null)r.itop='';});
+  Object.keys(d.months).forEach(function(k){var m=d.months[k];m.kpis=m.kpis||[];m.kpis.forEach(function(kp){kp.rows=kp.rows||{};});});
+  return d;
+}
+function load(){
+  try{var d=JSON.parse(store.get(KEY));if(valid(d))return fix(d);}catch(e){}
+  var s=seed();store.set(KEY,JSON.stringify(s));return s;
+}
+var data=load();
+var savedT;
+function save(){
+  var ok=store.set(KEY,JSON.stringify(data));
+  var el=$('#saved');el.textContent=ok?'✓ Saved':'⚠ Not saved';el.style.color=ok?'':'var(--bad)';
+  el.classList.add('on');clearTimeout(savedT);savedT=setTimeout(function(){el.classList.remove('on');},1200);
+}
+function ensureMonth(){
+  var cur=curKey();
+  if(data.months[cur])return;
+  var keys=Object.keys(data.months).filter(function(k){return k<cur;}).sort();
+  var last=keys[keys.length-1];
+  var kp=last?data.months[last].kpis.map(function(k){return {id:uid(),name:k.name,rows:{}};})
+             :['C2C','GA','FWA Router'].map(function(n){return {id:uid(),name:n,rows:{}};});
+  data.months[cur]={kpis:kp};
+  save();
+}
+
+/* ================= CALCULATIONS ================= */
+function calc(t,a){t=num(t);a=num(a);return {t:t,a:a,gap:t-a,pct:t>0?(a/t)*100:null};}
+function rowOf(kp,rid){return kp.rows[rid]||{t:0,a:0};}
+function kpiSum(kp){var T=0,A=0;data.rsos.forEach(function(r){var x=rowOf(kp,r.id);T+=num(x.t);A+=num(x.a);});return calc(T,A);}
+function monthScore(m){var ps=m.kpis.map(function(k){return kpiSum(k).pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
+function rsoKpis(m,rid){return m.kpis.map(function(k){var x=rowOf(k,rid);var c=calc(x.t,x.a);c.k=k;return c;});}
+function rsoScore(m,rid){var ps=rsoKpis(m,rid).map(function(x){return x.pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
+function ranking(m){
+  return data.rsos.map(function(r,i){
+    var ks=rsoKpis(m,r.id);
+    return {r:r,i:i,score:rsoScore(m,r.id),
+      bad:ks.filter(function(x){return x.pct!=null&&x.pct<70;}).map(function(x){return x.k.name;}),
+      warn:ks.filter(function(x){return x.pct!=null&&x.pct>=70&&x.pct<90;}).map(function(x){return x.k.name;})};
+  }).sort(function(a,b){return (b.score==null?-1:b.score)-(a.score==null?-1:a.score);});
+}
+function towerCats(){
+  var thr=num(data.towerA)||400000;
+  var ts=data.towers.map(function(t){return {id:t.id,name:t.name,lat:t.lat,lng:t.lng,rev:num(t.rev),sub:num(t.sub)};});
+  var total=0,subs=0;ts.forEach(function(t){total+=t.rev;subs+=t.sub;});
+  ts.forEach(function(t){t.cat=t.rev>=thr?'A':'B';t.arpu=t.sub>0?t.rev/t.sub:null;});
+  ts.sort(function(a,b){return b.rev-a.rev;});
+  ts.forEach(function(t,i){t.rank=i+1;t.share=total>0?t.rev/total*100:0;});
+  return {ts:ts,total:total,subs:subs,thr:thr,arpu:subs>0?total/subs:null,max:ts.length?ts[0].rev:0};
+}
+function monthsDesc(){return Object.keys(data.months).sort().reverse();}
+
+/* ================= UI HELPERS ================= */
+function barHtml(p,cls){return '<div class="bar"><i class="'+(cls||'b-'+status(p))+'" style="width:'+Math.min(p||0,100)+'%"></i></div>';}
+function pill(p){var s=status(p);return '<span class="pill p-'+s+'">'+STLBL[s]+'</span>';}
+function pctHtml(p){return '<div class="pcell"><div class="pv s-'+status(p)+'">'+pctTxt(p)+'</div>'+barHtml(p)+'</div>';}
+function gapHtml(g){return g>0?'<span class="gapv s-bad num">'+fmt(g)+'</span>':g<0?'<span class="ahead">+'+fmt(-g)+' ahead</span>':'<span class="ahead">0 ✓</span>';}
+function digits(v){return String(v||'').replace(/[^\d+]/g,'');}
+function waNum(v){var d=String(v||'').replace(/\D/g,'');if(d.length===11&&d.charAt(0)==='0')d='88'+d;else if(d.length===10&&d.charAt(0)==='1')d='880'+d;return d;}
+function contactBtns(v){var d=digits(v);if(d.replace(/\D/g,'').length<6)return '';return '<a class="icbtn call" href="tel:'+esc(d)+'" aria-label="Call">'+I.phone+'</a><button type="button" class="icbtn wa" data-wa="'+esc(d)+'" aria-label="WhatsApp">'+I.wa+'</button>';}
+function openWA(text,phone){
+  var n=phone?waNum(phone):'';
+  var a=document.createElement('a');a.href='https://wa.me/'+n+(text?'?text='+encodeURIComponent(text):'');a.target='_blank';a.rel='noopener';
+  document.body.appendChild(a);a.click();a.remove();
+}
+function shareBtn(label){return '<button class="btn-o btn-wa" id="share"><i>'+I.wa+'</i>'+(label||'Share on WhatsApp')+'</button>';}
+var toastT;
+function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on');},1800);}
+function top(title,back,sub){
+  $('#tbBack').classList.toggle('hidden',!back);
+  $('#tbBrand').classList.toggle('hidden',!!back);
+  $('#tbBack').onclick=function(){location.hash=back;};
+  $('#tbTitle').textContent=title;$('#tbSub').textContent=sub||'';
+  document.title=title+' · ETIS';
+}
+function monthSelect(sel){return '<select class="msel" id="msel" aria-label="Choose month">'+monthsDesc().map(function(k){return '<option value="'+k+'"'+(k===sel?' selected':'')+'>'+mlabel(k)+(k===curKey()?' (current)':'')+'</option>';}).join('')+'</select>';}
+
+/* bottom-sheet form */
+function formSheet(title,fields,submit,onSubmit){
+  var el=$('#sheet');
+  el.innerHTML='<div class="sh-back"></div><form class="sh-card" novalidate><div class="sh-h"><b>'+esc(title)+'</b><button type="button" class="tb-btn sh-x" aria-label="Close">'+I.x+'</button></div>'+
+    fields.map(function(f,i){
+      var ctl=f.type==='select'
+        ?'<select id="sf'+i+'">'+f.options.map(function(o){return '<option value="'+esc(o[0])+'"'+(o[0]===f.value?' selected':'')+'>'+esc(o[1])+'</option>';}).join('')+'</select>'
+        :'<input id="sf'+i+'" type="'+(f.type||'text')+'"'+(f.mode?' inputmode="'+f.mode+'"':'')+' value="'+esc(f.value==null?'':f.value)+'" placeholder="'+esc(f.ph||'')+'"'+(f.type==='number'?' step="any" min="0"':'')+'>';
+      return '<label class="sh-f"><span>'+esc(f.label)+'</span>'+ctl+'</label>';
+    }).join('')+
+    '<div class="sh-err" id="sferr"></div><button class="btn btn-p" type="submit">'+esc(submit)+'</button></form>';
+  el.classList.remove('hidden');
+  var first=el.querySelector('input');if(first)setTimeout(function(){first.focus();},60);
+  el.querySelector('.sh-back').onclick=closeSheet;el.querySelector('.sh-x').onclick=closeSheet;
+  el.querySelector('form').onsubmit=function(e){
+    e.preventDefault();
+    var vals=fields.map(function(f,i){return el.querySelector('#sf'+i).value.trim();});
+    var err=onSubmit(vals);
+    if(err){$('#sferr').textContent=err;return;}
+    closeSheet();
+  };
+}
+function closeSheet(){var el=$('#sheet');el.classList.add('hidden');el.innerHTML='';}
+
+/* editable field list (people, territory, RSO extras) */
+function fieldsHtml(arr){
+  if(!arr.length)return '<div class="empty">No extra fields yet. Tap “Add field”.</div>';
+  return arr.map(function(f){
+    var t=f.type==='phone'?'tel':f.type==='email'?'email':'text';
+    return '<div class="frow"><label class="flbl" for="fi_'+f.id+'">'+esc(f.k)+'</label><div class="fin">'+
+      '<input class="cell" id="fi_'+f.id+'" data-fid="'+f.id+'" type="'+t+'"'+(f.type==='phone'?' inputmode="tel"':'')+' value="'+esc(f.v)+'" placeholder="'+(f.type==='phone'?'01XXXXXXXXX':'Add '+esc(f.k.toLowerCase()))+'">'+
+      '<span class="cbox">'+(f.type==='phone'?contactBtns(f.v):'')+'</span>'+
+      (f.fixed?'':'<button type="button" class="icbtn del" data-delf="'+f.id+'" aria-label="Remove field">'+I.trash+'</button>')+
+      '</div></div>';
+  }).join('');
+}
+function bindFields(box,arr,onChange,rerender){
+  box.addEventListener('input',function(e){
+    var id=e.target.dataset.fid;if(!id)return;
+    var f=arr.find(function(x){return x.id===id;});if(!f)return;
+    f.v=e.target.value;
+    if(f.type==='phone')e.target.parentNode.querySelector('.cbox').innerHTML=contactBtns(f.v);
+    save();if(onChange)onChange(f);
+  });
+  box.addEventListener('click',function(e){
+    var b=e.target.closest('[data-delf]');if(!b)return;
+    var i=arr.findIndex(function(x){return x.id===b.dataset.delf;});if(i<0)return;
+    if(!confirm('Remove the field "'+arr[i].k+'"?'))return;
+    arr.splice(i,1);save();rerender();toast('Field removed');
+  });
+}
+function addFieldSheet(arr,after){
+  formSheet('Add field',[
+    {label:'Field name',ph:'e.g. TIN, e-TIN, VAT, Home location'},
+    {label:'Value',ph:'Optional — you can fill it later'},
+    {label:'Type',type:'select',value:'text',options:[['text','Text'],['phone','Phone number (call + WhatsApp)'],['email','Email']]}
+  ],'Add field',function(v){
+    if(!v[0])return 'Enter a field name.';
+    arr.push({id:uid(),k:v[0],v:v[1],type:v[2],fixed:false});save();after();toast('Field added');
+  });
+}
+function fieldsText(title,arr){
+  var l=arr.filter(function(f){return String(f.v).trim();}).map(function(f){return f.k+': '+f.v;});
+  return '*ETIS · KHUCHU04*\n*'+title+'*\n'+(l.length?l.join('\n'):'(no details added)');
+}
+
+/* ================= SHARE TEXTS ================= */
+var HDR='*ETIS · KHUCHU04*\n';
+function kpiText(k,kp){
+  var s=kpiSum(kp);
+  var t=HDR+'*'+kp.name+' – '+mlabel(k)+'*\nTarget: '+fmt(s.t)+' | Ach: '+fmt(s.a)+' | Gap: '+fmt(Math.max(s.gap,0))+' | '+pctTxt(s.pct)+' '+DOT[status(s.pct)]+'\n';
+  if(k===curKey()&&s.gap>0){var dl=daysLeft();t+='Need/day: '+fmt(Math.ceil(s.gap/dl))+' ('+dl+' days left)\n';}
+  t+='\n*RSO-wise*\n';
+  data.rsos.forEach(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a);t+=(i+1)+'. '+r.name+': '+fmt(c.a)+'/'+fmt(c.t)+' ('+pctTxt(c.pct)+') '+DOT[status(c.pct)]+'\n';});
+  return t;
+}
+function summaryText(k){
+  var m=data.months[k];
+  var t=HDR+'*Overall KPI Summary – '+mlabel(k)+'*\nTerritory score: '+pctTxt(monthScore(m))+'\n\n';
+  m.kpis.forEach(function(kp){var s=kpiSum(kp);t+=DOT[status(s.pct)]+' '+kp.name+': '+pctTxt(s.pct)+' ('+fmt(s.a)+'/'+fmt(s.t)+')\n';});
+  t+='\n*RSO ranking*\n';
+  ranking(m).forEach(function(x,i){t+=(i+1)+'. '+x.r.name+': '+pctTxt(x.score)+' '+DOT[status(x.score)]+(x.bad.length?' – behind in '+x.bad.join(', '):'')+'\n';});
+  return t;
+}
+function rsoText(r,k){
+  var m=data.months[k],sc=rsoScore(m,r.id);
+  var t=HDR+'*'+r.name+' – '+mlabel(k)+'*\n'+(r.itop?'iTop-up: '+r.itop+'\n':'')+'Overall: '+pctTxt(sc)+' '+DOT[status(sc)]+'\n\n';
+  rsoKpis(m,r.id).forEach(function(x){t+=DOT[status(x.pct)]+' '+x.k.name+': '+fmt(x.a)+'/'+fmt(x.t)+' ('+pctTxt(x.pct)+')\n';});
+  return t;
+}
+function towersText(){
+  var c=towerCats();
+  var t=HDR+'*Tower (BTS) Summary*\nTotal BTS: '+c.ts.length+' | Revenue: '+tk(c.total)+'\nSub base: '+fmt(c.subs)+' | ARPU: '+arpuTxt(c.arpu)+'\nCategory A = revenue ≥ '+tk(c.thr)+'\n\n';
+  ['A','B'].forEach(function(cat){
+    t+='*Category '+cat+'*\n';var l=c.ts.filter(function(x){return x.cat===cat;});
+    if(!l.length)t+='—\n';
+    l.forEach(function(x){t+=x.rank+'. '+x.name+': '+tk(x.rev)+' | Sub '+fmt(x.sub)+' | ARPU '+arpuTxt(x.arpu)+'\n';});
+    t+='\n';
+  });
+  return t;
+}
+function towerText(x){
+  return HDR+'*BTS: '+x.name+'*\nCategory: '+x.cat+'\nRevenue: '+tk(x.rev)+'\nSub base: '+fmt(x.sub)+'\nARPU: '+arpuTxt(x.arpu)+'\nRank: #'+x.rank+(x.lat&&x.lng?'\nLocation: https://maps.google.com/?q='+x.lat+','+x.lng:'');
+}
+
+/* ================= VIEWS ================= */
+function home(){
+  top('ETIS','','KHUCHU04 · Territory Intelligence');
+  var cur=curKey(),m=data.months[cur],sc=monthScore(m);
+  var h=new Date().getHours(),greet=h<12?'Good morning':h<17?'Good afternoon':'Good evening';
+  var tc=towerCats(),A=tc.ts.filter(function(t){return t.cat==='A';}).length;
+  var dist=data.people.distributor.fields.find(function(f){return f.c==='name';});
+  var mgr=data.people.manager.fields.find(function(f){return f.c==='name';});
+  var kp=m.kpis.map(function(k){return {k:k,s:kpiSum(k)};});
+  view.innerHTML=
+  '<section class="hero"><div><p class="hero-k">'+greet+', Emon 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
+  '<div class="score"><b>'+pctTxt(sc)+'</b><small>'+mlabel(cur).split(' ')[0]+' score</small></div></section>'+
+  (data.sampleNotice?'<div class="notice"><span class="sp">📌 This month\'s KPIs and the towers have <b>sample numbers</b> so you can test. Clear them before entering real data.</span><button data-act="clearSample">Clear sample numbers</button><button data-act="keepSample">Keep</button></div>':'')+
+  '<div class="sec-title">KPI</div>'+
+  '<div class="card navcard" role="button" tabindex="0" data-go="#/summary/'+cur+'"><div class="nc-h"><div class="icotile it-o">'+I.trophy+'</div><div><h2>Overall KPI Summary</h2><p>'+mlabel(cur)+' · distribution house total + RSO ranking</p></div><div class="nc-go">'+I.go+'</div></div>'+
+  (kp.length?kp.map(function(x){return '<div class="mini"><span>'+esc(x.k.name)+'</span>'+barHtml(x.s.pct)+'<b class="s-'+status(x.s.pct)+'">'+pctTxt(x.s.pct)+'</b></div>';}).join(''):'<p class="muted">No KPIs this month yet.</p>')+
+  '</div>'+
+  '<div class="sec-title">Monthly KPI</div><div class="grid3">'+
+  monthsDesc().map(function(k){
+    var mm=data.months[k],s=monthScore(mm);
+    return '<div class="card navcard" role="button" tabindex="0" data-go="#/month/'+k+'"><div class="mhead"><b>'+mlabel(k)+'</b>'+(k===cur?'<span class="badge-now">Current</span>':'')+'</div>'+
+      '<p class="muted" style="font-size:13px">'+mm.kpis.length+' KPI'+(mm.kpis.length===1?'':'s')+' · 8 RSOs</p>'+
+      '<div class="mrow"><span class="big s-'+status(s)+'">'+pctTxt(s)+'</span>'+pill(s)+'</div>'+barHtml(s)+'</div>';
+  }).join('')+'</div>'+
+  '<div class="sec-title">Territory</div><div class="grid3">'+
+  '<div class="card navcard" role="button" tabindex="0" data-go="#/towers"><div class="nc-h"><div class="icotile it-b">'+I.tower+'</div><div><h2>Tower</h2><p>'+tc.ts.length+' BTS · A/B by revenue</p></div><div class="nc-go">'+I.go+'</div></div>'+
+  '<div class="tstats"><div class="tstat"><small>A</small><b class="s-good">'+A+'</b></div><div class="tstat"><small>B</small><b class="s-warn">'+(tc.ts.length-A)+'</b></div><div class="tstat"><small>ARPU</small><b>'+arpuTxt(tc.arpu)+'</b></div></div></div>'+
+  '<div class="card navcard" role="button" tabindex="0" data-go="#/ff"><div class="nc-h"><div class="icotile it-p">'+I.team+'</div><div><h2>KHUCHU04 FF Details</h2><p>Distributor · Manager · Accountant · RSOs</p></div><div class="nc-go">'+I.go+'</div></div>'+
+  '<div class="tstats"><div class="tstat"><small>Manager</small><b>'+esc(mgr&&mgr.v||'—')+'</b></div><div class="tstat"><small>Distributor</small><b>'+esc(dist&&dist.v||'—')+'</b></div><div class="tstat"><small>RSOs</small><b>'+data.rsos.length+'</b></div></div></div>'+
+  '<div class="card navcard" role="button" tabindex="0" data-go="#/total"><div class="nc-h"><div class="icotile it-g">'+I.globe+'</div><div><h2>KHUCHU04 In Total</h2><p>Territory overview & market share</p></div><div class="nc-go">'+I.go+'</div></div>'+
+  '<div class="tstats"><div class="tstat"><small>BTS</small><b>'+tc.ts.length+'</b></div><div class="tstat"><small>BL share</small><b>'+esc(terrVal('bl')?terrVal('bl')+'%':'—')+'</b></div><div class="tstat"><small>Revenue</small><b>'+tk(tc.total)+'</b></div></div></div>'+
+  '</div>'+
+  '<div class="foot"><span>🔒 Data is saved on this device. Use Settings → Backup to keep a copy.</span></div>';
+  view.onclick=function(e){
+    var b=e.target.closest('[data-act]');if(!b)return;
+    if(b.dataset.act==='clearSample'){
+      if(!confirm('Clear all sample KPI numbers and remove the 5 sample towers?'))return;
+      Object.keys(data.months).forEach(function(k){data.months[k].kpis.forEach(function(kp){kp.rows={};});});
+      data.towers=data.towers.filter(function(t){return t.name.indexOf('Sample BTS')!==0;});
+      data.sampleNotice=false;save();home();toast('Sample numbers cleared');
+    }else if(b.dataset.act==='keepSample'){data.sampleNotice=false;save();home();}
+  };
+}
+function terrVal(c){var f=data.territory.fields.find(function(x){return x.c===c;});return f?String(f.v).trim():'';}
+
+function monthView(k){
+  var m=data.months[k];if(!m){location.hash='#/home';return;}
+  top(mlabel(k),'#/home',m.kpis.length+' KPIs · tap a KPI to enter RSO numbers');
+  view.innerHTML=
+  '<div class="actions" style="margin-bottom:14px"><button class="btn-o" data-go="#/summary/'+k+'"><i>'+I.trophy+'</i>Overall summary for this month</button></div>'+
+  '<div class="grid3">'+
+  m.kpis.map(function(kp){
+    var s=kpiSum(kp);
+    return '<div class="card navcard kcard" role="button" tabindex="0" data-go="#/kpi/'+k+'/'+kp.id+'">'+
+      '<button class="kdel" data-act="del" data-id="'+kp.id+'" aria-label="Delete KPI">'+I.trash+'</button>'+
+      '<div class="nc-h" style="padding-right:30px"><div class="icotile it-o">'+I.kpi+'</div><div><h2>'+esc(kp.name)+'</h2><p>'+fmt(s.a)+' / '+fmt(s.t)+'</p></div></div>'+
+      '<div class="mrow"><span class="big s-'+status(s.pct)+'">'+pctTxt(s.pct)+'</span>'+pill(s.pct)+'</div>'+barHtml(s.pct)+
+      '<p class="muted mt" style="font-size:13px;margin-top:10px">'+(s.t===0?'No targets entered yet':s.gap>0?'Gap: <b class="s-bad">'+fmt(s.gap)+'</b>':'Target achieved 🎉')+'</p></div>';
+  }).join('')+
+  '<button class="addcard" data-act="add"><i>'+I.plus+'</i>Add KPI</button></div>'+
+  '<p class="muted" style="font-size:12.5px;margin-top:12px">A KPI you add here is also added to later months automatically. Deleting removes it from this month only.</p>';
+  view.onclick=function(e){
+    var b=e.target.closest('[data-act]');if(!b)return;
+    if(b.dataset.act==='add'){
+      formSheet('Add KPI to '+mlabel(k),[{label:'KPI name',ph:'e.g. Recharge, MFS, 4G Device, SIM Swap'}],'Add KPI',function(v){
+        var n=v[0];if(!n)return 'Enter a KPI name.';
+        var same=function(x){return x.name.toLowerCase()===n.toLowerCase();};
+        if(m.kpis.some(same))return 'This KPI already exists in this month.';
+        m.kpis.push({id:uid(),name:n,rows:{}});
+        Object.keys(data.months).filter(function(x){return x>k;}).forEach(function(x){var mm=data.months[x];if(!mm.kpis.some(same))mm.kpis.push({id:uid(),name:n,rows:{}});});
+        save();monthView(k);toast('KPI added');
+      });
+    }else if(b.dataset.act==='del'){
+      var i=m.kpis.findIndex(function(x){return x.id===b.dataset.id;});if(i<0)return;
+      if(!confirm('Delete "'+m.kpis[i].name+'" from '+mlabel(k)+'? Other months keep it.'))return;
+      m.kpis.splice(i,1);save();monthView(k);toast('KPI deleted from '+mlabel(k));
+    }
+  };
+}
+
+function kpiView(k,id){
+  var m=data.months[k];if(!m){location.hash='#/home';return;}
+  var kp=m.kpis.find(function(x){return x.id===id;});if(!kp){location.hash='#/month/'+k;return;}
+  top(kp.name,'#/month/'+k,mlabel(k)+' · RSO-wise');
+  var mode=data.sort.kpi||'default';
+  view.innerHTML='<div id="sum"></div>'+
+  '<section class="card tablecard"><div class="sec-h"><h3>RSO-wise Performance</h3><div class="seg" id="seg">'+
+  [['default','Serial'],['pctDesc','Top %'],['pctAsc','Low %'],['gapDesc','Big Gap']].map(function(o){return '<button data-s="'+o[0]+'" class="'+(mode===o[0]?'on':'')+'">'+o[1]+'</button>';}).join('')+
+  '</div></div><table class="rso"><thead><tr><th>RSO</th><th>Target</th><th>Achievement</th><th>Gap</th><th>Achievement %</th></tr></thead><tbody id="tb"></tbody></table></section>'+
+  '<div class="actions mt">'+shareBtn('Send '+esc(kp.name)+' report on WhatsApp')+'<button class="btn-o" id="ren"><i>'+I.edit+'</i>Rename KPI</button></div>';
+  drawKpiSummary(k,kp);drawKpiRows(k,kp);
+  $('#seg').onclick=function(e){var b=e.target.closest('button');if(!b)return;data.sort.kpi=b.dataset.s;save();
+    Array.prototype.forEach.call($('#seg').children,function(x){x.classList.toggle('on',x===b);});drawKpiRows(k,kp);};
+  var tb=$('#tb');
+  tb.addEventListener('input',function(e){
+    var inp=e.target,tr=inp.closest('tr');if(!tr||!inp.dataset.f)return;
+    var rid=tr.dataset.r;var row=kp.rows[rid]||(kp.rows[rid]={t:0,a:0});
+    row[inp.dataset.f]=num(inp.value);save();
+    var c=calc(row.t,row.a);tr.querySelector('.gap').innerHTML=gapHtml(c.gap);tr.querySelector('.pc').innerHTML=pctHtml(c.pct);
+    drawKpiSummary(k,kp);
+  });
+  tb.addEventListener('change',function(){if((data.sort.kpi||'default')!=='default')drawKpiRows(k,kp);});
+  $('#share').onclick=function(){openWA(kpiText(k,kp));};
+  $('#ren').onclick=function(){formSheet('Rename KPI',[{label:'KPI name',value:kp.name}],'Save',function(v){
+    if(!v[0])return 'Enter a KPI name.';
+    if(m.kpis.some(function(x){return x!==kp&&x.name.toLowerCase()===v[0].toLowerCase();}))return 'Another KPI already has this name.';
+    kp.name=v[0];save();kpiView(k,id);toast('KPI renamed');});};
+}
+function drawKpiSummary(k,kp){
+  var s=kpiSum(kp);
+  var rows=data.rsos.map(function(r){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.n=r.name;return c;}).filter(function(r){return r.pct!=null;});
+  var best=rows.slice().sort(function(a,b){return b.pct-a.pct;})[0],worst=rows.slice().sort(function(a,b){return a.pct-b.pct;})[0];
+  var isCur=k===curKey(),dl=daysLeft(),perDay=s.gap>0?Math.ceil(s.gap/dl):0;
+  $('#sum').innerHTML='<div class="stats">'+
+    '<div class="stat" style="--c:var(--blue)"><small>Total Target</small><b class="num">'+fmt(s.t)+'</b><em>All '+data.rsos.length+' RSOs</em></div>'+
+    '<div class="stat" style="--c:var(--good)"><small>Total Achievement</small><b class="num">'+fmt(s.a)+'</b><em>Achieved so far</em></div>'+
+    '<div class="stat" style="--c:var(--bad)"><small>Remaining Gap</small><b class="num '+(s.gap>0?'s-bad':'s-good')+'">'+(s.gap>=0?fmt(s.gap):'+'+fmt(-s.gap))+'</b><em>'+(s.gap>0?'Still needed':s.gap<0?'Target exceeded':'Target met')+'</em></div>'+
+    '<div class="stat" style="--c:var(--brand)"><small>Achievement %</small><b class="s-'+status(s.pct)+'">'+pctTxt(s.pct)+'</b><em>'+STLBL[status(s.pct)]+'</em></div></div>'+
+    '<section class="card overall" style="margin-bottom:14px"><div class="row"><b>Overall progress</b><span class="muted" style="font-size:13px">'+fmt(s.a)+' of '+fmt(s.t)+'</span></div>'+barHtml(s.pct)+
+    '<div class="chips" style="margin-top:12px">'+
+    (best?'<span class="chip c-good">🏆 Top: '+esc(best.n)+' · '+pctTxt(best.pct)+'</span>':'')+
+    (worst&&worst!==best?'<span class="chip c-bad">🎯 Focus: '+esc(worst.n)+' · '+pctTxt(worst.pct)+'</span>':'')+
+    (isCur?'<span class="chip c-blue">📅 '+(perDay>0?'Need '+fmt(perDay)+'/day · '+dl+' day(s) left':'No daily requirement — target covered')+'</span>':'')+
+    '</div></section>';
+}
+function drawKpiRows(k,kp){
+  var mode=data.sort.kpi||'default';
+  var rows=data.rsos.map(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.r=r;c.i=i;return c;});
+  if(mode==='pctDesc')rows.sort(function(a,b){return (b.pct==null?-1:b.pct)-(a.pct==null?-1:a.pct);});
+  else if(mode==='pctAsc')rows.sort(function(a,b){return (a.pct==null?1e12:a.pct)-(b.pct==null?1e12:b.pct);});
+  else if(mode==='gapDesc')rows.sort(function(a,b){return b.gap-a.gap;});
+  $('#tb').innerHTML=rows.map(function(x,n){
+    return '<tr data-r="'+x.r.id+'"><td class="c-name" data-label="RSO"><div class="namec"><span class="rank'+(mode==='pctDesc'&&n===0&&x.pct!=null?' r1':'')+'">'+(n+1)+'</span>'+
+      '<button class="nlink" data-go="#/rso/'+x.r.id+'/'+k+'"><b>'+esc(x.r.name)+'</b><small>RSO '+(x.i+1)+' · view profile</small></button></div></td>'+
+      '<td data-label="Target"><input class="cell n" data-f="t" type="number" inputmode="decimal" min="0" step="any" value="'+x.t+'" aria-label="Target for '+esc(x.r.name)+'"></td>'+
+      '<td data-label="Achievement"><input class="cell n" data-f="a" type="number" inputmode="decimal" min="0" step="any" value="'+x.a+'" aria-label="Achievement for '+esc(x.r.name)+'"></td>'+
+      '<td class="gap" data-label="Gap">'+gapHtml(x.gap)+'</td><td class="pc" data-label="Achievement %">'+pctHtml(x.pct)+'</td></tr>';
+  }).join('');
+}
+
+function summaryView(k){
+  if(!k||!data.months[k])k=curKey();
+  var m=data.months[k],sc=monthScore(m);
+  top('Overall KPI Summary','#/home',mlabel(k));
+  var kp=m.kpis.map(function(x){return {k:x,s:kpiSum(x)};}).sort(function(a,b){return (b.s.pct==null?-1:b.s.pct)-(a.s.pct==null?-1:a.s.pct);});
+  var well=kp.filter(function(x){return x.s.pct!=null&&x.s.pct>=90;}),poor=kp.filter(function(x){return x.s.pct!=null&&x.s.pct<90;});
+  var rk=ranking(m);
+  view.innerHTML=
+  '<div class="sec-h"><div>'+monthSelect(k)+'</div><span class="chip c-blue">🟢 ≥90% · 🟡 70–90% · 🔴 &lt;70%</span></div>'+
+  '<section class="card overall"><div class="row"><b>Distribution house score</b><span class="pill p-'+status(sc)+'">'+STLBL[status(sc)]+'</span></div>'+
+  '<div style="font-size:30px;font-weight:800;margin-bottom:8px" class="s-'+status(sc)+'">'+pctTxt(sc)+'</div>'+barHtml(sc)+
+  '<p class="muted" style="font-size:12.5px;margin-top:8px">Average achievement % of all KPIs with a target.</p>'+
+  '<div class="chips" style="margin-top:12px">'+
+  (well.length?'<span class="chip c-good">✅ Doing well: '+well.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
+  (poor.length?'<span class="chip c-bad">⚠️ Needs push: '+poor.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
+  '</div></section>'+
+  '<div class="sec-title">KPI-wise (total distribution house)</div><div class="grid3">'+
+  (kp.length?kp.map(function(x){
+    return '<div class="card navcard" role="button" tabindex="0" data-go="#/kpi/'+k+'/'+x.k.id+'"><div class="mhead"><b>'+esc(x.k.name)+'</b>'+pill(x.s.pct)+'</div>'+
+      '<div class="mrow"><span class="big s-'+status(x.s.pct)+'">'+pctTxt(x.s.pct)+'</span><span class="muted num" style="font-size:13px">'+fmt(x.s.a)+' / '+fmt(x.s.t)+'</span></div>'+barHtml(x.s.pct)+'</div>';
+  }).join(''):'<div class="empty">No KPIs in this month.</div>')+'</div>'+
+  '<div class="sec-title">RSO ranking <span style="text-transform:none;letter-spacing:0;font-weight:600">Tap an RSO for details</span></div><section class="card">'+
+  rk.map(function(x,i){
+    return '<div class="trow" role="button" tabindex="0" data-go="#/rso/'+x.r.id+'/'+k+'"><span class="rank'+(i===0&&x.score!=null?' r1':'')+'">'+(i+1)+'</span>'+
+      '<div class="tn"><b>'+esc(x.r.name)+' <span class="muted" style="font-weight:500;font-size:12px">· RSO '+(x.i+1)+'</span></b>'+
+      (x.bad.length?'<small class="s-bad">Behind: '+x.bad.map(esc).join(', ')+'</small>':x.warn.length?'<small class="s-warn">Medium: '+x.warn.map(esc).join(', ')+'</small>':x.score!=null?'<small class="s-good">On track in all KPIs</small>':'<small>No targets yet</small>')+
+      barHtml(x.score)+'</div><div class="tr s-'+status(x.score)+'">'+pctTxt(x.score)+'<small>'+STLBL[status(x.score)]+'</small></div><span class="go">'+I.go+'</span></div>';
+  }).join('')+'</section>'+
+  '<div class="actions mt">'+shareBtn('Send summary on WhatsApp')+'</div>';
+  $('#msel').onchange=function(){location.hash='#/summary/'+this.value;};
+  $('#share').onclick=function(){openWA(summaryText(k));};
+}
+
+function rsoView(id,k){
+  var r=data.rsos.find(function(x){return x.id===id;});if(!r){location.hash='#/rsos';return;}
+  if(!k||!data.months[k])k=curKey();
+  var idx=data.rsos.indexOf(r),m=data.months[k];
+  top(r.name,'#/rsos','RSO '+(idx+1)+' · profile');
+  var ks=rsoKpis(m,r.id),sc=rsoScore(m,r.id);
+  var bad=ks.filter(function(x){return x.pct!=null&&x.pct<70;}),warn=ks.filter(function(x){return x.pct!=null&&x.pct>=70&&x.pct<90;});
+  var hist=Object.keys(data.months).sort().reverse().slice(0,6);
+  view.innerHTML=
+  '<section class="card phead"><div class="avatar" id="av">'+esc((r.name||'?').charAt(0).toUpperCase())+'</div><div style="min-width:0"><small>RSO '+(idx+1)+'</small><h2 id="rnm">'+esc(r.name)+'</h2></div></section>'+
+  '<section class="card mt"><div class="sec-h"><h3>Profile</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div>'+
+  '<div class="frow"><label class="flbl" for="pn">Name</label><div class="fin"><input class="cell" id="pn" value="'+esc(r.name)+'"></div></div>'+
+  '<div class="frow"><label class="flbl" for="pi">iTop-up Number</label><div class="fin"><input class="cell" id="pi" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"><span class="cbox" id="pic">'+contactBtns(r.itop)+'</span></div></div>'+
+  '<div id="xf">'+(r.fields.length?fieldsHtml(r.fields):'')+'</div></section>'+
+  '<div class="sec-h" style="margin-top:22px"><h3>KPI performance</h3>'+monthSelect(k)+'</div>'+
+  '<section class="card"><div class="row" style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px"><b>Overall score</b>'+pill(sc)+'</div>'+
+  '<div style="font-size:28px;font-weight:800" class="s-'+status(sc)+'">'+pctTxt(sc)+'</div>'+barHtml(sc)+
+  '<div class="chips" style="margin-top:12px">'+(bad.length?'<span class="chip c-bad">🔴 Behind in: '+bad.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
+  (warn.length?'<span class="chip c-warn">🟡 Medium in: '+warn.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
+  (!bad.length&&!warn.length&&sc!=null?'<span class="chip c-good">🟢 On track in all KPIs</span>':'')+'</div>'+
+  '<div class="mt">'+(ks.length?ks.map(function(x){
+    return '<div class="kline"><div><b>'+esc(x.k.name)+'</b> <small>'+fmt(x.a)+' / '+fmt(x.t)+(x.gap>0?' · gap '+fmt(x.gap):'')+'</small></div><b class="s-'+status(x.pct)+'">'+pctTxt(x.pct)+'</b>'+barHtml(x.pct)+'</div>';
+  }).join(''):'<div class="empty">No KPIs this month.</div>')+'</div></section>'+
+  '<div class="sec-title">Month-wise history</div><section class="card">'+
+  hist.map(function(h){var s=rsoScore(data.months[h],r.id);return '<div class="hist"><span>'+mlabel(h)+'</span>'+barHtml(s)+'<b class="s-'+status(s)+'">'+pctTxt(s)+'</b></div>';}).join('')+
+  (hist.length<3?'<p class="muted" style="font-size:12.5px;margin-top:6px">History fills up automatically as new months start. All months stay saved.</p>':'')+
+  '</section><div class="actions mt">'+shareBtn('Send '+esc(r.name)+'\'s report on WhatsApp')+'</div>';
+  $('#pn').oninput=function(){r.name=this.value;$('#rnm').textContent=r.name||'—';$('#av').textContent=(r.name||'?').charAt(0).toUpperCase();$('#tbTitle').textContent=r.name||'RSO';save();};
+  $('#pi').oninput=function(){r.itop=this.value;$('#pic').innerHTML=contactBtns(r.itop);save();};
+  bindFields($('#xf'),r.fields,null,function(){rsoView(id,k);});
+  $('#addF').onclick=function(){addFieldSheet(r.fields,function(){rsoView(id,k);});};
+  $('#msel').onchange=function(){location.hash='#/rso/'+id+'/'+this.value;};
+  $('#share').onclick=function(){openWA(rsoText(r,k),r.itop||'');};
+}
+
+function ffView(){
+  top('KHUCHU04 FF Details','#/home','Field force & distribution house');
+  function card(role,tile,icon){
+    var p=data.people[role],nm=p.fields.find(function(f){return f.c==='name';}),ph=p.fields.find(function(f){return f.type==='phone'&&String(f.v).trim();});
+    return '<div class="card navcard" role="button" tabindex="0" data-go="#/person/'+role+'"><div class="nc-h"><div class="icotile '+tile+'">'+icon+'</div><div><h2>'+p.title+'</h2><p>'+esc(nm&&nm.v||'Name not added')+'</p></div><div class="nc-go">'+I.go+'</div></div>'+
+      '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span class="muted num" style="font-size:13.5px">'+esc(ph?ph.v:'No number yet')+'</span><span class="cbox">'+(ph?contactBtns(ph.v):'')+'</span></div></div>';
+  }
+  view.innerHTML='<div class="grid2">'+card('distributor','it-b',I.user)+card('manager','it-o',I.user)+card('accountant','it-g',I.user)+
+  '<div class="card navcard" role="button" tabindex="0" data-go="#/rsos"><div class="nc-h"><div class="icotile it-p">'+I.team+'</div><div><h2>Total RSO</h2><p>'+data.rsos.length+' RSOs by serial</p></div><div class="nc-go">'+I.go+'</div></div>'+
+  '<div class="chips">'+data.rsos.map(function(r,i){return '<span class="chip c-blue">'+(i+1)+'. '+esc(r.name)+'</span>';}).join('')+'</div></div></div>'+
+  '<div class="actions mt">'+shareBtn('Share FF contact list on WhatsApp')+'</div>';
+  $('#share').onclick=function(){
+    var t=HDR+'*KHUCHU04 FF Details*\n';
+    ['distributor','manager','accountant'].forEach(function(k){var p=data.people[k];var nm=p.fields.find(function(f){return f.c==='name';});var ph=p.fields.find(function(f){return f.type==='phone';});
+      t+=p.title+': '+(nm&&nm.v||'—')+(ph&&ph.v?' ('+ph.v+')':'')+'\n';});
+    t+='\n*RSOs*\n';data.rsos.forEach(function(r,i){t+=(i+1)+'. '+r.name+(r.itop?' – iTop-up '+r.itop:'')+'\n';});
+    openWA(t);
+  };
+}
+function personView(role){
+  var p=data.people[role];if(!p){location.hash='#/ff';return;}
+  var nmf=p.fields.find(function(f){return f.c==='name';});
+  top(p.title,'#/ff','Tap a field to edit');
+  view.innerHTML='<section class="card phead"><div class="avatar" id="av">'+esc((nmf&&nmf.v||p.title).charAt(0).toUpperCase())+'</div><div style="min-width:0"><small>'+p.title+'</small><h2 id="pnm">'+esc(nmf&&nmf.v||'Name not added')+'</h2></div></section>'+
+  '<section class="card mt"><div class="sec-h"><h3>Details</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div><div id="flds">'+fieldsHtml(p.fields)+'</div></section>'+
+  '<p class="muted" style="font-size:12.5px;margin-top:10px">Use “Add field” for anything extra: TIN, e-TIN, VAT, home location, bank info…</p>'+
+  '<div class="actions mt">'+shareBtn('Share '+p.title.toLowerCase()+' details on WhatsApp')+'</div>';
+  bindFields($('#flds'),p.fields,function(f){if(f.c==='name'){$('#pnm').textContent=f.v||'Name not added';$('#av').textContent=(f.v||p.title).charAt(0).toUpperCase();}},function(){personView(role);});
+  $('#addF').onclick=function(){addFieldSheet(p.fields,function(){personView(role);});};
+  $('#share').onclick=function(){openWA(fieldsText(p.title,p.fields));};
+}
+function rsosView(){
+  top('Total RSO','#/ff',data.rsos.length+' RSOs · names & iTop-up numbers');
+  view.innerHTML='<section class="card">'+data.rsos.map(function(r,i){
+    return '<div class="rsorow" data-r="'+r.id+'"><span class="rank">'+(i+1)+'</span>'+
+      '<div><label for="rn'+i+'">RSO '+(i+1)+' name</label><input class="cell" id="rn'+i+'" data-f="name" value="'+esc(r.name)+'"></div>'+
+      '<div class="r-it"><label for="ri'+i+'">iTop-up number</label><input class="cell" id="ri'+i+'" data-f="itop" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"></div>'+
+      '<span class="cbox">'+contactBtns(r.itop)+'</span>'+
+      '<button class="go" data-go="#/rso/'+r.id+'" aria-label="Open profile">'+I.go+'</button></div>';
+  }).join('')+'</section><p class="muted" style="font-size:12.5px;margin-top:10px">Changing a name here updates it everywhere, including all KPI months. Tap › to open the full RSO profile.</p>';
+  view.oninput=function(e){
+    var f=e.target.dataset.f,row=e.target.closest('.rsorow');if(!f||!row)return;
+    var r=data.rsos.find(function(x){return x.id===row.dataset.r;});r[f]=e.target.value;
+    if(f==='itop')row.querySelector('.cbox').innerHTML=contactBtns(r.itop);
+    save();
+  };
+}
+
+function towersView(){
+  top('Tower','#/home','BTS list · A/B by revenue');
+  view.innerHTML='<div id="tSum"></div>'+
+  '<div class="rule">📐 Category A = revenue ≥ <input class="cell n" id="thr" type="number" inputmode="decimal" min="0" step="any" value="'+num(data.towerA)+'" aria-label="Category A revenue limit"> taka. Below that is B.</div>'+
+  '<div id="tLists"></div>'+
+  '<div class="actions mt"><button class="btn-o btn-blue" id="addT"><i>'+I.plus+'</i>Add BTS</button>'+shareBtn('Send tower summary on WhatsApp')+'</div>';
+  drawTowers();
+  $('#thr').oninput=function(){data.towerA=num(this.value)||0;save();drawTowers();};
+  $('#addT').onclick=function(){
+    formSheet('Add BTS',[
+      {label:'BTS name / code',ph:'e.g. DHK-1234 Bazar'},
+      {label:'Revenue (৳)',type:'number',mode:'decimal',ph:'0'},
+      {label:'Sub base (subscribers)',type:'number',mode:'numeric',ph:'0'},
+      {label:'Latitude (optional)',mode:'decimal',ph:'23.8103'},
+      {label:'Longitude (optional)',mode:'decimal',ph:'90.4125'}
+    ],'Add BTS',function(v){
+      if(!v[0])return 'Enter the BTS name.';
+      data.towers.push({id:uid(),name:v[0],rev:num(v[1]),sub:num(v[2]),lat:v[3],lng:v[4]});save();drawTowers();toast('BTS added');
+    });
+  };
+  $('#share').onclick=function(){openWA(towersText());};
+}
+function drawTowers(){
+  var c=towerCats(),A=c.ts.filter(function(t){return t.cat==='A';}),B=c.ts.filter(function(t){return t.cat==='B';});
+  $('#tSum').innerHTML='<div class="stats">'+
+    '<div class="stat" style="--c:var(--blue)"><small>Total Revenue</small><b class="num">'+tk(c.total)+'</b><em>'+c.ts.length+' BTS</em></div>'+
+    '<div class="stat" style="--c:var(--brand)"><small>Sub Base</small><b class="num">'+fmt(c.subs)+'</b><em>ARPU '+arpuTxt(c.arpu)+'</em></div>'+
+    '<div class="stat" style="--c:var(--good)"><small>A Category</small><b class="s-good">'+A.length+'</b><em>Revenue ≥ '+tk(c.thr)+'</em></div>'+
+    '<div class="stat" style="--c:var(--warn)"><small>B Category</small><b class="s-warn">'+B.length+'</b><em>Below '+tk(c.thr)+'</em></div></div>';
+  function list(arr,cat){
+    if(!arr.length)return '<div class="empty">No BTS in this category</div>';
+    return arr.map(function(t){
+      return '<div class="trow" role="button" tabindex="0" data-go="#/tower/'+t.id+'"><span class="rank">'+t.rank+'</span><div class="tn"><b>'+esc(t.name||'Unnamed BTS')+'</b>'+
+      '<small>Sub '+fmt(t.sub)+' · ARPU '+arpuTxt(t.arpu)+(t.lat&&t.lng?' · 📍':'')+'</small>'+barHtml(c.max?t.rev/c.max*100:0,cat==='A'?'b-good':'b-warn')+'</div>'+
+      '<div class="tr num">'+tk(t.rev)+'<small>'+t.share.toFixed(1)+'% share</small></div><span class="go">'+I.go+'</span></div>';
+    }).join('');
+  }
+  $('#tLists').innerHTML='<div class="grid2"><section class="card catcol"><h3><span class="badge bA">A</span> Higher revenue</h3>'+list(A,'A')+'</section>'+
+    '<section class="card catcol"><h3><span class="badge bB">B</span> Lower revenue</h3>'+list(B,'B')+'</section></div>';
+}
+function towerView(id){
+  var t=data.towers.find(function(x){return x.id===id;});if(!t){location.hash='#/towers';return;}
+  top('BTS Details','#/towers','Edit, locate or remove');
+  view.innerHTML='<div id="tHero"></div>'+
+  '<section class="card mt"><div class="sec-h"><h3>Edit BTS</h3></div>'+
+  '<div class="frow"><label class="flbl" for="tn">BTS name</label><div class="fin"><input class="cell" id="tn" data-k="name" value="'+esc(t.name)+'"></div></div>'+
+  '<div class="frow"><label class="flbl" for="tr">Revenue (৳)</label><div class="fin"><input class="cell" id="tr" data-k="rev" type="number" inputmode="decimal" min="0" step="any" value="'+num(t.rev)+'"></div></div>'+
+  '<div class="frow"><label class="flbl" for="ts">Sub base</label><div class="fin"><input class="cell" id="ts" data-k="sub" type="number" inputmode="numeric" min="0" step="any" value="'+num(t.sub)+'"></div></div>'+
+  '<div class="frow"><label class="flbl" for="tla">Latitude</label><div class="fin"><input class="cell" id="tla" data-k="lat" inputmode="decimal" value="'+esc(t.lat)+'" placeholder="23.8103"></div></div>'+
+  '<div class="frow"><label class="flbl" for="tlo">Longitude</label><div class="fin"><input class="cell" id="tlo" data-k="lng" inputmode="decimal" value="'+esc(t.lng)+'" placeholder="90.4125"></div></div>'+
+  '<div class="actions mt"><button class="btn-o" id="gps"><i>'+I.gps+'</i>Use my current location</button><a class="btn-o btn-blue" id="map" target="_blank" rel="noopener"><i>'+I.pin+'</i>Open in Google Maps</a></div></section>'+
+  '<div class="actions mt">'+shareBtn('Send BTS details on WhatsApp')+'<button class="btn-o btn-danger" id="del"><i>'+I.trash+'</i>Remove BTS</button></div>';
+  function paint(){
+    var c=towerCats(),x=c.ts.find(function(y){return y.id===id;});
+    var vsAvg=c.ts.length&&c.total>0?((x.rev-c.total/c.ts.length)/(c.total/c.ts.length)*100):0;
+    $('#tHero').innerHTML='<section class="card detail-hero"><span class="badge '+(x.cat==='A'?'bA':'bB')+'">'+x.cat+'</span><h2>'+esc(x.name||'Unnamed BTS')+'</h2>'+
+      '<div class="rev num">'+tk(x.rev)+'</div><p class="muted" style="font-size:13px">'+(x.cat==='A'?'Category A · higher revenue':'Category B · lower revenue')+'</p></section>'+
+      '<div class="kv"><div><small>ARPU</small><b>'+arpuTxt(x.arpu)+'</b></div><div><small>Sub base</small><b class="num">'+fmt(x.sub)+'</b></div><div><small>Rank</small><b>#'+x.rank+' of '+c.ts.length+'</b></div>'+
+      '<div><small>Share</small><b>'+x.share.toFixed(1)+'%</b></div><div><small>vs Avg</small><b class="'+(vsAvg>=0?'s-good':'s-bad')+'">'+(vsAvg>=0?'+':'')+vsAvg.toFixed(0)+'%</b></div><div><small>To A</small><b>'+(x.cat==='A'?'✓':tk(c.thr-x.rev))+'</b></div></div>';
+    var has=String(t.lat).trim()&&String(t.lng).trim();
+    var mp=$('#map');mp.href=has?'https://maps.google.com/?q='+encodeURIComponent(String(t.lat).trim()+','+String(t.lng).trim()):'#';
+    mp.style.opacity=has?'1':'.5';
+    return x;
+  }
+  paint();
+  view.oninput=function(e){var kk=e.target.dataset.k;if(!kk)return;t[kk]=(kk==='rev'||kk==='sub')?num(e.target.value):e.target.value;save();paint();};
+  $('#map').onclick=function(e){if(!(String(t.lat).trim()&&String(t.lng).trim())){e.preventDefault();toast('Add latitude and longitude first');}};
+  $('#gps').onclick=function(){
+    if(!navigator.geolocation){toast('Location is not available on this browser');return;}
+    toast('Getting location…');
+    navigator.geolocation.getCurrentPosition(function(p){
+      t.lat=p.coords.latitude.toFixed(6);t.lng=p.coords.longitude.toFixed(6);$('#tla').value=t.lat;$('#tlo').value=t.lng;save();paint();toast('Location saved');
+    },function(err){toast('Could not get location. Type lat/long manually.');},{enableHighAccuracy:true,timeout:15000});
+  };
+  $('#share').onclick=function(){openWA(towerText(paint()));};
+  $('#del').onclick=function(){
+    if(!confirm('Remove "'+(t.name||'this BTS')+'" from the tower list?'))return;
+    data.towers=data.towers.filter(function(x){return x.id!==id;});save();toast('BTS removed');location.hash='#/towers';
+  };
+}
+
+function totalView(){
+  top('KHUCHU04 In Total','#/home','Territory overview');
+  var c=towerCats();
+  view.innerHTML='<div class="stats">'+
+    '<div class="stat" style="--c:var(--blue)"><small>Total BTS</small><b>'+c.ts.length+'</b><em>A '+c.ts.filter(function(x){return x.cat==='A';}).length+' · B '+c.ts.filter(function(x){return x.cat==='B';}).length+'</em></div>'+
+    '<div class="stat" style="--c:var(--brand)"><small>Total RSOs</small><b>'+data.rsos.length+'</b><em>Field force</em></div>'+
+    '<div class="stat" style="--c:var(--good)"><small>Tower Revenue</small><b class="num">'+tk(c.total)+'</b><em>All BTS</em></div>'+
+    '<div class="stat" style="--c:var(--warn)"><small>Sub Base</small><b class="num">'+fmt(c.subs)+'</b><em>ARPU '+arpuTxt(c.arpu)+'</em></div></div>'+
+    '<section class="card"><div class="sec-h"><h3>Market share</h3><span class="muted" style="font-size:12.5px">From the fields below</span></div><div id="ms"></div></section>'+
+    '<section class="card mt"><div class="sec-h"><h3>Territory details</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div><div id="flds">'+fieldsHtml(data.territory.fields)+'</div></section>'+
+    '<div class="actions mt">'+shareBtn('Share territory overview on WhatsApp')+'</div>';
+  function ms(){
+    var rows=[['Banglalink','bl','b-brand'],['GP','gp','b-grey'],['Robi','robi','b-grey'],['Teletalk','tt','b-grey']].map(function(x){return {n:x[0],v:parseFloat(terrVal(x[1])),cls:x[2]};});
+    var any=rows.some(function(x){return isFinite(x.v);});
+    if(!any){$('#ms').innerHTML='<div class="empty">Enter Banglalink and competitor market share below to see the comparison.</div>';return;}
+    var sum=rows.reduce(function(s,x){return s+(isFinite(x.v)?x.v:0);},0);
+    if(sum<100)rows.push({n:'Others',v:100-sum,cls:'b-grey'});
+    $('#ms').innerHTML=rows.map(function(x){var v=isFinite(x.v)?x.v:0;return '<div class="msbar"><span style="font-weight:'+(x.n==='Banglalink'?800:600)+'">'+x.n+'</span><div class="bar"><i class="'+x.cls+'" style="width:'+Math.min(v,100)+'%"></i></div><b>'+(isFinite(x.v)?v.toFixed(1)+'%':'—')+'</b></div>';}).join('');
+  }
+  ms();
+  bindFields($('#flds'),data.territory.fields,function(f){if(f.c)ms();},totalView);
+  $('#addF').onclick=function(){addFieldSheet(data.territory.fields,totalView);};
+  $('#share').onclick=function(){
+    var t=HDR+'*KHUCHU04 In Total*\nTotal BTS: '+c.ts.length+'\nTotal RSOs: '+data.rsos.length+'\nTower revenue: '+tk(c.total)+'\nSub base: '+fmt(c.subs)+' | ARPU: '+arpuTxt(c.arpu)+'\n';
+    data.territory.fields.forEach(function(f){if(String(f.v).trim())t+=f.k+': '+f.v+'\n';});
+    openWA(t);
+  };
+}
+
+function settingsView(){
+  top('Settings','#/home','Login, backup & data');
+  var isDef=data.auth.user==='admin'&&data.auth.pass==='123456';
+  view.innerHTML=
+  '<section class="card"><div class="nc-h"><div class="icotile it-o">'+I.key+'</div><div><h2>Login</h2><p>Current username: <b>'+esc(data.auth.user)+'</b>'+(isDef?' · default password in use':'')+'</p></div></div>'+
+  '<div class="actions"><button class="btn-o" id="chg"><i>'+I.edit+'</i>Change username & password</button></div></section>'+
+  '<section class="card mt"><div class="nc-h"><div class="icotile it-b">'+I.dl+'</div><div><h2>Backup</h2><p>Save all data (months, RSOs, towers, contacts) as a file</p></div></div>'+
+  '<div class="actions"><button class="btn-o btn-blue" id="bk"><i>'+I.dl+'</i>Download backup file</button><button class="btn-o" id="bkc"><i>'+I.copy+'</i>Copy backup text</button></div></section>'+
+  '<section class="card mt"><div class="nc-h"><div class="icotile it-g">'+I.ul+'</div><div><h2>Restore</h2><p>Load a backup file. This replaces the data on this device.</p></div></div>'+
+  '<div class="actions"><label class="btn-o" for="rf" style="cursor:pointer"><i>'+I.ul+'</i>Choose backup file</label></div><input type="file" id="rf" accept=".json,application/json,text/plain" class="hidden">'+
+  '<p class="muted" style="font-size:12.5px;margin:12px 0 6px">Or paste backup text:</p><textarea class="cell" id="rt" placeholder="Paste backup text here"></textarea>'+
+  '<div class="actions mt"><button class="btn-o" id="rtb">Restore from pasted text</button></div></section>'+
+  '<section class="card mt"><div class="nc-h"><div class="icotile it-y">'+I.trash+'</div><div><h2>Reset</h2><p>Start again with the default setup. Your login stays the same.</p></div></div>'+
+  '<div class="actions"><button class="btn-o btn-danger" id="rst"><i>'+I.trash+'</i>Reset all data</button></div></section>'+
+  '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v2 · '+Object.keys(data.months).length+' month(s) saved</p>';
+  $('#chg').onclick=function(){
+    formSheet('Change login',[
+      {label:'Current password',type:'password'},{label:'New username',value:data.auth.user},
+      {label:'New password',type:'password',ph:'At least 4 characters'},{label:'Confirm new password',type:'password'}
+    ],'Save login',function(v){
+      if(v[0]!==data.auth.pass)return 'Current password is wrong.';
+      if(!v[1])return 'Enter a username.';
+      if(v[2].length<4)return 'New password needs at least 4 characters.';
+      if(v[2]!==v[3])return 'The two new passwords do not match.';
+      data.auth={user:v[1],pass:v[2]};save();settingsView();toast('Login updated');
+    });
+  };
+  function bkText(){return JSON.stringify(data);}
+  $('#bk').onclick=function(){
+    var blob=new Blob([JSON.stringify(data,null,1)],{type:'application/json'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ETIS-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},1500);toast('Backup downloaded');
+  };
+  $('#bkc').onclick=function(){
+    var txt=bkText();
+    function fallback(){var ta=$('#rt');ta.value=txt;ta.select();try{document.execCommand('copy');toast('Backup copied');}catch(e){toast('Text selected below — copy it');}}
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(txt).then(function(){toast('Backup copied');},fallback);else fallback();
+  };
+  function restore(txt){
+    var d;try{d=JSON.parse(txt);}catch(e){toast('This is not a valid ETIS backup');return;}
+    if(!valid(d)){toast('This is not a valid ETIS backup');return;}
+    if(!confirm('Replace all data on this device with this backup?'))return;
+    data=fix(d);save();toast('Backup restored');location.hash='#/home';
+  }
+  $('#rf').onchange=function(){var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){restore(String(r.result));};r.readAsText(f);this.value='';};
+  $('#rtb').onclick=function(){var t=$('#rt').value.trim();if(!t){toast('Paste the backup text first');return;}restore(t);};
+  $('#rst').onclick=function(){
+    if(!confirm('Reset ALL data (months, towers, contacts) to the default setup?'))return;
+    var a=data.auth;data=seed();data.auth=a;save();toast('Data reset');location.hash='#/home';
+  };
+}
+
+/* ================= ROUTER & AUTH ================= */
+function render(){
+  closeSheet();
+  view.onclick=null;view.oninput=null;view.onchange=null;
+  if(store.get(AUTH)!=='1'){
+    $('#shell').classList.add('hidden');$('#login').classList.remove('hidden');
+    $('#demo').classList.toggle('hidden',!(data.auth.user==='admin'&&data.auth.pass==='123456'));
+    return;
+  }
+  $('#login').classList.add('hidden');$('#shell').classList.remove('hidden');
+  ensureMonth();
+  var p=location.hash.replace(/^#\/?/,'').split('/').map(function(s){try{return decodeURIComponent(s);}catch(e){return s;}});
+  switch(p[0]){
+    case 'summary':summaryView(p[1]);break;
+    case 'month':monthView(p[1]);break;
+    case 'kpi':kpiView(p[1],p[2]);break;
+    case 'towers':towersView();break;
+    case 'tower':towerView(p[1]);break;
+    case 'ff':ffView();break;
+    case 'person':personView(p[1]);break;
+    case 'rsos':rsosView();break;
+    case 'rso':rsoView(p[1],p[2]);break;
+    case 'total':totalView();break;
+    case 'settings':settingsView();break;
+    default:home();
+  }
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',render);
+document.addEventListener('click',function(e){
+  var w=e.target.closest('[data-wa]');if(w){e.preventDefault();openWA('',w.dataset.wa);return;}
+  var g=e.target.closest('[data-go]');
+  if(g&&!e.target.closest('input,select,textarea,a,label,[data-act],[data-delf]')){location.hash=g.dataset.go;}
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&e.target.matches&&e.target.matches('[role=button][data-go]'))location.hash=e.target.dataset.go;
+  if(e.key==='Escape')closeSheet();
+});
+$('#loginForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  if($('#lu').value.trim()===data.auth.user&&$('#lp').value===data.auth.pass){
+    store.set(AUTH,'1');$('#lerr').textContent='';$('#lp').value='';
+    if(location.hash!=='#/home')location.hash='#/home';else render();
+  }else{
+    $('#lerr').textContent='Wrong username or password. Try again.';
+    var c=$('#loginForm');c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');
+  }
+});
+$('#eye').onclick=function(){var i=$('#lp');i.type=i.type==='password'?'text':'password';};
+$('#setBtn').onclick=function(){location.hash='#/settings';};
+$('#logoutBtn').onclick=function(){if(!confirm('Log out of ETIS?'))return;store.del(AUTH);$('#lu').value='';location.hash='#/login';render();};
+
+render();
+})();
+</script>
+</body>
+</html>
