@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#F26522">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta name="mobile-web-app-capable" content="yes">
 <title>ETIS / KHUCHU04</title>
 <style>
@@ -289,6 +292,49 @@ body.viewer #logoutBtn,body.viewer .novw{display:none!important}
 .rsorow.bprow{grid-template-columns:34px 1.2fr 1fr auto 26px 40px}
 body.ro .rsorow.bprow{grid-template-columns:34px 1.2fr 1fr auto 26px}
 
+.hnote{font-size:12.5px;color:var(--muted);background:var(--blue-l);border-radius:10px;padding:8px 10px;margin-top:8px}
+
+.ckh,.ckr,.ckt{display:grid;grid-template-columns:minmax(0,1.6fr) 44px 64px 62px 58px;gap:6px;align-items:center}
+.ckh{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:2px 0 6px;border-bottom:1px solid var(--line)}
+.ckr{padding:9px 0;border-bottom:1px solid #f0f2f6;font-size:13.5px}
+.ckr span:first-child{min-width:0}.ckr small{display:block;font-size:11px;color:var(--muted);margin-top:2px;word-break:break-word}
+.ckr.miss{opacity:.65}.ckr>b,.ckt>b{text-align:right}
+.ckt{padding-top:9px;font-weight:700}
+.cdet{border-bottom:1px solid #f0f2f6;padding:4px 0}.cdet:last-child{border-bottom:0}
+.cdet summary{display:flex;align-items:center;gap:10px;padding:8px 0;cursor:pointer;list-style:none}
+.cdet summary::-webkit-details-marker{display:none}
+.cdn{flex:1;min-width:0}.cdn b{display:block}.cdn small{display:block;font-size:12px;color:var(--muted)}
+.cda{font-size:15px;white-space:nowrap}
+.cdet[open] summary{border-bottom:1px dashed var(--line);margin-bottom:6px}
+.wkh,.wkr{display:grid;grid-template-columns:minmax(0,1.3fr) 82px 58px 56px 62px;gap:6px;align-items:center}
+.wkh{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.wkr{padding:8px 0;border-bottom:1px solid #f0f2f6;font-size:13.5px}
+.wkr small{display:block;font-size:11px;color:var(--muted)}
+.wkr .cell{height:36px;font-size:14px;padding:0 6px}.wkr>b{text-align:right}
+@media (max-width:420px){.ckh,.ckr,.ckt{grid-template-columns:minmax(0,1fr) 36px 52px 52px 48px;font-size:12.5px}.wkh,.wkr{grid-template-columns:minmax(0,1fr) 66px 46px 50px 54px;gap:4px}}
+
+.shopts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.shopts button{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;text-align:left}
+.shopts button:hover{border-color:var(--brand)}
+.shopts i{width:34px;height:34px;padding:7px;border-radius:10px;display:block;margin-bottom:4px}
+.shopts .ic-wa{background:var(--wa-l);color:var(--wa)}.shopts .ic-im{background:var(--brand-l);color:var(--brand)}.shopts .ic-xl{background:var(--good-l);color:var(--good)}.shopts .ic-cp{background:var(--blue-l);color:var(--blue)}
+.shopts b{font-size:15px}.shopts small{font-size:12px;color:var(--muted)}
+.chart{width:100%;height:auto;display:block;overflow:hidden}
+.chart .cg{stroke:#eef0f4;stroke-width:1}.chart .ct{fill:var(--muted);font-size:10px;font-family:inherit}
+.chart .cl{fill:none;stroke:var(--brand);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.chart .cp{fill:none;stroke:#9aa3b2;stroke-width:1.5;stroke-dasharray:4 4}
+.chart .cd{fill:var(--brand);stroke:#fff;stroke-width:2}.chart .cd.last{fill:var(--brand-d)}
+.chart .cb{fill:#f7a26f}.chart .cb:hover,.chart .cd:hover{opacity:.8;cursor:pointer}
+.lg{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.lg i{display:inline-block;width:14px;height:3px;border-radius:2px}.lg1{background:var(--brand)}.lg2{border-top:2px dashed #9aa3b2;height:0!important}.lg3{background:#f7a26f;height:8px!important}
+.ttip{font-size:12.5px;margin-top:6px;min-height:18px}
+.sprow{display:grid;grid-template-columns:minmax(0,1fr) 120px 70px;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f6;cursor:pointer}
+.sprow:last-child{border-bottom:0}.spn b{display:block;font-size:14px}.spn small{font-size:11.5px;color:var(--muted)}.spv{text-align:right;font-weight:700;font-size:13px}
+.bchk{cursor:pointer}.bchk input{accent-color:var(--brand)}
+.avatar{overflow:hidden}.avimg{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
+.icotile.hasph{padding:0;overflow:hidden}.rank.hasph{padding:0;overflow:hidden;border-radius:50%}
+.phbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.phbtns .btn-s{height:30px;font-size:12px;padding:0 10px}
+
 /* IMPORT */
 .imap{border:1.5px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
 .imap.off{opacity:.6}
@@ -379,6 +425,7 @@ body.ro .rsorow.bprow{grid-template-columns:34px 1.2fr 1fr auto 26px}
 <div id="shell" class="hidden">
   <header class="topbar">
     <div class="topin">
+      <button class="tb-btn hidden" id="tbHome" aria-label="Home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button>
       <button class="tb-btn hidden" id="tbBack" aria-label="Back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
       <div class="tb-brand" id="tbBrand">E</div>
       <div class="tb-t"><b id="tbTitle">ETIS</b><small id="tbSub"></small></div>
@@ -493,6 +540,7 @@ var I={
   dl:SV('<path d="M12 3v12M7 10l5 5 5-5M4 21h16"/>'),
   ul:SV('<path d="M12 21V9M7 14l5-5 5 5M4 3h16"/>'),
   copy:SV('<rect x="8" y="8" width="13" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>'),
+  home:SV('<path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/>'),
   key:SV('<circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/>')
 };
 
@@ -592,7 +640,7 @@ function ensureMonth(){
   if(data.months[cur])return;
   var keys=Object.keys(data.months).filter(function(k){return k<cur;}).sort();
   var last=keys[keys.length-1];
-  var kp=last?data.months[last].kpis.map(function(k){return {id:uid(),name:k.name,rows:{},bp:!!k.bp};})
+  var kp=last?data.months[last].kpis.map(function(k){return {id:uid(),name:k.name,rows:{},bp:!!k.bp,scope:k.scope||'ff',useHouse:!!k.useHouse};})
              :['C2C','GA','FWA Router'].map(function(n){return {id:uid(),name:n,rows:{},bp:n==='GA'};});
   data.months[cur]={kpis:kp};
   save();
@@ -602,8 +650,9 @@ function ensureMonth(){
 
 function calc(t,a){t=num(t);a=num(a);return {t:t,a:a,gap:t-a,pct:t>0?(a/t)*100:null};}
 function rowOf(kp,rid){return kp.rows[rid]||{t:0,a:0};}
-function grp(g){return g==='bp'?(data.bps||[]):data.rsos;}
-function gLbl(g){return g==='bp'?'BP':'RSO';}
+function HOUSE(){return {id:'house',name:(data.ddCode||'KHUCHU04')+' House',itop:'',fields:[]};}
+function grp(g){return g==='house'?[HOUSE()]:g==='bp'?(data.bps||[]):data.rsos;}
+function gLbl(g){return g==='house'?'House':g==='bp'?'BP':'RSO';}
 function memberById(id){
   var i=data.rsos.findIndex(function(x){return x.id===id;});if(i>=0)return {m:data.rsos[i],g:'rso',i:i};
   i=(data.bps||[]).findIndex(function(x){return x.id===id;});if(i>=0)return {m:data.bps[i],g:'bp',i:i};
@@ -623,15 +672,25 @@ function mtdHtml(t,a,k){
   var m=mtd(t,a,k);
   return '<div class="pcell"><div class="pv s-'+status(m.pct)+'">'+pctTxt(m.pct)+'</div><small class="muted num">'+(m.proj==null?'—':'→ '+fmt(m.proj)+' by month end')+'</small></div>';
 }
+function prevKey(k){var p=k.split('-');var d=new Date(+p[0],+p[1]-2,1);return mkey(d);}
+function snapNow(k,day){
+  var M=data.months[k];if(!M||!day)return;
+  var S={};
+  M.kpis.forEach(function(kp){var o={};Object.keys(kp.rows).forEach(function(id){var x=kp.rows[id];if(x)o[id]=num(x.a);});o._h=kpiSum(kp).a;S[kp.name]=o;});
+  M.snaps=M.snaps||{};M.snaps[day]=S;
+  var keep=prevKey(curKey());
+  Object.keys(data.months).forEach(function(x){if(x<keep&&data.months[x].snaps)delete data.months[x].snaps;});
+}
 function partSum(kp,g){var T=0,A=0;grp(g).forEach(function(r){var x=rowOf(kp,r.id);T+=num(x.t);A+=num(x.a);});return calc(T,A);}
-function kpiSum(kp){var a=partSum(kp,'rso');if(!kp.bp)return a;var b=partSum(kp,'bp');return calc(a.t+b.t,a.a+b.a);}
+function ffSum(kp){var a=partSum(kp,'rso');if(!kp.bp)return a;var b=partSum(kp,'bp');return calc(a.t+b.t,a.a+b.a);}
+function kpiSum(kp){if(kp.scope==='house'||kp.useHouse){var h=kp.rows.house;if(h||kp.scope==='house')return calc(h?h.t:0,h?h.a:0);}return ffSum(kp);}
 
 function monthScore(m){var ps=m.kpis.map(function(k){return kpiSum(k).pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
 function monthMtd(m,k){var ps=m.kpis.map(function(kp){var s=kpiSum(kp);return mtd(s.t,s.a,k).pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
 
 function rsoKpis(m,rid,g){
   if(!g){var mb=memberById(rid);g=mb?mb.g:'rso';}
-  return m.kpis.filter(function(k){return g!=='bp'||k.bp;}).map(function(k){var x=rowOf(k,rid);var c=calc(x.t,x.a);c.k=k;return c;});
+  return m.kpis.filter(function(k){return k.scope!=='house'&&(g!=='bp'||k.bp);}).map(function(k){var x=rowOf(k,rid);var c=calc(x.t,x.a);c.k=k;return c;});
 }
 
 function rsoScore(m,rid,g){var ps=rsoKpis(m,rid,g).map(function(x){return x.pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
@@ -672,11 +731,12 @@ function openWA(text,phone){
   var a=document.createElement('a');a.href='https://wa.me/'+n+(text?'?text='+encodeURIComponent(text):'');a.target='_blank';a.rel='noopener';
   document.body.appendChild(a);a.click();a.remove();
 }
-function shareBtn(label){return '<button class="btn-o btn-wa" id="share"><i>'+I.wa+'</i>'+(label||'Share on WhatsApp')+'</button>';}
+function shareBtn(label){return '<button class="btn-o btn-wa" id="share"><i>'+I.wa+'</i>'+(label||'Share')+' · Text / Image / Excel</button>';}
 var toastT;
 function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on');},1800);}
 function top(title,back,sub){
   $('#tbBack').classList.toggle('hidden',!back);
+  $('#tbHome').classList.toggle('hidden',!back||back==='#/home');
   $('#tbBrand').classList.toggle('hidden',!!back);
   $('#tbBack').onclick=function(){location.hash=back;};
   $('#tbTitle').textContent=title;$('#tbSub').textContent=sub||'';
@@ -762,7 +822,7 @@ function kpiText(k,kp){
   var t=HDR+'*'+kp.name+' – '+mlabel(k)+'*'+(kp.bp?' (RSO + BP)':'')+'\nTarget: '+fmt(s.t)+' | Ach: '+fmt(s.a)+' | Gap: '+fmt(Math.max(s.gap,0))+' | '+pctTxt(s.pct)+'\n';
   if(mm.pct!=null)t+='MTD (day '+mm.d+'/30): '+pctTxt(mm.pct)+' '+DOT[status(mm.pct)]+' → month-end '+fmt(mm.proj)+'\n';
   if(k===curKey()&&s.gap>0){var dl=daysLeft();t+='Need/day: '+fmt(Math.ceil(s.gap/dl))+' ('+dl+' days left)\n';}
-  ['rso'].concat(kp.bp?['bp']:[]).forEach(function(g){
+  (kp.scope==='house'?[]:['rso'].concat(kp.bp?['bp']:[])).forEach(function(g){
     var ps=partSum(kp,g);
     t+='\n*'+gLbl(g)+'-wise* ('+fmt(ps.a)+'/'+fmt(ps.t)+')\n';
     grp(g).forEach(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a),q=mtd(c.t,c.a,k);t+=(i+1)+'. '+r.name+': '+fmt(c.a)+'/'+fmt(c.t)+' ('+pctTxt(c.pct)+') · MTD '+pctTxt(q.pct)+' '+DOT[status(q.pct)]+'\n';});
@@ -804,6 +864,13 @@ function towerText(x){
 }
 
 /* ================= VIEWS ================= */
+function campHomeCard(){
+  ensureCampaigns();
+  var k=curKey(),all=(data.campaigns||[]).filter(function(c){return c.month===k;}),live=all.filter(function(c){return campState(c).st==='live';}),tot=0;
+  all.forEach(function(c){var m=campMoney(c,'proj');if(m)tot+=m;});
+  return '<div class="sec-title">Campaign</div><div class="card navcard" role="button" tabindex="0" data-go="#/camp"><div class="nc-h"><div class="icotile it-p">'+I.trophy+'</div><div><h2>Campaigns</h2><p>সমৃদ্ধি · অদম্য · weekly · '+live.length+' running</p></div><div class="nc-go">'+I.go+'</div></div>'+
+    '<div class="tstats"><div class="tstat" style="grid-column:span 2"><small>Month-end incentive (MTD)</small><b>'+tkf(tot)+'</b></div><div class="tstat"><small>Campaigns</small><b>'+all.length+'</b></div></div></div>';
+}
 function home(){
   top('ETIS','','KHUCHU04 · Territory Intelligence');
   var cur=curKey(),m=data.months[cur],sc=monthScore(m);
@@ -817,7 +884,7 @@ function home(){
   '<section class="hero"><div><p class="hero-k">'+greet+(VIEWER?', '+esc(VIEWER.name):MODE==='cloud'?'':', Emon')+' 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
   '<div class="score"><b>'+pctTxt(sc)+'</b><small>'+mlabel(cur).split(' ')[0]+' score</small></div></section>'+
   (data.sampleNotice?'<div class="notice"><span class="sp">📌 This month\'s KPIs and the towers have <b>sample numbers</b> so you can test. Clear them before entering real data.</span><button data-act="clearSample">Clear sample numbers</button><button data-act="keepSample">Keep</button></div>':'')+
-  '<div class="sec-title">KPI <button class="btn-s edonly" data-act="impHome"><i>'+I.ul+'</i>Import Excel</button></div>'+
+  '<div class="sec-title">KPI <span style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn-s" data-go="#/brief"><i>'+I.wa+'</i>Briefing</button><button class="btn-s" data-go="#/report"><i>'+I.dl+'</i>Report</button><button class="btn-s edonly" data-act="impHome"><i>'+I.ul+'</i>Import</button></span></div>'+
   '<div class="card navcard" role="button" tabindex="0" data-go="#/summary/'+cur+'"><div class="nc-h"><div class="icotile it-o">'+I.trophy+'</div><div><h2>Overall KPI Summary</h2><p>'+mlabel(cur)+' · distribution house total + RSO ranking</p></div><div class="nc-go">'+I.go+'</div></div>'+
   (kp.length?kp.map(function(x){return '<div class="mini"><span>'+esc(x.k.name)+'</span>'+barHtml(x.s.pct)+'<b class="s-'+status(x.s.pct)+'">'+pctTxt(x.s.pct)+'</b></div>';}).join(''):'<p class="muted">No KPIs this month yet.</p>')+
   '</div>'+
@@ -828,6 +895,7 @@ function home(){
       '<p class="muted" style="font-size:13px">'+mm.kpis.length+' KPI'+(mm.kpis.length===1?'':'s')+' · 8 RSOs</p>'+
       '<div class="mrow"><span class="big s-'+status(s)+'">'+pctTxt(s)+'</span>'+pill(s)+'</div>'+barHtml(s)+'</div>';
   }).join('')+'</div>'+
+  campHomeCard()+
   '<div class="sec-title">Territory</div><div class="grid3">'+
   '<div class="card navcard" role="button" tabindex="0" data-go="#/towers"><div class="nc-h"><div class="icotile it-b">'+I.tower+'</div><div><h2>Tower</h2><p>'+tc.ts.length+' BTS · A/B by revenue</p></div><div class="nc-go">'+I.go+'</div></div>'+
   '<div class="tstats"><div class="tstat"><small>A</small><b class="s-good">'+A+'</b></div><div class="tstat"><small>B</small><b class="s-warn">'+(tc.ts.length-A)+'</b></div><div class="tstat"><small>ARPU</small><b>'+arpuTxt(tc.arpu)+'</b></div></div></div>'+
@@ -865,7 +933,7 @@ function monthView(k){
     var s=kpiSum(kp),q=mtd(s.t,s.a,k);
     return '<div class="card navcard kcard" role="button" tabindex="0" data-go="#/kpi/'+k+'/'+kp.id+'">'+
       '<button class="kdel" data-act="del" data-id="'+kp.id+'" aria-label="Delete KPI">'+I.trash+'</button>'+
-      '<div class="nc-h" style="padding-right:30px"><div class="icotile it-o">'+I.kpi+'</div><div><h2>'+esc(kp.name)+'</h2><p>'+(kp.bp?'RSO + BP · ':'')+fmt(s.a)+' / '+fmt(s.t)+'</p></div></div>'+
+      '<div class="nc-h" style="padding-right:30px"><div class="icotile it-o">'+I.kpi+'</div><div><h2>'+esc(kp.name)+'</h2><p>'+(kp.scope==='house'?'House · ':kp.bp?'RSO + BP · ':'')+fmt(s.a)+' / '+fmt(s.t)+'</p></div></div>'+
       '<div class="mrow"><span class="big s-'+status(s.pct)+'">'+pctTxt(s.pct)+'</span>'+pill(q.pct)+'</div>'+barHtml(s.pct)+
       '<p class="muted mt" style="font-size:13px;margin-top:10px">'+(s.t===0?'No targets entered yet':'MTD <b class="s-'+status(q.pct)+'">'+pctTxt(q.pct)+'</b> · month-end <b>'+fmt(q.proj)+'</b>')+'</p></div>';
   }).join('')+
@@ -879,12 +947,12 @@ function monthView(k){
     e.stopPropagation();
     if(b.dataset.act==='imp'){IMP={step:'pick',month:k};location.hash='#/import';return;}
     if(b.dataset.act==='add'){
-      formSheet('Add KPI to '+mlabel(k),[{label:'KPI name',ph:'e.g. Recharge, MFS, 4G Device, SIM Swap'}],'Add KPI',function(v){
-        var n=v[0];if(!n)return 'Enter a KPI name.';
+      formSheet('Add KPI to '+mlabel(k),[{label:'KPI name',ph:'e.g. Recharge, MFS, 4G Device, SIM Swap'},{label:'Who has this KPI?',type:'select',value:'ff',options:[['ff','RSOs (each RSO has a target)'],['house','House only (one number for the distribution house)']]}],'Add KPI',function(v){
+        var n=v[0],sc=v[1]==='house'?'house':'ff';if(!n)return 'Enter a KPI name.';
         var same=function(x){return x.name.toLowerCase()===n.toLowerCase();};
         if(m.kpis.some(same))return 'This KPI already exists in this month.';
-        m.kpis.push({id:uid(),name:n,rows:{},bp:false});
-        later(function(mm){if(!mm.kpis.some(same))mm.kpis.push({id:uid(),name:n,rows:{},bp:false});});
+        m.kpis.push({id:uid(),name:n,rows:{},bp:false,scope:sc});
+        later(function(mm){if(!mm.kpis.some(same))mm.kpis.push({id:uid(),name:n,rows:{},bp:false,scope:sc});});
         save();monthView(k);toast('KPI added');
       });
     }else if(b.dataset.act==='bpadd'){
@@ -914,6 +982,7 @@ function monthView(k){
 function kpiView(k,id){
   var m=data.months[k];if(!m){location.hash='#/home';return;}
   var kp=m.kpis.find(function(x){return x.id===id;});if(!kp){location.hash='#/month/'+k;return;}
+  if(kp.scope==='house'){houseKpiView(k,kp);return;}
   top(kp.name,'#/month/'+k,mlabel(k)+(kp.bp?' · RSO + BP':' · RSO-wise'));
   var mode=getSort();
   function tbl(g,tid){
@@ -925,7 +994,7 @@ function kpiView(k,id){
   '</div></div>'+tbl('rso','tb')+'</section>'+
   (kp.bp?'<section class="card tablecard mt"><div class="sec-h"><h3>BP-wise Performance</h3><span class="muted" style="font-size:12.5px">Adds to the house total</span></div>'+tbl('bp','tbb')+'</section>'
         :'<div class="actions mt edonly"><button class="btn-o" id="addBp"><i>'+I.plus+'</i>Add BP targets for '+esc(kp.name)+'</button></div>')+
-  '<div class="actions mt">'+shareBtn('Send '+esc(kp.name)+' report on WhatsApp')+'<button class="btn-o" id="ren"><i>'+I.edit+'</i>Rename KPI</button></div>';
+  '<div class="actions mt">'+shareBtn('Send '+esc(kp.name)+' report')+'<button class="btn-o" data-go="#/trend/'+k+'/'+kp.id+'"><i>'+I.kpi+'</i>Trend chart</button><button class="btn-o" id="ren"><i>'+I.edit+'</i>Rename KPI</button></div>';
   drawKpiSummary(k,kp);drawKpiRows(k,kp);
   $('#seg').onclick=function(e){var b=e.target.closest('button');if(!b)return;setSort(b.dataset.s);
     Array.prototype.forEach.call($('#seg').children,function(x){x.classList.toggle('on',x===b);});drawKpiRows(k,kp);};
@@ -941,22 +1010,40 @@ function kpiView(k,id){
     tb.addEventListener('change',function(){if((getSort())!=='default')drawKpiRows(k,kp);});
   });
   if($('#addBp'))$('#addBp').onclick=function(){kp.bp=true;save();kpiView(k,id);toast('BP section added to '+kp.name);};
-  $('#share').onclick=function(){openWA(kpiText(k,kp));};
+  $('#share').onclick=function(){shareMenu({title:kp.name+' · '+mlabel(k),text:kpiText(k,kp),tables:kpiTables(k,kp)});};
   $('#ren').onclick=function(){formSheet('Rename KPI',[{label:'KPI name',value:kp.name}],'Save',function(v){
     if(!v[0])return 'Enter a KPI name.';
     if(m.kpis.some(function(x){return x!==kp&&x.name.toLowerCase()===v[0].toLowerCase();}))return 'Another KPI already has this name.';
     kp.name=v[0];save();kpiView(k,id);toast('KPI renamed');});};
 }
 
+function houseKpiView(k,kp){
+  var m=data.months[k],h=kp.rows.house||{t:0,a:0};
+  top(kp.name,'#/month/'+k,mlabel(k)+' · House level');
+  view.innerHTML='<div id="sum"></div><section class="card"><div class="sec-h"><h3>House numbers</h3><span class="pill p-na">'+esc(HOUSE().name)+'</span></div>'+
+    '<div class="frow"><label class="flbl" for="hT">Target</label><div class="fin"><input class="cell n" id="hT" data-f="t" type="number" inputmode="decimal" min="0" step="any" value="'+num(h.t)+'"></div></div>'+
+    '<div class="frow"><label class="flbl" for="hA">Achievement</label><div class="fin"><input class="cell n" id="hA" data-f="a" type="number" inputmode="decimal" min="0" step="any" value="'+num(h.a)+'"></div></div>'+
+    '<p class="muted" style="font-size:12.5px;margin-top:8px">This KPI is for the distribution house only, with no RSO split. It fills in from the DD sheet when you import the office file.</p></section>'+
+    '<div class="actions mt">'+shareBtn('Send '+esc(kp.name)+' on WhatsApp')+'<button class="btn-o" id="ren"><i>'+I.edit+'</i>Rename KPI</button></div>';
+  drawKpiSummary(k,kp);
+  view.oninput=function(e){var f=e.target.dataset.f;if(!f)return;kp.rows.house=kp.rows.house||{t:0,a:0};kp.rows.house[f]=num(e.target.value);save();drawKpiSummary(k,kp);};
+  $('#share').onclick=function(){var s2=kpiSum(kp),q=mtd(s2.t,s2.a,k);shareMenu({title:kp.name+' · '+mlabel(k),tables:kpiTables(k,kp),text:HDR+'*'+kp.name+' (House) – '+mlabel(k)+'*\nTarget: '+fmt(s2.t)+' | Ach: '+fmt(s2.a)+' | '+pctTxt(s2.pct)+'\nMTD (day '+q.d+'/30): '+pctTxt(q.pct)+' '+DOT[status(q.pct)]+' → month-end '+fmt(q.proj)});};
+  $('#ren').onclick=function(){formSheet('Rename KPI',[{label:'KPI name',value:kp.name}],'Save',function(v){
+    if(!v[0])return 'Enter a KPI name.';
+    if(m.kpis.some(function(x){return x!==kp&&x.name.toLowerCase()===v[0].toLowerCase();}))return 'Another KPI already has this name.';
+    kp.name=v[0];save();kpiView(k,kp.id);toast('KPI renamed');});};
+}
 function drawKpiSummary(k,kp){
   var s=kpiSum(kp),q=mtd(s.t,s.a,k);
   var people=data.rsos.concat(kp.bp?data.bps:[]);
   var rows=people.map(function(r){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.n=r.name;return c;}).filter(function(r){return r.pct!=null;});
   var best=rows.slice().sort(function(a,b){return b.pct-a.pct;})[0],worst=rows.slice().sort(function(a,b){return a.pct-b.pct;})[0];
   var isCur=k===curKey(),dl=daysLeft(),perDay=s.gap>0?Math.ceil(s.gap/dl):0;
-  var ps=partSum(kp,'rso'),pb=kp.bp?partSum(kp,'bp'):null;
+  var ps=partSum(kp,'rso'),pb=kp.bp?partSum(kp,'bp'):null,ff=ffSum(kp),hh=kp.rows.house;
+  var hnote=kp.scope==='house'?'':(kp.useHouse&&hh?'<div class="hnote">🏢 House total comes from the office file (DD sheet). RSO'+(kp.bp?' + BP':'')+' rows add up to '+fmt(ff.a)+' / '+fmt(ff.t)+'. <button class="linkbtn edonly" style="display:inline;margin:0" data-uh="0">Use RSO'+(kp.bp?' + BP':'')+' sum instead</button></div>'
+    :(hh&&(num(hh.t)||num(hh.a))?'<div class="hnote">Office house total: '+fmt(hh.a)+' / '+fmt(hh.t)+'. <button class="linkbtn edonly" style="display:inline;margin:0" data-uh="1">Use office house total</button></div>':''));
   $('#sum').innerHTML='<div class="stats">'+
-    '<div class="stat" style="--c:var(--blue)"><small>Total Target</small><b class="num">'+fmt(s.t)+'</b><em>'+(kp.bp?data.rsos.length+' RSOs + '+data.bps.length+' BPs':'All '+data.rsos.length+' RSOs')+'</em></div>'+
+    '<div class="stat" style="--c:var(--blue)"><small>Total Target</small><b class="num">'+fmt(s.t)+'</b><em>'+(kp.scope==='house'||kp.useHouse?'House total':kp.bp?data.rsos.length+' RSOs + '+data.bps.length+' BPs':'All '+data.rsos.length+' RSOs')+'</em></div>'+
     '<div class="stat" style="--c:var(--good)"><small>Total Achievement</small><b class="num">'+fmt(s.a)+'</b><em>'+pctTxt(s.pct)+' of target</em></div>'+
     '<div class="stat" style="--c:var(--bad)"><small>Remaining Gap</small><b class="num '+(s.gap>0?'s-bad':'s-good')+'">'+(s.gap>=0?fmt(s.gap):'+'+fmt(-s.gap))+'</b><em>'+(s.gap>0?'Still needed':s.gap<0?'Target exceeded':'Target met')+'</em></div>'+
     '<div class="stat" style="--c:var(--brand)"><small>MTD %</small><b class="s-'+status(q.pct)+'">'+pctTxt(q.pct)+'</b><em>Month-end → '+(q.proj==null?'—':fmt(q.proj))+'</em></div></div>'+
@@ -964,12 +1051,14 @@ function drawKpiSummary(k,kp){
     '<div class="mtdbox"><div><small>MTD · day '+q.d+' of 30</small><b class="s-'+status(q.pct)+'">'+pctTxt(q.pct)+'</b><span>'+STLBL[status(q.pct)]+'</span></div>'+
       '<div><small>Month-end projection</small><b class="num">'+(q.proj==null?'—':fmt(q.proj))+'</b><span>at this pace, of '+fmt(s.t)+'</span></div>'+
       (isCur?'<button class="btn-s edonly" id="mtdD"><i>'+I.cal+'</i>Data up to day '+q.d+'</button>':'')+'</div>'+
+    hnote+
     '<div class="chips" style="margin-top:12px">'+
     (pb?'<span class="chip c-blue">RSO: '+fmt(ps.a)+' / '+fmt(ps.t)+' · '+pctTxt(ps.pct)+'</span><span class="chip c-blue">BP: '+fmt(pb.a)+' / '+fmt(pb.t)+' · '+pctTxt(pb.pct)+'</span>':'')+
     (best?'<span class="chip c-good">🏆 Top: '+esc(best.n)+' · '+pctTxt(best.pct)+'</span>':'')+
     (worst&&worst!==best?'<span class="chip c-bad">🎯 Focus: '+esc(worst.n)+' · '+pctTxt(worst.pct)+'</span>':'')+
     (isCur?'<span class="chip c-blue">📅 '+(perDay>0?'Need '+fmt(perDay)+'/day · '+dl+' day(s) left':'No daily requirement — target covered')+'</span>':'')+
     '</div></section>';
+  Array.prototype.forEach.call($('#sum').querySelectorAll('[data-uh]'),function(b){b.onclick=function(){kp.useHouse=b.dataset.uh==='1';save();drawKpiSummary(k,kp);toast(kp.useHouse?'Using office house total':'Using RSO'+(kp.bp?' + BP':'')+' sum');};});
   var md=$('#mtdD');
   if(md)md.onclick=function(){
     formSheet('MTD: data is up to which day?',[{label:'Day of the month (1–30)',type:'number',mode:'numeric',value:q.d}],'Save',function(v){
@@ -985,6 +1074,7 @@ function drawKpiRows(k,kp){
   if(RO)lockInputs();
 }
 function drawRowsG(k,kp,g,sel){
+  if(!$(sel))return;
   var mode=getSort();
   var rows=grp(g).map(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.r=r;c.i=i;return c;});
   if(mode==='pctDesc')rows.sort(function(a,b){return (b.pct==null?-1:b.pct)-(a.pct==null?-1:a.pct);});
@@ -1011,7 +1101,7 @@ function summaryView(k){
     return '<div class="sec-title">'+gLbl(g)+' ranking <span style="text-transform:none;letter-spacing:0;font-weight:600">Tap for details</span></div><section class="card">'+
     ranking(m,g,k).map(function(x,i){
       var mq=x.score;
-      return '<div class="trow" role="button" tabindex="0" data-go="#/rso/'+x.r.id+'/'+k+'"><span class="rank'+(i===0&&x.score!=null?' r1':'')+'">'+(i+1)+'</span>'+
+      return '<div class="trow" role="button" tabindex="0" data-go="#/rso/'+x.r.id+'/'+k+'"><span class="rank'+(i===0&&x.score!=null?' r1':'')+'">'+(i+1)+'</span>'+(x.r.photo?'<span class="rank hasph">'+avatarHtml(x.r,'')+'</span>':'')+
         '<div class="tn"><b>'+esc(x.r.name)+' <span class="muted" style="font-weight:500;font-size:12px">· '+gLbl(g)+' '+(x.i+1)+'</span></b>'+
         (x.bad.length?'<small class="s-bad">Behind: '+x.bad.map(esc).join(', ')+'</small>':x.warn.length?'<small class="s-warn">Medium: '+x.warn.map(esc).join(', ')+'</small>':x.score!=null?'<small class="s-good">On track in all KPIs</small>':'<small>No targets yet</small>')+
         barHtml(mq)+'</div><div class="tr s-'+status(mq)+'">'+pctTxt(mq)+'<small>MTD · ach '+pctTxt(x.ach)+'</small></div><span class="go">'+I.go+'</span></div>';
@@ -1036,7 +1126,7 @@ function summaryView(k){
   rankList('rso')+(hasBp&&data.bps.length?rankList('bp'):'')+
   '<div class="actions mt">'+shareBtn('Send summary on WhatsApp')+'</div>';
   $('#msel').onchange=function(){location.hash='#/summary/'+this.value;};
-  $('#share').onclick=function(){openWA(summaryText(k));};
+  $('#share').onclick=function(){shareMenu({title:'Overall KPI Summary · '+mlabel(k),text:summaryText(k),tables:summaryTables(k)});};
 }
 function avgMtd(m,id,g,k){var ps=rsoKpis(m,id,g).map(function(x){return mtd(x.t,x.a,k).pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
 
@@ -1051,7 +1141,7 @@ function rsoView(id,k){
   var bad=ks.filter(function(x){var p=mq(x);return p!=null&&p<70;}),warn=ks.filter(function(x){var p=mq(x);return p!=null&&p>=70&&p<90;});
   var hist=Object.keys(data.months).sort().reverse().slice(0,6);
   view.innerHTML=
-  '<section class="card phead"><div class="avatar" id="av">'+esc((r.name||'?').charAt(0).toUpperCase())+'</div><div style="min-width:0"><small>'+L+' '+(idx+1)+'</small><h2 id="rnm">'+esc(r.name)+'</h2></div></section>'+
+  '<section class="card phead"><div class="avatar" id="av">'+avatarHtml(r,r.name)+'</div><div style="min-width:0;flex:1"><small>'+L+' '+(idx+1)+'</small><h2 id="rnm">'+esc(r.name)+'</h2>'+photoControls(r,function(){rsoView(id,k);})+'</div></section>'+
   '<section class="card mt"><div class="sec-h"><h3>Profile</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div>'+
   '<div class="frow"><label class="flbl" for="pn">Name</label><div class="fin"><input class="cell" id="pn" value="'+esc(r.name)+'"></div></div>'+
   '<div class="frow"><label class="flbl" for="pi">'+numL+'</label><div class="fin"><input class="cell" id="pi" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"><span class="cbox" id="pic">'+contactBtns(r.itop)+'</span></div></div>'+
@@ -1070,19 +1160,19 @@ function rsoView(id,k){
   hist.map(function(h){var s=rsoScore(data.months[h],r.id,g);return '<div class="hist"><span>'+mlabel(h)+'</span>'+barHtml(s)+'<b class="s-'+status(s)+'">'+pctTxt(s)+'</b></div>';}).join('')+
   (hist.length<3?'<p class="muted" style="font-size:12.5px;margin-top:6px">History fills up automatically as new months start. All months stay saved.</p>':'')+
   '</section><div class="actions mt">'+shareBtn('Send '+esc(r.name)+'\'s report on WhatsApp')+'</div>';
-  $('#pn').oninput=function(){r.name=this.value;$('#rnm').textContent=r.name||'—';$('#av').textContent=(r.name||'?').charAt(0).toUpperCase();$('#tbTitle').textContent=r.name||L;save();};
+  $('#pn').oninput=function(){r.name=this.value;$('#rnm').textContent=r.name||'—';if(!r.photo)$('#av').textContent=(r.name||'?').charAt(0).toUpperCase();$('#tbTitle').textContent=r.name||L;save();};
   $('#pi').oninput=function(){r.itop=this.value;$('#pic').innerHTML=contactBtns(r.itop);save();};
   bindFields($('#xf'),r.fields,null,function(){rsoView(id,k);});
   $('#addF').onclick=function(){addFieldSheet(r.fields,function(){rsoView(id,k);});};
   $('#msel').onchange=function(){location.hash='#/rso/'+id+'/'+this.value;};
-  $('#share').onclick=function(){openWA(rsoText(r,k,g),r.itop||'');};
+  $('#share').onclick=function(){shareMenu({title:r.name+' · '+mlabel(k),text:rsoText(r,k,g),phone:r.itop||'',tables:memberTables(r,k,g)});};
 }
 
 function ffView(){
   top('KHUCHU04 FF Details','#/home','Field force & distribution house');
   function card(role,tile,icon){
     var p=data.people[role],nm=p.fields.find(function(f){return f.c==='name';}),ph=p.fields.find(function(f){return f.type==='phone'&&String(f.v).trim();});
-    return '<div class="card navcard" role="button" tabindex="0" data-go="#/person/'+role+'"><div class="nc-h"><div class="icotile '+tile+'">'+icon+'</div><div><h2>'+p.title+'</h2><p>'+esc(nm&&nm.v||'Name not added')+'</p></div><div class="nc-go">'+I.go+'</div></div>'+
+    return '<div class="card navcard" role="button" tabindex="0" data-go="#/person/'+role+'"><div class="nc-h"><div class="icotile '+tile+(p.photo?' hasph':'')+'">'+(p.photo?avatarHtml(p,''):icon)+'</div><div><h2>'+p.title+'</h2><p>'+esc(nm&&nm.v||'Name not added')+'</p></div><div class="nc-go">'+I.go+'</div></div>'+
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span class="muted num" style="font-size:13.5px">'+esc(ph?ph.v:'No number yet')+'</span><span class="cbox">'+(ph?contactBtns(ph.v):'')+'</span></div></div>';
   }
   function team(g,route,tile){
@@ -1099,7 +1189,7 @@ function ffView(){
       t+=p.title+': '+(nm&&nm.v||'—')+(ph&&ph.v?' ('+ph.v+')':'')+'\n';});
     t+='\n*RSOs*\n';data.rsos.forEach(function(r,i){t+=(i+1)+'. '+r.name+(r.itop?' – iTop-up '+r.itop:'')+'\n';});
     t+='\n*BPs*\n';data.bps.forEach(function(r,i){t+=(i+1)+'. '+r.name+(r.itop?' – '+r.itop:'')+'\n';});
-    openWA(t);
+    shareMenu({title:'KHUCHU04 FF Details',text:t,tables:ffTables()});
   };
 }
 
@@ -1107,13 +1197,13 @@ function personView(role){
   var p=data.people[role];if(!p){location.hash='#/ff';return;}
   var nmf=p.fields.find(function(f){return f.c==='name';});
   top(p.title,'#/ff','Tap a field to edit');
-  view.innerHTML='<section class="card phead"><div class="avatar" id="av">'+esc((nmf&&nmf.v||p.title).charAt(0).toUpperCase())+'</div><div style="min-width:0"><small>'+p.title+'</small><h2 id="pnm">'+esc(nmf&&nmf.v||'Name not added')+'</h2></div></section>'+
+  view.innerHTML='<section class="card phead"><div class="avatar" id="av">'+avatarHtml(p,nmf&&nmf.v||p.title)+'</div><div style="min-width:0;flex:1"><small>'+p.title+'</small><h2 id="pnm">'+esc(nmf&&nmf.v||'Name not added')+'</h2>'+photoControls(p,function(){personView(role);})+'</div></section>'+
   '<section class="card mt"><div class="sec-h"><h3>Details</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div><div id="flds">'+fieldsHtml(p.fields)+'</div></section>'+
   '<p class="muted" style="font-size:12.5px;margin-top:10px">Use “Add field” for anything extra: TIN, e-TIN, VAT, home location, bank info…</p>'+
   '<div class="actions mt">'+shareBtn('Share '+p.title.toLowerCase()+' details on WhatsApp')+'</div>';
-  bindFields($('#flds'),p.fields,function(f){if(f.c==='name'){$('#pnm').textContent=f.v||'Name not added';$('#av').textContent=(f.v||p.title).charAt(0).toUpperCase();}},function(){personView(role);});
+  bindFields($('#flds'),p.fields,function(f){if(f.c==='name'){$('#pnm').textContent=f.v||'Name not added';if(!p.photo)$('#av').textContent=(f.v||p.title).charAt(0).toUpperCase();}},function(){personView(role);});
   $('#addF').onclick=function(){addFieldSheet(p.fields,function(){personView(role);});};
-  $('#share').onclick=function(){openWA(fieldsText(p.title,p.fields));};
+  $('#share').onclick=function(){shareMenu({title:p.title,text:fieldsText(p.title,p.fields),tables:[kvTable(p.title,p.fields.map(function(f){return [f.k,f.v];}))]});};
 }
 function rsosView(){memberList('rso');}
 function bpsView(){memberList('bp');}
@@ -1121,7 +1211,7 @@ function memberList(g){
   var L=gLbl(g),list=grp(g),numL=g==='bp'?'Mobile number':'iTop-up number';
   top('Total '+L,'#/ff',list.length+' '+L+'s · names & '+numL+'s');
   view.innerHTML='<section class="card">'+(list.length?list.map(function(r,i){
-    return '<div class="rsorow'+(g==='bp'?' bprow':'')+'" data-r="'+r.id+'"><span class="rank">'+(i+1)+'</span>'+
+    return '<div class="rsorow'+(g==='bp'?' bprow':'')+'" data-r="'+r.id+'"><span class="rank'+(r.photo?' hasph':'')+'">'+(r.photo?avatarHtml(r,''):(i+1))+'</span>'+
       '<div><label for="rn'+i+'">'+L+' '+(i+1)+' name</label><input class="cell" id="rn'+i+'" data-f="name" value="'+esc(r.name)+'"></div>'+
       '<div class="r-it"><label for="ri'+i+'">'+numL+'</label><input class="cell" id="ri'+i+'" data-f="itop" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"></div>'+
       '<span class="cbox">'+contactBtns(r.itop)+'</span>'+
@@ -1171,7 +1261,7 @@ function towersView(){
       data.towers.push({id:uid(),name:v[0],rev:num(v[1]),sub:num(v[2]),lat:v[3],lng:v[4]});save();drawTowers();toast('BTS added');
     });
   };
-  $('#share').onclick=function(){openWA(towersText());};
+  $('#share').onclick=function(){shareMenu({title:'Tower (BTS) summary',text:towersText(),tables:towersTables()});};
 }
 function drawTowers(){
   var c=towerCats(),A=c.ts.filter(function(t){return t.cat==='A';}),B=c.ts.filter(function(t){return t.cat==='B';});
@@ -1225,7 +1315,7 @@ function towerView(id){
       t.lat=p.coords.latitude.toFixed(6);t.lng=p.coords.longitude.toFixed(6);$('#tla').value=t.lat;$('#tlo').value=t.lng;save();paint();toast('Location saved');
     },function(err){toast('Could not get location. Type lat/long manually.');},{enableHighAccuracy:true,timeout:15000});
   };
-  $('#share').onclick=function(){openWA(towerText(paint()));};
+  $('#share').onclick=function(){var x=paint();shareMenu({title:'BTS · '+x.name,text:towerText(x),tables:[kvTable('Category '+x.cat,[['Revenue',tk(x.rev)],['Sub base',fmt(x.sub)],['ARPU',arpuTxt(x.arpu)],['Rank','#'+x.rank],['Lat, Long',x.lat&&x.lng?x.lat+', '+x.lng:'']])]});};
   $('#del').onclick=function(){
     if(!confirm('Remove "'+(t.name||'this BTS')+'" from the tower list?'))return;
     data.towers=data.towers.filter(function(x){return x.id!==id;});save();toast('BTS removed');location.hash='#/towers';
@@ -1257,7 +1347,7 @@ function totalView(){
   $('#share').onclick=function(){
     var t=HDR+'*KHUCHU04 In Total*\nTotal BTS: '+c.ts.length+'\nTotal RSOs: '+data.rsos.length+'\nTower revenue: '+tk(c.total)+'\nSub base: '+fmt(c.subs)+' | ARPU: '+arpuTxt(c.arpu)+'\n';
     data.territory.fields.forEach(function(f){if(String(f.v).trim())t+=f.k+': '+f.v+'\n';});
-    openWA(t);
+    shareMenu({title:'KHUCHU04 In Total',text:t,tables:[kvTable('Territory overview',[['Total BTS',c.ts.length],['Total RSOs',data.rsos.length],['Total BPs',data.bps.length],['Tower revenue',tk(c.total)],['Sub base',fmt(c.subs)],['ARPU',arpuTxt(c.arpu)]].concat(data.territory.fields.map(function(f){return [f.k,f.v];})))]});
   };
 }
 
@@ -1286,7 +1376,9 @@ function settingsView(){
   '<div class="actions mt"><button class="btn-o" id="rtb">Restore from pasted text</button></div></section>'+
   '<section class="card mt edonly"><div class="nc-h"><div class="icotile it-y">'+I.trash+'</div><div><h2>Reset</h2><p>Start again with the default setup. Your login stays the same.</p></div></div>'+
   '<div class="actions"><button class="btn-o btn-danger" id="rst"><i>'+I.trash+'</i>Reset all data</button></div></section>'+
-  '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v3 '+(cloud?'· cloud sync':'· offline mode')+' · '+Object.keys(data.months).length+' month(s) saved</p>';
+  installCard()+
+  '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v8 '+(cloud?'· cloud sync':'· offline mode')+' · '+Object.keys(data.months).length+' month(s) saved</p>';
+  bindInstall();
   if(VIEWER){}
   else if(cloud){$('#chg').onclick=function(){
     formSheet('Change my password',[
@@ -1374,11 +1466,17 @@ var KPRE=[
   {k:'GA',t:/^ga \(rso\)$|^ga target$|^rso ga$|^bp ga$|^ga tgt$|^total ga target$/,a:/^ga count$|^ga ach|^ga achievement$|^ga achv$|^mtd ga$/,achOnly:true},
   {k:'FWA Router',t:/^fwa( router)? (target|tgt)$/,a:/^fwa( router)? (count|ach|achievement|achv)$/},
   {k:'A.SSO',t:/^a?\.?sso$|^a\.?sso (target|tgt)$/,a:/^a\.?sso (count|ach)/},
-  {k:'A.LSO',t:/^a?\.?lso$|^a\.?lso (target|tgt)$/,a:/^a\.?lso (count|ach)/}
+  {k:'A.LSO',t:/^a?\.?lso$|^a\.?lso (target|tgt)$/,a:/^a\.?lso (count|ach)/},
+  {k:'Recharge',t:/^total recharge target/,a:/^total rech\w*$/},
+  {k:'Recharge',t:/^total rech\w* \(ev c2c ?\+ ?sc\)$/,a:/^$a/,tOnly:true},
+  {k:'SC Primary',t:/^sc primary target$/,a:/^sc lifting$/},
+  {k:'BSO',t:/^bso target$/,a:/^bso count$/},
+  {k:'Device Lifting',t:/^device target$/,a:/^lifting device count$/}
 ];
 function detectPairs(hdr,orig){
   var out=[],seen={};
   KPRE.forEach(function(p){
+    if(seen[p.k.toLowerCase()])return;
     var okA=function(h){return h.indexOf('%')<0&&p.a.test(h);};
     var t=hdr.findIndex(function(h){return p.t.test(h);}),a=-1,i;
     if(t<0){
@@ -1388,8 +1486,8 @@ function detectPairs(hdr,orig){
     }
     for(i=t+1;i<hdr.length;i++){if(okA(hdr[i])){a=i;break;}}
     if(a<0)a=hdr.findIndex(okA);
-    if(a<0&&/count|ach/.test(hdr[t+1]||'')&&(hdr[t+1]||'').indexOf('%')<0)a=t+1;
-    if(a<0)return;
+    if(a<0&&!p.tOnly&&/count|ach/.test(hdr[t+1]||'')&&(hdr[t+1]||'').indexOf('%')<0)a=t+1;
+    if(a<0&&!p.tOnly)return;
     out.push({k:p.k,t:t,a:a});seen[p.k.toLowerCase()]=1;seen['#'+t]=1;seen['#'+a]=1;
   });
   hdr.forEach(function(h,i){
@@ -1438,10 +1536,10 @@ function cfgForSheet(job,sn,g,hrForce){
   }
   var fv=filterCol>=0?(data.ddCode||'KHUCHU04'):'';
   var list=filtRows(rows,hr,filterCol,fv);
-  var keyRes=g==='bp'
+  var keyRes=g==='house'?[/d_?code|dd code|distributor code/]:g==='bp'
     ?[/msisdn|i.?top|mobile|phone|number/,/promoter|sso code|bp code/,/bp.*name|^name$|^bp$/]
     :[/msisdn|i.?top|mobile|phone|number/,/rs[o0]\s*code/,/rso.*name|^name$|^rso$/];
-  var keyCol=pickCol(hdr,list,keyRes,filterCol);
+  var keyCol=pickCol(hdr,list,keyRes,g==='house'?-1:filterCol);
   if(keyCol<0){
     for(c=0;c<ncol;c++){if(c===filterCol)continue;var txt=list.slice(0,30).filter(function(r){var w=r[c];return w!=null&&String(w).trim()&&cellNum(w)==null;}).length;if(txt>=2){keyCol=c;break;}}
   }
@@ -1449,8 +1547,14 @@ function cfgForSheet(job,sn,g,hrForce){
   var labelCol=pickCol(hdr,list,g==='bp'?[/promoter|sso code|bp code/]:[/rs[o0]\s*code/],keyCol);
   var nameCol=pickCol(hdr,list,g==='bp'?[/bp.*name|^name$|^bp$/]:[/rso.*name|^name$|^rso$/],keyCol);
   var M=data.months[IMP.month];
-  var maps=detectPairs(hdr,orig).map(function(p){var ex=findKpiIn(M,p.k);return {on:!!ex&&(g!=='bp'||ex.bp||/^ga$/i.test(ex.name)),kpi:ex?ex.name:p.k,t:p.t,a:p.a};});
-  return {sheet:sn,hr:hr,filterCol:filterCol,filterVal:fv,keyCol:keyCol,labelCol:labelCol,nameCol:nameCol,maps:maps};
+  var need=campNeeds(IMP.month,g);
+  var maps=detectPairs(hdr,orig).map(function(p){
+    var ex=findKpiIn(M,p.k),nm=ex?ex.name:p.k,nd=need[nm.toLowerCase()];
+    var on=g==='house'?!!nd:((!!ex&&ex.scope!=='house'&&(g!=='bp'||ex.bp||/^ga$/i.test(ex.name)))||!!nd);
+    return {on:on,kpi:nm,t:p.t,a:p.a};
+  });
+  var hs={};hdr.forEach(function(h,i){if(/^c2c delta/.test(h))hs.g=i;if(/^c2c c2s gap$/.test(h))hs.p=i;});
+  return {sheet:sn,hr:hr,filterCol:filterCol,filterVal:fv,keyCol:keyCol,labelCol:g==='house'?-1:labelCol,nameCol:g==='house'?-1:nameCol,maps:maps,hs:g==='house'?hs:null};
 }
 function scoreSheet(job,sn,g,cfg){
   var rows=job.sheets[sn]||[];if(!rows.length)return -999;
@@ -1458,6 +1562,11 @@ function scoreSheet(job,sn,g,cfg){
   var bpish=/\bbp\b|^bp/i.test(sn)||hdr.some(function(h){return /designation|promoter|^bp$|bp name/.test(h);});
   var s=(cfg.filterCol>=0?50:0)+Math.min(cfg.maps.length,4)*10+(cfg.maps.some(function(m){return m.on;})?20:0)+(n>=1?20:-60);
   if((data.importCfg||{})[sheetSig(sn,hdr,g)])s+=150;
+  if(g==='house'){
+    if(/^\s*(rso|bp)\s*$/i.test(sn)||bpish)return -999;
+    s+=(/^\s*dd\s*$/i.test(sn)?60:0)+(n===1?60:-300)+Math.min(cfg.maps.length,8)*5;
+    return s;
+  }
   if(g==='rso'){
     s+=(/^\s*rso\s*$/i.test(sn)?30:0)+(n>=2?10:0)+(n>=R-3&&n<=R+6?60:0)+(/msisdn|i.?top|rs[o0]/.test(hdr[cfg.keyCol]||'')?30:0);
     if(/^\s*bp\s*$/i.test(sn))s-=300;
@@ -1468,9 +1577,9 @@ function scoreSheet(job,sn,g,cfg){
   return s;
 }
 function autoPart(job,g,exclude){
-  var best=null;
+  var best=null;exclude=[].concat(exclude||[]);
   Object.keys(job.sheets).forEach(function(sn){
-    if(sn===exclude)return;
+    if(exclude.indexOf(sn)>=0)return;
     var cfg=cfgForSheet(job,sn,g),sc=scoreSheet(job,sn,g,cfg);
     if(sc>-500&&(!best||sc>best.s))best={s:sc,cfg:cfg};
   });
@@ -1504,6 +1613,7 @@ function autoMatch(x,g){
 }
 function matchPart(job,P){
   var used={},list=grp(P.g);
+  if(P.g==='house'){P.rows.forEach(function(x,i){x.rid=i===0?'house':'';x.how=i===0?'auto':'';});return;}
   P.rows.forEach(function(x){var m=autoMatch(x,P.g);if(m.id&&!used[m.id]){x.rid=m.id;x.how=m.how;used[m.id]=1;}else{x.rid='';x.how='';}});
   if(!P.rows.some(function(x){return x.rid;})&&P.rows.length===list.length&&list.length&&!job.ocr){
     P.rows.forEach(function(x,i){x.rid=list[i].id;x.how='order';});
@@ -1590,6 +1700,8 @@ function startImport(files,isImg){
           job.parts.rso=newPart('rso',rc);
           var bc=autoPart(job,'bp',rc?rc.sheet:null);
           job.parts.bp=newPart('bp',bc);
+          var hc=autoPart(job,'house',[rc?rc.sheet:'',bc?bc.sheet:'']);
+          job.parts.house=newPart('house',hc);
           var dd=detectDay(sheets);if(dd&&!IMP.dayFromFile)IMP.dayFromFile=dd;
         }
         IMP.jobs.push(job);
@@ -1605,7 +1717,7 @@ function templateDownload(){
   loadScript(XLSX_URL,'XLSX').then(function(X){
     var M=data.months[IMP.month],wb=X.utils.book_new();
     [['rso','RSO','iTop-up Number'],['bp','BP','Mobile Number']].forEach(function(z){
-      var g=z[0],ks=M.kpis.filter(function(k){return g!=='bp'||k.bp;}),hdr=[z[1],z[2]];
+      var g=z[0],ks=M.kpis.filter(function(k){return k.scope!=='house'&&(g!=='bp'||k.bp);}),hdr=[z[1],z[2]];
       ks.forEach(function(k){hdr.push(k.name+' Target',k.name+' Ach');});
       var aoa=[hdr];
       grp(g).forEach(function(r){var row=[r.name,r.itop||''];ks.forEach(function(k){var x=rowOf(k,r.id);row.push(num(x.t),num(x.a));});aoa.push(row);});
@@ -1620,10 +1732,10 @@ function partOpts(hdr,sel,none){
 }
 function partMapHtml(job,P,M){
   var L=gLbl(P.g),c=P.cfg,sheets=Object.keys(job.sheets);
-  var head='<section class="card mt impart" data-g="'+P.g+'"><div class="sec-h"><h3>'+L+' sheet</h3>'+
+  var head='<section class="card mt impart" data-g="'+P.g+'"><div class="sec-h"><h3>'+(P.g==='house'?'House (DD) sheet':L+' sheet')+'</h3>'+
     (job.ocr?'<select class="cell" data-k="ocrg" style="max-width:190px"><option value="rso"'+(P.g==='rso'?' selected':'')+'>Numbers are for RSOs</option><option value="bp"'+(P.g==='bp'?' selected':'')+'>Numbers are for BPs</option></select>'
       :'<select class="cell" data-k="sheet" style="max-width:190px"><option value="">— none —</option>'+sheets.map(function(n){return '<option'+(c&&n===c.sheet?' selected':'')+'>'+esc(n)+'</option>';}).join('')+'</select>')+'</div>';
-  if(!c)return head+'<p class="muted" style="font-size:13px">No '+L+' sheet chosen. Pick one above if this file has '+L+' numbers.</p></section>';
+  if(!c)return head+'<p class="muted" style="font-size:13px">No '+(P.g==='house'?'house-level':L)+' sheet chosen. Pick one above if this file has '+(P.g==='house'?'distribution house totals (like the DD sheet)':L+' numbers')+'.</p></section>';
   var hdr=(job.sheets[c.sheet]||[])[c.hr]||[],rows=jobRowsCfg(job,c),sample=rows.slice(0,3);
   return head+
     '<p class="muted" style="font-size:12.5px;margin:-4px 0 6px"><b>'+rows.length+'</b> '+L+' row'+(rows.length===1?'':'s')+' found'+(c.filterCol>=0?' where '+esc(String(hdr[c.filterCol]||colName(c.filterCol)).replace(/\s+/g,' '))+' = <b>'+esc(c.filterVal)+'</b>':'')+'</p>'+
@@ -1639,7 +1751,7 @@ function partMapHtml(job,P,M){
         (ex?(P.g==='bp'&&!ex.bp?'<span class="pill p-warn">Adds BP to '+esc(ex.name)+'</span>':''):'<span class="pill p-warn">New KPI</span>')+
         '<button class="icbtn del" data-m="rm" aria-label="Remove">'+I.trash+'</button></div>'+
         '<div class="imc"><label><span>Target column</span><select class="cell" data-m="t">'+partOpts(hdr,m.t,'— keep current target —')+'</select></label>'+
-        '<label><span>Achievement column</span><select class="cell" data-m="a">'+partOpts(hdr,m.a)+'</select></label></div>'+
+        '<label><span>Achievement column</span><select class="cell" data-m="a">'+partOpts(hdr,m.a,'— keep current achievement —')+'</select></label></div>'+
         (sample.length?'<div class="imsm">e.g. '+sample.map(function(x){return esc(String(x.key))+': '+(m.t>=0?fmt(cellNum(x.r[m.t]))+' / ':'')+fmt(cellNum(x.r[m.a]));}).join(' · ')+'</div>':'')+
       '</div>';
     }).join(''):'<div class="empty" style="margin-top:8px">No KPI columns found. Tap “Add KPI” and choose the columns.</div>')+
@@ -1652,7 +1764,7 @@ function partPreviewHtml(P,M){
   var phoneKeys=P.rows.some(function(x){var mb=memberById(x.rid);return x.rid&&normKey(x.key).charAt(0)==='p'&&mb&&!String(mb.m.itop||'').trim();});
   var fileNames=P.rows.some(function(x){var mb=memberById(x.rid);return x.rid&&x.nm&&mb&&/^(bp|rso) ?\d+$/i.test(String(mb.m.name).trim());});
   var ropts=function(sel){return '<option value="">— skip this row —</option>'+list.map(function(r,i){return '<option value="'+r.id+'"'+(r.id===sel?' selected':'')+'>'+L+' '+(i+1)+' · '+esc(r.name)+'</option>';}).join('');};
-  return '<section class="card mt impv" data-g="'+P.g+'"><div class="sec-h"><div><h3>Match file rows to your '+L+'s</h3><p class="muted" style="font-size:12.5px">'+matched+' of '+P.rows.length+' rows matched. The app remembers this for next time.</p></div></div>'+
+  return (P.g==='house'?'<section class="card mt impv" data-g="house"><h3 style="font-size:16px">House totals · '+esc(HOUSE().name)+'</h3><p class="muted" style="font-size:12.5px">From sheet '+esc(c.sheet)+(P.rows.length>1?' · '+P.rows.length+' rows matched the filter, using the first':'')+'.</p></section>':'<section class="card mt impv" data-g="'+P.g+'"><div class="sec-h"><div><h3>Match file rows to your '+L+'s</h3><p class="muted" style="font-size:12.5px">'+matched+' of '+P.rows.length+' rows matched. The app remembers this for next time.</p></div></div>'+
     (guess?'<div class="notice" style="margin:0 0 10px"><span class="sp">⚠️ First import: '+L+'s were matched <b>by order</b>. Check each one below.</span></div>':'')+
     P.rows.map(function(x,ri){
       return '<div class="imrow'+(x.how==='order'?' guess':'')+(x.rid?'':' none')+'"><div class="imk"><b>'+esc(String(x.key))+'</b>'+((x.nm||x.lab)?'<small>'+esc([x.nm,x.lab].filter(Boolean).join(' · '))+'</small>':'')+'</div>'+
@@ -1660,7 +1772,7 @@ function partPreviewHtml(P,M){
     }).join('')+
     (phoneKeys?'<label class="ick" style="margin-top:10px"><input type="checkbox" data-k="saveItop"'+(P.saveItop?' checked':'')+'> Also save these numbers to '+L+' profiles (only where empty)</label>':'')+
     (fileNames?'<label class="ick" style="margin-top:8px"><input type="checkbox" data-k="useNames"'+(P.useNames?' checked':'')+'> Use names from the file for '+L+'s still called “'+L+' 1, '+L+' 2…”</label>':'')+
-    '</section>'+
+    '</section>')+
     act.map(function(x){
       var E=P.edit[x.mi],ex=findKpiIn(M,x.m.kpi),T=0,A=0;
       list.forEach(function(r){T+=num(E[r.id].t);A+=num(E[r.id].a);});
@@ -1678,7 +1790,7 @@ function partPreviewHtml(P,M){
         '<p class="muted" style="font-size:12px;margin-top:6px">Achievement '+pctTxt(sp)+' of full target · month-end projection '+(q.proj==null?'—':fmt(q.proj))+'</p></section>';
     }).join('');
 }
-function jobParts(job){return ['rso','bp'].filter(function(g){return job.parts[g];}).map(function(g){return job.parts[g];});}
+function jobParts(job){return ['rso','bp','house'].filter(function(g){return job.parts[g];}).map(function(g){return job.parts[g];});}
 
 function importView(){
   if(RO||VIEWER){location.hash='#/home';return;}
@@ -1718,11 +1830,11 @@ function importView(){
   var job=IMP.jobs[IMP.ji];
   if(IMP.step==='map'){
     top('Step 2 · Sheets & columns','#/import','File '+(IMP.ji+1)+' of '+IMP.jobs.length+' · '+job.name);
-    var parts=job.ocr?[job.parts[job.ocrG]]:[job.parts.rso,job.parts.bp];
+    var parts=job.ocr?[job.parts[job.ocrG]]:[job.parts.rso,job.parts.bp,job.parts.house].filter(Boolean);
     view.innerHTML=
     '<div class="notice" style="margin:0 0 4px;background:var(--blue-l);border-color:#c9d8fb;color:#1e3a8a"><span class="sp">📄 <b>'+esc(job.name)+'</b><br>'+
       (job.ocr?'Screenshot read. Choose who the numbers are for, then which number is the target and which is achievement.':
-       'RSO sheet: <b>'+esc(job.parts.rso.cfg?job.parts.rso.cfg.sheet:'none')+'</b> · BP sheet: <b>'+esc(job.parts.bp.cfg?job.parts.bp.cfg.sheet:'none')+'</b>')+'</span></div>'+
+       'RSO sheet: <b>'+esc(job.parts.rso.cfg?job.parts.rso.cfg.sheet:'none')+'</b> · BP sheet: <b>'+esc(job.parts.bp.cfg?job.parts.bp.cfg.sheet:'none')+'</b> · House sheet: <b>'+esc(job.parts.house&&job.parts.house.cfg?job.parts.house.cfg.sheet:'none')+'</b>')+'</span></div>'+
     '<datalist id="kpil">'+M.kpis.map(function(k){return '<option value="'+esc(k.name)+'">';}).join('')+'</datalist>'+
     parts.map(function(P){return partMapHtml(job,P,M);}).join('')+
     '<div class="actions mt">'+(IMP.jobs.length>1?'<button class="btn-o" id="mSkip">Skip this file</button>':'<button class="btn-o" id="mBack">Choose other file</button>')+
@@ -1757,8 +1869,8 @@ function importView(){
     $('#mNext').onclick=function(){
       var ps=jobParts(job).filter(function(P){return P.cfg&&P.cfg.maps.some(function(m){return m.on;});});
       if(!ps.length){toast('Tick at least one KPI to import');return;}
-      var bad=ps.some(function(P){return P.cfg.maps.some(function(m){return m.on&&(!m.kpi||m.a<0);});});
-      if(bad){toast('Each ticked KPI needs a name and an achievement column');return;}
+      var bad=ps.some(function(P){return P.cfg.maps.some(function(m){return m.on&&(!m.kpi||(m.a<0&&m.t<0));});});
+      if(bad){toast('Each ticked KPI needs a name and a target or achievement column');return;}
       if(ps.some(function(P){return !jobRowsCfg(job,P.cfg).length;})){toast('No rows found in one sheet. Check the filter value.');return;}
       jobParts(job).forEach(function(P){if(!P.cfg){P.rows=[];P.edit=[];return;}P.rows=jobRowsCfg(job,P.cfg);matchPart(job,P);buildEdit(P);});
       IMP.step='preview';importView();window.scrollTo(0,0);
@@ -1817,18 +1929,27 @@ function commitJob(job){
     P.cfg.maps.forEach(function(m,mi){
       if(!m.on)return;
       var kp=findKpiIn(M,m.kpi),isNew=false,bpOn=false;
+      var scp=P.g==='house'?'house':'ff';
       if(!kp){
-        kp={id:uid(),name:m.kpi,rows:{},bp:P.g==='bp'};M.kpis.push(kp);isNew=true;
-        Object.keys(data.months).filter(function(x){return x>IMP.month;}).forEach(function(x){if(!findKpiIn(data.months[x],m.kpi))data.months[x].kpis.push({id:uid(),name:m.kpi,rows:{},bp:P.g==='bp'});});
+        kp={id:uid(),name:m.kpi,rows:{},bp:P.g==='bp',scope:scp};M.kpis.push(kp);isNew=true;
+        Object.keys(data.months).filter(function(x){return x>IMP.month;}).forEach(function(x){if(!findKpiIn(data.months[x],m.kpi))data.months[x].kpis.push({id:uid(),name:m.kpi,rows:{},bp:P.g==='bp',scope:scp});});
       }
+      if(P.g==='house'&&kp.scope!=='house')kp.useHouse=true;
+      if(P.g!=='house'&&kp.scope==='house'){kp.scope='ff';kp.useHouse=true;}
       if(P.g==='bp'&&!kp.bp){kp.bp=true;bpOn=!isNew;}
       var E=P.edit[mi],n=0;
       grp(P.g).forEach(function(r){var e=E[r.id];if(!e||(!e.file&&!e.touched))return;kp.rows[r.id]={t:num(e.t),a:num(e.a)};n++;});
       var s=partSum(kp,P.g);IMP.done.push({kpi:kp.name,g:gLbl(P.g),n:n,mtd:mtd(s.t,s.a,IMP.month).pct,isNew:isNew,bpOn:bpOn});
       if(names.indexOf(kp.name)<0)names.push(kp.name);
     });
+    if(P.g==='house'&&P.cfg.hs&&P.rows[0]){
+      var hr0=P.rows[0].r,cv=function(i){var v=cellNum(hr0[i]);if(v==null)return null;return Math.abs(v)<5?v*100:v;};
+      M.hstats=M.hstats||{};
+      if(P.cfg.hs.g!=null&&cv(P.cfg.hs.g)!=null)M.hstats.c2cGrowth=Math.round(cv(P.cfg.hs.g)*100)/100;
+      if(P.cfg.hs.p!=null&&cv(P.cfg.hs.p)!=null)M.hstats.c2sGap=Math.round(cv(P.cfg.hs.p)*100)/100;
+    }
     P.rows.forEach(function(x){
-      if(!x.rid)return;
+      if(!x.rid||P.g==='house')return;
       data.rsoKeys[normKey(x.key)]=x.rid;
       if(x.lab)data.rsoKeys[normKey(x.lab)]=x.rid;
       var nk=normKey(x.key),mb=memberById(x.rid);if(!mb)return;
@@ -1843,10 +1964,819 @@ function commitJob(job){
       if(P.cfg.filterCol>=0&&/dd|d_code|distributor/.test(fh)&&P.cfg.filterVal)data.ddCode=P.cfg.filterVal;
     }
   });
+  snapNow(IMP.month,IMP.month===curKey()?(IMP.day||mtdDay(IMP.month)):30);
   data.lastImport={at:Date.now(),by:(USER&&USER.email)||'',file:job.name,kpis:names.join(', '),month:IMP.month};
   data.sampleNotice=false;
   save();
   toast('Saved '+names.join(', '));
+}
+
+/* ================= CAMPAIGNS ================= */
+var CSL1=[[80,70],[85,80],[90,90],[95,100],[100,110]],CSL2=[[85,60],[90,80],[95,100],[100,110]],PLUS={step:2,cap:120};
+function tplSomriddhi(month){
+  return {id:uid(),name:'সমৃদ্ধি',kind:'monthly',who:'house',month:month,start:month+'-01',end:monthEnd(month),link:'',note:'Distributor monthly campaign. Offer = 1% of total recharge sales (EV Secondary + SC Primary).',
+    kpis:[
+      {id:uid(),label:'Recharge (EV + SC Primary)',type:'recharge',links:{c2c:'C2C',sc:'SC Primary'},weight:30,slabs:CSL1,plus:PLUS,scCap:120,split:{c2c:25,sc:5}},
+      {id:uid(),label:'Quality GA',type:'std',link:'GA',weight:35,slabs:CSL1,plus:PLUS,pen:true},
+      {id:uid(),label:'BTS Factory',type:'std',link:'BSO',weight:10,slabs:[[90,50],[95,70],[100,100]]},
+      {id:uid(),label:'C2C & C2S Gap',type:'gap',weight:15},
+      {id:uid(),label:'Device Lifting',type:'std',link:'Device Lifting',weight:5,slabs:[[100,100]]},
+      {id:uid(),label:'BL WiFi',type:'std',link:'FWA Router',weight:5,slabs:[[100,100]]}
+    ],
+    amount:{type:'pctSales',pct:1},scr:20,pen:{},hs:{}};
+}
+function tplOdommo(month){
+  return {id:uid(),name:'অদম্য',kind:'monthly',who:'rso',month:month,start:month+'-01',end:monthEnd(month),link:'',note:'RSO monthly campaign. Platinum ≥100% of Recharge & GA → 8,000 · Gold ≥95% → 7,000 · Silver <95% → 6,000.',
+    kpis:[
+      {id:uid(),label:'Recharge (EV + SC Secondary)',type:'std',link:'Recharge',weight:30,slabs:CSL2,plus:PLUS},
+      {id:uid(),label:'Quality GA',type:'std',link:'GA',weight:35,slabs:CSL2,plus:PLUS,pen:true},
+      {id:uid(),label:'Quality LSO',type:'std',link:'A.LSO',weight:5,slabs:[[95,50],[100,100]]},
+      {id:uid(),label:'Quality SSO',type:'std',link:'A.SSO',weight:5,slabs:[[95,50],[100,100]]},
+      {id:uid(),label:'≥2 Days Retail Stock',type:'std',link:'Retail Stock',weight:15,slabs:[[95,50],[100,100]]},
+      {id:uid(),label:'Banglalink Wi-Fi',type:'std',link:'FWA Router',weight:5,slabs:[[100,100]]},
+      {id:uid(),label:'Device',type:'std',link:'Device Lifting',weight:5,slabs:[[100,100]]}
+    ],
+    amount:{type:'category',links:['Recharge','GA'],cats:[['Platinum',100,8000],['Gold',95,7000],['Silver',0,6000]]},
+    minT:[{link:'GA',rules:[[0,0],[30,100]]},{link:'Recharge',rules:[[0,0],[100000,50],[200000,100]]}],
+    pen:{}};
+}
+function tplWeekly(month){
+  var t=new Date();var d=Math.min(28,Math.max(1,t.getDate()));
+  return {id:uid(),name:'GA Bonanza',kind:'weekly',who:'rso',groups:['house','rso','bp'],month:month,start:month+'-'+String(d).padStart(2,'0'),end:month+'-'+String(Math.min(30,d+6)).padStart(2,'0'),link:'',note:'',
+    wk:{link:'GA',rew:{house:[[100,5000]],rso:[[100,500],[120,800]],bp:[[100,300]]},tg:{},base:{}}};
+}
+function monthEnd(m){var p=m.split('-');return m+'-'+String(new Date(+p[0],+p[1],0).getDate()).padStart(2,'0');}
+function slabTxt(sl){return (sl||[]).map(function(x){return x[0]+':'+x[1];}).join(', ');}
+function parseSlabs(t){
+  var out=[];String(t||'').split(/[,;\n]+/).forEach(function(p){var m=p.trim().match(/^(-?\d+(?:\.\d+)?)\s*[:=]\s*(-?\d+(?:\.\d+)?)$/);if(m)out.push([parseFloat(m[1]),parseFloat(m[2])]);});
+  return out.sort(function(a,b){return a[0]-b[0];});
+}
+function slabPay(pct,sl,plus){
+  if(pct==null)return 0;var p=Math.round(pct),pay=0,top=null;
+  (sl||[]).forEach(function(x){if(p>=x[0]){pay=x[1];top=x;}});
+  if(plus&&top&&p>100&&top[0]>=100)pay=Math.min(plus.cap,top[1]+plus.step*(p-100));
+  return pay;
+}
+function nextSlab(pct,sl){var p=Math.round(pct||0);for(var i=0;i<(sl||[]).length;i++){if(p<sl[i][0])return sl[i];}return null;}
+function campNeeds(month,g){
+  var out={};(data.campaigns||[]).forEach(function(c){
+    if(c.month!==month)return;
+    var gs=c.kind==='weekly'?(c.groups||[]):[c.who];
+    var add=function(n){if(n)out[String(n).toLowerCase()]=1;};
+    if(c.kind==='weekly'){if(gs.indexOf(g)>=0||g==='house')add(c.wk&&c.wk.link);return;}
+    (c.kpis||[]).forEach(function(q){
+      if(c.who==='house'&&g==='house'){add(q.link);if(q.links){add(q.links.c2c);add(q.links.sc);}}
+      if(c.who!=='house'&&g===c.who){add(q.link);}
+    });
+  });
+  return out;
+}
+function campsFor(month,g){
+  return (data.campaigns||[]).filter(function(c){return c.month===month&&(c.kind==='weekly'?(c.groups||[]).indexOf(g)>=0:c.who===g);})
+    .sort(function(a,b){return (a.kind==='monthly'?0:1)-(b.kind==='monthly'?0:1)||String(a.start).localeCompare(b.start);});
+}
+function campState(c){
+  var today=new Date();today.setHours(0,0,0,0);
+  var s=new Date(c.start+'T00:00:00'),e=new Date(c.end+'T00:00:00');
+  if(today<s)return {st:'soon',lbl:'Starts '+s.toLocaleDateString('en-GB',{day:'numeric',month:'short'})};
+  if(today>e)return {st:'done',lbl:'Ended'};
+  var left=Math.round((e-today)/86400000)+1;return {st:'live',lbl:left+' day'+(left===1?'':'s')+' left'};
+}
+function dmy(d){return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short'});}
+function tkf(n){return n==null?'—':'৳'+fmt(n);}
+
+/* ---- values for a member ('house' or member id) ---- */
+function kpiVal(M,name,mid,mode,k){
+  var kp=findKpiIn(M,name);if(!kp)return null;
+  var x;
+  if(mid==='house')x=kpiSum(kp);else{var r=kp.rows[mid];if(!r)return {t:0,a:0,pct:null,miss:true,kp:kp};x=calc(r.t,r.a);}
+  var t=num(x.t),a=num(x.a);
+  if(mode==='proj'){var d=mtdDay(k);a=d?a/d*30:a;}
+  return {t:t,a:a,pct:t>0?a/t*100:null,kp:kp,miss:!(t>0)};
+}
+function campKpi(c,q,M,mid,mode,k){
+  var r={pay:0,pct:null,miss:false,info:''};
+  if(q.type==='gap'){
+    var hs=Object.assign({},M.hstats||{},c.hs||{});
+    if(hs.c2cGrowth==null||hs.c2sGap==null){r.miss=true;r.info='Needs C2C growth and C2C–C2S gap';return r;}
+    var g=hs.c2cGrowth,p=hs.c2sGap;
+    r.pay=g>=0?(p>=0?100:p>=-1?70:p>=-2?50:0):0;
+    r.info='Growth '+g.toFixed(1)+'% · Gap '+p.toFixed(1)+'%';r.pct=null;r.gap=true;
+    return r;
+  }
+  if(q.type==='recharge'){
+    var cv=kpiVal(M,q.links.c2c,mid,mode,k),sv=kpiVal(M,q.links.sc,mid,mode,k);
+    if(!cv||!sv||cv.miss||sv.miss){r.miss=true;r.info='Needs '+q.links.c2c+' and '+q.links.sc+' (house)';return r;}
+    var sA=Math.min(sv.a,sv.t*(q.scCap||120)/100),tot=(cv.a+sA)/(cv.t+sv.t)*100;
+    r.pct=tot;r.pay=slabPay(tot,q.slabs,q.plus);r.t=cv.t+sv.t;r.a=cv.a+sA;
+    var first=(q.slabs[0]||[0])[0];
+    if(Math.round(tot)<first&&q.split){
+      var pc=slabPay(cv.pct,q.slabs,q.plus),ps=slabPay(Math.min(sv.pct,q.scCap||120),q.slabs,q.plus);
+      r.splitE=(pc*q.split.c2c+ps*q.split.sc)/100;
+      r.info='Below '+first+'%: C2C '+pctTxt(cv.pct)+' and SC '+pctTxt(sv.pct)+' counted separately';
+    }
+    return r;
+  }
+  var v=kpiVal(M,q.link,mid,mode,k);
+  if(!v){r.miss=true;r.info='No “'+q.link+'” KPI yet';return r;}
+  if(v.miss){r.miss=true;r.info='No '+q.link+' target';return r;}
+  r.pct=v.pct;r.t=v.t;r.a=v.a;r.pay=slabPay(v.pct,q.slabs,q.plus);
+  if(!(v.a>0))r.info='Achievement is 0 — not in the imported file?';
+  var ns=nextSlab(v.pct,q.slabs);if(ns)r.next={at:ns[0],pay:ns[1],need:Math.max(0,Math.ceil(v.t*ns[0]/100-v.a))};
+  return r;
+}
+function minFactor(c,q,M,mid){
+  var f=100;(c.minT||[]).forEach(function(mt){
+    if(!q.link||String(mt.link).toLowerCase()!==String(q.link).toLowerCase())return;
+    var v=kpiVal(M,mt.link,mid,'now');var t=v?v.t:0,fx=0;
+    mt.rules.forEach(function(x){if(t>=x[0])fx=x[1];});f=fx;
+  });
+  return f;
+}
+function campCalc(c,mid,mode){
+  var k=c.month,M=data.months[k];if(!M)return null;
+  var rows=[],total=0,miss=0;
+  c.kpis.forEach(function(q){
+    var r=campKpi(c,q,M,mid,mode,k);
+    var earned=r.splitE!=null?r.splitE:q.weight*r.pay/100;
+    if(c.who!=='house'){var f=minFactor(c,q,M,mid);if(f<100){earned=earned*f/100;r.minF=f;}}
+    if(q.pen){var pn=num((c.pen||{})[mid]);if(pn){earned=earned*(1-pn/100);r.penP=pn;}}
+    if(q.type==='recharge'&&c.who==='house'&&c.scr!=null){var sd=num(c.scr);var ded=sd>=20?0:sd>=15?10:15;if(ded){earned=earned*(1-ded/100);r.scrD=ded;}}
+    if(r.miss)miss++;
+    total+=earned;rows.push({q:q,r:r,earned:earned});
+  });
+  var amt=null,base=null,cat=null;
+  if(c.amount&&c.amount.type==='pctSales'){
+    var cv=kpiVal(M,'C2C','house',mode,k),sv=kpiVal(M,'SC Primary','house',mode,k);
+    if(cv&&sv){base=(cv.a+sv.a)*num(c.amount.pct)/100;amt=base*total/100;}
+  }else if(c.amount&&c.amount.type==='category'){
+    var ps=(c.amount.links||[]).map(function(l){var v=kpiVal(M,l,mid,mode,k);return v&&v.pct!=null?Math.round(v.pct):0;});
+    var low=ps.length?Math.min.apply(null,ps):0;
+    cat=c.amount.cats.find(function(x){return low>=x[1];})||c.amount.cats[c.amount.cats.length-1];
+    base=cat?cat[2]:0;amt=base*total/100;
+  }else if(c.amount&&c.amount.type==='fixed'){base=num(c.amount.value);amt=base*total/100;}
+  return {rows:rows,total:total,base:base,amt:amt,cat:cat,miss:miss};
+}
+/* weekly: achievement inside the campaign window */
+function snapVal(M,day,name,mid){var S=M&&M.snaps&&M.snaps[day];if(!S)return null;var o=S[name]||S[Object.keys(S).find(function(n){return n.toLowerCase()===String(name).toLowerCase();})];if(!o)return null;var v=mid==='house'?o._h:o[mid];return v==null?0:num(v);}
+function wkBaseDay(c){return parseInt(c.start.slice(8),10)-1;}
+function wkBase(c,mid){
+  var M=data.months[c.month],bd=wkBaseDay(c);
+  if(c.wk.base&&c.wk.base[mid]!=null)return {v:num(c.wk.base[mid]),src:'manual'};
+  if(bd<=0)return {v:0,src:'start'};
+  var sv=snapVal(M,bd,c.wk.link,mid);if(sv!=null)return {v:sv,src:'snap'};
+  return null;
+}
+function wkNow(c,mid){
+  var M=data.months[c.month];if(!M)return null;
+  var kp=findKpiIn(M,c.wk.link);if(!kp)return null;
+  var ed=parseInt(c.end.slice(8),10),cur=mtdDay(c.month);
+  var a;
+  if(cur>ed){var se=snapVal(M,ed,c.wk.link,mid);a=se!=null?se:(mid==='house'?kpiSum(kp).a:num((kp.rows[mid]||{}).a));}
+  else a=mid==='house'?kpiSum(kp).a:num((kp.rows[mid]||{}).a);
+  return a;
+}
+function wkCalc(c,g,mid){
+  var b=wkBase(c,mid),now=wkNow(c,mid),t=num((c.wk.tg||{})[mid]);
+  if(now==null)return {miss:'No “'+c.wk.link+'” KPI'};
+  if(!b)return {needBase:true,t:t};
+  var a=Math.max(0,now-b.v),p=t>0?a/t*100:null,rew=0,rs=(c.wk.rew||{})[g]||[];
+  rs.forEach(function(x){if(p!=null&&Math.round(p)>=x[0])rew=x[1];});
+  var ns=null;for(var i=0;i<rs.length;i++){if(p==null||Math.round(p)<rs[i][0]){ns=rs[i];break;}}
+  return {a:a,t:t,p:p,rew:rew,src:b.src,next:ns&&t>0?{at:ns[0],tk:ns[1],need:Math.max(0,Math.ceil(t*ns[0]/100-a))}:null};
+}
+function campMoney(c,mode){
+  if(c.kind==='weekly'){var s=0;(c.groups||[]).forEach(function(g){grp(g).forEach(function(m){var w=wkCalc(c,g,m.id);if(w&&w.rew)s+=w.rew;});});return s;}
+  if(c.who==='house'){var r=campCalc(c,'house',mode);return r?r.amt:null;}
+  var t=0;grp(c.who).forEach(function(m){var r=campCalc(c,m.id,mode);if(r&&r.amt)t+=r.amt;});return t;
+}
+
+/* ---- pages ---- */
+var campMode='proj';
+function campMonthSel(k){return monthSelect(k).replace('id="msel"','id="cmsel"');}
+var CAMP_M=null;
+function campHome(){
+  var k=CAMP_M&&data.months[CAMP_M]?CAMP_M:curKey();
+  top('Campaigns','#/home',mlabel(k));
+  var all=(data.campaigns||[]).filter(function(c){return c.month===k;});
+  var live=all.filter(function(c){return campState(c).st==='live';});
+  function tile(g,title,sub,tileCls,icon){
+    var cs=campsFor(k,g),tot=0;cs.forEach(function(c){var m=c.kind==='weekly'?wkGroupMoney(c,g):campMoney(c,campMode);if(m)tot+=m;});
+    return '<div class="card navcard" role="button" tabindex="0" data-go="#/campg/'+g+'"><div class="nc-h"><div class="icotile '+tileCls+'">'+icon+'</div><div><h2>'+title+'</h2><p>'+sub+'</p></div><div class="nc-go">'+I.go+'</div></div>'+
+      '<div class="tstats"><div class="tstat"><small>Campaigns</small><b>'+cs.length+'</b></div><div class="tstat" style="grid-column:span 2"><small>Month-end (MTD)</small><b>'+tkf(tot)+'</b></div></div></div>';
+  }
+  var grand=0;all.forEach(function(c){var m=campMoney(c,'proj');if(m)grand+=m;});
+  view.innerHTML=
+  '<div class="sec-h"><div>'+campMonthSel(k)+'</div><button class="btn-s edonly" data-go="#/campe/new"><i>'+I.plus+'</i>Add campaign</button></div>'+
+  '<section class="hero" style="margin-bottom:14px"><div><p class="hero-k">'+mlabel(k)+' · day '+mtdDay(k)+' of 30</p><h1>'+tkf(grand)+'</h1><p class="hero-s">Total incentive if the month ends at today\'s pace · '+all.length+' campaign'+(all.length===1?'':'s')+', '+live.length+' running</p></div></section>'+
+  '<div class="grid2">'+
+    tile('house','Distributor','সমৃদ্ধি and house campaigns','it-b',I.user)+
+    tile('rso','RSO','অদম্য and RSO campaigns','it-o',I.team)+
+    tile('bp','BP','BP campaigns','it-y',I.team)+
+    '<div class="card navcard" role="button" tabindex="0" data-go="#/campall"><div class="nc-h"><div class="icotile it-g">'+I.cal+'</div><div><h2>All Campaigns</h2><p>Running first, ended below</p></div><div class="nc-go">'+I.go+'</div></div>'+
+    '<div class="tstats"><div class="tstat"><small>Running</small><b class="s-good">'+live.length+'</b></div><div class="tstat"><small>Upcoming</small><b>'+all.filter(function(c){return campState(c).st==='soon';}).length+'</b></div><div class="tstat"><small>Ended</small><b>'+all.filter(function(c){return campState(c).st==='done';}).length+'</b></div></div></div>'+
+  '</div>'+
+  '<p class="muted" style="font-size:12.5px;margin-top:12px">Money is calculated from the KPI numbers in the app. Import the latest office file to update it. “Month-end” uses MTD on a 30-day month.</p>';
+  $('#cmsel').onchange=function(){CAMP_M=this.value;campHome();};
+}
+function wkGroupMoney(c,g){var s=0;grp(g).forEach(function(m){var w=wkCalc(c,g,m.id);if(w&&w.rew)s+=w.rew;});return s;}
+function campCard(c,g){
+  var st=campState(c),money=c.kind==='weekly'?(g?wkGroupMoney(c,g):campMoney(c)):campMoney(c,'proj');
+  var sub=c.kind==='weekly'?'Weekly · '+esc(c.wk.link)+' · '+(c.groups||[]).map(gLbl).join(', '):(c.who==='house'?'Distributor monthly':gLbl(c.who)+' monthly');
+  return '<div class="card navcard" role="button" tabindex="0" data-go="#/campx/'+c.id+(g?'/'+g:'')+'"><div class="mhead"><b>'+esc(c.name)+'</b><span class="pill '+(st.st==='live'?'p-good':st.st==='soon'?'p-warn':'p-na')+'">'+st.lbl+'</span></div>'+
+    '<p class="muted" style="font-size:12.5px">'+sub+' · '+dmy(c.start)+' – '+dmy(c.end)+'</p>'+
+    '<div class="mrow"><span class="big">'+tkf(money)+'</span><span class="muted" style="font-size:12px">'+(c.kind==='weekly'?'earned so far':'month-end (MTD)')+'</span></div></div>';
+}
+function campGroup(g){
+  var k=CAMP_M&&data.months[CAMP_M]?CAMP_M:curKey();
+  var L=g==='house'?'Distributor':gLbl(g);
+  top(L+' campaigns','#/camp',mlabel(k));
+  var cs=campsFor(k,g);
+  view.innerHTML='<div class="grid3">'+(cs.length?cs.map(function(c){return campCard(c,g);}).join(''):'<div class="empty">No '+L+' campaigns in '+mlabel(k)+'.</div>')+
+    '<button class="addcard edonly" data-go="#/campe/new/'+g+'"><i>'+I.plus+'</i>Add campaign</button></div>';
+}
+function campAll(){
+  var k=CAMP_M&&data.months[CAMP_M]?CAMP_M:curKey();
+  top('All campaigns','#/camp',mlabel(k));
+  var all=(data.campaigns||[]).filter(function(c){return c.month===k;});
+  var ord={live:0,soon:1,done:2};all.sort(function(a,b){return ord[campState(a).st]-ord[campState(b).st]||String(a.end).localeCompare(String(b.end));});
+  var sec=function(st,t){var l=all.filter(function(c){return campState(c).st===st;});return l.length?'<div class="sec-title">'+t+'</div><div class="grid3">'+l.map(function(c){return campCard(c);}).join('')+'</div>':'';};
+  view.innerHTML=(all.length?sec('live','Running now')+sec('soon','Upcoming')+sec('done','Ended'):'<div class="empty">No campaigns in '+mlabel(k)+'.</div>')+
+    '<div class="actions mt edonly"><button class="btn-o btn-blue" data-go="#/campe/new"><i>'+I.plus+'</i>Add campaign</button></div>';
+}
+function campHeader(c){
+  var st=campState(c);
+  return '<section class="card"><div class="mhead"><b style="font-size:19px">'+esc(c.name)+'</b><span class="pill '+(st.st==='live'?'p-good':st.st==='soon'?'p-warn':'p-na')+'">'+st.lbl+'</span></div>'+
+    '<p class="muted" style="font-size:13px">'+(c.kind==='weekly'?'Weekly / short campaign':'Monthly campaign')+' · '+dmy(c.start)+' – '+dmy(c.end)+' · '+mlabel(c.month)+'</p>'+
+    (c.note?'<p style="font-size:13px;margin-top:6px">'+esc(c.note)+'</p>':'')+
+    '<div class="actions" style="margin-top:10px">'+(c.link?'<a class="btn-o btn-blue" href="'+esc(c.link)+'" target="_blank" rel="noopener"><i>'+I.dl+'</i>Open PDF / file</a>':'')+
+    '<button class="btn-o edonly" data-go="#/campe/'+c.id+'"><i>'+I.edit+'</i>Edit campaign</button></div></section>';
+}
+function campDetail(id,g){
+  var c=(data.campaigns||[]).find(function(x){return x.id===id;});if(!c){location.hash='#/camp';return;}
+  if(c.kind==='weekly')return wkDetail(c,g);
+  var back=g?'#/campg/'+g:'#/campall',M=data.months[c.month];
+  top(c.name,back,(c.who==='house'?'Distributor':gLbl(c.who))+' · '+mlabel(c.month));
+  if(!M){view.innerHTML=campHeader(c)+'<div class="empty mt">No KPI data for '+mlabel(c.month)+'.</div>';return;}
+  var seg='<div class="seg" id="cseg"><button data-m="proj" class="'+(campMode==='proj'?'on':'')+'">Month-end (MTD)</button><button data-m="now" class="'+(campMode==='now'?'on':'')+'">So far</button></div>';
+  var html=campHeader(c)+'<div class="sec-h" style="margin-top:16px"><h3>'+(campMode==='proj'?'If the month ends at today\'s pace':'Achievement so far')+'</h3>'+seg+'</div>';
+  var missing={};
+  if(c.who==='house'){
+    var r=campCalc(c,'house',campMode);
+    r.rows.forEach(function(x){if(x.r.miss&&x.q.link)missing[x.q.link]=1;if(x.r.miss&&x.q.links){missing[x.q.links.c2c]=1;missing[x.q.links.sc]=1;}});
+    html+='<div class="stats"><div class="stat" style="--c:var(--brand)"><small>Incentive</small><b>'+tkf(r.amt)+'</b><em>'+pctTxt(r.total)+' payout</em></div>'+
+      '<div class="stat" style="--c:var(--blue)"><small>Offer amount</small><b>'+tkf(r.base)+'</b><em>'+num(c.amount.pct)+'% of recharge sales</em></div>'+
+      '<div class="stat" style="--c:var(--good)"><small>Payout %</small><b>'+pctTxt(r.total)+'</b><em>Sum of weighted KPIs</em></div>'+
+      '<div class="stat" style="--c:var(--warn)"><small>MTD day</small><b>'+mtdDay(c.month)+' / 30</b><em>'+(r.miss?r.miss+' KPI need data':'All KPIs have data')+'</em></div></div>';
+    html+='<section class="card"><div class="ckh"><span>KPI</span><span>Wt</span><span>Ach</span><span>Payout</span><span>Earned</span></div>'+
+      r.rows.map(function(x){return campRowHtml(x);}).join('')+
+      '<div class="ckt"><span>Total</span><span>'+c.kpis.reduce(function(s,q){return s+num(q.weight);},0)+'%</span><span></span><span></span><b>'+pctTxt(r.total)+'</b></div></section>'+
+      '<section class="card mt edonly"><h3 style="font-size:15px;margin-bottom:6px">Inputs not in the office file</h3>'+
+      '<div class="frow"><label class="flbl" for="cScr">SCR days (stock cover)</label><div class="fin"><input class="cell n" id="cScr" type="number" min="0" max="31" value="'+num(c.scr)+'" style="max-width:110px;min-width:80px;flex:0 0 80px"><span class="muted" style="font-size:12px">≥20 full · 15–19: −10% · &lt;15: −15% of Recharge</span></div></div>'+
+      '<div class="frow"><label class="flbl" for="cPen">GA penalty % (VLR / SIM mix)</label><div class="fin"><select class="cell" id="cPen" style="max-width:140px">'+[0,10,20,30,50].map(function(v){return '<option'+(num((c.pen||{}).house)===v?' selected':'')+'>'+v+'</option>';}).join('')+'</select></div></div>'+
+      '<div class="frow"><label class="flbl" for="cG">C2C growth % vs last month</label><div class="fin"><input class="cell n" id="cG" type="number" step="any" value="'+hsVal(c,M,'c2cGrowth')+'" style="max-width:110px"><span class="muted" style="font-size:12px">'+((M.hstats||{}).c2cGrowth!=null?'From office file: '+M.hstats.c2cGrowth+'%':'')+'</span></div></div>'+
+      '<div class="frow"><label class="flbl" for="cP">C2C–C2S gap %</label><div class="fin"><input class="cell n" id="cP" type="number" step="any" value="'+hsVal(c,M,'c2sGap')+'" style="max-width:110px"><span class="muted" style="font-size:12px">'+((M.hstats||{}).c2sGap!=null?'From office file: '+M.hstats.c2sGap+'%':'')+'</span></div></div></section>';
+  }else{
+    var list=grp(c.who),res=list.map(function(m){return {m:m,now:campCalc(c,m.id,campMode)};});
+    var tot=res.reduce(function(s,x){return s+(x.now&&x.now.amt||0);},0);
+    res.forEach(function(x){x.now.rows.forEach(function(y){if(y.r.miss&&y.q.link)missing[y.q.link]=(missing[y.q.link]||0)+1;});});
+    var cats={};res.forEach(function(x){var n=x.now.cat?x.now.cat[0]:'—';cats[n]=(cats[n]||0)+1;});
+    html+='<div class="stats"><div class="stat" style="--c:var(--brand)"><small>Total for '+list.length+' '+gLbl(c.who)+'s</small><b>'+tkf(tot)+'</b><em>'+(campMode==='proj'?'Month-end at this pace':'If the month ended today')+'</em></div>'+
+      Object.keys(cats).slice(0,3).map(function(n,i){return '<div class="stat" style="--c:'+['var(--good)','var(--blue)','var(--warn)'][i]+'"><small>'+esc(n)+'</small><b>'+cats[n]+'</b><em>'+gLbl(c.who)+'s</em></div>';}).join('')+'</div>';
+    html+='<section class="card">'+res.sort(function(a,b){return (b.now.amt||0)-(a.now.amt||0);}).map(function(x,i){
+      var n=x.now;
+      return '<details class="cdet"><summary><span class="rank">'+(i+1)+'</span><span class="cdn"><b>'+esc(x.m.name)+'</b><small>'+(n.cat?esc(n.cat[0])+' · '+tkf(n.cat[2])+' allocated · ':'')+pctTxt(n.total)+' payout</small></span><b class="cda">'+tkf(n.amt)+'</b></summary>'+
+        '<div class="ckh"><span>KPI</span><span>Wt</span><span>Ach</span><span>Payout</span><span>Earned</span></div>'+n.rows.map(function(y){return campRowHtml(y);}).join('')+
+        '<div class="frow edonly" style="border:0"><label class="flbl">GA penalty % (VLR / SIM mix)</label><div class="fin"><select class="cell" data-pen="'+x.m.id+'" style="max-width:120px">'+[0,10,20,30,50].map(function(v){return '<option'+(num((c.pen||{})[x.m.id])===v?' selected':'')+'>'+v+'</option>';}).join('')+'</select></div></div></details>';
+    }).join('')+'</section>'+
+    '<p class="muted" style="font-size:12px;margin-top:8px">Tap a name to see each KPI. Category uses the lower of Recharge % and GA %. Minimum targets: GA target under 30 → 0% for GA; Recharge target under 1 lakh → 0%, 1–2 lakh → 50%.</p>';
+  }
+  var mk=Object.keys(missing);
+  if(mk.length)html+='<div class="notice"><span class="sp">⚠️ No data yet for: <b>'+mk.map(esc).join(', ')+'</b>. These count as 0. Add them as KPIs and fill numbers, or import a file that has them.</span>'+
+    '<button class="edonly" id="addMiss">Add missing KPIs</button></div>';
+  html+='<div class="actions mt">'+shareBtn('Send campaign update on WhatsApp')+'</div>';
+  view.innerHTML=html;
+  $('#cseg').onclick=function(e){var b=e.target.closest('button');if(!b)return;campMode=b.dataset.m;campDetail(id,g);};
+  if($('#addMiss'))$('#addMiss').onclick=function(){
+    mk.forEach(function(n){if(!findKpiIn(M,n))M.kpis.push({id:uid(),name:n,rows:{},bp:false,scope:c.who==='house'?'house':'ff'});});
+    save();toast('Added: '+mk.join(', '));campDetail(id,g);
+  };
+  var setv=function(f){return function(){f(this.value);save();campDetail(id,g);};};
+  if($('#cScr'))$('#cScr').onchange=setv(function(v){c.scr=num(v);});
+  if($('#cPen'))$('#cPen').onchange=setv(function(v){c.pen=c.pen||{};c.pen.house=num(v);});
+  if($('#cG'))$('#cG').onchange=setv(function(v){c.hs=c.hs||{};c.hs.c2cGrowth=v===''?null:parseFloat(v);});
+  if($('#cP'))$('#cP').onchange=setv(function(v){c.hs=c.hs||{};c.hs.c2sGap=v===''?null:parseFloat(v);});
+  view.onchange=function(e){var s=e.target.closest('[data-pen]');if(!s)return;c.pen=c.pen||{};c.pen[s.dataset.pen]=num(s.value);save();campDetail(id,g);};
+  $('#share').onclick=function(){shareMenu({title:c.name+' · '+mlabel(c.month),text:campText(c),tables:campTables(c)});};
+}
+function hsVal(c,M,k){var a=(c.hs||{})[k];if(a!=null)return a;var b=(M.hstats||{})[k];return b!=null?b:'';}
+function campRowHtml(x){
+  var q=x.q,r=x.r,notes=[];
+  if(r.info)notes.push(r.info);
+  if(r.next)notes.push('Next: '+r.next.at+'% → '+r.next.pay+'% payout (need '+fmt(r.next.need)+' more)');
+  if(r.minF!=null)notes.push('Min target rule: '+r.minF+'%');
+  if(r.penP)notes.push('GA penalty −'+r.penP+'%');
+  if(r.scrD)notes.push('SCR deduction −'+r.scrD+'%');
+  return '<div class="ckr'+(r.miss?' miss':'')+'"><span><b>'+esc(q.label)+'</b>'+(notes.length?'<small>'+esc(notes.join(' · '))+'</small>':'')+'</span><span>'+num(q.weight)+'%</span><span class="s-'+status(r.pct)+'">'+(r.gap?'—':pctTxt(r.pct))+'</span><span>'+(r.miss?'No data':r.pay+'%')+'</span><b>'+(x.earned?x.earned.toFixed(1)+'%':'0%')+'</b></div>';
+}
+function campText(c){
+  var t=HDR+'*'+c.name+'* – '+mlabel(c.month)+' ('+dmy(c.start)+'–'+dmy(c.end)+')\n';
+  if(c.kind==='weekly'){
+    (c.groups||[]).forEach(function(g){t+='\n*'+(g==='house'?'Distributor':gLbl(g))+'*\n';grp(g).forEach(function(m){var w=wkCalc(c,g,m.id);if(!w||w.miss||w.needBase)return;t+=m.name+': '+fmt(w.a)+'/'+fmt(w.t)+' ('+pctTxt(w.p)+')'+(w.rew?' · ৳'+fmt(w.rew):'')+'\n';});});
+    return t;
+  }
+  t+='MTD day '+mtdDay(c.month)+'/30 · month-end projection\n';
+  if(c.who==='house'){var r=campCalc(c,'house','proj');t+='Payout: '+pctTxt(r.total)+' · Incentive: '+tkf(r.amt)+'\n\n';r.rows.forEach(function(x){t+='• '+x.q.label+': '+(x.r.miss?'no data':(x.r.gap?x.r.info:pctTxt(x.r.pct))+' → '+x.r.pay+'%')+'\n';});}
+  else{var tot=0;grp(c.who).forEach(function(m,i){var r=campCalc(c,m.id,'proj');tot+=r.amt||0;t+=(i+1)+'. '+m.name+': '+(r.cat?r.cat[0]+' · ':'')+pctTxt(r.total)+' → '+tkf(r.amt)+'\n';});t+='\nTotal: '+tkf(tot)+'\n';}
+  return t;
+}
+function wkDetail(c,g){
+  var groups=c.groups||[],gg=g&&groups.indexOf(g)>=0?g:groups[0];
+  top(c.name,g?'#/campg/'+g:'#/campall',dmy(c.start)+' – '+dmy(c.end));
+  var M=data.months[c.month],bd=wkBaseDay(c);
+  var tabs='<div class="seg" id="wseg">'+groups.map(function(x){return '<button data-g="'+x+'" class="'+(x===gg?'on':'')+'">'+(x==='house'?'Distributor':gLbl(x))+'</button>';}).join('')+'</div>';
+  var list=grp(gg),rows=list.map(function(m){return {m:m,w:wkCalc(c,gg,m.id)};});
+  var needBase=rows.some(function(x){return x.w&&x.w.needBase;});
+  var srcs={};rows.forEach(function(x){if(x.w&&x.w.src)srcs[x.w.src]=1;});
+  var totRew=rows.reduce(function(s,x){return s+(x.w&&x.w.rew||0);},0);
+  var html=campHeader(c)+
+    '<div class="sec-h" style="margin-top:16px"><h3>'+esc(c.wk.link)+' inside the campaign</h3>'+tabs+'</div>'+
+    (needBase?'<div class="notice" style="margin-top:0"><span class="sp">📌 To count only '+dmy(c.start)+'–'+dmy(c.end)+', the app needs each '+(gg==='house'?'house':gLbl(gg))+' number up to <b>day '+bd+'</b>. No import from day '+bd+' was found.</span><button class="edonly" id="wBase">Enter day '+bd+' numbers</button></div>'
+      :'<p class="muted" style="font-size:12.5px;margin-bottom:8px">Counting from '+(srcs.manual?'the day '+bd+' numbers you entered':srcs.snap?'the day '+bd+' import':'the start of the month')+'. Achievement = now − day '+bd+'.</p>')+
+    '<div class="stats"><div class="stat" style="--c:var(--brand)"><small>Rewards earned</small><b>'+tkf(totRew)+'</b><em>'+(gg==='house'?'Distributor':gLbl(gg)+'s')+'</em></div>'+
+    '<div class="stat" style="--c:var(--blue)"><small>Reward slabs</small><b style="font-size:15px">'+(((c.wk.rew||{})[gg]||[]).map(function(x){return x[0]+'% → ৳'+fmt(x[1]);}).join('<br>')||'—')+'</b></div></div>'+
+    '<section class="card"><div class="wkh"><span>'+(gg==='house'?'House':gLbl(gg))+'</span><span>Target</span><span>Done</span><span>%</span><span>Reward</span></div>'+
+    rows.map(function(x){var w=x.w||{};
+      return '<div class="wkr" data-m="'+x.m.id+'"><span><b>'+esc(x.m.name)+'</b>'+(w.next?'<small>Need '+fmt(w.next.need)+' more for ৳'+fmt(w.next.tk)+'</small>':'')+(w.miss?'<small>'+esc(w.miss)+'</small>':'')+'</span>'+
+        '<input class="cell n" data-tg="'+x.m.id+'" type="number" min="0" step="any" value="'+num((c.wk.tg||{})[x.m.id])+'" aria-label="Target for '+esc(x.m.name)+'">'+
+        '<span class="num">'+(w.needBase||w.miss?'—':fmt(w.a))+'</span><span class="s-'+status(w.p)+'">'+pctTxt(w.p)+'</span><b>'+(w.rew?'৳'+fmt(w.rew):'—')+'</b></div>';
+    }).join('')+'</section>'+
+    '<p class="muted" style="font-size:12px;margin-top:8px">Type each target in the Target column. Achievement updates every time you import the office file.</p>'+
+    '<div class="actions mt">'+shareBtn('Send campaign update on WhatsApp')+'<button class="btn-o edonly" id="wBase2"><i>'+I.edit+'</i>Day '+bd+' numbers</button></div>';
+  view.innerHTML=html;
+  $('#wseg').onclick=function(e){var b=e.target.closest('button');if(!b)return;location.hash='#/campx/'+c.id+'/'+b.dataset.g;};
+  view.oninput=function(e){var el=e.target;if(!el.dataset.tg)return;c.wk.tg=c.wk.tg||{};c.wk.tg[el.dataset.tg]=num(el.value);save();};
+  view.onchange=function(e){if(e.target.dataset.tg)wkDetail(c,g);};
+  var openBase=function(){
+    var fields=list.map(function(m){var sv=M?snapVal(M,bd,c.wk.link,m.id):null;var cur=(c.wk.base||{})[m.id];return {label:m.name+' · '+c.wk.link+' up to day '+bd,type:'number',mode:'decimal',value:cur!=null?cur:(sv!=null?sv:'')};});
+    formSheet((gg==='house'?'House':gLbl(gg))+' numbers up to day '+bd,fields,'Save',function(v){
+      c.wk.base=c.wk.base||{};list.forEach(function(m,i){if(v[i]!=='')c.wk.base[m.id]=num(v[i]);});save();wkDetail(c,g);toast('Saved day '+bd+' numbers');
+    });
+  };
+  if($('#wBase'))$('#wBase').onclick=openBase;
+  if($('#wBase2'))$('#wBase2').onclick=openBase;
+  $('#share').onclick=function(){shareMenu({title:c.name+' · '+mlabel(c.month),text:campText(c),tables:campTables(c)});};
+}
+function campEdit(id,g){
+  if(RO||VIEWER){location.hash='#/camp';return;}
+  var isNew=id==='new',k=CAMP_M&&data.months[CAMP_M]?CAMP_M:curKey();
+  var c=isNew?null:(data.campaigns||[]).find(function(x){return x.id===id;});
+  if(!isNew&&!c){location.hash='#/camp';return;}
+  if(isNew){
+    var tplKey=CAMP_DRAFT_T||(g==='house'?'som':g==='bp'?'wk':g==='rso'?'odo':'wk');
+    c=CAMP_DRAFT&&CAMP_DRAFT._t===tplKey?CAMP_DRAFT:(tplKey==='som'?tplSomriddhi(k):tplKey==='odo'?tplOdommo(k):tplWeekly(k));
+    c._t=tplKey;if(tplKey==='wk'&&g&&!CAMP_DRAFT)c.groups=[g];CAMP_DRAFT=c;
+  }
+  top(isNew?'Add campaign':'Edit campaign',isNew?'#/camp':'#/campx/'+c.id,c.name);
+  var M=data.months[c.month]||data.months[k];
+  var kopts=function(sel){return '<option value="">— none —</option>'+M.kpis.map(function(x){return '<option'+(String(sel).toLowerCase()===x.name.toLowerCase()?' selected':'')+'>'+esc(x.name)+'</option>';}).join('')+(sel&&!findKpiIn(M,sel)?'<option selected>'+esc(sel)+'</option>':'');};
+  var html=(isNew?'<section class="card"><h3 style="font-size:15px;margin-bottom:8px">Start from</h3><div class="seg" id="tplSeg">'+[['som','সমৃদ্ধি (Distributor)'],['odo','অদম্য (RSO)'],['wk','Weekly / short']].map(function(x){return '<button data-t="'+x[0]+'" class="'+(c._t===x[0]?'on':'')+'">'+x[1]+'</button>';}).join('')+'</div>'+
+      '<p class="muted" style="font-size:12.5px;margin-top:8px">'+(c._t==='wk'?'For GA Bonanza and other short campaigns: one KPI, a target per person, and reward slabs.':'Filled in with the November’26 rules from the PDF. Change anything that is different this month.')+'</p></section>':'')+
+    '<section class="card'+(isNew?' mt':'')+'"><h3 style="font-size:15px;margin-bottom:6px">Basics</h3>'+
+    '<div class="frow"><label class="flbl" for="eN">Name</label><div class="fin"><input class="cell" id="eN" value="'+esc(c.name)+'"></div></div>'+
+    '<div class="frow"><label class="flbl" for="eS">Start date</label><div class="fin"><input class="cell" id="eS" type="date" value="'+esc(c.start)+'"></div></div>'+
+    '<div class="frow"><label class="flbl" for="eE">End date</label><div class="fin"><input class="cell" id="eE" type="date" value="'+esc(c.end)+'"></div></div>'+
+    (c.kind==='monthly'?'<div class="frow"><label class="flbl" for="eW">For</label><div class="fin"><select class="cell" id="eW">'+[['house','Distributor (house)'],['rso','RSO'],['bp','BP']].map(function(x){return '<option value="'+x[0]+'"'+(c.who===x[0]?' selected':'')+'>'+x[1]+'</option>';}).join('')+'</select></div></div>'
+      :'<div class="frow"><label class="flbl">For</label><div class="fin" style="flex-wrap:wrap;gap:14px">'+['house','rso','bp'].map(function(x){return '<label class="ick"><input type="checkbox" data-grp="'+x+'"'+((c.groups||[]).indexOf(x)>=0?' checked':'')+'> '+(x==='house'?'Distributor':gLbl(x))+'</label>';}).join('')+'</div></div>')+
+    '<div class="frow"><label class="flbl" for="eL">PDF link (Google Drive etc.)</label><div class="fin"><input class="cell" id="eL" type="url" value="'+esc(c.link||'')+'" placeholder="https://drive.google.com/…"></div></div>'+
+    '<div class="frow"><label class="flbl" for="eT">Notes / rules in your words</label><div class="fin"><textarea class="cell" id="eT" style="height:80px;font-family:inherit;font-size:14px">'+esc(c.note||'')+'</textarea></div></div></section>';
+  if(c.kind==='weekly'){
+    html+='<section class="card mt"><h3 style="font-size:15px;margin-bottom:6px">KPI and rewards</h3>'+
+      '<div class="frow"><label class="flbl" for="eK">KPI</label><div class="fin"><select class="cell" id="eK">'+kopts(c.wk.link)+'</select></div></div>'+
+      ['house','rso','bp'].map(function(x){return '<div class="frow"><label class="flbl">'+(x==='house'?'Distributor':gLbl(x))+' rewards</label><div class="fin"><input class="cell" data-rew="'+x+'" value="'+esc(slabTxt((c.wk.rew||{})[x]))+'" placeholder="100:500, 120:800"></div></div>';}).join('')+
+      '<p class="muted" style="font-size:12.5px;margin-top:6px">Format: <b>% of target : Taka</b>, separated by commas. Example “100:500, 120:800” means 100% earns ৳500 and 120% earns ৳800. Targets per person are set on the campaign page.</p></section>';
+  }else{
+    html+='<section class="card mt"><div class="sec-h"><div><h3 style="font-size:15px">KPIs</h3><p class="muted" style="font-size:12.5px">Slabs: <b>achievement % : payout %</b>, e.g. 85:60, 90:80, 95:100, 100:110</p></div><button class="btn-s" id="eAdd"><i>'+I.plus+'</i>Add KPI</button></div>'+
+      c.kpis.map(function(q,i){
+        return '<div class="imap" data-qi="'+i+'"><div class="imh"><input class="cell" data-q="label" value="'+esc(q.label)+'" aria-label="KPI label"><button class="icbtn del" data-q="rm" aria-label="Remove">'+I.trash+'</button></div>'+
+          '<div class="imc"><label><span>Weight %</span><input class="cell" data-q="weight" type="number" step="any" value="'+num(q.weight)+'"></label>'+
+          (q.type==='gap'?'<label><span>Type</span><input class="cell" value="C2C growth + C2C–C2S gap" disabled></label>'
+            :q.type==='recharge'?'<label><span>C2C KPI · SC KPI</span><span style="display:flex;gap:6px"><select class="cell" data-q="lc2c">'+kopts(q.links.c2c)+'</select><select class="cell" data-q="lsc">'+kopts(q.links.sc)+'</select></span></label>'
+            :'<label><span>Uses app KPI</span><select class="cell" data-q="link">'+kopts(q.link)+'</select></label>')+'</div>'+
+          (q.type==='gap'?'<p class="imsm">Growth ≥0% and gap ≥−2% → 50% · ≥−1% → 70% · ≥0% → 100%</p>':
+          '<div class="imc"><label style="grid-column:1/-1"><span>Slabs</span><input class="cell" data-q="slabs" value="'+esc(slabTxt(q.slabs))+'"></label></div>'+
+          '<label class="ick" style="margin-top:8px"><input type="checkbox" data-q="plus"'+(q.plus?' checked':'')+'> +2% payout for every 1% above 100%, max 120%</label>'+
+          '<label class="ick" style="margin-top:6px;margin-left:14px"><input type="checkbox" data-q="pen"'+(q.pen?' checked':'')+'> GA penalty (VLR) applies</label>')+
+        '</div>';
+      }).join('')+'</section>'+
+      '<section class="card mt"><h3 style="font-size:15px;margin-bottom:6px">Money</h3>'+
+      (c.amount.type==='pctSales'?'<div class="frow"><label class="flbl" for="eP">Offer = % of total recharge sales</label><div class="fin"><input class="cell n" id="eP" type="number" step="any" value="'+num(c.amount.pct)+'" style="max-width:110px"></div></div>'
+       :c.amount.type==='category'?'<div class="frow"><label class="flbl" for="eC">Categories (name : min % : Taka)</label><div class="fin"><input class="cell" id="eC" value="'+esc(c.amount.cats.map(function(x){return x.join(':');}).join(', '))+'"></div></div><p class="muted" style="font-size:12px">Category uses the lower of '+esc(c.amount.links.join(' and '))+' %.</p>'
+       :'<div class="frow"><label class="flbl" for="eF">Fixed amount (Taka)</label><div class="fin"><input class="cell n" id="eF" type="number" value="'+num(c.amount.value)+'"></div></div>')+
+      '</section>';
+  }
+  html+='<div class="actions mt">'+(isNew?'':'<button class="btn-o btn-danger" id="eDel"><i>'+I.trash+'</i>Delete campaign</button>')+'<button class="btn-o btn-wa" id="eSave"><i>'+I.dl+'</i>Save campaign</button></div>';
+  view.innerHTML=html;
+  function read(){
+    c.name=$('#eN').value.trim()||c.name;c.start=$('#eS').value||c.start;c.end=$('#eE').value||c.end;c.link=$('#eL').value.trim();c.note=$('#eT').value;
+    c.month=c.start.slice(0,7);
+    if($('#eW'))c.who=$('#eW').value;
+    if(c.kind==='weekly'){
+      c.groups=Array.prototype.filter.call(view.querySelectorAll('[data-grp]'),function(x){return x.checked;}).map(function(x){return x.dataset.grp;});
+      c.wk.link=$('#eK').value;c.wk.rew=c.wk.rew||{};
+      Array.prototype.forEach.call(view.querySelectorAll('[data-rew]'),function(x){c.wk.rew[x.dataset.rew]=parseSlabs(x.value);});
+    }else{
+      Array.prototype.forEach.call(view.querySelectorAll('[data-qi]'),function(box){
+        var q=c.kpis[+box.dataset.qi],f=function(n){return box.querySelector('[data-q="'+n+'"]');};
+        q.label=f('label').value;q.weight=num(f('weight').value);
+        if(f('link'))q.link=f('link').value;
+        if(f('lc2c')){q.links.c2c=f('lc2c').value;q.links.sc=f('lsc').value;}
+        if(f('slabs'))q.slabs=parseSlabs(f('slabs').value);
+        if(f('plus'))q.plus=f('plus').checked?PLUS:null;
+        if(f('pen'))q.pen=f('pen').checked;
+      });
+      if($('#eP'))c.amount.pct=num($('#eP').value);
+      if($('#eC'))c.amount.cats=$('#eC').value.split(',').map(function(x){var p=x.split(':').map(function(y){return y.trim();});return [p[0],num(p[1]),num(p[2])];}).filter(function(x){return x[0];}).sort(function(a,b){return b[1]-a[1];});
+      if($('#eF'))c.amount.value=num($('#eF').value);
+    }
+  }
+  if($('#tplSeg'))$('#tplSeg').onclick=function(e){var b=e.target.closest('button');if(!b)return;CAMP_DRAFT=null;CAMP_DRAFT_T=b.dataset.t;campEdit('new',g);};
+  if($('#eAdd'))$('#eAdd').onclick=function(){read();c.kpis.push({id:uid(),label:'New KPI',type:'std',link:'',weight:5,slabs:[[100,100]]});campEdit(id,g);};
+  view.onclick=function(e){var b=e.target.closest('[data-q=rm]');if(!b)return;read();c.kpis.splice(+b.closest('[data-qi]').dataset.qi,1);campEdit(id,g);};
+  $('#eSave').onclick=function(){
+    read();
+    if(c.end<c.start){toast('End date is before start date');return;}
+    if(c.kind==='weekly'&&!(c.groups||[]).length){toast('Tick at least one group');return;}
+    delete c._t;data.campaigns=data.campaigns||[];
+    if(isNew)data.campaigns.push(c);
+    CAMP_DRAFT=null;CAMP_DRAFT_T=null;CAMP_M=c.month;save();toast('Campaign saved');location.hash='#/campx/'+c.id+(c.kind==='weekly'&&c.groups[0]?'/'+c.groups[0]:'');
+  };
+  if($('#eDel'))$('#eDel').onclick=function(){if(!confirm('Delete "'+c.name+'"?'))return;data.campaigns=data.campaigns.filter(function(x){return x!==c;});save();toast('Campaign deleted');location.hash='#/camp';};
+}
+var CAMP_DRAFT=null,CAMP_DRAFT_T=null;
+
+function ensureCampaigns(){if(!Array.isArray(data.campaigns)){data.campaigns=[tplSomriddhi('2026-11'),tplOdommo('2026-11')];}}
+
+/* ================= SHARE: Text / Image / Excel ================= */
+var JSPDF_URL='https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+function safeName(s){return String(s||'ETIS').replace(/[^\wঀ-৿\- ]+/g,'').trim().replace(/\s+/g,'-').slice(0,60)||'ETIS';}
+function pctCell(p){return p==null?'—':(Math.round(p*10)/10)+'%';}
+function kpiTables(k,kp){
+  var out=[];
+  if(kp.scope==='house'){var s=kpiSum(kp),q=mtd(s.t,s.a,k);out.push({cap:'House total',head:['KPI','Target','Achievement','Ach %','MTD %','Month-end'],rows:[[kp.name,s.t,s.a,pctCell(s.pct),pctCell(q.pct),q.proj==null?'—':Math.round(q.proj)]],pct:[4]});return out;}
+  ['rso'].concat(kp.bp?['bp']:[]).forEach(function(g){
+    var rows=grp(g).map(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a),q=mtd(c.t,c.a,k);return [(i+1)+'. '+r.name,c.t,c.a,pctCell(c.pct),pctCell(q.pct),q.proj==null?'—':Math.round(q.proj)];});
+    var ps=partSum(kp,g),pq=mtd(ps.t,ps.a,k);rows.push(['Total '+gLbl(g),ps.t,ps.a,pctCell(ps.pct),pctCell(pq.pct),pq.proj==null?'—':Math.round(pq.proj)]);
+    out.push({cap:gLbl(g)+'-wise',head:[gLbl(g),'Target','Achievement','Ach %','MTD %','Month-end'],rows:rows,pct:[4],total:true});
+  });
+  var s2=kpiSum(kp),q2=mtd(s2.t,s2.a,k);
+  out.unshift({cap:'House total'+(kp.useHouse?' (office file)':kp.bp?' (RSO + BP)':''),head:['KPI','Target','Achievement','Ach %','MTD %','Month-end'],rows:[[kp.name,s2.t,s2.a,pctCell(s2.pct),pctCell(q2.pct),q2.proj==null?'—':Math.round(q2.proj)]],pct:[4]});
+  return out;
+}
+function summaryTables(k){
+  var m=data.months[k],out=[];
+  out.push({cap:'KPI-wise · house total',head:['KPI','Target','Achievement','Ach %','MTD %','Month-end'],pct:[4],rows:m.kpis.map(function(kp){var s=kpiSum(kp),q=mtd(s.t,s.a,k);return [kp.name,s.t,s.a,pctCell(s.pct),pctCell(q.pct),q.proj==null?'—':Math.round(q.proj)];})});
+  ['rso'].concat(m.kpis.some(function(x){return x.bp;})?['bp']:[]).forEach(function(g){
+    out.push({cap:gLbl(g)+' ranking (MTD)',head:['#',gLbl(g),'MTD %','Ach %','Behind in'],pct:[2],rows:ranking(m,g,k).map(function(x,i){return [i+1,x.r.name,pctCell(x.score),pctCell(x.ach),x.bad.join(', ')||'—'];})});
+  });
+  return out;
+}
+function memberTables(r,k,g){
+  var m=data.months[k];
+  return [{cap:gLbl(g)+(r.itop?' · '+r.itop:''),head:['KPI','Target','Achievement','Ach %','MTD %','Month-end'],pct:[4],rows:rsoKpis(m,r.id,g).map(function(x){var q=mtd(x.t,x.a,k);return [x.k.name,x.t,x.a,pctCell(x.pct),pctCell(q.pct),q.proj==null?'—':Math.round(q.proj)];})}];
+}
+function ffTables(){
+  var ppl=['distributor','manager','accountant'].map(function(k){var p=data.people[k],nm=p.fields.find(function(f){return f.c==='name';}),ph=p.fields.find(function(f){return f.type==='phone';});return [p.title,nm&&nm.v||'—',ph&&ph.v||'—'];});
+  return [{cap:'Distribution house',head:['Role','Name','Number'],rows:ppl},
+    {cap:'RSOs',head:['#','RSO','iTop-up'],rows:data.rsos.map(function(r,i){return [i+1,r.name,r.itop||'—'];})},
+    {cap:'BPs',head:['#','BP','Mobile'],rows:data.bps.map(function(r,i){return [i+1,r.name,r.itop||'—'];})}];
+}
+function kvTable(cap,pairs){return {cap:cap,head:['Item','Value'],rows:pairs.filter(function(p){return String(p[1]).trim()!=='';})};}
+function towersTables(){
+  var c=towerCats();
+  return [{cap:'Category A = revenue ≥ '+tk(c.thr),head:['#','BTS','Cat','Revenue','Sub base','ARPU'],rows:c.ts.map(function(t){return [t.rank,t.name,t.cat,t.rev,t.sub,arpuTxt(t.arpu)];}).concat([['','Total','',c.total,c.subs,arpuTxt(c.arpu)]]),total:true}];
+}
+function campTables(c,g){
+  if(c.kind==='weekly'){
+    return (c.groups||[]).map(function(gg){return {cap:(gg==='house'?'Distributor':gLbl(gg))+' · '+c.wk.link,head:['Name','Target','Done','%','Reward'],pct:[3],rows:grp(gg).map(function(m){var w=wkCalc(c,gg,m.id)||{};return [m.name,num(w.t),w.needBase||w.miss?'—':w.a,pctCell(w.p),w.rew?'৳'+fmt(w.rew):'—'];})};});
+  }
+  if(c.who==='house'){var r=campCalc(c,'house','proj');return [{cap:'Month-end at MTD pace · payout '+pctCell(r.total)+' · incentive '+tkf(r.amt),head:['KPI','Weight','Ach %','Payout','Earned'],pct:[2],rows:r.rows.map(function(x){return [x.q.label,x.q.weight+'%',x.r.gap?x.r.info:pctCell(x.r.pct),x.r.miss?'No data':x.r.pay+'%',(Math.round(x.earned*10)/10)+'%'];}).concat([['Total','','','',pctCell(r.total)]]),total:true}];}
+  var tot=0,rows=grp(c.who).map(function(m){var r=campCalc(c,m.id,'proj');tot+=r.amt||0;return [m.name,r.cat?r.cat[0]:'—',pctCell(r.total),r.amt==null?'—':'৳'+fmt(r.amt)];});
+  rows.push(['Total','','','৳'+fmt(tot)]);
+  return [{cap:'Month-end at MTD pace',head:[gLbl(c.who),'Category','Payout','Incentive'],pct:[],rows:rows,total:true}];
+}
+function tablesFromText(t){return [{cap:'',head:['Report'],rows:String(t||'').replace(/\*/g,'').split('\n').filter(Boolean).map(function(l){return [l];})}];}
+
+function cellTxt(v){if(v==null)return '—';if(typeof v==='number')return Math.abs(v)>=1000||Math.round(v)===v?fmt(v):(Math.round(v*10)/10).toLocaleString('en-IN');return String(v);}
+function drawReport(title,sub,tables,opt){
+  opt=opt||{};
+  var W=opt.w||1080,pad=44,cv=document.createElement('canvas'),ctx=cv.getContext('2d');
+  var FONT='-apple-system,"Segoe UI",Roboto,"Noto Sans Bengali","Helvetica Neue",Arial,sans-serif';
+  var fs=27,rh=58;
+  function measure(){
+    var h=196;
+    tables.forEach(function(t){
+      ctx.font='600 '+fs+'px '+FONT;
+      var cw=t.head.map(function(h,i){var w=ctx.measureText(String(h)).width;t.rows.forEach(function(r){ctx.font=(i===0?'600 ':'400 ')+fs+'px '+FONT;w=Math.max(w,ctx.measureText(cellTxt(r[i])).width);});return w+30;});
+      var sum=cw.reduce(function(a,b){return a+b;},0),avail=W-pad*2;
+      if(sum>avail){var extra=sum-avail;cw[0]=Math.max(160,cw[0]-extra);sum=cw.reduce(function(a,b){return a+b;},0);if(sum>avail){var f=avail/sum;cw=cw.map(function(w){return w*f;});}}
+      else{cw[0]+=avail-sum;}
+      t._cw=cw;h+=(t.cap?58:12)+rh*(t.rows.length+1)+26;
+    });
+    return h+76;
+  }
+  var H=measure();
+  cv.width=W;cv.height=H;ctx=cv.getContext('2d');
+  ctx.fillStyle='#ffffff';ctx.fillRect(0,0,W,H);
+  var gr=ctx.createLinearGradient(0,0,W,0);gr.addColorStop(0,'#F26522');gr.addColorStop(1,'#ff9a4d');
+  ctx.fillStyle=gr;ctx.fillRect(0,0,W,166);
+  ctx.fillStyle='#ffffff';ctx.font='800 46px '+FONT;ctx.textBaseline='alphabetic';
+  ctx.fillText(fitText(ctx,title,W-pad*2),pad,82);
+  ctx.font='500 27px '+FONT;ctx.globalAlpha=.92;ctx.fillText(fitText(ctx,sub||'',W-pad*2),pad,126);ctx.globalAlpha=1;
+  var y=196;
+  tables.forEach(function(t){
+    if(t.cap){ctx.fillStyle='#6b7385';ctx.font='800 24px '+FONT;ctx.fillText(t.cap.toUpperCase(),pad,y+30);y+=46;}else y+=12;
+    var cw=t._cw,x;
+    ctx.fillStyle='#f4f6fa';roundRect(ctx,pad,y,W-pad*2,rh,12);ctx.fill();
+    ctx.fillStyle='#6b7385';ctx.font='700 '+(fs-4)+'px '+FONT;x=pad;
+    t.head.forEach(function(h,i){drawCell(ctx,String(h),x,y,cw[i],rh,i>0&&typeof (t.rows[0]||[])[i]==='number');x+=cw[i];});
+    y+=rh;
+    t.rows.forEach(function(r,ri){
+      var last=t.total&&ri===t.rows.length-1;
+      if(ri%2===1&&!last){ctx.fillStyle='#fafbfc';ctx.fillRect(pad,y,W-pad*2,rh);}
+      if(last){ctx.fillStyle='#fff2ea';ctx.fillRect(pad,y,W-pad*2,rh);}
+      x=pad;
+      r.forEach(function(v,i){
+        var txt=cellTxt(v),col='#1b2232';
+        if((t.pct||[]).indexOf(i)>=0&&typeof v==='string'&&/%$/.test(v)){var n=parseFloat(v);col=n>=90?'#16a34a':n>=70?'#c27a00':'#dc2626';}
+        ctx.fillStyle=col;ctx.font=((i===0||last||(t.pct||[]).indexOf(i)>=0)?'700 ':'400 ')+fs+'px '+FONT;
+        drawCell(ctx,txt,x,y,cw[i],rh,i>0&&(typeof v==='number'||/^[৳\d\-—.,%]+$/.test(txt)));
+        x+=cw[i];
+      });
+      ctx.strokeStyle='#eef0f4';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(pad,y+rh);ctx.lineTo(W-pad,y+rh);ctx.stroke();
+      y+=rh;
+    });
+    y+=26;
+  });
+  ctx.fillStyle='#9aa3b2';ctx.font='500 22px '+FONT;
+  ctx.fillText('ETIS · KHUCHU04 · '+new Date().toLocaleString('en-GB',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}),pad,H-32);
+  return cv;
+}
+function fitText(ctx,t,w){t=String(t);if(ctx.measureText(t).width<=w)return t;while(t.length>1&&ctx.measureText(t+'…').width>w)t=t.slice(0,-1);return t+'…';}
+function drawCell(ctx,t,x,y,w,h,right){var tt=fitText(ctx,t,w-24);ctx.textAlign=right?'right':'left';ctx.fillText(tt,right?x+w-12:x+12,y+h/2+10);ctx.textAlign='left';}
+function roundRect(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+function shareFile(blob,name,title){
+  var file;try{file=new File([blob],name,{type:blob.type});}catch(e){file=null;}
+  if(file&&navigator.canShare&&navigator.canShare({files:[file]})){
+    return navigator.share({files:[file],title:title||name}).then(function(){toast('Shared');},function(e){if(e&&e.name!=='AbortError')dl();});
+  }
+  dl();return Promise.resolve();
+  function dl(){var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},2000);toast('Saved '+name+' — attach it in WhatsApp');}
+}
+function excelBlob(title,sub,tables,sheets){
+  return loadScript(XLSX_URL,'XLSX').then(function(X){
+    var wb=X.utils.book_new();
+    (sheets||[{name:'Report',tables:tables}]).forEach(function(sh){
+      var aoa=[[title],[sub||''],[]];
+      sh.tables.forEach(function(t){if(t.cap)aoa.push([t.cap]);aoa.push(t.head);t.rows.forEach(function(r){aoa.push(r.map(function(v){if(typeof v==='string'&&/^-?[\d.]+%$/.test(v))return parseFloat(v)/100;return v;}));});aoa.push([]);});
+      var ws=X.utils.aoa_to_sheet(aoa);
+      var mx=0;aoa.forEach(function(r){mx=Math.max(mx,r.length);});
+      ws['!cols']=Array.apply(null,{length:mx}).map(function(_,i){return {wch:i===0?24:14};});
+      Object.keys(ws).forEach(function(a){var c=ws[a];if(a[0]!=='!'&&c&&c.t==='n'&&c.v>-10&&c.v<10&&String(c.v).indexOf('.')>=0)c.z='0.0%';});
+      X.utils.book_append_sheet(wb,ws,safeName(sh.name).slice(0,31)||'Sheet');
+    });
+    var out=X.write(wb,{bookType:'xlsx',type:'array'});
+    return new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+  });
+}
+function shareMenu(o){
+  o.tables=o.tables&&o.tables.length?o.tables:tablesFromText(o.text);
+  var el=$('#sheet');
+  el.innerHTML='<div class="sh-back"></div><div class="sh-card"><div class="sh-h"><b>Share · '+esc(o.title)+'</b><button type="button" class="tb-btn sh-x" aria-label="Close">'+I.x+'</button></div>'+
+    '<div class="shopts">'+
+    '<button data-sh="text"><i class="ic-wa">'+I.wa+'</i><b>Text</b><small>Opens WhatsApp with the message</small></button>'+
+    '<button data-sh="img"><i class="ic-im">'+I.cal+'</i><b>Image</b><small>A neat report picture (PNG)</small></button>'+
+    '<button data-sh="xls"><i class="ic-xl">'+I.dl+'</i><b>Excel</b><small>A .xlsx file with the numbers</small></button>'+
+    '<button data-sh="copy"><i class="ic-cp">'+I.copy+'</i><b>Copy text</b><small>Paste it anywhere</small></button>'+
+    '</div><p class="muted" style="font-size:12px;margin-top:10px">On a phone, Image and Excel open the share menu — pick WhatsApp. On a laptop the file downloads; attach it in WhatsApp.</p></div>';
+  el.classList.remove('hidden');
+  el.querySelector('.sh-back').onclick=closeSheet;el.querySelector('.sh-x').onclick=closeSheet;
+  el.querySelector('.shopts').onclick=function(e){
+    var b=e.target.closest('[data-sh]');if(!b)return;var w=b.dataset.sh,sub=o.sub||(mlabel(curKey())+' · data up to day '+mtdDay(curKey()));
+    if(w==='text'){closeSheet();openWA(o.text,o.phone||'');return;}
+    if(w==='copy'){copyText(String(o.text).replace(/\*/g,''));closeSheet();return;}
+    b.disabled=true;b.querySelector('b').textContent='Preparing…';
+    if(w==='img'){
+      var cv=drawReport(o.title,sub,o.tables);
+      cv.toBlob(function(bl){closeSheet();shareFile(bl,safeName(o.title)+'.png',o.title);},'image/png');
+    }else{
+      excelBlob(o.title,sub,o.tables).then(function(bl){closeSheet();shareFile(bl,safeName(o.title)+'.xlsx',o.title);},function(er){closeSheet();toast(er.message);});
+    }
+  };
+}
+
+/* ================= MORNING BRIEFING ================= */
+var BRIEF={kpis:null,bp:true,house:true};
+function isMoneyKpi(n){return /c2c|recharge|\bsc\b|sc |ev /i.test(n);}
+function briefView(){
+  var k=curKey(),M=data.months[k],dl=daysLeft(),day=new Date().getDate();
+  top('Morning briefing','#/home','Daily need for each RSO and BP');
+  var ks=M.kpis.filter(function(kp){return kp.scope!=='house'&&partSum(kp,'rso').t>0;});
+  if(!BRIEF.kpis)BRIEF.kpis=ks.filter(function(kp){return /^(ga|c2c)$/i.test(kp.name);}).map(function(kp){return kp.name;});
+  if(!BRIEF.kpis.length&&ks[0])BRIEF.kpis=[ks[0].name];
+  var sel=ks.filter(function(kp){return BRIEF.kpis.indexOf(kp.name)>=0;});
+  function need(kp,id){var x=rowOf(kp,id),rem=num(x.t)-num(x.a);return rem>0?Math.ceil(rem/dl):0;}
+  function val(kp,n){return isMoneyKpi(kp.name)?'৳'+fmt(n):fmt(n);}
+  var txt='☀️ *Good morning team!*\n'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+' · '+dl+' day'+(dl===1?'':'s')+' left in '+mlabel(k).split(' ')[0]+'\n';
+  if(BRIEF.house){txt+='\n*KHUCHU04 today needs*\n';sel.forEach(function(kp){var s=kpiSum(kp),rem=s.t-s.a;txt+='• '+kp.name+': '+(rem>0?val(kp,Math.ceil(rem/dl))+'/day':'target done ✅')+' (MTD '+pctTxt(mtd(s.t,s.a,k).pct)+')\n';});}
+  txt+='\n*Today\'s target per RSO*\n';
+  var tRows=[];
+  data.rsos.forEach(function(r,i){var parts=sel.map(function(kp){var n=need(kp,r.id);return kp.name+' '+(n?val(kp,n):'✅');});txt+=(i+1)+'. '+r.name+': '+parts.join(' · ')+'\n';tRows.push([r.name].concat(sel.map(function(kp){var n=need(kp,r.id);return n?(isMoneyKpi(kp.name)?'৳'+fmt(n):n):'Done';})));});
+  var bpK=sel.filter(function(kp){return kp.bp;});
+  if(BRIEF.bp&&bpK.length&&data.bps.length){txt+='\n*Today\'s target per BP*\n';data.bps.forEach(function(r,i){var parts=bpK.map(function(kp){var n=need(kp,r.id);return kp.name+' '+(n?val(kp,n):'✅');});txt+=(i+1)+'. '+r.name+': '+parts.join(' · ')+'\n';tRows.push([r.name+' (BP)'].concat(sel.map(function(kp){if(!kp.bp)return '—';var n=need(kp,r.id);return n?(isMoneyKpi(kp.name)?'৳'+fmt(n):n):'Done';})));});}
+  txt+='\nLet\'s go! 💪';
+  view.innerHTML='<section class="card"><h3 style="font-size:15.5px;margin-bottom:6px">What to include</h3>'+
+    '<div class="chips">'+ks.map(function(kp){return '<label class="chip c-blue bchk"><input type="checkbox" data-bk="'+esc(kp.name)+'"'+(BRIEF.kpis.indexOf(kp.name)>=0?' checked':'')+'> '+esc(kp.name)+'</label>';}).join('')+'</div>'+
+    '<div class="chips" style="margin-top:10px"><label class="ick"><input type="checkbox" id="bH"'+(BRIEF.house?' checked':'')+'> House line</label><label class="ick"><input type="checkbox" id="bB"'+(BRIEF.bp?' checked':'')+'> BPs</label></div>'+
+    '<p class="muted" style="font-size:12.5px;margin-top:8px">Daily need = (target − achievement) ÷ '+dl+' days left. Uses the latest numbers in the app'+(data.lastImport?' (last import '+ago(data.lastImport.at)+')':'')+'.</p></section>'+
+    '<section class="card mt"><div class="sec-h"><h3>Message</h3><span class="muted" style="font-size:12px">You can edit it before sending</span></div><textarea class="cell" id="bT" style="height:300px;font-family:inherit;font-size:14px;line-height:1.5">'+esc(txt)+'</textarea></section>'+
+    '<div class="actions mt"><button class="btn-o btn-wa" id="bSend"><i>'+I.wa+'</i>Send on WhatsApp</button><button class="btn-o" id="bImg"><i>'+I.cal+'</i>Image / Excel</button><button class="btn-o" id="bCopy"><i>'+I.copy+'</i>Copy</button></div>';
+  view.onchange=function(e){
+    var el=e.target;
+    if(el.dataset.bk!=null){var n=el.dataset.bk,i=BRIEF.kpis.indexOf(n);if(el.checked&&i<0)BRIEF.kpis.push(n);if(!el.checked&&i>=0)BRIEF.kpis.splice(i,1);briefView();}
+    else if(el.id==='bH'){BRIEF.house=el.checked;briefView();}
+    else if(el.id==='bB'){BRIEF.bp=el.checked;briefView();}
+  };
+  $('#bSend').onclick=function(){openWA($('#bT').value);};
+  $('#bCopy').onclick=function(){copyText($('#bT').value.replace(/\*/g,''));};
+  $('#bImg').onclick=function(){shareMenu({title:'Today\'s targets · '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'short'}),sub:dl+' days left · daily need per person',text:$('#bT').value,tables:[{cap:'Daily need',head:['Name'].concat(sel.map(function(kp){return kp.name;})),rows:tRows}]});};
+}
+
+/* ================= TREND CHART ================= */
+function snapDays(M){return Object.keys(M.snaps||{}).map(Number).filter(function(d){return d>0;}).sort(function(a,b){return a-b;});}
+function svgLine(pts,opt){
+  opt=opt||{};
+  var W=opt.w||340,H=opt.h||190,L=opt.l==null?44:opt.l,R=12,T=14,B=opt.b==null?26:opt.b;
+  var allY=[0];pts.forEach(function(p){allY.push(p.y);});if(opt.pace)allY.push(opt.pace);
+  var x0=opt.x0||1,x1=opt.x1||30,ymax=Math.max.apply(null,allY)*1.08||1;
+  var sx=function(x){return L+(x-x0)/(x1-x0||1)*(W-L-R);},sy=function(y){return T+(1-y/ymax)*(H-T-B);};
+  var g='';
+  if(!opt.spark){
+    [0,.5,1].forEach(function(f){var yv=ymax*f,yy=sy(yv);g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+yy+'" y2="'+yy+'" class="cg"/><text x="'+(L-6)+'" y="'+(yy+4)+'" class="ct" text-anchor="end">'+shortNum(yv)+'</text>';});
+    [x0,Math.round((x0+x1)/2),x1].forEach(function(d){g+='<text x="'+sx(d)+'" y="'+(H-6)+'" class="ct" text-anchor="middle">'+d+'</text>';});
+  }
+  var pace=opt.pace?'<path d="M'+sx(x0)+' '+sy(0)+' L'+sx(x1)+' '+sy(opt.pace)+'" class="cp"/>':'';
+  var d=pts.map(function(p,i){return (i?'L':'M')+sx(p.x).toFixed(1)+' '+sy(p.y).toFixed(1);}).join(' ');
+  var line=pts.length>1?'<path d="'+d+'" class="cl"/>':'';
+  var dots=pts.map(function(p,i){var last=i===pts.length-1;return '<circle cx="'+sx(p.x).toFixed(1)+'" cy="'+sy(p.y).toFixed(1)+'" r="'+(opt.spark?(last?3.5:0):(last?6:4.5))+'" class="cd'+(last?' last':'')+'" data-tip="Day '+p.x+': '+fmt(p.y)+(p.y2!=null?' · pace '+fmt(p.y2):'')+'"/>';}).join('');
+  var hit=opt.spark?'':pts.map(function(p){return '<rect x="'+(sx(p.x)-10)+'" y="'+T+'" width="20" height="'+(H-T-B)+'" fill="transparent" data-tip="Day '+p.x+': '+fmt(p.y)+(p.y2!=null?' · on-pace '+fmt(p.y2):'')+'"/>';}).join('');
+  return '<svg viewBox="0 0 '+W+' '+H+'" class="chart" role="img" aria-label="'+esc(opt.label||'trend')+'">'+g+pace+line+dots+hit+'</svg>';
+}
+function svgBars(pts,opt){
+  opt=opt||{};var W=340,H=150,L=44,R=12,T=12,B=24,x0=1,x1=30;
+  var ymax=Math.max.apply(null,pts.map(function(p){return p.y;}).concat([opt.ref||0,1]))*1.1;
+  var sx=function(x){return L+(x-x0)/(x1-x0)*(W-L-R);},sy=function(y){return T+(1-y/ymax)*(H-T-B);};
+  var bw=Math.max(4,(W-L-R)/30-3),g='';
+  [0,1].forEach(function(f){var yy=sy(ymax*f/1.1);g+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+yy+'" y2="'+yy+'" class="cg"/><text x="'+(L-6)+'" y="'+(yy+4)+'" class="ct" text-anchor="end">'+shortNum(ymax*f/1.1)+'</text>';});
+  [1,15,30].forEach(function(d){g+='<text x="'+sx(d)+'" y="'+(H-6)+'" class="ct" text-anchor="middle">'+d+'</text>';});
+  var ref=opt.ref?'<line x1="'+L+'" x2="'+(W-R)+'" y1="'+sy(opt.ref)+'" y2="'+sy(opt.ref)+'" class="cp"/><text x="'+(W-R)+'" y="'+(sy(opt.ref)-5)+'" class="ct" text-anchor="end">needed/day '+shortNum(opt.ref)+'</text>':'';
+  var bars=pts.map(function(p){var y=sy(p.y),h=Math.max(1,sy(0)-y);return '<path d="M'+(sx(p.x)-bw/2)+' '+sy(0)+' v-'+Math.max(0,h-3)+' q0 -3 3 -3 h'+(bw-6)+' q3 0 3 3 v'+Math.max(0,h-3)+' z" class="cb" data-tip="'+esc(p.lbl)+'"/>';}).join('');
+  return '<svg viewBox="0 0 '+W+' '+H+'" class="chart" role="img" aria-label="Daily sales">'+g+ref+bars+'</svg>';
+}
+function shortNum(n){n=+n||0;if(n>=1e7)return (n/1e7).toFixed(1).replace(/\.0$/,'')+'cr';if(n>=1e5)return (n/1e5).toFixed(1).replace(/\.0$/,'')+'L';if(n>=1e3)return (n/1e3).toFixed(1).replace(/\.0$/,'')+'k';return String(Math.round(n));}
+function trendView(k,id){
+  if(!k||!data.months[k])k=curKey();
+  var M=data.months[k],kp=M.kpis.find(function(x){return x.id===id;})||M.kpis[0];
+  if(!kp){location.hash='#/home';return;}
+  top('Trend · '+kp.name,'#/kpi/'+k+'/'+kp.id,mlabel(k));
+  var days=snapDays(M),s=kpiSum(kp);
+  var opts='<select class="msel" id="tK">'+M.kpis.map(function(x){return '<option value="'+x.id+'"'+(x.id===kp.id?' selected':'')+'>'+esc(x.name)+'</option>';}).join('')+'</select>';
+  if(days.length<2){
+    view.innerHTML='<div class="sec-h">'+monthSelect(k)+opts+'</div><section class="card"><div class="empty">Trend needs numbers from at least 2 different days. Each import saves that day’s numbers'+(days.length?' — saved so far: day '+days.join(', ')+'.':'.')+' Import the office file each day and the chart builds itself.</div></section>';
+  }else{
+    var pts=days.map(function(d){var v=snapVal(M,d,kp.name,'house');return {x:d,y:num(v),y2:s.t*d/30};});
+    var inc=[];for(var i=1;i<pts.length;i++){var gap=pts[i].x-pts[i-1].x,dv=(pts[i].y-pts[i-1].y)/gap;inc.push({x:pts[i].x,y:Math.max(0,dv),lbl:'Day '+(pts[i-1].x+1)+(gap>1?'–'+pts[i].x+' (avg)':'')+': '+fmt(dv)+'/day'});}
+    var last=pts[pts.length-1],need=s.t>last.y?(s.t-last.y)/Math.max(1,30-last.x):0;
+    var avg7=inc.slice(-7).reduce(function(a,p){return a+p.y;},0)/Math.max(1,inc.slice(-7).length);
+    var people=data.rsos.concat(kp.bp?data.bps:[]).map(function(r){
+      var ps=days.map(function(d){return {x:d,y:num(snapVal(M,d,kp.name,r.id))};});
+      var x=rowOf(kp,r.id),q=mtd(x.t,x.a,k);var l2=ps.length>1?ps[ps.length-1].y-ps[ps.length-2].y:0;
+      return {r:r,ps:ps,q:q,t:num(x.t),last:l2};
+    });
+    view.innerHTML='<div class="sec-h">'+monthSelect(k)+opts+'</div>'+
+      '<div class="stats"><div class="stat" style="--c:var(--brand)"><small>Latest (day '+last.x+')</small><b>'+fmt(last.y)+'</b><em>of '+fmt(s.t)+' target</em></div>'+
+      '<div class="stat" style="--c:var(--blue)"><small>Avg per day (recent)</small><b>'+fmt(avg7)+'</b><em>last '+Math.min(7,inc.length)+' import gaps</em></div>'+
+      '<div class="stat" style="--c:'+(avg7>=need?'var(--good)':'var(--bad)')+'"><small>Needed per day</small><b class="'+(avg7>=need?'s-good':'s-bad')+'">'+fmt(need)+'</b><em>'+(avg7>=need?'Current pace is enough':'Pace is too slow')+'</em></div>'+
+      '<div class="stat" style="--c:var(--warn)"><small>Days saved</small><b>'+days.length+'</b><em>Day '+days[0]+' to '+last.x+'</em></div></div>'+
+      '<section class="card"><div class="sec-h"><h3>House total · cumulative</h3><span class="lg"><i class="lg1"></i>Actual <i class="lg2"></i>On-pace for target</span></div>'+svgLine(pts,{pace:s.t,label:kp.name+' cumulative'})+'<p class="ttip muted" id="tt1">Tap a point to see the number.</p></section>'+
+      (inc.length?'<section class="card mt"><div class="sec-h"><h3>Added per day</h3><span class="lg"><i class="lg3"></i>Daily <i class="lg2"></i>Needed/day</span></div>'+svgBars(inc,{ref:need})+'<p class="ttip muted" id="tt2">Tap a bar to see the number.</p></section>':'')+
+      '<div class="sec-title">Each person <span style="text-transform:none;letter-spacing:0;font-weight:600">line = cumulative · ▲▼ = last change</span></div><section class="card">'+
+      people.map(function(p){var up=p.last>0;return '<div class="sprow" role="button" tabindex="0" data-go="#/rso/'+p.r.id+'/'+k+'"><span class="spn"><b>'+esc(p.r.name)+'</b><small>'+(memberById(p.r.id).g==='bp'?'BP':'RSO')+' · MTD '+pctTxt(p.q.pct)+'</small></span>'+svgLine(p.ps,{spark:true,w:120,h:40,l:2,b:2,pace:p.t,label:p.r.name})+'<span class="spv '+(up?'s-good':'s-na')+'">'+(p.ps.length>1?(up?'▲ ':'■ ')+fmt(p.last):'—')+'</span></div>';}).join('')+'</section>';
+    view.onclick=function(e){var t=e.target.closest('[data-tip]');if(!t)return;var box=t.closest('section').querySelector('.ttip');if(box)box.textContent=t.dataset.tip;};
+  }
+  $('#msel').onchange=function(){location.hash='#/trend/'+this.value+'/'+id;};
+  $('#tK').onchange=function(){location.hash='#/trend/'+k+'/'+this.value;};
+}
+
+/* ================= MONTH-END REPORT (PDF / Excel) ================= */
+function reportSections(k){
+  var m=data.months[k],secs=[];
+  var sc=monthScore(m),sm=monthMtd(m,k);
+  secs.push({title:'KHUCHU04 · '+mlabel(k),sub:'Monthly report · MTD score '+pctTxt(sm)+' · achievement '+pctTxt(sc)+' · data up to day '+mtdDay(k),tables:summaryTables(k)});
+  m.kpis.forEach(function(kp){secs.push({title:kp.name,sub:mlabel(k)+(kp.scope==='house'?' · house level':kp.bp?' · RSO + BP':' · RSO-wise'),tables:kpiTables(k,kp)});});
+  (data.campaigns||[]).filter(function(c){return c.month===k;}).forEach(function(c){secs.push({title:'Campaign · '+c.name,sub:dmy(c.start)+' – '+dmy(c.end)+(c.kind==='weekly'?' · weekly':' · '+(c.who==='house'?'Distributor':gLbl(c.who))),tables:campTables(c)});});
+  secs.push({title:'Towers',sub:data.towers.length+' BTS',tables:towersTables()});
+  return secs;
+}
+function reportView(){
+  var k=REPORT_M&&data.months[REPORT_M]?REPORT_M:curKey(),m=data.months[k];
+  top('Month-end report','#/home',mlabel(k));
+  var secs=reportSections(k);
+  view.innerHTML='<div class="sec-h">'+monthSelect(k)+'</div>'+
+    '<section class="card"><h3 style="font-size:16px">'+mlabel(k)+' report</h3><p class="muted" style="font-size:13px;margin-top:4px">Includes: overall summary, RSO and BP ranking, every KPI ('+m.kpis.length+'), campaigns ('+(data.campaigns||[]).filter(function(c){return c.month===k;}).length+') and towers.</p>'+
+    '<div class="actions mt"><button class="btn-o btn-blue" id="rPdf"><i>'+I.dl+'</i>PDF report</button><button class="btn-o" id="rXls"><i>'+I.dl+'</i>Excel report</button></div>'+
+    '<p class="muted" style="font-size:12px;margin-top:10px">On a phone the share menu opens — pick WhatsApp or email. '+(k===curKey()?'This month is still running: numbers are up to day '+mtdDay(k)+'.':'')+'</p></section>'+
+    '<div class="sec-title">Preview</div><section class="card">'+secs.map(function(s){return '<div class="kline"><div><b>'+esc(s.title)+'</b> <small>'+esc(s.sub)+'</small></div></div>';}).join('')+'</section>';
+  $('#msel').onchange=function(){REPORT_M=this.value;reportView();};
+  $('#rXls').onclick=function(){
+    var b=this;b.disabled=true;
+    var sheets=[{name:'Summary',tables:secs[0].tables}].concat(secs.slice(1).map(function(s){return {name:s.title.replace(/^Campaign · /,'C-'),tables:s.tables};}));
+    excelBlob('KHUCHU04 · '+mlabel(k)+' report','Data up to day '+mtdDay(k)+' · made '+new Date().toLocaleDateString('en-GB'),null,sheets).then(function(bl){b.disabled=false;shareFile(bl,'KHUCHU04-report-'+k+'.xlsx','KHUCHU04 '+mlabel(k));},function(e){b.disabled=false;toast(e.message);});
+  };
+  $('#rPdf').onclick=function(){
+    var b=this;b.disabled=true;b.lastChild.textContent='Making PDF…';
+    loadScript(JSPDF_URL,'jspdf').then(function(J){
+      var doc=new J.jsPDF({unit:'pt',format:'a4'}),PW=595.28,PH=841.89,M0=24,y=M0,first=true;
+      secs.forEach(function(s){
+        var cv=drawReport(s.title,s.sub,s.tables),sc2=(PW-M0*2)/cv.width,hPt=cv.height*sc2;
+        var srcY=0;
+        while(srcY<cv.height){
+          var room=PH-M0-y;
+          if(room<120&&!first){doc.addPage();y=M0;room=PH-M0*2;}
+          var takePx=Math.min(cv.height-srcY,Math.floor(room/sc2));
+          var part=document.createElement('canvas');part.width=cv.width;part.height=takePx;
+          part.getContext('2d').drawImage(cv,0,srcY,cv.width,takePx,0,0,cv.width,takePx);
+          doc.addImage(part.toDataURL('image/jpeg',0.86),'JPEG',M0,y,PW-M0*2,takePx*sc2);
+          y+=takePx*sc2+14;srcY+=takePx;first=false;
+          if(srcY<cv.height){doc.addPage();y=M0;}
+        }
+      });
+      var bl=doc.output('blob');b.disabled=false;b.lastChild.textContent='PDF report';
+      shareFile(bl,'KHUCHU04-report-'+k+'.pdf','KHUCHU04 '+mlabel(k));
+    },function(e){b.disabled=false;b.lastChild.textContent='PDF report';toast(e.message);});
+  };
+}
+var REPORT_M=null;
+
+/* ================= PHOTOS ================= */
+function avatarHtml(obj,fallback,cls){
+  return obj&&obj.photo?'<img class="'+(cls||'avimg')+'" src="'+esc(obj.photo)+'" alt="">':esc(String(fallback||'?').charAt(0).toUpperCase());
+}
+function resizePhoto(file,size){
+  return new Promise(function(res,rej){
+    var fr=new FileReader();
+    fr.onload=function(){
+      var img=new Image();
+      img.onload=function(){
+        var s=Math.min(img.width,img.height),cv=document.createElement('canvas');cv.width=size;cv.height=size;
+        cv.getContext('2d').drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,size,size);
+        res(cv.toDataURL('image/jpeg',0.72));
+      };
+      img.onerror=function(){rej(new Error('This picture could not be opened.'));};
+      img.src=fr.result;
+    };
+    fr.onerror=function(){rej(new Error('Could not read the picture.'));};
+    fr.readAsDataURL(file);
+  });
+}
+function photoControls(obj,rerender){
+  var id='ph'+Math.random().toString(36).slice(2,7);
+  setTimeout(function(){
+    var inp=document.getElementById(id),rm=document.getElementById(id+'r');
+    if(inp)inp.onchange=function(){var f=this.files&&this.files[0];if(!f)return;
+      resizePhoto(f,144).then(function(u){obj.photo=u;save();toast('Photo saved ('+Math.round(u.length*0.75/1024)+' KB)');rerender();},function(e){toast(e.message);});};
+    if(rm)rm.onclick=function(){if(!confirm('Remove this photo?'))return;delete obj.photo;save();rerender();};
+  },0);
+  return '<div class="phbtns edonly"><label class="btn-s" for="'+id+'" style="cursor:pointer"><i>'+I.ul+'</i>'+(obj.photo?'Change photo':'Add photo')+'</label><input type="file" id="'+id+'" accept="image/*" class="hidden">'+(obj.photo?'<button class="btn-s" id="'+id+'r" style="background:var(--bad-l);color:var(--bad)"><i>'+I.trash+'</i>Remove</button>':'')+'</div>';
+}
+
+/* ================= INSTALL (PWA) ================= */
+var INSTALL_EVT=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();INSTALL_EVT=e;});
+if('serviceWorker' in navigator&&location.protocol==='https:'){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});}
+function isStandalone(){return (window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches)||navigator.standalone===true;}
+function installCard(){
+  if(isStandalone())return '<section class="card mt"><div class="nc-h"><div class="icotile it-g">'+I.home+'</div><div><h2>Installed</h2><p>ETIS is running as an app on this device.</p></div></div></section>';
+  return '<section class="card mt"><div class="nc-h"><div class="icotile it-g">'+I.home+'</div><div><h2>Install on this phone</h2><p>Opens full-screen from your home screen, like an app.</p></div></div>'+
+    '<div class="actions"><button class="btn-o btn-blue" id="instBtn"><i>'+I.dl+'</i>Install app</button></div>'+
+    '<p class="muted" style="font-size:12.5px;margin-top:8px" id="instHelp">If the button does nothing: Chrome menu <b>⋮</b> → <b>Add to Home screen</b> (or <b>Install app</b>).</p></section>';
+}
+function bindInstall(){
+  var b=$('#instBtn');if(!b)return;
+  b.onclick=function(){
+    if(INSTALL_EVT){INSTALL_EVT.prompt();INSTALL_EVT.userChoice.then(function(r){if(r&&r.outcome==='accepted')toast('Installed');INSTALL_EVT=null;});}
+    else{var h=$('#instHelp');if(h){h.style.color='var(--ink)';h.style.fontWeight='600';}toast('Use Chrome menu ⋮ → Add to Home screen');}
+  };
 }
 
 /* ================= VIEWER LINKS & ACTIVITY (owner only) ================= */
@@ -1990,6 +2920,13 @@ function pageLabel(p){
     case 'bps':return 'BP list';
     case 'rso':var mb=memberById(p[1]);return (mb?gLbl(mb.g):'RSO')+' · '+(mb?mb.m.name:'?');
     case 'total':return 'KHUCHU04 In Total';
+    case 'camp':return 'Campaigns';
+    case 'brief':return 'Morning briefing';
+    case 'trend':return 'Trend chart';
+    case 'report':return 'Month-end report';
+    case 'campg':return 'Campaigns · '+(p[1]==='house'?'Distributor':gLbl(p[1]));
+    case 'campall':return 'All campaigns';
+    case 'campx':var cc=(data.campaigns||[]).find(function(x){return x.id===p[1];});return 'Campaign · '+(cc?cc.name:'?');
     case 'settings':return 'Settings';
     default:return 'Home';
   }
@@ -2050,7 +2987,7 @@ function render(){
   }
   document.body.classList.toggle('ro',RO);
   document.body.classList.toggle('viewer',!!VIEWER);
-  ensureMonth();
+  ensureMonth();ensureCampaigns();
   var p=location.hash.replace(/^#\/?/,'').split('/').map(function(s){try{return decodeURIComponent(s);}catch(e){return s;}});
   switch(p[0]){
     case 'summary':summaryView(p[1]);break;
@@ -2068,6 +3005,14 @@ function render(){
     case 'links':linksView();break;
     case 'activity':activityView();break;
     case 'import':importView();break;
+    case 'camp':campHome();break;
+    case 'brief':briefView();break;
+    case 'trend':trendView(p[1],p[2]);break;
+    case 'report':reportView();break;
+    case 'campg':campGroup(p[1]);break;
+    case 'campall':campAll();break;
+    case 'campx':campDetail(p[1],p[2]);break;
+    case 'campe':campEdit(p[1],p[2]);break;
     default:home();
   }
   if(RO)lockInputs();
@@ -2237,6 +3182,7 @@ $('#forgot').onclick=function(){
 };
 $('#eye').onclick=function(){var i=$('#lp');i.type=i.type==='password'?'text':'password';};
 $('#setBtn').onclick=function(){location.hash='#/settings';};
+$('#tbHome').onclick=function(){location.hash='#/home';};
 $('#logoutBtn').onclick=function(){
   if(!confirm('Log out of ETIS?'))return;
   if(MODE==='cloud'){if(pushT)push();FB.signOut();location.hash='#/home';return;}
