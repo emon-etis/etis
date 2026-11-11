@@ -277,6 +277,45 @@ body.viewer #logoutBtn,body.viewer .novw{display:none!important}
 #gate h2{font-size:20px;margin-bottom:6px}
 #gate p{color:var(--muted);font-size:14px}
 
+/* BP + MTD */
+.mtdbox{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:flex-end;margin:12px 0 10px;padding:12px;border-radius:12px;background:var(--bg)}
+.mtdbox>div{min-width:120px}
+.mtdbox small{display:block;font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.4px}
+.mtdbox b{display:block;font-size:22px;letter-spacing:-.4px;font-variant-numeric:tabular-nums}
+.mtdbox span{display:block;font-size:12px;color:var(--muted)}
+.mtdbox .btn-s{margin-left:auto}
+.pcell small{display:block;font-size:11px;margin-top:4px}
+.bpx{margin-left:6px;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--bad);font-weight:800;line-height:18px;font-size:14px;display:inline-flex;align-items:center;justify-content:center}
+.rsorow.bprow{grid-template-columns:34px 1.2fr 1fr auto 26px 40px}
+body.ro .rsorow.bprow{grid-template-columns:34px 1.2fr 1fr auto 26px}
+
+/* IMPORT */
+.imap{border:1.5px solid var(--line);border-radius:14px;padding:12px;margin-top:10px}
+.imap.off{opacity:.6}
+.imh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.imh .cell{flex:1 1 140px;font-weight:700}
+.ick{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+.ick input{width:18px;height:18px;accent-color:var(--brand)}
+.imc{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.imc label span{display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
+.imsm{font-size:12px;color:var(--muted);margin-top:8px;font-variant-numeric:tabular-nums;word-break:break-word}
+.imrow{display:grid;grid-template-columns:1fr 1.2fr;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #f0f2f6}
+.imrow:last-of-type{border-bottom:0}
+.imrow .imk b{display:block;font-size:13.5px;font-variant-numeric:tabular-nums;word-break:break-all}
+.imrow .imk small{display:block;font-size:11.5px;color:var(--muted)}
+.imrow.guess select{border-color:var(--warn);background:var(--warn-l)}
+.imrow.none select{border-color:var(--bad)}
+.pvh,.pvr,.pvt{display:grid;grid-template-columns:1.1fr 1fr 1fr 58px;gap:8px;align-items:center}
+.pvh{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;padding:0 0 6px;border-bottom:1px solid var(--line)}
+.pvr{padding:7px 0;border-bottom:1px solid #f0f2f6}
+.pvr .cell{height:38px;font-size:14px;max-width:none;padding:0 6px;text-align:right;-moz-appearance:textfield}
+.pvr .cell::-webkit-inner-spin-button,.pvr .cell::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.pvr.nofile{opacity:.55}
+.pvn{min-width:0}.pvn b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pvn small{display:block;font-size:10.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pvp{font-size:13px;text-align:right}
+.pvt{padding-top:8px;font-size:13.5px}.pvt b{text-align:left}.pvt b:last-child{text-align:right}
+@media (max-width:420px){.pvh,.pvr,.pvt{grid-template-columns:.75fr 1.15fr 1.15fr 46px;gap:5px}.pvr .cell{font-size:13.5px;padding:0 5px}.imc{grid-template-columns:1fr}.imrow{grid-template-columns:1fr}}
+
 /* MOBILE */
 @media (max-width:760px){
   .stats{grid-template-columns:repeat(2,1fr);gap:10px}
@@ -287,7 +326,7 @@ body.viewer #logoutBtn,body.viewer .novw{display:none!important}
   table.rso,table.rso tbody,table.rso tr,table.rso td{display:block;width:100%}
   table.rso tr{display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}
   table.rso td{padding:0;border:0}
-  table.rso td.c-name,table.rso td.pc{grid-column:1/-1}
+  table.rso td.c-name{grid-column:1/-1}
   table.rso td::before{content:attr(data-label);display:block;font-size:11px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
   table.rso td.c-name::before{display:none}
   .cell.n{max-width:none;text-align:left}
@@ -297,6 +336,8 @@ body.viewer #logoutBtn,body.viewer .novw{display:none!important}
   .rsorow .r-it{grid-column:2/3}
   .rsorow .cbox{grid-column:2/3}
   .rsorow .go{grid-row:1;grid-column:3}
+  .rsorow.bprow,body.ro .rsorow.bprow{grid-template-columns:30px 1fr 26px}
+  .rsorow .mrm{grid-column:3;grid-row:2;width:28px;height:28px;padding:6px}
 }
 @media (max-width:380px){
   .kv,.tstats{grid-template-columns:1fr 1fr}
@@ -458,20 +499,25 @@ var I={
 /* ================= DATA ================= */
 var RSO_NAMES=['Rashed','Sohag','Shilon','Tuhin','Akimul','Masud','Hridoy','Rafid'];
 function F(k,v,type,c){return {id:uid(),k:k,v:v||'',type:type||'text',fixed:true,c:c||''};}
+function seedBps(){var a=[];for(var i=1;i<=5;i++)a.push({id:'b'+i,name:'BP '+i,itop:'',fields:[]});return a;}
 function seed(){
   var rsos=RSO_NAMES.map(function(n,i){return {id:'r'+(i+1),name:n,itop:'',fields:[]};});
+  var bps=seedBps();
   var sample={
     'C2C':[[120,132],[110,96],[100,71],[130,118],[90,94],[115,62],[105,88],[95,79]],
     'GA':[[60,54],[55,58],[50,31],[65,49],[45,40],[60,22],[50,51],[45,36]],
     'FWA Router':[[8,6],[6,7],[5,2],[8,8],[4,1],[6,3],[5,5],[0,1]]
   };
+  var bpGA=[[30,24],[25,9],[30,31],[20,13],[25,18]];
   var kpis=Object.keys(sample).map(function(name){
     var rows={};rsos.forEach(function(r,i){rows[r.id]={t:sample[name][i][0],a:sample[name][i][1]};});
-    return {id:uid(),name:name,rows:rows};
+    var kp={id:uid(),name:name,rows:rows,bp:name==='GA'};
+    if(kp.bp)bps.forEach(function(b,i){rows[b.id]={t:bpGA[i][0],a:bpGA[i][1]};});
+    return kp;
   });
   var months={};months[curKey()]={kpis:kpis};
   return {
-    v:2,auth:{user:'admin',pass:'123456'},rsos:rsos,
+    v:2,auth:{user:'admin',pass:'123456'},rsos:rsos,bps:bps,
     people:{
       distributor:{title:'Distributor',fields:[F('Name','','text','name'),F('Mobile','','phone'),F('Email','','email'),F('Address','')]},
       manager:{title:'Manager',fields:[F('Name','Naim','text','name'),F('Mobile','','phone')]},
@@ -493,9 +539,11 @@ function seed(){
     sort:{kpi:'default'},sampleNotice:true
   };
 }
+
 function valid(d){return d&&d.v===2&&Array.isArray(d.rsos)&&d.rsos.length&&d.months&&typeof d.months==='object'&&Array.isArray(d.towers);}
 function fix(d){
   var s=seed();
+  d.rsoKeys=d.rsoKeys||{};d.importCfg=d.importCfg||{};d.ddCode=d.ddCode||'KHUCHU04';
   d.auth=d.auth&&d.auth.user?d.auth:s.auth;
   d.people=d.people||s.people;
   ['distributor','manager','accountant'].forEach(function(k){if(!d.people[k])d.people[k]=s.people[k];});
@@ -503,9 +551,13 @@ function fix(d){
   d.sort=d.sort||{kpi:'default'};
   if(!num(d.towerA))d.towerA=400000;
   d.rsos.forEach(function(r){r.fields=r.fields||[];if(r.itop==null)r.itop='';});
-  Object.keys(d.months).forEach(function(k){var m=d.months[k];m.kpis=m.kpis||[];m.kpis.forEach(function(kp){kp.rows=kp.rows||{};});});
+  var newBp=!Array.isArray(d.bps);
+  if(newBp)d.bps=seedBps();
+  d.bps.forEach(function(r){r.fields=r.fields||[];if(r.itop==null)r.itop='';});
+  Object.keys(d.months).forEach(function(k){var m=d.months[k];m.kpis=m.kpis||[];m.kpis.forEach(function(kp){kp.rows=kp.rows||{};if(newBp&&kp.name.toLowerCase()==='ga')kp.bp=true;kp.bp=!!kp.bp;});});
   return d;
 }
+
 function load(){
   try{var d=JSON.parse(store.get(KEY));if(valid(d))return fix(d);}catch(e){}
   var s=seed();store.set(KEY,JSON.stringify(s));return s;
@@ -540,27 +592,62 @@ function ensureMonth(){
   if(data.months[cur])return;
   var keys=Object.keys(data.months).filter(function(k){return k<cur;}).sort();
   var last=keys[keys.length-1];
-  var kp=last?data.months[last].kpis.map(function(k){return {id:uid(),name:k.name,rows:{}};})
-             :['C2C','GA','FWA Router'].map(function(n){return {id:uid(),name:n,rows:{}};});
+  var kp=last?data.months[last].kpis.map(function(k){return {id:uid(),name:k.name,rows:{},bp:!!k.bp};})
+             :['C2C','GA','FWA Router'].map(function(n){return {id:uid(),name:n,rows:{},bp:n==='GA'};});
   data.months[cur]={kpis:kp};
   save();
 }
 
 /* ================= CALCULATIONS ================= */
+
 function calc(t,a){t=num(t);a=num(a);return {t:t,a:a,gap:t-a,pct:t>0?(a/t)*100:null};}
 function rowOf(kp,rid){return kp.rows[rid]||{t:0,a:0};}
-function kpiSum(kp){var T=0,A=0;data.rsos.forEach(function(r){var x=rowOf(kp,r.id);T+=num(x.t);A+=num(x.a);});return calc(T,A);}
+function grp(g){return g==='bp'?(data.bps||[]):data.rsos;}
+function gLbl(g){return g==='bp'?'BP':'RSO';}
+function memberById(id){
+  var i=data.rsos.findIndex(function(x){return x.id===id;});if(i>=0)return {m:data.rsos[i],g:'rso',i:i};
+  i=(data.bps||[]).findIndex(function(x){return x.id===id;});if(i>=0)return {m:data.bps[i],g:'bp',i:i};
+  return null;
+}
+function mtdDay(k){
+  var cur=curKey();if(k<cur)return 30;if(k>cur)return 0;
+  var M=data.months[k],d=M&&num(M.mtdDay)?num(M.mtdDay):Math.max(1,new Date().getDate()-1);
+  return Math.min(30,Math.max(1,Math.round(d)));
+}
+function mtd(t,a,k){
+  var d=mtdDay(k);t=num(t);a=num(a);
+  if(!d)return {proj:null,pct:null,d:0};
+  var proj=a/d*30;return {proj:proj,pct:t>0?proj/t*100:null,d:d};
+}
+function mtdHtml(t,a,k){
+  var m=mtd(t,a,k);
+  return '<div class="pcell"><div class="pv s-'+status(m.pct)+'">'+pctTxt(m.pct)+'</div><small class="muted num">'+(m.proj==null?'—':'→ '+fmt(m.proj)+' by month end')+'</small></div>';
+}
+function partSum(kp,g){var T=0,A=0;grp(g).forEach(function(r){var x=rowOf(kp,r.id);T+=num(x.t);A+=num(x.a);});return calc(T,A);}
+function kpiSum(kp){var a=partSum(kp,'rso');if(!kp.bp)return a;var b=partSum(kp,'bp');return calc(a.t+b.t,a.a+b.a);}
+
 function monthScore(m){var ps=m.kpis.map(function(k){return kpiSum(k).pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
-function rsoKpis(m,rid){return m.kpis.map(function(k){var x=rowOf(k,rid);var c=calc(x.t,x.a);c.k=k;return c;});}
-function rsoScore(m,rid){var ps=rsoKpis(m,rid).map(function(x){return x.pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
-function ranking(m){
-  return data.rsos.map(function(r,i){
-    var ks=rsoKpis(m,r.id);
-    return {r:r,i:i,score:rsoScore(m,r.id),
+function monthMtd(m,k){var ps=m.kpis.map(function(kp){var s=kpiSum(kp);return mtd(s.t,s.a,k).pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
+
+function rsoKpis(m,rid,g){
+  if(!g){var mb=memberById(rid);g=mb?mb.g:'rso';}
+  return m.kpis.filter(function(k){return g!=='bp'||k.bp;}).map(function(k){var x=rowOf(k,rid);var c=calc(x.t,x.a);c.k=k;return c;});
+}
+
+function rsoScore(m,rid,g){var ps=rsoKpis(m,rid,g).map(function(x){return x.pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
+
+function ranking(m,g,k){
+  g=g||'rso';
+  return grp(g).map(function(r,i){
+    var ks=rsoKpis(m,r.id,g);
+    if(k)ks.forEach(function(x){x.ach=x.pct;x.pct=mtd(x.t,x.a,k).pct;});
+    var ps=ks.map(function(x){return x.pct;}).filter(function(p){return p!=null;});
+    return {r:r,i:i,g:g,score:ps.length?avg(ps):null,ach:rsoScore(m,r.id,g),
       bad:ks.filter(function(x){return x.pct!=null&&x.pct<70;}).map(function(x){return x.k.name;}),
       warn:ks.filter(function(x){return x.pct!=null&&x.pct>=70&&x.pct<90;}).map(function(x){return x.k.name;})};
   }).sort(function(a,b){return (b.score==null?-1:b.score)-(a.score==null?-1:a.score);});
 }
+
 function towerCats(){
   var thr=num(data.towerA)||400000;
   var ts=data.towers.map(function(t){return {id:t.id,name:t.name,lat:t.lat,lng:t.lng,rev:num(t.rev),sub:num(t.sub)};});
@@ -671,27 +758,36 @@ function fieldsText(title,arr){
 /* ================= SHARE TEXTS ================= */
 var HDR='*ETIS · KHUCHU04*\n';
 function kpiText(k,kp){
-  var s=kpiSum(kp);
-  var t=HDR+'*'+kp.name+' – '+mlabel(k)+'*\nTarget: '+fmt(s.t)+' | Ach: '+fmt(s.a)+' | Gap: '+fmt(Math.max(s.gap,0))+' | '+pctTxt(s.pct)+' '+DOT[status(s.pct)]+'\n';
+  var s=kpiSum(kp),mm=mtd(s.t,s.a,k);
+  var t=HDR+'*'+kp.name+' – '+mlabel(k)+'*'+(kp.bp?' (RSO + BP)':'')+'\nTarget: '+fmt(s.t)+' | Ach: '+fmt(s.a)+' | Gap: '+fmt(Math.max(s.gap,0))+' | '+pctTxt(s.pct)+'\n';
+  if(mm.pct!=null)t+='MTD (day '+mm.d+'/30): '+pctTxt(mm.pct)+' '+DOT[status(mm.pct)]+' → month-end '+fmt(mm.proj)+'\n';
   if(k===curKey()&&s.gap>0){var dl=daysLeft();t+='Need/day: '+fmt(Math.ceil(s.gap/dl))+' ('+dl+' days left)\n';}
-  t+='\n*RSO-wise*\n';
-  data.rsos.forEach(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a);t+=(i+1)+'. '+r.name+': '+fmt(c.a)+'/'+fmt(c.t)+' ('+pctTxt(c.pct)+') '+DOT[status(c.pct)]+'\n';});
+  ['rso'].concat(kp.bp?['bp']:[]).forEach(function(g){
+    var ps=partSum(kp,g);
+    t+='\n*'+gLbl(g)+'-wise* ('+fmt(ps.a)+'/'+fmt(ps.t)+')\n';
+    grp(g).forEach(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a),q=mtd(c.t,c.a,k);t+=(i+1)+'. '+r.name+': '+fmt(c.a)+'/'+fmt(c.t)+' ('+pctTxt(c.pct)+') · MTD '+pctTxt(q.pct)+' '+DOT[status(q.pct)]+'\n';});
+  });
   return t;
 }
+
 function summaryText(k){
   var m=data.months[k];
-  var t=HDR+'*Overall KPI Summary – '+mlabel(k)+'*\nTerritory score: '+pctTxt(monthScore(m))+'\n\n';
-  m.kpis.forEach(function(kp){var s=kpiSum(kp);t+=DOT[status(s.pct)]+' '+kp.name+': '+pctTxt(s.pct)+' ('+fmt(s.a)+'/'+fmt(s.t)+')\n';});
-  t+='\n*RSO ranking*\n';
-  ranking(m).forEach(function(x,i){t+=(i+1)+'. '+x.r.name+': '+pctTxt(x.score)+' '+DOT[status(x.score)]+(x.bad.length?' – behind in '+x.bad.join(', '):'')+'\n';});
+  var t=HDR+'*Overall KPI Summary – '+mlabel(k)+'*\nTerritory score: '+pctTxt(monthScore(m))+' · MTD '+pctTxt(monthMtd(m,k))+' (day '+mtdDay(k)+'/30)\n\n';
+  m.kpis.forEach(function(kp){var s=kpiSum(kp),q=mtd(s.t,s.a,k);t+=DOT[status(q.pct)]+' '+kp.name+(kp.bp?' (RSO+BP)':'')+': '+fmt(s.a)+'/'+fmt(s.t)+' · '+pctTxt(s.pct)+' · MTD '+pctTxt(q.pct)+'\n';});
+  ['rso'].concat(m.kpis.some(function(x){return x.bp;})?['bp']:[]).forEach(function(g){
+    t+='\n*'+gLbl(g)+' ranking*\n';
+    ranking(m,g,k).forEach(function(x,i){t+=(i+1)+'. '+x.r.name+': MTD '+pctTxt(x.score)+' '+DOT[status(x.score)]+(x.bad.length?' – behind in '+x.bad.join(', '):'')+'\n';});
+  });
   return t;
 }
-function rsoText(r,k){
-  var m=data.months[k],sc=rsoScore(m,r.id);
-  var t=HDR+'*'+r.name+' – '+mlabel(k)+'*\n'+(r.itop?'iTop-up: '+r.itop+'\n':'')+'Overall: '+pctTxt(sc)+' '+DOT[status(sc)]+'\n\n';
-  rsoKpis(m,r.id).forEach(function(x){t+=DOT[status(x.pct)]+' '+x.k.name+': '+fmt(x.a)+'/'+fmt(x.t)+' ('+pctTxt(x.pct)+')\n';});
+
+function rsoText(r,k,g){
+  var m=data.months[k],sc=rsoScore(m,r.id,g);
+  var t=HDR+'*'+r.name+' ('+gLbl(g)+') – '+mlabel(k)+'*\n'+(r.itop?(g==='bp'?'Mobile: ':'iTop-up: ')+r.itop+'\n':'')+'Overall: '+pctTxt(sc)+' '+DOT[status(sc)]+'\n\n';
+  rsoKpis(m,r.id,g).forEach(function(x){var q=mtd(x.t,x.a,k);t+=DOT[status(q.pct)]+' '+x.k.name+': '+fmt(x.a)+'/'+fmt(x.t)+' ('+pctTxt(x.pct)+') · MTD '+pctTxt(q.pct)+' → '+fmt(q.proj)+'\n';});
   return t;
 }
+
 function towersText(){
   var c=towerCats();
   var t=HDR+'*Tower (BTS) Summary*\nTotal BTS: '+c.ts.length+' | Revenue: '+tk(c.total)+'\nSub base: '+fmt(c.subs)+' | ARPU: '+arpuTxt(c.arpu)+'\nCategory A = revenue ≥ '+tk(c.thr)+'\n\n';
@@ -721,7 +817,7 @@ function home(){
   '<section class="hero"><div><p class="hero-k">'+greet+(VIEWER?', '+esc(VIEWER.name):MODE==='cloud'?'':', Emon')+' 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
   '<div class="score"><b>'+pctTxt(sc)+'</b><small>'+mlabel(cur).split(' ')[0]+' score</small></div></section>'+
   (data.sampleNotice?'<div class="notice"><span class="sp">📌 This month\'s KPIs and the towers have <b>sample numbers</b> so you can test. Clear them before entering real data.</span><button data-act="clearSample">Clear sample numbers</button><button data-act="keepSample">Keep</button></div>':'')+
-  '<div class="sec-title">KPI</div>'+
+  '<div class="sec-title">KPI <button class="btn-s edonly" data-act="impHome"><i>'+I.ul+'</i>Import Excel</button></div>'+
   '<div class="card navcard" role="button" tabindex="0" data-go="#/summary/'+cur+'"><div class="nc-h"><div class="icotile it-o">'+I.trophy+'</div><div><h2>Overall KPI Summary</h2><p>'+mlabel(cur)+' · distribution house total + RSO ranking</p></div><div class="nc-go">'+I.go+'</div></div>'+
   (kp.length?kp.map(function(x){return '<div class="mini"><span>'+esc(x.k.name)+'</span>'+barHtml(x.s.pct)+'<b class="s-'+status(x.s.pct)+'">'+pctTxt(x.s.pct)+'</b></div>';}).join(''):'<p class="muted">No KPIs this month yet.</p>')+
   '</div>'+
@@ -743,6 +839,7 @@ function home(){
   '<div class="foot"><span>🔒 Data is saved on this device. Use Settings → Backup to keep a copy.</span></div>';
   view.onclick=function(e){
     var b=e.target.closest('[data-act]');if(!b)return;
+    if(b.dataset.act==='impHome'){IMP={step:'pick',month:curKey()};location.hash='#/import';return;}
     if(b.dataset.act==='clearSample'){
       if(!confirm('Clear all sample KPI numbers and remove the 5 sample towers?'))return;
       Object.keys(data.months).forEach(function(k){data.months[k].kpis.forEach(function(kp){kp.rows={};});});
@@ -759,31 +856,53 @@ function terrVal(c){var f=data.territory.fields.find(function(x){return x.c===c;
 
 function monthView(k){
   var m=data.months[k];if(!m){location.hash='#/home';return;}
-  top(mlabel(k),'#/home',m.kpis.length+' KPIs · tap a KPI to enter RSO numbers');
+  top(mlabel(k),'#/home',m.kpis.length+' KPIs · tap a KPI to enter numbers');
+  var bpk=m.kpis.filter(function(x){return x.bp;});
   view.innerHTML=
-  '<div class="actions" style="margin-bottom:14px"><button class="btn-o" data-go="#/summary/'+k+'"><i>'+I.trophy+'</i>Overall summary for this month</button></div>'+
+  '<div class="actions" style="margin-bottom:14px"><button class="btn-o" data-go="#/summary/'+k+'"><i>'+I.trophy+'</i>Overall summary for this month</button><button class="btn-o btn-blue edonly" data-act="imp"><i>'+I.ul+'</i>Import Excel / Screenshot</button></div>'+
   '<div class="grid3">'+
   m.kpis.map(function(kp){
-    var s=kpiSum(kp);
+    var s=kpiSum(kp),q=mtd(s.t,s.a,k);
     return '<div class="card navcard kcard" role="button" tabindex="0" data-go="#/kpi/'+k+'/'+kp.id+'">'+
       '<button class="kdel" data-act="del" data-id="'+kp.id+'" aria-label="Delete KPI">'+I.trash+'</button>'+
-      '<div class="nc-h" style="padding-right:30px"><div class="icotile it-o">'+I.kpi+'</div><div><h2>'+esc(kp.name)+'</h2><p>'+fmt(s.a)+' / '+fmt(s.t)+'</p></div></div>'+
-      '<div class="mrow"><span class="big s-'+status(s.pct)+'">'+pctTxt(s.pct)+'</span>'+pill(s.pct)+'</div>'+barHtml(s.pct)+
-      '<p class="muted mt" style="font-size:13px;margin-top:10px">'+(s.t===0?'No targets entered yet':s.gap>0?'Gap: <b class="s-bad">'+fmt(s.gap)+'</b>':'Target achieved 🎉')+'</p></div>';
+      '<div class="nc-h" style="padding-right:30px"><div class="icotile it-o">'+I.kpi+'</div><div><h2>'+esc(kp.name)+'</h2><p>'+(kp.bp?'RSO + BP · ':'')+fmt(s.a)+' / '+fmt(s.t)+'</p></div></div>'+
+      '<div class="mrow"><span class="big s-'+status(s.pct)+'">'+pctTxt(s.pct)+'</span>'+pill(q.pct)+'</div>'+barHtml(s.pct)+
+      '<p class="muted mt" style="font-size:13px;margin-top:10px">'+(s.t===0?'No targets entered yet':'MTD <b class="s-'+status(q.pct)+'">'+pctTxt(q.pct)+'</b> · month-end <b>'+fmt(q.proj)+'</b>')+'</p></div>';
   }).join('')+
   '<button class="addcard" data-act="add"><i>'+I.plus+'</i>Add KPI</button></div>'+
-  '<p class="muted" style="font-size:12.5px;margin-top:12px">A KPI you add here is also added to later months automatically. Deleting removes it from this month only.</p>';
+  '<section class="card mt"><div class="sec-h"><div><h3>BP KPIs</h3><p class="muted" style="font-size:12.5px">BP numbers for these KPIs add to the house total.</p></div><button class="btn-s edonly" data-act="bpadd"><i>'+I.plus+'</i>Add KPI for BP</button></div>'+
+  '<div class="chips">'+(bpk.length?bpk.map(function(x){return '<span class="chip c-blue">'+esc(x.name)+'<button class="edonly bpx" data-act="bprm" data-id="'+x.id+'" aria-label="Remove BP from '+esc(x.name)+'">×</button></span>';}).join(''):'<span class="muted" style="font-size:13px">No BP KPI in this month.</span>')+'</div></section>'+
+  '<p class="muted" style="font-size:12.5px;margin-top:12px">MTD uses a 30-day month: achievement ÷ days passed × 30. A KPI you add here is also added to later months automatically. Deleting removes it from this month only.</p>';
+  function later(fn){Object.keys(data.months).filter(function(x){return x>k;}).forEach(function(x){fn(data.months[x]);});}
   view.onclick=function(e){
     var b=e.target.closest('[data-act]');if(!b)return;
+    e.stopPropagation();
+    if(b.dataset.act==='imp'){IMP={step:'pick',month:k};location.hash='#/import';return;}
     if(b.dataset.act==='add'){
       formSheet('Add KPI to '+mlabel(k),[{label:'KPI name',ph:'e.g. Recharge, MFS, 4G Device, SIM Swap'}],'Add KPI',function(v){
         var n=v[0];if(!n)return 'Enter a KPI name.';
         var same=function(x){return x.name.toLowerCase()===n.toLowerCase();};
         if(m.kpis.some(same))return 'This KPI already exists in this month.';
-        m.kpis.push({id:uid(),name:n,rows:{}});
-        Object.keys(data.months).filter(function(x){return x>k;}).forEach(function(x){var mm=data.months[x];if(!mm.kpis.some(same))mm.kpis.push({id:uid(),name:n,rows:{}});});
+        m.kpis.push({id:uid(),name:n,rows:{},bp:false});
+        later(function(mm){if(!mm.kpis.some(same))mm.kpis.push({id:uid(),name:n,rows:{},bp:false});});
         save();monthView(k);toast('KPI added');
       });
+    }else if(b.dataset.act==='bpadd'){
+      var opts=m.kpis.filter(function(x){return !x.bp;}).map(function(x){return [x.id,x.name];}).concat([['__new','+ New KPI (type name below)']]);
+      formSheet('Add KPI for BP',[{label:'KPI',type:'select',value:opts[0][0],options:opts},{label:'New KPI name (only for a new KPI)',ph:'e.g. Recharge'}],'Add for BP',function(v){
+        var kp,n;
+        if(v[0]==='__new'){
+          n=v[1];if(!n)return 'Type the new KPI name.';
+          if(findKpiIn(m,n))return 'This KPI already exists. Pick it from the list instead.';
+          kp={id:uid(),name:n,rows:{},bp:true};m.kpis.push(kp);
+        }else{kp=m.kpis.find(function(x){return x.id===v[0];});if(!kp)return 'Pick a KPI.';kp.bp=true;n=kp.name;}
+        later(function(mm){var x=findKpiIn(mm,n);if(x)x.bp=true;else mm.kpis.push({id:uid(),name:n,rows:{},bp:true});});
+        save();monthView(k);toast(n+' now has BP targets');
+      });
+    }else if(b.dataset.act==='bprm'){
+      var kq=m.kpis.find(function(x){return x.id===b.dataset.id;});if(!kq)return;
+      if(!confirm('Remove BPs from "'+kq.name+'" in '+mlabel(k)+'? BP numbers will no longer count in the house total.'))return;
+      kq.bp=false;save();monthView(k);toast('BPs removed from '+kq.name);
     }else if(b.dataset.act==='del'){
       var i=m.kpis.findIndex(function(x){return x.id===b.dataset.id;});if(i<0)return;
       if(!confirm('Delete "'+m.kpis[i].name+'" from '+mlabel(k)+'? Other months keep it.'))return;
@@ -795,130 +914,168 @@ function monthView(k){
 function kpiView(k,id){
   var m=data.months[k];if(!m){location.hash='#/home';return;}
   var kp=m.kpis.find(function(x){return x.id===id;});if(!kp){location.hash='#/month/'+k;return;}
-  top(kp.name,'#/month/'+k,mlabel(k)+' · RSO-wise');
+  top(kp.name,'#/month/'+k,mlabel(k)+(kp.bp?' · RSO + BP':' · RSO-wise'));
   var mode=getSort();
+  function tbl(g,tid){
+    return '<table class="rso"><thead><tr><th>'+gLbl(g)+'</th><th>Target</th><th>Achievement</th><th>Gap</th><th>Achievement %</th><th>MTD (30 days)</th></tr></thead><tbody id="'+tid+'" data-g="'+g+'"></tbody></table>';
+  }
   view.innerHTML='<div id="sum"></div>'+
   '<section class="card tablecard"><div class="sec-h"><h3>RSO-wise Performance</h3><div class="seg" id="seg">'+
   [['default','Serial'],['pctDesc','Top %'],['pctAsc','Low %'],['gapDesc','Big Gap']].map(function(o){return '<button data-s="'+o[0]+'" class="'+(mode===o[0]?'on':'')+'">'+o[1]+'</button>';}).join('')+
-  '</div></div><table class="rso"><thead><tr><th>RSO</th><th>Target</th><th>Achievement</th><th>Gap</th><th>Achievement %</th></tr></thead><tbody id="tb"></tbody></table></section>'+
+  '</div></div>'+tbl('rso','tb')+'</section>'+
+  (kp.bp?'<section class="card tablecard mt"><div class="sec-h"><h3>BP-wise Performance</h3><span class="muted" style="font-size:12.5px">Adds to the house total</span></div>'+tbl('bp','tbb')+'</section>'
+        :'<div class="actions mt edonly"><button class="btn-o" id="addBp"><i>'+I.plus+'</i>Add BP targets for '+esc(kp.name)+'</button></div>')+
   '<div class="actions mt">'+shareBtn('Send '+esc(kp.name)+' report on WhatsApp')+'<button class="btn-o" id="ren"><i>'+I.edit+'</i>Rename KPI</button></div>';
   drawKpiSummary(k,kp);drawKpiRows(k,kp);
   $('#seg').onclick=function(e){var b=e.target.closest('button');if(!b)return;setSort(b.dataset.s);
     Array.prototype.forEach.call($('#seg').children,function(x){x.classList.toggle('on',x===b);});drawKpiRows(k,kp);};
-  var tb=$('#tb');
-  tb.addEventListener('input',function(e){
-    var inp=e.target,tr=inp.closest('tr');if(!tr||!inp.dataset.f)return;
-    var rid=tr.dataset.r;var row=kp.rows[rid]||(kp.rows[rid]={t:0,a:0});
-    row[inp.dataset.f]=num(inp.value);save();
-    var c=calc(row.t,row.a);tr.querySelector('.gap').innerHTML=gapHtml(c.gap);tr.querySelector('.pc').innerHTML=pctHtml(c.pct);
-    drawKpiSummary(k,kp);
+  ['#tb','#tbb'].forEach(function(sel){
+    var tb=$(sel);if(!tb)return;
+    tb.addEventListener('input',function(e){
+      var inp=e.target,tr=inp.closest('tr');if(!tr||!inp.dataset.f)return;
+      var rid=tr.dataset.r;var row=kp.rows[rid]||(kp.rows[rid]={t:0,a:0});
+      row[inp.dataset.f]=num(inp.value);save();
+      var c=calc(row.t,row.a);tr.querySelector('.gap').innerHTML=gapHtml(c.gap);tr.querySelector('.pc').innerHTML=pctHtml(c.pct);tr.querySelector('.mtdc').innerHTML=mtdHtml(c.t,c.a,k);
+      drawKpiSummary(k,kp);
+    });
+    tb.addEventListener('change',function(){if((getSort())!=='default')drawKpiRows(k,kp);});
   });
-  tb.addEventListener('change',function(){if((getSort())!=='default')drawKpiRows(k,kp);});
+  if($('#addBp'))$('#addBp').onclick=function(){kp.bp=true;save();kpiView(k,id);toast('BP section added to '+kp.name);};
   $('#share').onclick=function(){openWA(kpiText(k,kp));};
   $('#ren').onclick=function(){formSheet('Rename KPI',[{label:'KPI name',value:kp.name}],'Save',function(v){
     if(!v[0])return 'Enter a KPI name.';
     if(m.kpis.some(function(x){return x!==kp&&x.name.toLowerCase()===v[0].toLowerCase();}))return 'Another KPI already has this name.';
     kp.name=v[0];save();kpiView(k,id);toast('KPI renamed');});};
 }
+
 function drawKpiSummary(k,kp){
-  var s=kpiSum(kp);
-  var rows=data.rsos.map(function(r){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.n=r.name;return c;}).filter(function(r){return r.pct!=null;});
+  var s=kpiSum(kp),q=mtd(s.t,s.a,k);
+  var people=data.rsos.concat(kp.bp?data.bps:[]);
+  var rows=people.map(function(r){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.n=r.name;return c;}).filter(function(r){return r.pct!=null;});
   var best=rows.slice().sort(function(a,b){return b.pct-a.pct;})[0],worst=rows.slice().sort(function(a,b){return a.pct-b.pct;})[0];
   var isCur=k===curKey(),dl=daysLeft(),perDay=s.gap>0?Math.ceil(s.gap/dl):0;
+  var ps=partSum(kp,'rso'),pb=kp.bp?partSum(kp,'bp'):null;
   $('#sum').innerHTML='<div class="stats">'+
-    '<div class="stat" style="--c:var(--blue)"><small>Total Target</small><b class="num">'+fmt(s.t)+'</b><em>All '+data.rsos.length+' RSOs</em></div>'+
-    '<div class="stat" style="--c:var(--good)"><small>Total Achievement</small><b class="num">'+fmt(s.a)+'</b><em>Achieved so far</em></div>'+
+    '<div class="stat" style="--c:var(--blue)"><small>Total Target</small><b class="num">'+fmt(s.t)+'</b><em>'+(kp.bp?data.rsos.length+' RSOs + '+data.bps.length+' BPs':'All '+data.rsos.length+' RSOs')+'</em></div>'+
+    '<div class="stat" style="--c:var(--good)"><small>Total Achievement</small><b class="num">'+fmt(s.a)+'</b><em>'+pctTxt(s.pct)+' of target</em></div>'+
     '<div class="stat" style="--c:var(--bad)"><small>Remaining Gap</small><b class="num '+(s.gap>0?'s-bad':'s-good')+'">'+(s.gap>=0?fmt(s.gap):'+'+fmt(-s.gap))+'</b><em>'+(s.gap>0?'Still needed':s.gap<0?'Target exceeded':'Target met')+'</em></div>'+
-    '<div class="stat" style="--c:var(--brand)"><small>Achievement %</small><b class="s-'+status(s.pct)+'">'+pctTxt(s.pct)+'</b><em>'+STLBL[status(s.pct)]+'</em></div></div>'+
+    '<div class="stat" style="--c:var(--brand)"><small>MTD %</small><b class="s-'+status(q.pct)+'">'+pctTxt(q.pct)+'</b><em>Month-end → '+(q.proj==null?'—':fmt(q.proj))+'</em></div></div>'+
     '<section class="card overall" style="margin-bottom:14px"><div class="row"><b>Overall progress</b><span class="muted" style="font-size:13px">'+fmt(s.a)+' of '+fmt(s.t)+'</span></div>'+barHtml(s.pct)+
+    '<div class="mtdbox"><div><small>MTD · day '+q.d+' of 30</small><b class="s-'+status(q.pct)+'">'+pctTxt(q.pct)+'</b><span>'+STLBL[status(q.pct)]+'</span></div>'+
+      '<div><small>Month-end projection</small><b class="num">'+(q.proj==null?'—':fmt(q.proj))+'</b><span>at this pace, of '+fmt(s.t)+'</span></div>'+
+      (isCur?'<button class="btn-s edonly" id="mtdD"><i>'+I.cal+'</i>Data up to day '+q.d+'</button>':'')+'</div>'+
     '<div class="chips" style="margin-top:12px">'+
+    (pb?'<span class="chip c-blue">RSO: '+fmt(ps.a)+' / '+fmt(ps.t)+' · '+pctTxt(ps.pct)+'</span><span class="chip c-blue">BP: '+fmt(pb.a)+' / '+fmt(pb.t)+' · '+pctTxt(pb.pct)+'</span>':'')+
     (best?'<span class="chip c-good">🏆 Top: '+esc(best.n)+' · '+pctTxt(best.pct)+'</span>':'')+
     (worst&&worst!==best?'<span class="chip c-bad">🎯 Focus: '+esc(worst.n)+' · '+pctTxt(worst.pct)+'</span>':'')+
     (isCur?'<span class="chip c-blue">📅 '+(perDay>0?'Need '+fmt(perDay)+'/day · '+dl+' day(s) left':'No daily requirement — target covered')+'</span>':'')+
     '</div></section>';
+  var md=$('#mtdD');
+  if(md)md.onclick=function(){
+    formSheet('MTD: data is up to which day?',[{label:'Day of the month (1–30)',type:'number',mode:'numeric',value:q.d}],'Save',function(v){
+      var d=Math.round(num(v[0]));if(d<1||d>30)return 'Enter a day between 1 and 30.';
+      data.months[k].mtdDay=d;save();drawKpiSummary(k,kp);drawKpiRows(k,kp);toast('MTD now uses day '+d);
+    });
+  };
 }
+
 function drawKpiRows(k,kp){
+  drawRowsG(k,kp,'rso','#tb');
+  if(kp.bp&&$('#tbb'))drawRowsG(k,kp,'bp','#tbb');
+  if(RO)lockInputs();
+}
+function drawRowsG(k,kp,g,sel){
   var mode=getSort();
-  var rows=data.rsos.map(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.r=r;c.i=i;return c;});
+  var rows=grp(g).map(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.r=r;c.i=i;return c;});
   if(mode==='pctDesc')rows.sort(function(a,b){return (b.pct==null?-1:b.pct)-(a.pct==null?-1:a.pct);});
   else if(mode==='pctAsc')rows.sort(function(a,b){return (a.pct==null?1e12:a.pct)-(b.pct==null?1e12:b.pct);});
   else if(mode==='gapDesc')rows.sort(function(a,b){return b.gap-a.gap;});
-  $('#tb').innerHTML=rows.map(function(x,n){
-    return '<tr data-r="'+x.r.id+'"><td class="c-name" data-label="RSO"><div class="namec"><span class="rank'+(mode==='pctDesc'&&n===0&&x.pct!=null?' r1':'')+'">'+(n+1)+'</span>'+
-      '<button class="nlink" data-go="#/rso/'+x.r.id+'/'+k+'"><b>'+esc(x.r.name)+'</b><small>RSO '+(x.i+1)+' · view profile</small></button></div></td>'+
+  $(sel).innerHTML=rows.length?rows.map(function(x,n){
+    return '<tr data-r="'+x.r.id+'"><td class="c-name" data-label="'+gLbl(g)+'"><div class="namec"><span class="rank'+(mode==='pctDesc'&&n===0&&x.pct!=null?' r1':'')+'">'+(n+1)+'</span>'+
+      '<button class="nlink" data-go="#/rso/'+x.r.id+'/'+k+'"><b>'+esc(x.r.name)+'</b><small>'+gLbl(g)+' '+(x.i+1)+' · view profile</small></button></div></td>'+
       '<td data-label="Target"><input class="cell n" data-f="t" type="number" inputmode="decimal" min="0" step="any" value="'+x.t+'" aria-label="Target for '+esc(x.r.name)+'"></td>'+
       '<td data-label="Achievement"><input class="cell n" data-f="a" type="number" inputmode="decimal" min="0" step="any" value="'+x.a+'" aria-label="Achievement for '+esc(x.r.name)+'"></td>'+
-      '<td class="gap" data-label="Gap">'+gapHtml(x.gap)+'</td><td class="pc" data-label="Achievement %">'+pctHtml(x.pct)+'</td></tr>';
-  }).join('');
-  if(RO)lockInputs();
+      '<td class="gap" data-label="Gap">'+gapHtml(x.gap)+'</td><td class="pc" data-label="Achievement %">'+pctHtml(x.pct)+'</td>'+
+      '<td class="mtdc" data-label="MTD (30 days)">'+mtdHtml(x.t,x.a,k)+'</td></tr>';
+  }).join(''):'<tr><td colspan="6"><div class="empty">No '+gLbl(g)+'s yet. Add them in FF Details.</div></td></tr>';
 }
 
 function summaryView(k){
   if(!k||!data.months[k])k=curKey();
-  var m=data.months[k],sc=monthScore(m);
+  var m=data.months[k],sc=monthScore(m),smtd=monthMtd(m,k),d=mtdDay(k);
   top('Overall KPI Summary','#/home',mlabel(k));
-  var kp=m.kpis.map(function(x){return {k:x,s:kpiSum(x)};}).sort(function(a,b){return (b.s.pct==null?-1:b.s.pct)-(a.s.pct==null?-1:a.s.pct);});
-  var well=kp.filter(function(x){return x.s.pct!=null&&x.s.pct>=90;}),poor=kp.filter(function(x){return x.s.pct!=null&&x.s.pct<90;});
-  var rk=ranking(m);
+  var kp=m.kpis.map(function(x){var s=kpiSum(x);return {k:x,s:s,q:mtd(s.t,s.a,k)};}).sort(function(a,b){return (b.q.pct==null?-1:b.q.pct)-(a.q.pct==null?-1:a.q.pct);});
+  var well=kp.filter(function(x){return x.q.pct!=null&&x.q.pct>=90;}),poor=kp.filter(function(x){return x.q.pct!=null&&x.q.pct<90;});
+  var hasBp=m.kpis.some(function(x){return x.bp;});
+  function rankList(g){
+    return '<div class="sec-title">'+gLbl(g)+' ranking <span style="text-transform:none;letter-spacing:0;font-weight:600">Tap for details</span></div><section class="card">'+
+    ranking(m,g,k).map(function(x,i){
+      var mq=x.score;
+      return '<div class="trow" role="button" tabindex="0" data-go="#/rso/'+x.r.id+'/'+k+'"><span class="rank'+(i===0&&x.score!=null?' r1':'')+'">'+(i+1)+'</span>'+
+        '<div class="tn"><b>'+esc(x.r.name)+' <span class="muted" style="font-weight:500;font-size:12px">· '+gLbl(g)+' '+(x.i+1)+'</span></b>'+
+        (x.bad.length?'<small class="s-bad">Behind: '+x.bad.map(esc).join(', ')+'</small>':x.warn.length?'<small class="s-warn">Medium: '+x.warn.map(esc).join(', ')+'</small>':x.score!=null?'<small class="s-good">On track in all KPIs</small>':'<small>No targets yet</small>')+
+        barHtml(mq)+'</div><div class="tr s-'+status(mq)+'">'+pctTxt(mq)+'<small>MTD · ach '+pctTxt(x.ach)+'</small></div><span class="go">'+I.go+'</span></div>';
+    }).join('')+'</section>';
+  }
   view.innerHTML=
-  '<div class="sec-h"><div>'+monthSelect(k)+'</div><span class="chip c-blue">🟢 ≥90% · 🟡 70–90% · 🔴 &lt;70%</span></div>'+
-  '<section class="card overall"><div class="row"><b>Distribution house score</b><span class="pill p-'+status(sc)+'">'+STLBL[status(sc)]+'</span></div>'+
-  '<div style="font-size:30px;font-weight:800;margin-bottom:8px" class="s-'+status(sc)+'">'+pctTxt(sc)+'</div>'+barHtml(sc)+
-  '<p class="muted" style="font-size:12.5px;margin-top:8px">Average achievement % of all KPIs with a target.</p>'+
+  '<div class="sec-h"><div>'+monthSelect(k)+'</div><span class="chip c-blue">MTD: 🟢 ≥90% · 🟡 70–90% · 🔴 &lt;70%</span></div>'+
+  '<section class="card overall"><div class="row"><b>Distribution house score</b><span class="pill p-'+status(smtd)+'">'+STLBL[status(smtd)]+'</span></div>'+
+  '<div class="mtdbox" style="margin-top:4px"><div><small>MTD · day '+d+' of 30</small><b class="s-'+status(smtd)+'" style="font-size:28px">'+pctTxt(smtd)+'</b><span>Projected for month end</span></div>'+
+  '<div><small>Achievement so far</small><b style="font-size:28px">'+pctTxt(sc)+'</b><span>of full-month target</span></div></div>'+barHtml(smtd)+
+  '<p class="muted" style="font-size:12.5px;margin-top:8px">Average of all KPIs with a target. GA'+(hasBp?' and other BP KPIs include RSO + BP.':'.')+'</p>'+
   '<div class="chips" style="margin-top:12px">'+
   (well.length?'<span class="chip c-good">✅ Doing well: '+well.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
   (poor.length?'<span class="chip c-bad">⚠️ Needs push: '+poor.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
   '</div></section>'+
   '<div class="sec-title">KPI-wise (total distribution house)</div><div class="grid3">'+
   (kp.length?kp.map(function(x){
-    return '<div class="card navcard" role="button" tabindex="0" data-go="#/kpi/'+k+'/'+x.k.id+'"><div class="mhead"><b>'+esc(x.k.name)+'</b>'+pill(x.s.pct)+'</div>'+
-      '<div class="mrow"><span class="big s-'+status(x.s.pct)+'">'+pctTxt(x.s.pct)+'</span><span class="muted num" style="font-size:13px">'+fmt(x.s.a)+' / '+fmt(x.s.t)+'</span></div>'+barHtml(x.s.pct)+'</div>';
+    return '<div class="card navcard" role="button" tabindex="0" data-go="#/kpi/'+k+'/'+x.k.id+'"><div class="mhead"><b>'+esc(x.k.name)+(x.k.bp?' <span class="muted" style="font-size:11.5px;font-weight:600">RSO + BP</span>':'')+'</b>'+pill(x.q.pct)+'</div>'+
+      '<div class="mrow"><span class="big s-'+status(x.q.pct)+'">'+pctTxt(x.q.pct)+'</span><span class="muted num" style="font-size:13px">MTD · ach '+pctTxt(x.s.pct)+'</span></div>'+barHtml(x.q.pct)+
+      '<p class="muted num" style="font-size:12.5px;margin-top:8px">'+fmt(x.s.a)+' / '+fmt(x.s.t)+' · month-end → '+(x.q.proj==null?'—':fmt(x.q.proj))+'</p></div>';
   }).join(''):'<div class="empty">No KPIs in this month.</div>')+'</div>'+
-  '<div class="sec-title">RSO ranking <span style="text-transform:none;letter-spacing:0;font-weight:600">Tap an RSO for details</span></div><section class="card">'+
-  rk.map(function(x,i){
-    return '<div class="trow" role="button" tabindex="0" data-go="#/rso/'+x.r.id+'/'+k+'"><span class="rank'+(i===0&&x.score!=null?' r1':'')+'">'+(i+1)+'</span>'+
-      '<div class="tn"><b>'+esc(x.r.name)+' <span class="muted" style="font-weight:500;font-size:12px">· RSO '+(x.i+1)+'</span></b>'+
-      (x.bad.length?'<small class="s-bad">Behind: '+x.bad.map(esc).join(', ')+'</small>':x.warn.length?'<small class="s-warn">Medium: '+x.warn.map(esc).join(', ')+'</small>':x.score!=null?'<small class="s-good">On track in all KPIs</small>':'<small>No targets yet</small>')+
-      barHtml(x.score)+'</div><div class="tr s-'+status(x.score)+'">'+pctTxt(x.score)+'<small>'+STLBL[status(x.score)]+'</small></div><span class="go">'+I.go+'</span></div>';
-  }).join('')+'</section>'+
+  rankList('rso')+(hasBp&&data.bps.length?rankList('bp'):'')+
   '<div class="actions mt">'+shareBtn('Send summary on WhatsApp')+'</div>';
   $('#msel').onchange=function(){location.hash='#/summary/'+this.value;};
   $('#share').onclick=function(){openWA(summaryText(k));};
 }
+function avgMtd(m,id,g,k){var ps=rsoKpis(m,id,g).map(function(x){return mtd(x.t,x.a,k).pct;}).filter(function(p){return p!=null;});return ps.length?avg(ps):null;}
 
 function rsoView(id,k){
-  var r=data.rsos.find(function(x){return x.id===id;});if(!r){location.hash='#/rsos';return;}
+  var mb=memberById(id);if(!mb){location.hash='#/ff';return;}
+  var r=mb.m,g=mb.g,idx=mb.i,L=gLbl(g),back=g==='bp'?'#/bps':'#/rsos',numL=g==='bp'?'Mobile Number':'iTop-up Number';
   if(!k||!data.months[k])k=curKey();
-  var idx=data.rsos.indexOf(r),m=data.months[k];
-  top(r.name,'#/rsos','RSO '+(idx+1)+' · profile');
-  var ks=rsoKpis(m,r.id),sc=rsoScore(m,r.id);
-  var bad=ks.filter(function(x){return x.pct!=null&&x.pct<70;}),warn=ks.filter(function(x){return x.pct!=null&&x.pct>=70&&x.pct<90;});
+  var m=data.months[k];
+  top(r.name,back,L+' '+(idx+1)+' · profile');
+  var ks=rsoKpis(m,r.id,g),sc=rsoScore(m,r.id,g),smtd=avgMtd(m,r.id,g,k);
+  var mq=function(x){return mtd(x.t,x.a,k).pct;};
+  var bad=ks.filter(function(x){var p=mq(x);return p!=null&&p<70;}),warn=ks.filter(function(x){var p=mq(x);return p!=null&&p>=70&&p<90;});
   var hist=Object.keys(data.months).sort().reverse().slice(0,6);
   view.innerHTML=
-  '<section class="card phead"><div class="avatar" id="av">'+esc((r.name||'?').charAt(0).toUpperCase())+'</div><div style="min-width:0"><small>RSO '+(idx+1)+'</small><h2 id="rnm">'+esc(r.name)+'</h2></div></section>'+
+  '<section class="card phead"><div class="avatar" id="av">'+esc((r.name||'?').charAt(0).toUpperCase())+'</div><div style="min-width:0"><small>'+L+' '+(idx+1)+'</small><h2 id="rnm">'+esc(r.name)+'</h2></div></section>'+
   '<section class="card mt"><div class="sec-h"><h3>Profile</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div>'+
   '<div class="frow"><label class="flbl" for="pn">Name</label><div class="fin"><input class="cell" id="pn" value="'+esc(r.name)+'"></div></div>'+
-  '<div class="frow"><label class="flbl" for="pi">iTop-up Number</label><div class="fin"><input class="cell" id="pi" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"><span class="cbox" id="pic">'+contactBtns(r.itop)+'</span></div></div>'+
+  '<div class="frow"><label class="flbl" for="pi">'+numL+'</label><div class="fin"><input class="cell" id="pi" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"><span class="cbox" id="pic">'+contactBtns(r.itop)+'</span></div></div>'+
   '<div id="xf">'+(r.fields.length?fieldsHtml(r.fields):'')+'</div></section>'+
   '<div class="sec-h" style="margin-top:22px"><h3>KPI performance</h3>'+monthSelect(k)+'</div>'+
-  '<section class="card"><div class="row" style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px"><b>Overall score</b>'+pill(sc)+'</div>'+
-  '<div style="font-size:28px;font-weight:800" class="s-'+status(sc)+'">'+pctTxt(sc)+'</div>'+barHtml(sc)+
+  '<section class="card"><div class="mtdbox" style="margin-top:0"><div><small>MTD · day '+mtdDay(k)+' of 30</small><b class="s-'+status(smtd)+'" style="font-size:26px">'+pctTxt(smtd)+'</b><span>'+STLBL[status(smtd)]+'</span></div>'+
+  '<div><small>Achievement so far</small><b style="font-size:26px">'+pctTxt(sc)+'</b><span>of full-month target</span></div></div>'+barHtml(smtd)+
   '<div class="chips" style="margin-top:12px">'+(bad.length?'<span class="chip c-bad">🔴 Behind in: '+bad.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
   (warn.length?'<span class="chip c-warn">🟡 Medium in: '+warn.map(function(x){return esc(x.k.name);}).join(', ')+'</span>':'')+
-  (!bad.length&&!warn.length&&sc!=null?'<span class="chip c-good">🟢 On track in all KPIs</span>':'')+'</div>'+
+  (!bad.length&&!warn.length&&smtd!=null?'<span class="chip c-good">🟢 On track in all KPIs (MTD)</span>':'')+'</div>'+
   '<div class="mt">'+(ks.length?ks.map(function(x){
-    return '<div class="kline"><div><b>'+esc(x.k.name)+'</b> <small>'+fmt(x.a)+' / '+fmt(x.t)+(x.gap>0?' · gap '+fmt(x.gap):'')+'</small></div><b class="s-'+status(x.pct)+'">'+pctTxt(x.pct)+'</b>'+barHtml(x.pct)+'</div>';
-  }).join(''):'<div class="empty">No KPIs this month.</div>')+'</div></section>'+
+    var q=mtd(x.t,x.a,k);
+    return '<div class="kline"><div><b>'+esc(x.k.name)+'</b> <small>'+fmt(x.a)+' / '+fmt(x.t)+' ('+pctTxt(x.pct)+')'+(q.proj!=null?' · month-end → '+fmt(q.proj):'')+'</small></div><b class="s-'+status(q.pct)+'">MTD '+pctTxt(q.pct)+'</b>'+barHtml(q.pct)+'</div>';
+  }).join(''):'<div class="empty">No '+(g==='bp'?'BP KPIs':'KPIs')+' this month.'+(g==='bp'?' Add one from the month page.':'')+'</div>')+'</div></section>'+
   '<div class="sec-title">Month-wise history</div><section class="card">'+
-  hist.map(function(h){var s=rsoScore(data.months[h],r.id);return '<div class="hist"><span>'+mlabel(h)+'</span>'+barHtml(s)+'<b class="s-'+status(s)+'">'+pctTxt(s)+'</b></div>';}).join('')+
+  hist.map(function(h){var s=rsoScore(data.months[h],r.id,g);return '<div class="hist"><span>'+mlabel(h)+'</span>'+barHtml(s)+'<b class="s-'+status(s)+'">'+pctTxt(s)+'</b></div>';}).join('')+
   (hist.length<3?'<p class="muted" style="font-size:12.5px;margin-top:6px">History fills up automatically as new months start. All months stay saved.</p>':'')+
   '</section><div class="actions mt">'+shareBtn('Send '+esc(r.name)+'\'s report on WhatsApp')+'</div>';
-  $('#pn').oninput=function(){r.name=this.value;$('#rnm').textContent=r.name||'—';$('#av').textContent=(r.name||'?').charAt(0).toUpperCase();$('#tbTitle').textContent=r.name||'RSO';save();};
+  $('#pn').oninput=function(){r.name=this.value;$('#rnm').textContent=r.name||'—';$('#av').textContent=(r.name||'?').charAt(0).toUpperCase();$('#tbTitle').textContent=r.name||L;save();};
   $('#pi').oninput=function(){r.itop=this.value;$('#pic').innerHTML=contactBtns(r.itop);save();};
   bindFields($('#xf'),r.fields,null,function(){rsoView(id,k);});
   $('#addF').onclick=function(){addFieldSheet(r.fields,function(){rsoView(id,k);});};
   $('#msel').onchange=function(){location.hash='#/rso/'+id+'/'+this.value;};
-  $('#share').onclick=function(){openWA(rsoText(r,k),r.itop||'');};
+  $('#share').onclick=function(){openWA(rsoText(r,k,g),r.itop||'');};
 }
 
 function ffView(){
@@ -928,18 +1085,24 @@ function ffView(){
     return '<div class="card navcard" role="button" tabindex="0" data-go="#/person/'+role+'"><div class="nc-h"><div class="icotile '+tile+'">'+icon+'</div><div><h2>'+p.title+'</h2><p>'+esc(nm&&nm.v||'Name not added')+'</p></div><div class="nc-go">'+I.go+'</div></div>'+
       '<div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span class="muted num" style="font-size:13.5px">'+esc(ph?ph.v:'No number yet')+'</span><span class="cbox">'+(ph?contactBtns(ph.v):'')+'</span></div></div>';
   }
+  function team(g,route,tile){
+    var L=gLbl(g),list=grp(g);
+    return '<div class="card navcard" role="button" tabindex="0" data-go="'+route+'"><div class="nc-h"><div class="icotile '+tile+'">'+I.team+'</div><div><h2>Total '+L+'</h2><p>'+list.length+' '+L+'s by serial</p></div><div class="nc-go">'+I.go+'</div></div>'+
+      '<div class="chips">'+(list.length?list.map(function(r,i){return '<span class="chip c-blue">'+(i+1)+'. '+esc(r.name)+'</span>';}).join(''):'<span class="muted" style="font-size:13px">No '+L+'s yet</span>')+'</div></div>';
+  }
   view.innerHTML='<div class="grid2">'+card('distributor','it-b',I.user)+card('manager','it-o',I.user)+card('accountant','it-g',I.user)+
-  '<div class="card navcard" role="button" tabindex="0" data-go="#/rsos"><div class="nc-h"><div class="icotile it-p">'+I.team+'</div><div><h2>Total RSO</h2><p>'+data.rsos.length+' RSOs by serial</p></div><div class="nc-go">'+I.go+'</div></div>'+
-  '<div class="chips">'+data.rsos.map(function(r,i){return '<span class="chip c-blue">'+(i+1)+'. '+esc(r.name)+'</span>';}).join('')+'</div></div></div>'+
+  team('rso','#/rsos','it-p')+team('bp','#/bps','it-y')+'</div>'+
   '<div class="actions mt">'+shareBtn('Share FF contact list on WhatsApp')+'</div>';
   $('#share').onclick=function(){
     var t=HDR+'*KHUCHU04 FF Details*\n';
     ['distributor','manager','accountant'].forEach(function(k){var p=data.people[k];var nm=p.fields.find(function(f){return f.c==='name';});var ph=p.fields.find(function(f){return f.type==='phone';});
       t+=p.title+': '+(nm&&nm.v||'—')+(ph&&ph.v?' ('+ph.v+')':'')+'\n';});
     t+='\n*RSOs*\n';data.rsos.forEach(function(r,i){t+=(i+1)+'. '+r.name+(r.itop?' – iTop-up '+r.itop:'')+'\n';});
+    t+='\n*BPs*\n';data.bps.forEach(function(r,i){t+=(i+1)+'. '+r.name+(r.itop?' – '+r.itop:'')+'\n';});
     openWA(t);
   };
 }
+
 function personView(role){
   var p=data.people[role];if(!p){location.hash='#/ff';return;}
   var nmf=p.fields.find(function(f){return f.c==='name';});
@@ -952,20 +1115,39 @@ function personView(role){
   $('#addF').onclick=function(){addFieldSheet(p.fields,function(){personView(role);});};
   $('#share').onclick=function(){openWA(fieldsText(p.title,p.fields));};
 }
-function rsosView(){
-  top('Total RSO','#/ff',data.rsos.length+' RSOs · names & iTop-up numbers');
-  view.innerHTML='<section class="card">'+data.rsos.map(function(r,i){
-    return '<div class="rsorow" data-r="'+r.id+'"><span class="rank">'+(i+1)+'</span>'+
-      '<div><label for="rn'+i+'">RSO '+(i+1)+' name</label><input class="cell" id="rn'+i+'" data-f="name" value="'+esc(r.name)+'"></div>'+
-      '<div class="r-it"><label for="ri'+i+'">iTop-up number</label><input class="cell" id="ri'+i+'" data-f="itop" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"></div>'+
+function rsosView(){memberList('rso');}
+function bpsView(){memberList('bp');}
+function memberList(g){
+  var L=gLbl(g),list=grp(g),numL=g==='bp'?'Mobile number':'iTop-up number';
+  top('Total '+L,'#/ff',list.length+' '+L+'s · names & '+numL+'s');
+  view.innerHTML='<section class="card">'+(list.length?list.map(function(r,i){
+    return '<div class="rsorow'+(g==='bp'?' bprow':'')+'" data-r="'+r.id+'"><span class="rank">'+(i+1)+'</span>'+
+      '<div><label for="rn'+i+'">'+L+' '+(i+1)+' name</label><input class="cell" id="rn'+i+'" data-f="name" value="'+esc(r.name)+'"></div>'+
+      '<div class="r-it"><label for="ri'+i+'">'+numL+'</label><input class="cell" id="ri'+i+'" data-f="itop" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"></div>'+
       '<span class="cbox">'+contactBtns(r.itop)+'</span>'+
-      '<button class="go" data-go="#/rso/'+r.id+'" aria-label="Open profile">'+I.go+'</button></div>';
-  }).join('')+'</section><p class="muted" style="font-size:12.5px;margin-top:10px">Changing a name here updates it everywhere, including all KPI months. Tap › to open the full RSO profile.</p>';
+      '<button class="go" data-go="#/rso/'+r.id+'" aria-label="Open profile">'+I.go+'</button>'+
+      (g==='bp'?'<button class="icbtn del edonly mrm" data-rm="'+r.id+'" aria-label="Remove '+esc(r.name)+'">'+I.trash+'</button>':'')+'</div>';
+  }).join(''):'<div class="empty">No '+L+'s yet.</div>')+'</section>'+
+  (g==='bp'?'<div class="actions mt edonly"><button class="btn-o btn-blue" id="addM"><i>'+I.plus+'</i>Add BP</button></div>':'')+
+  '<p class="muted" style="font-size:12.5px;margin-top:10px">Changing a name here updates it everywhere, including all KPI months. Tap › to open the full profile.</p>';
   view.oninput=function(e){
     var f=e.target.dataset.f,row=e.target.closest('.rsorow');if(!f||!row)return;
-    var r=data.rsos.find(function(x){return x.id===row.dataset.r;});r[f]=e.target.value;
+    var r=list.find(function(x){return x.id===row.dataset.r;});r[f]=e.target.value;
     if(f==='itop')row.querySelector('.cbox').innerHTML=contactBtns(r.itop);
     save();
+  };
+  view.onclick=function(e){
+    var b=e.target.closest('[data-rm]');if(!b)return;
+    var i=list.findIndex(function(x){return x.id===b.dataset.rm;});if(i<0)return;
+    if(!confirm('Remove '+list[i].name+' from the BP list? Their numbers stop counting in the totals.'))return;
+    list.splice(i,1);save();memberList(g);toast('BP removed');
+  };
+  if($('#addM'))$('#addM').onclick=function(){
+    formSheet('Add BP',[{label:'Name',ph:'BP name'},{label:'Mobile number',mode:'tel',ph:'01XXXXXXXXX'}],'Add BP',function(v){
+      if(!v[0])return 'Enter the BP name.';
+      var n=1;while(data.bps.some(function(x){return x.id==='b'+n;}))n++;
+      data.bps.push({id:'b'+n,name:v[0],itop:v[1],fields:[]});save();memberList(g);toast('BP added');
+    });
   };
 }
 
@@ -1154,6 +1336,519 @@ function settingsView(){
 }
 
 /* ================= ROUTER & AUTH ================= */
+/* ================= IMPORT: Excel / CSV / Screenshot (RSO + BP) ================= */
+var IMP=null;
+var XLSX_URL='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
+var TESS_URL='https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
+function loadScript(url,g){
+  return new Promise(function(res,rej){
+    if(window[g])return res(window[g]);
+    var s=document.createElement('script');s.src=url;
+    s.onload=function(){window[g]?res(window[g]):rej(new Error('Could not start the reader.'));};
+    s.onerror=function(){rej(new Error('Could not download the file reader. Check your internet and try again.'));};
+    document.head.appendChild(s);
+  });
+}
+function normH(h){return String(h==null?'':h).replace(/\s+/g,' ').trim().toLowerCase();}
+function cellNum(v){
+  if(v==null||v==='')return null;
+  if(typeof v==='number')return isFinite(v)?v:null;
+  var s=String(v).replace(/[,৳\s]/g,'').replace(/^tk/i,'');
+  if(!/^-?\d+(\.\d+)?%?$/.test(s))return null;
+  var n=parseFloat(s);return isFinite(n)?n:null;
+}
+function normKey(v){
+  var s=String(v==null?'':v).trim(),d=s.replace(/\D/g,'');
+  if(d.length>=9&&d.length>=s.replace(/[\s+\-]/g,'').length-1)return 'p'+d.slice(-10);
+  return 's'+s.toLowerCase();
+}
+function colName(i){var s='';i++;while(i>0){var m=(i-1)%26;s=String.fromCharCode(65+m)+s;i=Math.floor((i-1)/26);}return s;}
+function inGrp(id,g){return grp(g).some(function(x){return x.id===id;});}
+function findKpiIn(M,name){
+  var n=String(name||'').trim().toLowerCase();if(!n)return null;
+  var alias={'fwa':'fwa router','fwa router':'fwa','router':'fwa router'};
+  return M.kpis.find(function(k){var x=k.name.toLowerCase();return x===n||alias[n]===x;})||null;
+}
+var KPRE=[
+  {k:'C2C',t:/^ev secondary$|^ev c2c target$|^c2c target$|^c2c tgt$/,a:/^total c2c$|^c2c ach|^c2c achievement$|^c2c achv$/},
+  {k:'GA',t:/^ga \(rso\)$|^ga target$|^rso ga$|^bp ga$|^ga tgt$|^total ga target$/,a:/^ga count$|^ga ach|^ga achievement$|^ga achv$|^mtd ga$/,achOnly:true},
+  {k:'FWA Router',t:/^fwa( router)? (target|tgt)$/,a:/^fwa( router)? (count|ach|achievement|achv)$/},
+  {k:'A.SSO',t:/^a?\.?sso$|^a\.?sso (target|tgt)$/,a:/^a\.?sso (count|ach)/},
+  {k:'A.LSO',t:/^a?\.?lso$|^a\.?lso (target|tgt)$/,a:/^a\.?lso (count|ach)/}
+];
+function detectPairs(hdr,orig){
+  var out=[],seen={};
+  KPRE.forEach(function(p){
+    var okA=function(h){return h.indexOf('%')<0&&p.a.test(h);};
+    var t=hdr.findIndex(function(h){return p.t.test(h);}),a=-1,i;
+    if(t<0){
+      if(!p.achOnly)return;
+      a=hdr.findIndex(okA);if(a<0)return;
+      out.push({k:p.k,t:-1,a:a});seen[p.k.toLowerCase()]=1;seen['#'+a]=1;return;
+    }
+    for(i=t+1;i<hdr.length;i++){if(okA(hdr[i])){a=i;break;}}
+    if(a<0)a=hdr.findIndex(okA);
+    if(a<0&&/count|ach/.test(hdr[t+1]||'')&&(hdr[t+1]||'').indexOf('%')<0)a=t+1;
+    if(a<0)return;
+    out.push({k:p.k,t:t,a:a});seen[p.k.toLowerCase()]=1;seen['#'+t]=1;seen['#'+a]=1;
+  });
+  hdr.forEach(function(h,i){
+    var m=h.match(/^(.+?)\s*[-_ ]?\s*(target|tgt)$/);if(!m)return;
+    var x=m[1].trim();if(!x||seen[x.toLowerCase()]||seen['#'+i])return;
+    var a=hdr.findIndex(function(g){return g===x+' ach'||g===x+' achievement'||g===x+' achv'||g===x+' achieved'||g===x+' actual'||g===x+' count'||g===x+'-ach'||g===x+'_ach';});
+    if(a<0)return;
+    var nm=String(orig[i]).replace(/\s+/g,' ').trim().replace(/\s*[-_ ]?\s*(target|tgt)$/i,'');
+    out.push({k:nm,t:i,a:a});seen[x.toLowerCase()]=1;
+  });
+  return out;
+}
+function headerRowOf(rows){
+  var best=0,bi=0;
+  for(var i=0;i<Math.min(rows.length,15);i++){
+    var c=(rows[i]||[]).filter(function(v){return typeof v==='string'&&v.trim()&&cellNum(v)==null;}).length;
+    if(c>best){best=c;bi=i;}
+  }
+  return bi;
+}
+function sheetSig(sn,hdr,g){return g+'|'+sn+'|'+hdr.slice(0,40).join('|');}
+function filtRows(rows,hr,fc,fv){
+  var out=[],v=String(fv||'').trim().toLowerCase();
+  for(var i=hr+1;i<rows.length;i++){var r=rows[i]||[];if(fc>=0&&String(r[fc]==null?'':r[fc]).trim().toLowerCase()!==v)continue;out.push(r);}
+  return out;
+}
+function pickCol(hdr,list,res,skip){
+  for(var j=0;j<res.length;j++){
+    for(var i=0;i<hdr.length;i++){
+      if(i===skip||!res[j].test(hdr[i]))continue;
+      var filled=list.filter(function(r){return r[i]!=null&&String(r[i]).trim()!=='';}).length;
+      if(list.length&&filled>=Math.max(1,list.length/2))return i;
+    }
+  }
+  return -1;
+}
+function cfgForSheet(job,sn,g,hrForce){
+  var rows=job.sheets[sn]||[],hr=hrForce!=null?hrForce:headerRowOf(rows);
+  var orig=rows[hr]||[],hdr=orig.map(normH);
+  var learned=(data.importCfg||{})[sheetSig(sn,hdr,g)];
+  if(learned&&hrForce==null)return JSON.parse(JSON.stringify(learned));
+  var dd=String(data.ddCode||'KHUCHU04').toLowerCase(),filterCol=-1,ncol=0,i,c;
+  for(i=hr+1;i<Math.min(rows.length,hr+80);i++)ncol=Math.max(ncol,(rows[i]||[]).length);
+  for(c=0;c<ncol&&filterCol<0;c++){
+    for(i=hr+1;i<rows.length;i++){var v=(rows[i]||[])[c];if(typeof v==='string'&&v.trim().toLowerCase()===dd){filterCol=c;break;}}
+  }
+  var fv=filterCol>=0?(data.ddCode||'KHUCHU04'):'';
+  var list=filtRows(rows,hr,filterCol,fv);
+  var keyRes=g==='bp'
+    ?[/msisdn|i.?top|mobile|phone|number/,/promoter|sso code|bp code/,/bp.*name|^name$|^bp$/]
+    :[/msisdn|i.?top|mobile|phone|number/,/rs[o0]\s*code/,/rso.*name|^name$|^rso$/];
+  var keyCol=pickCol(hdr,list,keyRes,filterCol);
+  if(keyCol<0){
+    for(c=0;c<ncol;c++){if(c===filterCol)continue;var txt=list.slice(0,30).filter(function(r){var w=r[c];return w!=null&&String(w).trim()&&cellNum(w)==null;}).length;if(txt>=2){keyCol=c;break;}}
+  }
+  if(keyCol<0)keyCol=0;
+  var labelCol=pickCol(hdr,list,g==='bp'?[/promoter|sso code|bp code/]:[/rs[o0]\s*code/],keyCol);
+  var nameCol=pickCol(hdr,list,g==='bp'?[/bp.*name|^name$|^bp$/]:[/rso.*name|^name$|^rso$/],keyCol);
+  var M=data.months[IMP.month];
+  var maps=detectPairs(hdr,orig).map(function(p){var ex=findKpiIn(M,p.k);return {on:!!ex&&(g!=='bp'||ex.bp||/^ga$/i.test(ex.name)),kpi:ex?ex.name:p.k,t:p.t,a:p.a};});
+  return {sheet:sn,hr:hr,filterCol:filterCol,filterVal:fv,keyCol:keyCol,labelCol:labelCol,nameCol:nameCol,maps:maps};
+}
+function scoreSheet(job,sn,g,cfg){
+  var rows=job.sheets[sn]||[];if(!rows.length)return -999;
+  var hdr=(rows[cfg.hr]||[]).map(normH),n=jobRowsCfg(job,cfg).length,R=grp(g).length||5;
+  var bpish=/\bbp\b|^bp/i.test(sn)||hdr.some(function(h){return /designation|promoter|^bp$|bp name/.test(h);});
+  var s=(cfg.filterCol>=0?50:0)+Math.min(cfg.maps.length,4)*10+(cfg.maps.some(function(m){return m.on;})?20:0)+(n>=1?20:-60);
+  if((data.importCfg||{})[sheetSig(sn,hdr,g)])s+=150;
+  if(g==='rso'){
+    s+=(/^\s*rso\s*$/i.test(sn)?30:0)+(n>=2?10:0)+(n>=R-3&&n<=R+6?60:0)+(/msisdn|i.?top|rs[o0]/.test(hdr[cfg.keyCol]||'')?30:0);
+    if(/^\s*bp\s*$/i.test(sn))s-=300;
+  }else{
+    if(!bpish)return -999;
+    s+=(/^\s*bp\s*$/i.test(sn)?80:0)+(n<=40?30:0);
+  }
+  return s;
+}
+function autoPart(job,g,exclude){
+  var best=null;
+  Object.keys(job.sheets).forEach(function(sn){
+    if(sn===exclude)return;
+    var cfg=cfgForSheet(job,sn,g),sc=scoreSheet(job,sn,g,cfg);
+    if(sc>-500&&(!best||sc>best.s))best={s:sc,cfg:cfg};
+  });
+  return best?best.cfg:null;
+}
+function jobRowsCfg(job,c){
+  var rows=job.sheets[c.sheet]||[],out=[];
+  filtRows(rows,c.hr,c.filterCol,c.filterVal).forEach(function(r){
+    var key=r[c.keyCol];if(key==null||String(key).trim()==='')return;
+    if(/^(grand )?total$|^sum$/i.test(String(key).trim()))return;
+    var lab=c.labelCol>=0&&c.labelCol!==c.keyCol&&r[c.labelCol]!=null?String(r[c.labelCol]):'';
+    var nm=c.nameCol>=0&&c.nameCol!==c.keyCol&&r[c.nameCol]!=null?String(r[c.nameCol]).trim():'';
+    out.push({key:key,lab:lab,nm:nm,r:r,rid:'',how:''});
+  });
+  return out;
+}
+function autoMatch(x,g){
+  var keys=[x.key];if(x.lab)keys.push(x.lab);if(x.nm)keys.push(x.nm);
+  var rk=data.rsoKeys||{},list=grp(g);
+  for(var i=0;i<keys.length;i++){var nk=normKey(keys[i]);if(rk[nk]&&inGrp(rk[nk],g))return {id:rk[nk],how:'saved'};}
+  var nk0=normKey(x.key);
+  if(nk0.charAt(0)==='p'){
+    var r=list.find(function(r){var d=String(r.itop||'').replace(/\D/g,'');return d.length>=9&&d.slice(-10)===nk0.slice(1);});
+    if(r)return {id:r.id,how:'number'};
+  }
+  var s=(String(x.key)+' '+x.lab+' '+x.nm).toLowerCase();
+  var r2=list.find(function(r){var n=String(r.name||'').trim().toLowerCase();if(n.length<3||/^(bp|rso) ?\d+$/.test(n))return false;return new RegExp('\\b'+n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b').test(s);});
+  if(r2)return {id:r2.id,how:'name'};
+  for(var k in rk){if(k.charAt(0)==='s'&&k.length>4&&s.indexOf(k.slice(1))>=0&&inGrp(rk[k],g))return {id:rk[k],how:'saved'};}
+  return {id:'',how:''};
+}
+function matchPart(job,P){
+  var used={},list=grp(P.g);
+  P.rows.forEach(function(x){var m=autoMatch(x,P.g);if(m.id&&!used[m.id]){x.rid=m.id;x.how=m.how;used[m.id]=1;}else{x.rid='';x.how='';}});
+  if(!P.rows.some(function(x){return x.rid;})&&P.rows.length===list.length&&list.length&&!job.ocr){
+    P.rows.forEach(function(x,i){x.rid=list[i].id;x.how='order';});
+  }
+}
+function buildEdit(P){
+  var M=data.months[IMP.month];P.edit=[];
+  P.cfg.maps.forEach(function(m,mi){
+    var kp=findKpiIn(M,m.kpi),E={};
+    grp(P.g).forEach(function(r){var cur=kp?rowOf(kp,r.id):{t:0,a:0};E[r.id]={t:num(cur.t),a:num(cur.a),ot:num(cur.t),oa:num(cur.a),file:false};});
+    P.rows.forEach(function(x){
+      if(!x.rid||!E[x.rid])return;
+      var e=E[x.rid];
+      if(m.t>=0){var tv=cellNum(x.r[m.t]);if(tv!=null)e.t=Math.max(0,tv);}
+      if(m.a>=0){var av=cellNum(x.r[m.a]);if(av!=null)e.a=Math.max(0,av);}
+      e.file=true;
+    });
+    P.edit[mi]=E;
+  });
+}
+function rowsFromText(text){
+  var lines=String(text||'').split(/\r?\n/).map(function(l){return l.trim();}).filter(Boolean),out=[],mx=0;
+  lines.forEach(function(l){
+    var toks=l.split(/\s+/),nums=[],words=[];
+    toks.forEach(function(t){var n=cellNum(t.replace(/[|]/g,''));if(n!=null)nums.push(n);else if(t.replace(/[|_\-—]/g,''))words.push(t);});
+    if(!nums.length)return;
+    mx=Math.max(mx,nums.length);out.push([words.join(' ')||'(no text)'].concat(nums));
+  });
+  var hdr=['Text'];for(var i=1;i<=mx;i++)hdr.push('Number '+i);
+  return [hdr].concat(out);
+}
+function detectDay(sheets){
+  var found=0;
+  Object.keys(sheets).some(function(sn){
+    var rows=sheets[sn]||[];
+    for(var i=0;i<Math.min(rows.length,40);i++){
+      var r=rows[i]||[];
+      for(var c=0;c<Math.min(r.length,12);c++){
+        if(typeof r[c]==='string'&&/^\s*(days? )?passed\s*$/i.test(r[c])){var n=cellNum(r[c+1]);if(n>=1&&n<=31){found=Math.round(n);return true;}}
+      }
+    }
+    return false;
+  });
+  return found;
+}
+function readExcel(file){
+  return loadScript(XLSX_URL,'XLSX').then(function(X){
+    return new Promise(function(res,rej){
+      var fr=new FileReader();
+      fr.onload=function(){
+        try{
+          var wb=X.read(new Uint8Array(fr.result),{type:'array'}),sheets={};
+          wb.SheetNames.forEach(function(n){sheets[n]=X.utils.sheet_to_json(wb.Sheets[n],{header:1,raw:true,defval:null,blankrows:false});});
+          res(sheets);
+        }catch(e){rej(new Error('This file could not be read. Save it as .xlsx or .csv and try again.'));}
+      };
+      fr.onerror=function(){rej(new Error('Could not open the file.'));};
+      fr.readAsArrayBuffer(file);
+    });
+  });
+}
+function readImage(file,onProg){
+  return loadScript(TESS_URL,'Tesseract').then(function(T){
+    return T.recognize(file,'eng',{logger:function(m){if(m&&m.status==='recognizing text'&&onProg)onProg(Math.round((m.progress||0)*100));}});
+  }).then(function(r){return {Screenshot:rowsFromText(r&&r.data&&r.data.text)};});
+}
+function newPart(g,cfg){return {g:g,cfg:cfg,rows:[],edit:[],saveItop:true,useNames:true};}
+function startImport(files,isImg){
+  files=Array.prototype.slice.call(files||[]);if(!files.length)return;
+  IMP.day=null;IMP.dayFromFile=0;IMP.step='loading';IMP.msg='Reading '+files.length+' file'+(files.length===1?'':'s')+'…';IMP.jobs=[];IMP.ji=0;IMP.done=[];
+  importView();
+  var p=Promise.resolve();
+  files.forEach(function(f){
+    p=p.then(function(){
+      IMP.msg=(isImg?'Reading screenshot ':'Reading ')+f.name+'…';importView();
+      return (isImg?readImage(f,function(pc){IMP.msg='Reading screenshot '+f.name+'… '+pc+'%';var el=$('#impMsg');if(el)el.textContent=IMP.msg;}):readExcel(f)).then(function(sheets){
+        var job={name:f.name,sheets:sheets,ocr:!!isImg,parts:{}};
+        if(isImg){
+          var c=cfgForSheet(job,'Screenshot','rso');c.keyCol=0;c.filterCol=-1;
+          if(!c.maps.length){var M=data.months[IMP.month],hdr=sheets.Screenshot[0]||[];c.maps=[{on:true,kpi:(M.kpis[0]||{name:'C2C'}).name,t:hdr.length>2?1:-1,a:hdr.length>2?2:1}];}
+          job.parts.rso=newPart('rso',c);job.ocrG='rso';
+        }else{
+          var rc=autoPart(job,'rso',null);
+          job.parts.rso=newPart('rso',rc);
+          var bc=autoPart(job,'bp',rc?rc.sheet:null);
+          job.parts.bp=newPart('bp',bc);
+          var dd=detectDay(sheets);if(dd&&!IMP.dayFromFile)IMP.dayFromFile=dd;
+        }
+        IMP.jobs.push(job);
+      },function(e){IMP.errors=(IMP.errors||[]).concat([f.name+': '+e.message]);});
+    });
+  });
+  p.then(function(){
+    if(!IMP.jobs.length){IMP.step='pick';importView();toast((IMP.errors||['Nothing to import'])[0]);return;}
+    IMP.step='map';IMP.ji=0;importView();
+  });
+}
+function templateDownload(){
+  loadScript(XLSX_URL,'XLSX').then(function(X){
+    var M=data.months[IMP.month],wb=X.utils.book_new();
+    [['rso','RSO','iTop-up Number'],['bp','BP','Mobile Number']].forEach(function(z){
+      var g=z[0],ks=M.kpis.filter(function(k){return g!=='bp'||k.bp;}),hdr=[z[1],z[2]];
+      ks.forEach(function(k){hdr.push(k.name+' Target',k.name+' Ach');});
+      var aoa=[hdr];
+      grp(g).forEach(function(r){var row=[r.name,r.itop||''];ks.forEach(function(k){var x=rowOf(k,r.id);row.push(num(x.t),num(x.a));});aoa.push(row);});
+      var ws=X.utils.aoa_to_sheet(aoa);ws['!cols']=hdr.map(function(h,i){return {wch:i<2?16:Math.max(12,h.length+2)};});
+      X.utils.book_append_sheet(wb,ws,z[1]);
+    });
+    X.writeFile(wb,'ETIS-template-'+IMP.month+'.xlsx');toast('Template downloaded');
+  },function(e){toast(e.message);});
+}
+function partOpts(hdr,sel,none){
+  return (none?'<option value="-1"'+(sel<0?' selected':'')+'>'+none+'</option>':'')+hdr.map(function(h,i){var t=String(h==null?'':h).replace(/\s+/g,' ').trim();return '<option value="'+i+'"'+(i===sel?' selected':'')+'>'+colName(i)+' · '+esc(t.length>30?t.slice(0,29)+'…':t||'(blank)')+'</option>';}).join('');
+}
+function partMapHtml(job,P,M){
+  var L=gLbl(P.g),c=P.cfg,sheets=Object.keys(job.sheets);
+  var head='<section class="card mt impart" data-g="'+P.g+'"><div class="sec-h"><h3>'+L+' sheet</h3>'+
+    (job.ocr?'<select class="cell" data-k="ocrg" style="max-width:190px"><option value="rso"'+(P.g==='rso'?' selected':'')+'>Numbers are for RSOs</option><option value="bp"'+(P.g==='bp'?' selected':'')+'>Numbers are for BPs</option></select>'
+      :'<select class="cell" data-k="sheet" style="max-width:190px"><option value="">— none —</option>'+sheets.map(function(n){return '<option'+(c&&n===c.sheet?' selected':'')+'>'+esc(n)+'</option>';}).join('')+'</select>')+'</div>';
+  if(!c)return head+'<p class="muted" style="font-size:13px">No '+L+' sheet chosen. Pick one above if this file has '+L+' numbers.</p></section>';
+  var hdr=(job.sheets[c.sheet]||[])[c.hr]||[],rows=jobRowsCfg(job,c),sample=rows.slice(0,3);
+  return head+
+    '<p class="muted" style="font-size:12.5px;margin:-4px 0 6px"><b>'+rows.length+'</b> '+L+' row'+(rows.length===1?'':'s')+' found'+(c.filterCol>=0?' where '+esc(String(hdr[c.filterCol]||colName(c.filterCol)).replace(/\s+/g,' '))+' = <b>'+esc(c.filterVal)+'</b>':'')+'</p>'+
+    (job.ocr?'':'<div class="frow"><label class="flbl">Header row</label><div class="fin"><input class="cell" data-k="hr" type="number" min="1" value="'+(c.hr+1)+'"></div></div>'+
+    '<div class="frow"><label class="flbl">Keep only rows where</label><div class="fin" style="flex-wrap:wrap"><select class="cell" data-k="fc" style="min-width:150px">'+partOpts(hdr,c.filterCol,'— use all rows —')+'</select><input class="cell" data-k="fv" value="'+esc(c.filterVal)+'" placeholder="e.g. KHUCHU04" style="max-width:150px"></div></div>')+
+    '<div class="frow"><label class="flbl">'+L+' column</label><div class="fin"><select class="cell" data-k="key">'+partOpts(hdr,c.keyCol)+'</select></div></div>'+
+    '<div class="sec-h" style="margin:14px 0 0"><b style="font-size:14px">KPIs for '+L+'s</b><button class="btn-s" data-k="addmap"><i>'+I.plus+'</i>Add KPI</button></div>'+
+    (c.maps.length?c.maps.map(function(m,mi){
+      var ex=findKpiIn(M,m.kpi);
+      return '<div class="imap'+(m.on?'':' off')+'" data-mi="'+mi+'">'+
+        '<div class="imh"><label class="ick"><input type="checkbox" data-m="on"'+(m.on?' checked':'')+'> Import</label>'+
+        '<input class="cell" data-m="kpi" list="kpil" value="'+esc(m.kpi)+'" aria-label="KPI name">'+
+        (ex?(P.g==='bp'&&!ex.bp?'<span class="pill p-warn">Adds BP to '+esc(ex.name)+'</span>':''):'<span class="pill p-warn">New KPI</span>')+
+        '<button class="icbtn del" data-m="rm" aria-label="Remove">'+I.trash+'</button></div>'+
+        '<div class="imc"><label><span>Target column</span><select class="cell" data-m="t">'+partOpts(hdr,m.t,'— keep current target —')+'</select></label>'+
+        '<label><span>Achievement column</span><select class="cell" data-m="a">'+partOpts(hdr,m.a)+'</select></label></div>'+
+        (sample.length?'<div class="imsm">e.g. '+sample.map(function(x){return esc(String(x.key))+': '+(m.t>=0?fmt(cellNum(x.r[m.t]))+' / ':'')+fmt(cellNum(x.r[m.a]));}).join(' · ')+'</div>':'')+
+      '</div>';
+    }).join(''):'<div class="empty" style="margin-top:8px">No KPI columns found. Tap “Add KPI” and choose the columns.</div>')+
+  '</section>';
+}
+function partPreviewHtml(P,M){
+  var L=gLbl(P.g),list=grp(P.g),c=P.cfg,act=c.maps.map(function(m,mi){return {m:m,mi:mi};}).filter(function(x){return x.m.on;});
+  if(!act.length)return '';
+  var matched=P.rows.filter(function(x){return x.rid;}).length,guess=P.rows.some(function(x){return x.how==='order';});
+  var phoneKeys=P.rows.some(function(x){var mb=memberById(x.rid);return x.rid&&normKey(x.key).charAt(0)==='p'&&mb&&!String(mb.m.itop||'').trim();});
+  var fileNames=P.rows.some(function(x){var mb=memberById(x.rid);return x.rid&&x.nm&&mb&&/^(bp|rso) ?\d+$/i.test(String(mb.m.name).trim());});
+  var ropts=function(sel){return '<option value="">— skip this row —</option>'+list.map(function(r,i){return '<option value="'+r.id+'"'+(r.id===sel?' selected':'')+'>'+L+' '+(i+1)+' · '+esc(r.name)+'</option>';}).join('');};
+  return '<section class="card mt impv" data-g="'+P.g+'"><div class="sec-h"><div><h3>Match file rows to your '+L+'s</h3><p class="muted" style="font-size:12.5px">'+matched+' of '+P.rows.length+' rows matched. The app remembers this for next time.</p></div></div>'+
+    (guess?'<div class="notice" style="margin:0 0 10px"><span class="sp">⚠️ First import: '+L+'s were matched <b>by order</b>. Check each one below.</span></div>':'')+
+    P.rows.map(function(x,ri){
+      return '<div class="imrow'+(x.how==='order'?' guess':'')+(x.rid?'':' none')+'"><div class="imk"><b>'+esc(String(x.key))+'</b>'+((x.nm||x.lab)?'<small>'+esc([x.nm,x.lab].filter(Boolean).join(' · '))+'</small>':'')+'</div>'+
+        '<select class="cell" data-ri="'+ri+'" aria-label="'+L+' for '+esc(String(x.key))+'">'+ropts(x.rid)+'</select></div>';
+    }).join('')+
+    (phoneKeys?'<label class="ick" style="margin-top:10px"><input type="checkbox" data-k="saveItop"'+(P.saveItop?' checked':'')+'> Also save these numbers to '+L+' profiles (only where empty)</label>':'')+
+    (fileNames?'<label class="ick" style="margin-top:8px"><input type="checkbox" data-k="useNames"'+(P.useNames?' checked':'')+'> Use names from the file for '+L+'s still called “'+L+' 1, '+L+' 2…”</label>':'')+
+    '</section>'+
+    act.map(function(x){
+      var E=P.edit[x.mi],ex=findKpiIn(M,x.m.kpi),T=0,A=0;
+      list.forEach(function(r){T+=num(E[r.id].t);A+=num(E[r.id].a);});
+      var sp=T>0?A/T*100:null,q=mtd(T,A,IMP.month);
+      return '<section class="card mt impv" data-g="'+P.g+'"><div class="sec-h"><h3>'+esc(x.m.kpi)+' · '+L+(ex?'':' <span class="pill p-warn">New KPI</span>')+'</h3><span class="pill p-'+status(q.pct)+'">MTD '+pctTxt(q.pct)+'</span></div>'+
+        '<div class="pvh"><span>'+L+'</span><span>Target</span><span>Achievement</span><span>MTD</span></div>'+
+        list.map(function(r){
+          var e=E[r.id],p=mtd(e.t,e.a,IMP.month).pct,ch=(e.t!==e.ot||e.a!==e.oa);
+          return '<div class="pvr'+(e.file?'':' nofile')+'" data-mi="'+x.mi+'" data-r="'+r.id+'"><span class="pvn"><b>'+esc(r.name)+'</b><small>'+(e.file?(ch?'was '+fmt(e.ot)+' / '+fmt(e.oa):'no change'):'not in file · unchanged')+'</small></span>'+
+            '<input class="cell n" data-f="t" type="number" inputmode="decimal" min="0" step="any" value="'+e.t+'" aria-label="'+esc(x.m.kpi)+' target for '+esc(r.name)+'">'+
+            '<input class="cell n" data-f="a" type="number" inputmode="decimal" min="0" step="any" value="'+e.a+'" aria-label="'+esc(x.m.kpi)+' achievement for '+esc(r.name)+'">'+
+            '<b class="pvp s-'+status(p)+'">'+pctTxt(p)+'</b></div>';
+        }).join('')+
+        '<div class="pvt"><span>Total</span><b class="num">'+fmt(T)+'</b><b class="num">'+fmt(A)+'</b><b class="s-'+status(q.pct)+'">'+pctTxt(q.pct)+'</b></div>'+
+        '<p class="muted" style="font-size:12px;margin-top:6px">Achievement '+pctTxt(sp)+' of full target · month-end projection '+(q.proj==null?'—':fmt(q.proj))+'</p></section>';
+    }).join('');
+}
+function jobParts(job){return ['rso','bp'].filter(function(g){return job.parts[g];}).map(function(g){return job.parts[g];});}
+
+function importView(){
+  if(RO||VIEWER){location.hash='#/home';return;}
+  if(!IMP)IMP={step:'pick',month:curKey()};
+  if(!data.months[IMP.month])IMP.month=curKey();
+  var M=data.months[IMP.month];
+  view.onclick=null;view.oninput=null;view.onchange=null;
+  if(IMP.step==='loading'){
+    top('Import data','#/month/'+IMP.month,'Please wait');
+    view.innerHTML='<div class="loading"><div class="spin"></div><span id="impMsg">'+esc(IMP.msg||'Reading…')+'</span></div>';return;
+  }
+  if(IMP.step==='pick'){
+    top('Import data','#/month/'+IMP.month,'Excel, CSV or screenshot');
+    var li=data.lastImport;
+    view.innerHTML=
+    '<section class="card"><div class="sec-h"><h3>Import into</h3>'+monthSelect(IMP.month).replace('id="msel"','id="imMonth"')+'</div>'+
+    '<div class="actions"><label class="btn-o btn-blue" for="imF" style="cursor:pointer"><i>'+I.ul+'</i>Excel / CSV file(s)</label>'+
+    '<label class="btn-o" for="imI" style="cursor:pointer"><i>'+I.cal+'</i>Screenshot / photo</label></div>'+
+    '<input type="file" id="imF" class="hidden" multiple accept=".xlsx,.xls,.xlsm,.xlsb,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">'+
+    '<input type="file" id="imI" class="hidden" multiple accept="image/*">'+
+    (IMP.errors&&IMP.errors.length?'<p class="s-bad" style="font-size:13px;margin-top:10px">'+IMP.errors.map(esc).join('<br>')+'</p>':'')+
+    '</section>'+
+    '<section class="card mt"><h3 style="font-size:15.5px;margin-bottom:8px">How it works</h3>'+
+    '<div class="kline"><div><b>1. Choose files</b> <small>One Excel with an <b>RSO</b> sheet and a <b>BP</b> sheet works best. Several files also work.</small></div></div>'+
+    '<div class="kline"><div><b>2. Check sheets and columns</b> <small>The app picks the RSO and BP sheets and guesses the target and achievement columns. You can change them.</small></div></div>'+
+    '<div class="kline"><div><b>3. Check and edit numbers</b> <small>Nothing is saved until you tap Save. Import again any time and the ticked KPIs get the newest numbers.</small></div></div>'+
+    '<p class="muted" style="font-size:12.5px;margin-top:8px">The office <b>Performance Dashboard</b> file works as it is: the app reads the RSO and BP sheets and keeps only <b>'+esc(data.ddCode||'KHUCHU04')+'</b> rows.</p></section>'+
+    '<section class="card mt"><div class="sec-h"><div><h3>Blank template</h3><p class="muted" style="font-size:13px">One Excel with an RSO sheet and a BP sheet, with names filled in. Use it for KPIs not in the office file, like FWA Router or BP targets.</p></div></div>'+
+    '<div class="actions"><button class="btn-o" id="imT"><i>'+I.dl+'</i>Download template ('+esc(mlabel(IMP.month))+')</button></div></section>'+
+    (li?'<p class="muted" style="font-size:12px;margin-top:12px;text-align:center">Last import: '+esc(li.file||'')+' · '+esc(li.kpis||'')+' · '+ago(li.at)+(li.by?' by '+esc(String(li.by).split('@')[0]):'')+'</p>':'');
+    $('#imMonth').onchange=function(){IMP.month=this.value;importView();};
+    $('#imF').onchange=function(){IMP.errors=[];startImport(this.files,false);};
+    $('#imI').onchange=function(){IMP.errors=[];startImport(this.files,true);};
+    $('#imT').onclick=templateDownload;
+    return;
+  }
+  var job=IMP.jobs[IMP.ji];
+  if(IMP.step==='map'){
+    top('Step 2 · Sheets & columns','#/import','File '+(IMP.ji+1)+' of '+IMP.jobs.length+' · '+job.name);
+    var parts=job.ocr?[job.parts[job.ocrG]]:[job.parts.rso,job.parts.bp];
+    view.innerHTML=
+    '<div class="notice" style="margin:0 0 4px;background:var(--blue-l);border-color:#c9d8fb;color:#1e3a8a"><span class="sp">📄 <b>'+esc(job.name)+'</b><br>'+
+      (job.ocr?'Screenshot read. Choose who the numbers are for, then which number is the target and which is achievement.':
+       'RSO sheet: <b>'+esc(job.parts.rso.cfg?job.parts.rso.cfg.sheet:'none')+'</b> · BP sheet: <b>'+esc(job.parts.bp.cfg?job.parts.bp.cfg.sheet:'none')+'</b>')+'</span></div>'+
+    '<datalist id="kpil">'+M.kpis.map(function(k){return '<option value="'+esc(k.name)+'">';}).join('')+'</datalist>'+
+    parts.map(function(P){return partMapHtml(job,P,M);}).join('')+
+    '<div class="actions mt">'+(IMP.jobs.length>1?'<button class="btn-o" id="mSkip">Skip this file</button>':'<button class="btn-o" id="mBack">Choose other file</button>')+
+    '<button class="btn-o btn-blue" id="mNext">Next: check numbers ›</button></div>';
+    function rer(){var y=window.scrollY;importView();window.scrollTo(0,y);}
+    view.onchange=function(e){
+      var el=e.target,sec=el.closest('[data-g]');if(!sec)return;
+      var P=job.parts[sec.dataset.g],k=el.dataset.k;
+      if(k==='ocrg'){var ng=el.value;if(ng!==P.g){var c0=P.cfg;delete job.parts[P.g];job.parts[ng]=newPart(ng,c0);job.ocrG=ng;}rer();return;}
+      if(k==='sheet'){P.cfg=el.value?cfgForSheet(job,el.value,P.g):null;rer();return;}
+      if(!P.cfg)return;var c=P.cfg;
+      if(k==='hr'){var v=Math.max(1,parseInt(el.value,10)||1)-1,keep=c;P.cfg=cfgForSheet(job,keep.sheet,P.g,v);P.cfg.filterCol=keep.filterCol;P.cfg.filterVal=keep.filterVal;rer();return;}
+      if(k==='fc'){c.filterCol=parseInt(el.value,10);rer();return;}
+      if(k==='fv'){c.filterVal=el.value.trim();rer();return;}
+      if(k==='key'){c.keyCol=parseInt(el.value,10);rer();return;}
+      var box=el.closest('[data-mi]');if(!box)return;var m=c.maps[+box.dataset.mi],f=el.dataset.m;
+      if(f==='on')m.on=el.checked;else if(f==='kpi'){m.kpi=el.value.trim();var ex=findKpiIn(M,m.kpi);if(ex)m.kpi=ex.name;}
+      else if(f==='t'||f==='a')m[f]=parseInt(el.value,10);
+      rer();
+    };
+    view.onclick=function(e){
+      var sec=e.target.closest('[data-g]');if(!sec)return;var P=job.parts[sec.dataset.g];if(!P||!P.cfg)return;var c=P.cfg;
+      var rm=e.target.closest('[data-m=rm]');if(rm){c.maps.splice(+rm.closest('[data-mi]').dataset.mi,1);rer();return;}
+      if(e.target.closest('[data-k=addmap]')){
+        var hdr=(job.sheets[c.sheet]||[])[c.hr]||[],used={};c.maps.forEach(function(m){used[m.kpi.toLowerCase()]=1;});
+        var k=M.kpis.find(function(k){return !used[k.name.toLowerCase()]&&(P.g!=='bp'||k.bp);})||M.kpis.find(function(k){return !used[k.name.toLowerCase()];});
+        c.maps.push({on:true,kpi:k?k.name:'',t:-1,a:Math.min(1,hdr.length-1)});rer();
+      }
+    };
+    if($('#mSkip'))$('#mSkip').onclick=function(){nextJob();};
+    if($('#mBack'))$('#mBack').onclick=function(){IMP.step='pick';importView();};
+    $('#mNext').onclick=function(){
+      var ps=jobParts(job).filter(function(P){return P.cfg&&P.cfg.maps.some(function(m){return m.on;});});
+      if(!ps.length){toast('Tick at least one KPI to import');return;}
+      var bad=ps.some(function(P){return P.cfg.maps.some(function(m){return m.on&&(!m.kpi||m.a<0);});});
+      if(bad){toast('Each ticked KPI needs a name and an achievement column');return;}
+      if(ps.some(function(P){return !jobRowsCfg(job,P.cfg).length;})){toast('No rows found in one sheet. Check the filter value.');return;}
+      jobParts(job).forEach(function(P){if(!P.cfg){P.rows=[];P.edit=[];return;}P.rows=jobRowsCfg(job,P.cfg);matchPart(job,P);buildEdit(P);});
+      IMP.step='preview';importView();window.scrollTo(0,0);
+    };
+    return;
+  }
+  if(IMP.step==='preview'){
+    top('Step 3 · Check & edit','#/import','File '+(IMP.ji+1)+' of '+IMP.jobs.length+' · '+mlabel(IMP.month));
+    var isCur=IMP.month===curKey(),defDay=IMP.dayFromFile||mtdDay(IMP.month);
+    if(IMP.day==null)IMP.day=defDay;
+    var oldDay=M.mtdDay;if(isCur)M.mtdDay=IMP.day;
+    var html=(isCur?'<section class="card"><div class="frow" style="border:0;padding:0"><label class="flbl" for="pDay">Numbers are up to day</label><div class="fin"><input class="cell" id="pDay" type="number" min="1" max="30" value="'+IMP.day+'" style="max-width:110px"><span class="muted" style="font-size:12.5px">of 30 · used for MTD'+(IMP.dayFromFile?' (found in file)':'')+'</span></div></div></section>':'')+
+      jobParts(job).map(function(P){return P.cfg?partPreviewHtml(P,M):'';}).join('')+
+      '<div class="actions mt"><button class="btn-o" id="pBack">‹ Back to sheets</button><button class="btn-o btn-wa" id="pOk"><i>'+I.dl+'</i>Save to '+esc(mlabel(IMP.month))+(MODE==='cloud'?' for everyone':'')+'</button></div>';
+    if(isCur)M.mtdDay=oldDay;
+    view.innerHTML=html;
+    function rer2(){var y=window.scrollY;importView();window.scrollTo(0,y);}
+    view.onchange=function(e){
+      var el=e.target;
+      if(el.id==='pDay'){var d=Math.round(num(el.value));if(d>=1&&d<=30){IMP.day=d;rer2();}else toast('Enter a day between 1 and 30');return;}
+      var sec=el.closest('[data-g]');if(!sec)return;var P=job.parts[sec.dataset.g];
+      if(el.dataset.ri!=null){var x=P.rows[+el.dataset.ri],v=el.value;P.rows.forEach(function(y){if(y!==x&&y.rid===v&&v)y.rid='';});x.rid=v;x.how=v?'manual':'';buildEdit(P);rer2();return;}
+      if(el.dataset.k==='saveItop')P.saveItop=el.checked;
+      if(el.dataset.k==='useNames')P.useNames=el.checked;
+    };
+    view.oninput=function(e){
+      var el=e.target,row=el.closest('.pvr');if(!row||!el.dataset.f)return;
+      var P=job.parts[el.closest('[data-g]').dataset.g];
+      var E=P.edit[+row.dataset.mi][row.dataset.r];E[el.dataset.f]=num(el.value);E.touched=true;
+      var keep=M.mtdDay;if(isCur)M.mtdDay=IMP.day;var p=mtd(E.t,E.a,IMP.month).pct;M.mtdDay=keep;
+      var pb=row.querySelector('.pvp');pb.className='pvp s-'+status(p);pb.textContent=pctTxt(p);
+    };
+    $('#pBack').onclick=function(){IMP.step='map';importView();};
+    $('#pOk').onclick=function(){commitJob(job);nextJob();};
+    return;
+  }
+  if(IMP.step==='done'){
+    top('Import finished','#/month/'+IMP.month,mlabel(IMP.month));
+    view.innerHTML='<section class="card detail-hero"><div style="font-size:42px">✅</div><h2>Numbers saved</h2><p class="muted" style="margin-top:6px">'+(MODE==='cloud'?'Naim and your viewers see the new numbers now.':'Saved on this device.')+'</p></section>'+
+    '<section class="card mt">'+(IMP.done.length?IMP.done.map(function(d){return '<div class="kline"><div><b>'+esc(d.kpi)+' · '+d.g+'</b> <small>'+d.n+' '+d.g+(d.n===1?'':'s')+' updated'+(d.isNew?' · new KPI added':'')+(d.bpOn?' · BP added to this KPI':'')+'</small></div><b class="s-'+status(d.mtd)+'">MTD '+pctTxt(d.mtd)+'</b></div>';}).join(''):'<div class="empty">Nothing was saved.</div>')+'</section>'+
+    '<div class="actions mt"><button class="btn-o btn-blue" data-go="#/summary/'+IMP.month+'"><i>'+I.trophy+'</i>Open Overall KPI Summary</button><button class="btn-o" id="dAgain"><i>'+I.ul+'</i>Import another file</button></div>';
+    $('#dAgain').onclick=function(){IMP={step:'pick',month:IMP.month};importView();};
+  }
+}
+function nextJob(){
+  IMP.ji++;
+  if(IMP.ji>=IMP.jobs.length){IMP.step='done';}else IMP.step='map';
+  importView();window.scrollTo(0,0);
+}
+function commitJob(job){
+  var M=data.months[IMP.month],names=[];
+  data.rsoKeys=data.rsoKeys||{};data.importCfg=data.importCfg||{};
+  if(IMP.month===curKey()&&IMP.day)M.mtdDay=IMP.day;
+  jobParts(job).forEach(function(P){
+    if(!P.cfg)return;
+    P.cfg.maps.forEach(function(m,mi){
+      if(!m.on)return;
+      var kp=findKpiIn(M,m.kpi),isNew=false,bpOn=false;
+      if(!kp){
+        kp={id:uid(),name:m.kpi,rows:{},bp:P.g==='bp'};M.kpis.push(kp);isNew=true;
+        Object.keys(data.months).filter(function(x){return x>IMP.month;}).forEach(function(x){if(!findKpiIn(data.months[x],m.kpi))data.months[x].kpis.push({id:uid(),name:m.kpi,rows:{},bp:P.g==='bp'});});
+      }
+      if(P.g==='bp'&&!kp.bp){kp.bp=true;bpOn=!isNew;}
+      var E=P.edit[mi],n=0;
+      grp(P.g).forEach(function(r){var e=E[r.id];if(!e||(!e.file&&!e.touched))return;kp.rows[r.id]={t:num(e.t),a:num(e.a)};n++;});
+      var s=partSum(kp,P.g);IMP.done.push({kpi:kp.name,g:gLbl(P.g),n:n,mtd:mtd(s.t,s.a,IMP.month).pct,isNew:isNew,bpOn:bpOn});
+      if(names.indexOf(kp.name)<0)names.push(kp.name);
+    });
+    P.rows.forEach(function(x){
+      if(!x.rid)return;
+      data.rsoKeys[normKey(x.key)]=x.rid;
+      if(x.lab)data.rsoKeys[normKey(x.lab)]=x.rid;
+      var nk=normKey(x.key),mb=memberById(x.rid);if(!mb)return;
+      if(P.saveItop&&nk.charAt(0)==='p'&&!String(mb.m.itop||'').trim())mb.m.itop='0'+nk.slice(1);
+      if(P.useNames&&x.nm&&/^(bp|rso) ?\d+$/i.test(String(mb.m.name).trim()))mb.m.name=x.nm;
+    });
+    if(!job.ocr){
+      var hdr=(job.sheets[P.cfg.sheet][P.cfg.hr]||[]).map(normH);
+      var keep={};Object.keys(data.importCfg).slice(-11).forEach(function(k){keep[k]=data.importCfg[k];});
+      keep[sheetSig(P.cfg.sheet,hdr,P.g)]=JSON.parse(JSON.stringify(P.cfg));data.importCfg=keep;
+      var fh=normH(((job.sheets[P.cfg.sheet]||[])[P.cfg.hr]||[])[P.cfg.filterCol]);
+      if(P.cfg.filterCol>=0&&/dd|d_code|distributor/.test(fh)&&P.cfg.filterVal)data.ddCode=P.cfg.filterVal;
+    }
+  });
+  data.lastImport={at:Date.now(),by:(USER&&USER.email)||'',file:job.name,kpis:names.join(', '),month:IMP.month};
+  data.sampleNotice=false;
+  save();
+  toast('Saved '+names.join(', '));
+}
+
 /* ================= VIEWER LINKS & ACTIVITY (owner only) ================= */
 function genToken(){
   var a=new Uint8Array(15);(window.crypto||window.msCrypto).getRandomValues(a);
@@ -1292,7 +1987,8 @@ function pageLabel(p){
     case 'ff':return 'FF Details';
     case 'person':return 'FF · '+((data.people[p[1]]||{}).title||p[1]);
     case 'rsos':return 'RSO list';
-    case 'rso':var r=data.rsos.find(function(x){return x.id===p[1];});return 'RSO · '+(r?r.name:'?');
+    case 'bps':return 'BP list';
+    case 'rso':var mb=memberById(p[1]);return (mb?gLbl(mb.g):'RSO')+' · '+(mb?mb.m.name:'?');
     case 'total':return 'KHUCHU04 In Total';
     case 'settings':return 'Settings';
     default:return 'Home';
@@ -1365,11 +2061,13 @@ function render(){
     case 'ff':ffView();break;
     case 'person':personView(p[1]);break;
     case 'rsos':rsosView();break;
+    case 'bps':bpsView();break;
     case 'rso':rsoView(p[1],p[2]);break;
     case 'total':totalView();break;
     case 'settings':settingsView();break;
     case 'links':linksView();break;
     case 'activity':activityView();break;
+    case 'import':importView();break;
     default:home();
   }
   if(RO)lockInputs();
