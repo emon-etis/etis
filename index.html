@@ -249,7 +249,7 @@ textarea.cell{height:110px;padding:10px;font-size:13px;font-family:ui-monospace,
 .loading{text-align:center;padding:60px 16px;color:var(--muted)}
 .spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 14px}
 @keyframes sp{to{transform:rotate(360deg)}}
-body.ro .kdel,body.ro .addcard,body.ro #addF,body.ro [data-delf],body.ro #addT,body.ro #del,body.ro #gps,body.ro #ren,body.ro .notice,body.ro .edonly{display:none!important}
+body.ro .kdel,body.ro .coveradd,body.ro .addcard,body.ro #addF,body.ro [data-delf],body.ro #addT,body.ro #del,body.ro #gps,body.ro #ren,body.ro .notice,body.ro .edonly{display:none!important}
 body.ro .cell{background:#fafbfc}
 @media (max-width:420px){.saved{display:none}}
 
@@ -333,6 +333,40 @@ body.ro .rsorow.bprow{grid-template-columns:34px 1.2fr 1fr auto 26px}
 .bchk{cursor:pointer}.bchk input{accent-color:var(--brand)}
 .avatar{overflow:hidden}.avimg{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit}
 .icotile.hasph{padding:0;overflow:hidden}.rank.hasph{padding:0;overflow:hidden;border-radius:50%}
+
+.cover{position:relative;border-radius:20px;overflow:hidden;margin-bottom:14px;background:var(--brand-l);aspect-ratio:7/3;box-shadow:0 8px 22px rgba(0,0,0,.12)}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover .cbtns{position:absolute;right:10px;bottom:10px;display:flex;gap:6px}
+.cover .cbtns .btn-s{background:rgba(255,255,255,.92);height:34px;font-size:12.5px}
+.coveradd{display:flex;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--brand);color:var(--brand-d);border-radius:20px;height:96px;margin-bottom:14px;font-weight:700;cursor:pointer;background:var(--brand-l)}
+.gal{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gal .gi{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:1/1;background:#eef0f4;cursor:pointer}
+.gal .gi:first-child{grid-column:span 2;aspect-ratio:16/9}
+.gal img{width:100%;height:100%;object-fit:cover;display:block}
+.gal .gc{position:absolute;left:0;right:0;bottom:0;padding:18px 10px 8px;color:#fff;font-size:12.5px;font-weight:600;background:linear-gradient(transparent,rgba(0,0,0,.6))}
+.cover{cursor:zoom-in}
+.phv{position:fixed;inset:0;z-index:300;background:#05070b;display:flex;flex-direction:column;color:#fff;touch-action:none}
+.pv-top{display:flex;justify-content:space-between;align-items:center;padding:max(10px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right)) 6px max(14px,env(safe-area-inset-left));font-weight:700;font-size:14px;position:relative;z-index:2}
+.pv-x{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.14);color:#fff;padding:10px;display:inline-flex}
+.pv-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pv-stage img{max-width:100%;max-height:100%;object-fit:contain;user-select:none;-webkit-user-select:none;transform-origin:center center;will-change:transform}
+.pv-stage img.ld{filter:blur(1px)}
+.pv-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:64px;border-radius:12px;background:rgba(255,255,255,.12);color:#fff;font-size:34px;line-height:1;z-index:2}
+.pv-p{left:max(8px,env(safe-area-inset-left))}.pv-n{right:max(8px,env(safe-area-inset-right))}
+.pv-bot{padding:8px max(14px,env(safe-area-inset-right)) max(14px,env(safe-area-inset-bottom)) max(14px,env(safe-area-inset-left));position:relative;z-index:2}
+.pv-cap{text-align:center;font-size:14px;min-height:4px}
+.pv-bot input.cell{text-align:center;margin-top:6px;background:#fff}
+.pv-btns{display:flex;gap:8px;justify-content:center;margin-top:8px}.pv-btns .btn-s{background:#fff}
+.dchips{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.dchip{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;background:#eef0f4;color:var(--muted);font-size:12px;font-weight:700}
+.dchip.on{background:var(--brand);color:#fff}
+.dchip.big{height:38px;padding:0 14px;font-size:14px;cursor:pointer}
+.dpick{display:flex;gap:6px;flex-wrap:wrap}
+.bz{margin-bottom:12px}.bz-today{border:2px solid var(--brand);box-shadow:0 8px 20px rgba(242,101,34,.15)}
+.bz-h{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.bz-h h3{font-size:17px;word-break:break-word}
+.bz-m{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px;font-size:13px;color:var(--ink,#333)}
+.bz-n{margin-top:8px;font-size:13px;color:var(--muted);background:#f6f7f9;border-radius:10px;padding:8px 10px}
+.bz-map{width:100%;justify-content:center;margin-top:12px;text-decoration:none}
 .phbtns{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.phbtns .btn-s{height:30px;font-size:12px;padding:0 10px}
 
 /* IMPORT */
@@ -596,6 +630,7 @@ function fix(d){
   d.people=d.people||s.people;
   ['distributor','manager','accountant'].forEach(function(k){if(!d.people[k])d.people[k]=s.people[k];});
   d.territory=d.territory||s.territory;
+  d.bazars=Array.isArray(d.bazars)?d.bazars:[];
   d.sort=d.sort||{kpi:'default'};
   if(!num(d.towerA))d.towerA=400000;
   d.rsos.forEach(function(r){r.fields=r.fields||[];if(r.itop==null)r.itop='';});
@@ -774,14 +809,14 @@ function formSheet(title,fields,submit,onSubmit){
 function closeSheet(){var el=$('#sheet');el.classList.add('hidden');el.innerHTML='';}
 
 /* editable field list (people, territory, RSO extras) */
-function fieldsHtml(arr){
+function fieldsHtml(arr,allDel){
   if(!arr.length)return '<div class="empty">No extra fields yet. Tap “Add field”.</div>';
   return arr.map(function(f){
     var t=f.type==='phone'?'tel':f.type==='email'?'email':'text';
     return '<div class="frow"><label class="flbl" for="fi_'+f.id+'">'+esc(f.k)+'</label><div class="fin">'+
       '<input class="cell" id="fi_'+f.id+'" data-fid="'+f.id+'" type="'+t+'"'+(f.type==='phone'?' inputmode="tel"':'')+' value="'+esc(f.v)+'" placeholder="'+(f.type==='phone'?'01XXXXXXXXX':'Add '+esc(f.k.toLowerCase()))+'">'+
       '<span class="cbox">'+(f.type==='phone'?contactBtns(f.v):'')+'</span>'+
-      (f.fixed?'':'<button type="button" class="icbtn del" data-delf="'+f.id+'" aria-label="Remove field">'+I.trash+'</button>')+
+      ((f.fixed&&!allDel)?'':'<button type="button" class="icbtn del" data-delf="'+f.id+'" aria-label="Remove field">'+I.trash+'</button>')+
       '</div></div>';
   }).join('');
 }
@@ -881,6 +916,7 @@ function home(){
   var kp=m.kpis.map(function(k){return {k:k,s:kpiSum(k)};});
   view.innerHTML=
   (CLOUD_EMPTY&&!RO?'<div class="notice" style="margin:0 0 14px"><span class="sp">☁️ <b>Cloud is empty.</b> Upload the data on this device so Naim and others can see it. Do this from the device that has your real numbers.</span><button data-act="upload">Upload this device\'s data</button></div>':'')+
+  coverHtml()+
   '<section class="hero"><div><p class="hero-k">'+greet+(VIEWER?', '+esc(VIEWER.name):MODE==='cloud'?'':', Emon')+' 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
   '<div class="score"><b>'+pctTxt(sc)+'</b><small>'+mlabel(cur).split(' ')[0]+' score</small></div></section>'+
   (data.sampleNotice?'<div class="notice"><span class="sp">📌 This month\'s KPIs and the towers have <b>sample numbers</b> so you can test. Clear them before entering real data.</span><button data-act="clearSample">Clear sample numbers</button><button data-act="keepSample">Keep</button></div>':'')+
@@ -901,12 +937,14 @@ function home(){
   '<div class="tstats"><div class="tstat"><small>A</small><b class="s-good">'+A+'</b></div><div class="tstat"><small>B</small><b class="s-warn">'+(tc.ts.length-A)+'</b></div><div class="tstat"><small>ARPU</small><b>'+arpuTxt(tc.arpu)+'</b></div></div></div>'+
   '<div class="card navcard" role="button" tabindex="0" data-go="#/ff"><div class="nc-h"><div class="icotile it-p">'+I.team+'</div><div><h2>KHUCHU04 FF Details</h2><p>Distributor · Manager · Accountant · RSOs</p></div><div class="nc-go">'+I.go+'</div></div>'+
   '<div class="tstats"><div class="tstat"><small>Manager</small><b>'+esc(mgr&&mgr.v||'—')+'</b></div><div class="tstat"><small>Distributor</small><b>'+esc(dist&&dist.v||'—')+'</b></div><div class="tstat"><small>RSOs</small><b>'+data.rsos.length+'</b></div></div></div>'+
-  '<div class="card navcard" role="button" tabindex="0" data-go="#/total"><div class="nc-h"><div class="icotile it-g">'+I.globe+'</div><div><h2>KHUCHU04 In Total</h2><p>Territory overview & market share</p></div><div class="nc-go">'+I.go+'</div></div>'+
+  '<div class="card navcard" role="button" tabindex="0" data-go="#/total"><div class="nc-h"><div class="icotile it-g">'+I.globe+'</div><div><h2>KHUCHU04/Jibannagar er সবকিছু</h2><p>Gallery · details · market share</p></div><div class="nc-go">'+I.go+'</div></div>'+
   '<div class="tstats"><div class="tstat"><small>BTS</small><b>'+tc.ts.length+'</b></div><div class="tstat"><small>BL share</small><b>'+esc(terrVal('bl')?terrVal('bl')+'%':'—')+'</b></div><div class="tstat"><small>Revenue</small><b>'+tk(tc.total)+'</b></div></div></div>'+
   '</div>'+
   '<div class="foot"><span>🔒 Data is saved on this device. Use Settings → Backup to keep a copy.</span></div>';
+  bindCover(view);
   view.onclick=function(e){
     var b=e.target.closest('[data-act]');if(!b)return;
+    if(b.dataset.act==='coverChange'||b.dataset.act==='coverDel')return;
     if(b.dataset.act==='impHome'){IMP={step:'pick',month:curKey()};location.hash='#/import';return;}
     if(b.dataset.act==='clearSample'){
       if(!confirm('Clear all sample KPI numbers and remove the 5 sample towers?'))return;
@@ -1141,7 +1179,7 @@ function rsoView(id,k){
   var bad=ks.filter(function(x){var p=mq(x);return p!=null&&p<70;}),warn=ks.filter(function(x){var p=mq(x);return p!=null&&p>=70&&p<90;});
   var hist=Object.keys(data.months).sort().reverse().slice(0,6);
   view.innerHTML=
-  '<section class="card phead"><div class="avatar" id="av">'+avatarHtml(r,r.name)+'</div><div style="min-width:0;flex:1"><small>'+L+' '+(idx+1)+'</small><h2 id="rnm">'+esc(r.name)+'</h2>'+photoControls(r,function(){rsoView(id,k);})+'</div></section>'+
+  '<section class="card phead"><div class="avatar" id="av">'+avatarHtml(r,r.name,'',true)+'</div><div style="min-width:0;flex:1"><small>'+L+' '+(idx+1)+'</small><h2 id="rnm">'+esc(r.name)+'</h2>'+photoControls(r,function(){rsoView(id,k);})+'</div></section>'+
   '<section class="card mt"><div class="sec-h"><h3>Profile</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div>'+
   '<div class="frow"><label class="flbl" for="pn">Name</label><div class="fin"><input class="cell" id="pn" value="'+esc(r.name)+'"></div></div>'+
   '<div class="frow"><label class="flbl" for="pi">'+numL+'</label><div class="fin"><input class="cell" id="pi" type="tel" inputmode="tel" value="'+esc(r.itop)+'" placeholder="01XXXXXXXXX"><span class="cbox" id="pic">'+contactBtns(r.itop)+'</span></div></div>'+
@@ -1197,7 +1235,7 @@ function personView(role){
   var p=data.people[role];if(!p){location.hash='#/ff';return;}
   var nmf=p.fields.find(function(f){return f.c==='name';});
   top(p.title,'#/ff','Tap a field to edit');
-  view.innerHTML='<section class="card phead"><div class="avatar" id="av">'+avatarHtml(p,nmf&&nmf.v||p.title)+'</div><div style="min-width:0;flex:1"><small>'+p.title+'</small><h2 id="pnm">'+esc(nmf&&nmf.v||'Name not added')+'</h2>'+photoControls(p,function(){personView(role);})+'</div></section>'+
+  view.innerHTML='<section class="card phead"><div class="avatar" id="av">'+avatarHtml(p,nmf&&nmf.v||p.title,'',true)+'</div><div style="min-width:0;flex:1"><small>'+p.title+'</small><h2 id="pnm">'+esc(nmf&&nmf.v||'Name not added')+'</h2>'+photoControls(p,function(){personView(role);})+'</div></section>'+
   '<section class="card mt"><div class="sec-h"><h3>Details</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div><div id="flds">'+fieldsHtml(p.fields)+'</div></section>'+
   '<p class="muted" style="font-size:12.5px;margin-top:10px">Use “Add field” for anything extra: TIN, e-TIN, VAT, home location, bank info…</p>'+
   '<div class="actions mt">'+shareBtn('Share '+p.title.toLowerCase()+' details on WhatsApp')+'</div>';
@@ -1323,15 +1361,18 @@ function towerView(id){
 }
 
 function totalView(){
-  top('KHUCHU04 In Total','#/home','Territory overview');
+  top('KHUCHU04/Jibannagar er সবকিছু','#/home','Photos, details & market share');
   var c=towerCats();
-  view.innerHTML='<div class="stats">'+
+  var tbz=todayBazars();
+  view.innerHTML=galleryHtml()+
+    '<div class="card navcard mt" role="button" tabindex="0" data-go="#/bazar"><div class="nc-h"><div class="icotile it-o">🛒</div><div><h2>হাট-বাজার</h2><p>'+(data.bazars||[]).length+' bazar · আজ '+(tbz.length?tbz.map(function(b){return esc(b.name);}).join(', '):'কোনো বাজার নেই')+'</p></div><div class="nc-go">'+I.go+'</div></div></div>'+
+    '<div class="stats mt">'+
     '<div class="stat" style="--c:var(--blue)"><small>Total BTS</small><b>'+c.ts.length+'</b><em>A '+c.ts.filter(function(x){return x.cat==='A';}).length+' · B '+c.ts.filter(function(x){return x.cat==='B';}).length+'</em></div>'+
     '<div class="stat" style="--c:var(--brand)"><small>Total RSOs</small><b>'+data.rsos.length+'</b><em>Field force</em></div>'+
     '<div class="stat" style="--c:var(--good)"><small>Tower Revenue</small><b class="num">'+tk(c.total)+'</b><em>All BTS</em></div>'+
     '<div class="stat" style="--c:var(--warn)"><small>Sub Base</small><b class="num">'+fmt(c.subs)+'</b><em>ARPU '+arpuTxt(c.arpu)+'</em></div></div>'+
     '<section class="card"><div class="sec-h"><h3>Market share</h3><span class="muted" style="font-size:12.5px">From the fields below</span></div><div id="ms"></div></section>'+
-    '<section class="card mt"><div class="sec-h"><h3>Territory details</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div><div id="flds">'+fieldsHtml(data.territory.fields)+'</div></section>'+
+    '<section class="card mt"><div class="sec-h"><h3>Details</h3><button class="btn-s" id="addF"><i>'+I.plus+'</i>Add field</button></div><div id="flds">'+fieldsHtml(data.territory.fields,true)+'</div></section>'+
     '<div class="actions mt">'+shareBtn('Share territory overview on WhatsApp')+'</div>';
   function ms(){
     var rows=[['Banglalink','bl','b-brand'],['GP','gp','b-grey'],['Robi','robi','b-grey'],['Teletalk','tt','b-grey']].map(function(x){return {n:x[0],v:parseFloat(terrVal(x[1])),cls:x[2]};});
@@ -1342,12 +1383,13 @@ function totalView(){
     $('#ms').innerHTML=rows.map(function(x){var v=isFinite(x.v)?x.v:0;return '<div class="msbar"><span style="font-weight:'+(x.n==='Banglalink'?800:600)+'">'+x.n+'</span><div class="bar"><i class="'+x.cls+'" style="width:'+Math.min(v,100)+'%"></i></div><b>'+(isFinite(x.v)?v.toFixed(1)+'%':'—')+'</b></div>';}).join('');
   }
   ms();
+  bindGallery(view);
   bindFields($('#flds'),data.territory.fields,function(f){if(f.c)ms();},totalView);
   $('#addF').onclick=function(){addFieldSheet(data.territory.fields,totalView);};
   $('#share').onclick=function(){
-    var t=HDR+'*KHUCHU04 In Total*\nTotal BTS: '+c.ts.length+'\nTotal RSOs: '+data.rsos.length+'\nTower revenue: '+tk(c.total)+'\nSub base: '+fmt(c.subs)+' | ARPU: '+arpuTxt(c.arpu)+'\n';
+    var t=HDR+'*KHUCHU04/Jibannagar er সবকিছু*\nTotal BTS: '+c.ts.length+'\nTotal RSOs: '+data.rsos.length+'\nTower revenue: '+tk(c.total)+'\nSub base: '+fmt(c.subs)+' | ARPU: '+arpuTxt(c.arpu)+'\n';
     data.territory.fields.forEach(function(f){if(String(f.v).trim())t+=f.k+': '+f.v+'\n';});
-    shareMenu({title:'KHUCHU04 In Total',text:t,tables:[kvTable('Territory overview',[['Total BTS',c.ts.length],['Total RSOs',data.rsos.length],['Total BPs',data.bps.length],['Tower revenue',tk(c.total)],['Sub base',fmt(c.subs)],['ARPU',arpuTxt(c.arpu)]].concat(data.territory.fields.map(function(f){return [f.k,f.v];})))]});
+    shareMenu({title:'KHUCHU04/Jibannagar er সবকিছু',text:t,tables:[kvTable('Territory overview',[['Total BTS',c.ts.length],['Total RSOs',data.rsos.length],['Total BPs',data.bps.length],['Tower revenue',tk(c.total)],['Sub base',fmt(c.subs)],['ARPU',arpuTxt(c.arpu)]].concat(data.territory.fields.map(function(f){return [f.k,f.v];})))]});
   };
 }
 
@@ -1377,7 +1419,7 @@ function settingsView(){
   '<section class="card mt edonly"><div class="nc-h"><div class="icotile it-y">'+I.trash+'</div><div><h2>Reset</h2><p>Start again with the default setup. Your login stays the same.</p></div></div>'+
   '<div class="actions"><button class="btn-o btn-danger" id="rst"><i>'+I.trash+'</i>Reset all data</button></div></section>'+
   installCard()+
-  '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v8 '+(cloud?'· cloud sync':'· offline mode')+' · '+Object.keys(data.months).length+' month(s) saved</p>';
+  '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v10 '+(cloud?'· cloud sync':'· offline mode')+' · '+Object.keys(data.months).length+' month(s) saved</p>';
   bindInstall();
   if(VIEWER){}
   else if(cloud){$('#chg').onclick=function(){
@@ -2588,6 +2630,7 @@ function briefView(){
   function need(kp,id){var x=rowOf(kp,id),rem=num(x.t)-num(x.a);return rem>0?Math.ceil(rem/dl):0;}
   function val(kp,n){return isMoneyKpi(kp.name)?'৳'+fmt(n):fmt(n);}
   var txt='☀️ *Good morning team!*\n'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})+' · '+dl+' day'+(dl===1?'':'s')+' left in '+mlabel(k).split(' ')[0]+'\n';
+  var tbz=todayBazars();if(BRIEF.bz!==false&&tbz.length)txt+='\n🛒 *আজকের বাজার:* '+tbz.map(function(b){return b.name+(bzRso(b)?' ('+bzRso(b)+')':'');}).join(', ')+'\n';
   if(BRIEF.house){txt+='\n*KHUCHU04 today needs*\n';sel.forEach(function(kp){var s=kpiSum(kp),rem=s.t-s.a;txt+='• '+kp.name+': '+(rem>0?val(kp,Math.ceil(rem/dl))+'/day':'target done ✅')+' (MTD '+pctTxt(mtd(s.t,s.a,k).pct)+')\n';});}
   txt+='\n*Today\'s target per RSO*\n';
   var tRows=[];
@@ -2597,7 +2640,7 @@ function briefView(){
   txt+='\nLet\'s go! 💪';
   view.innerHTML='<section class="card"><h3 style="font-size:15.5px;margin-bottom:6px">What to include</h3>'+
     '<div class="chips">'+ks.map(function(kp){return '<label class="chip c-blue bchk"><input type="checkbox" data-bk="'+esc(kp.name)+'"'+(BRIEF.kpis.indexOf(kp.name)>=0?' checked':'')+'> '+esc(kp.name)+'</label>';}).join('')+'</div>'+
-    '<div class="chips" style="margin-top:10px"><label class="ick"><input type="checkbox" id="bH"'+(BRIEF.house?' checked':'')+'> House line</label><label class="ick"><input type="checkbox" id="bB"'+(BRIEF.bp?' checked':'')+'> BPs</label></div>'+
+    '<div class="chips" style="margin-top:10px"><label class="ick"><input type="checkbox" id="bH"'+(BRIEF.house?' checked':'')+'> House line</label><label class="ick"><input type="checkbox" id="bB"'+(BRIEF.bp?' checked':'')+'> BPs</label><label class="ick"><input type="checkbox" id="bZ"'+(BRIEF.bz!==false?' checked':'')+'> Today\'s bazar</label></div>'+
     '<p class="muted" style="font-size:12.5px;margin-top:8px">Daily need = (target − achievement) ÷ '+dl+' days left. Uses the latest numbers in the app'+(data.lastImport?' (last import '+ago(data.lastImport.at)+')':'')+'.</p></section>'+
     '<section class="card mt"><div class="sec-h"><h3>Message</h3><span class="muted" style="font-size:12px">You can edit it before sending</span></div><textarea class="cell" id="bT" style="height:300px;font-family:inherit;font-size:14px;line-height:1.5">'+esc(txt)+'</textarea></section>'+
     '<div class="actions mt"><button class="btn-o btn-wa" id="bSend"><i>'+I.wa+'</i>Send on WhatsApp</button><button class="btn-o" id="bImg"><i>'+I.cal+'</i>Image / Excel</button><button class="btn-o" id="bCopy"><i>'+I.copy+'</i>Copy</button></div>';
@@ -2606,6 +2649,7 @@ function briefView(){
     if(el.dataset.bk!=null){var n=el.dataset.bk,i=BRIEF.kpis.indexOf(n);if(el.checked&&i<0)BRIEF.kpis.push(n);if(!el.checked&&i>=0)BRIEF.kpis.splice(i,1);briefView();}
     else if(el.id==='bH'){BRIEF.house=el.checked;briefView();}
     else if(el.id==='bB'){BRIEF.bp=el.checked;briefView();}
+    else if(el.id==='bZ'){BRIEF.bz=el.checked;briefView();}
   };
   $('#bSend').onclick=function(){openWA($('#bT').value);};
   $('#bCopy').onclick=function(){copyText($('#bT').value.replace(/\*/g,''));};
@@ -2728,36 +2772,388 @@ function reportView(){
 }
 var REPORT_M=null;
 
-/* ================= PHOTOS ================= */
-function avatarHtml(obj,fallback,cls){
-  return obj&&obj.photo?'<img class="'+(cls||'avimg')+'" src="'+esc(obj.photo)+'" alt="">':esc(String(fallback||'?').charAt(0).toUpperCase());
+
+/* ================= IMAGE STORE =================
+   Each full-size photo lives in its own cloud doc  etis/img_<id>  (max ~700 KB each, under Firestore's 1 MB doc limit)
+   and is cached on the phone in IndexedDB. Small thumbnails live in the index doc  etis/gallery. */
+var IMGC={},IDBP=null;
+function idb(){
+  if(IDBP)return IDBP;
+  IDBP=new Promise(function(res){
+    try{var r=indexedDB.open('etis_img',1);r.onupgradeneeded=function(){r.result.createObjectStore('i');};r.onsuccess=function(){res(r.result);};r.onerror=function(){res(null);};}catch(e){res(null);}
+  });
+  return IDBP;
+}
+function idbOp(mode,fn){
+  return idb().then(function(db){
+    if(!db)return null;
+    return new Promise(function(res){
+      try{var tx=db.transaction('i',mode),rq=fn(tx.objectStore('i'));tx.oncomplete=function(){res(rq&&rq.result);};tx.onerror=tx.onabort=function(){res(null);};}catch(e){res(null);}
+    });
+  });
+}
+function cloudOn(){return MODE==='cloud'&&READY&&USER&&!RO&&!CLOUD_EMPTY;}
+function imgPut(id,u){
+  IMGC[id]=u;idbOp('readwrite',function(s){return s.put(u,id);});
+  if(!cloudOn())return Promise.resolve(true);
+  return FB.setDoc(FB.doc(FB.db,'etis','img_'+id),{d:u,by:(USER&&USER.email)||'',at:FB.serverTimestamp()})
+    .then(function(){return true;},function(){toast('Photo could not upload. Check internet and try again.');return false;});
+}
+function imgGet(id){
+  if(!id)return Promise.resolve('');
+  if(IMGC[id])return Promise.resolve(IMGC[id]);
+  return idbOp('readonly',function(s){return s.get(id);}).then(function(u){
+    if(u){IMGC[id]=u;return u;}
+    if(MODE==='cloud'&&FB&&USER)return FB.getDoc(FB.doc(FB.db,'etis','img_'+id)).then(function(sn){
+      var d=snapExists(sn)?(sn.data()||{}).d:'';
+      if(d){IMGC[id]=d;idbOp('readwrite',function(s){return s.put(d,id);});}
+      return d||'';
+    },function(){return '';});
+    return '';
+  });
+}
+function imgDel(id){
+  if(!id)return;
+  delete IMGC[id];idbOp('readwrite',function(s){return s.delete(id);});
+  if(cloudOn())FB.deleteDoc(FB.doc(FB.db,'etis','img_'+id)).catch(function(){});
+}
+function kbOf(u){return Math.round((u||'').length*0.75/1024);}
+function fileToSrc(file){
+  return new Promise(function(res,rej){var fr=new FileReader();fr.onload=function(){res(fr.result);};fr.onerror=function(){rej(new Error('Could not read the picture.'));};fr.readAsDataURL(file);});
+}
+function srcToImg(src){
+  return new Promise(function(res,rej){var img=new Image();img.onload=function(){res(img);};img.onerror=function(){rej(new Error('This picture could not be opened.'));};img.src=src;});
+}
+/* o: {w,h,crop,maxChars,q}  — draws at most w×h, then lowers quality (and size) until under maxChars */
+function shrink(img,o){
+  var sw=img.naturalWidth||img.width,sh=img.naturalHeight||img.height,sx=0,sy=0,tw,th;
+  if(o.crop){var r=o.w/o.h;if(sw/sh>r){var nw=sh*r;sx=(sw-nw)/2;sw=nw;}else{var nh=sw/r;sy=(sh-nh)/2;sh=nh;}
+    var k0=Math.min(1,o.w/sw);tw=Math.round(sw*k0);th=Math.round(sh*k0);}
+  else{var k=Math.min(1,o.w/Math.max(sw,sh));tw=Math.round(sw*k);th=Math.round(sh*k);}
+  var q=o.q||0.88,out='';
+  for(var tries=0;tries<14;tries++){
+    var cv=document.createElement('canvas');cv.width=tw;cv.height=th;
+    var cx=cv.getContext('2d');cx.fillStyle='#fff';cx.fillRect(0,0,tw,th);cx.imageSmoothingQuality='high';cx.drawImage(img,sx,sy,sw,sh,0,0,tw,th);
+    out=cv.toDataURL('image/jpeg',q);
+    if(out.length<=o.maxChars)return out;
+    if(q>0.62)q-=0.08;else{tw=Math.round(tw*0.85);th=Math.round(th*0.85);}
+  }
+  return out;
+}
+/* sizes (chars of base64 ≈ bytes × 1.37) */
+var SZ={
+  gal:{w:1600,h:1600,maxChars:930000,q:0.9},          /* gallery full  ≤ ~680 KB */
+  galTh:{w:640,h:640,maxChars:70000,q:0.75},           /* gallery thumb ≤ ~50 KB */
+  cov:{w:1640,h:700,crop:true,maxChars:930000,q:0.9},  /* cover full    ≤ ~680 KB, wide like Facebook */
+  covTh:{w:900,h:384,crop:true,maxChars:80000,q:0.75},
+  pro:{w:1000,h:1000,maxChars:270000,q:0.88},          /* profile full  ≤ ~200 KB */
+  proTh:{w:144,h:144,crop:true,maxChars:20000,q:0.75}  /* small round icon */
+};
+function makeImg(file,a,b){
+  return fileToSrc(file).then(srcToImg).then(function(img){return {full:shrink(img,SZ[a]),th:shrink(img,SZ[b])};});
+}
+function pickFiles(multi,cb){
+  var i=document.createElement('input');i.type='file';i.accept='image/*';if(multi)i.multiple=true;i.style.display='none';
+  i.onchange=function(){var f=Array.prototype.slice.call(i.files||[]);if(i.parentNode)i.parentNode.removeChild(i);if(f.length)cb(f);};
+  document.body.appendChild(i);i.click();
+}
+
+/* ================= GALLERY + COVER (index doc etis/gallery) ================= */
+var GKEY='etis_gallery_v2',GAL_CAP=10,unsubM=null,pushMT=null;
+var GAL=(function(){try{var m=JSON.parse(localStorage.getItem(GKEY));if(m&&Array.isArray(m.items))return m;}catch(e){}return {cover:null,items:[]};})();
+function galSave(){
+  if(RO)return;
+  try{localStorage.setItem(GKEY,JSON.stringify(GAL));}catch(e){toast('Phone storage is full');}
+  flash('✓ Saved',true);
+  if(cloudOn()){
+    clearTimeout(pushMT);pushMT=setTimeout(function(){
+      FB.setDoc(FB.doc(FB.db,'etis','gallery'),{json:JSON.stringify(GAL),by:(USER&&USER.email)||'',at:FB.serverTimestamp()})
+        .then(function(){flash('✓ Synced',true);},function(){toast('Photos could not sync. Check internet.');});
+    },600);
+  }
+}
+function galMB(){var t=(GAL.cover?GAL.cover.kb||0:0);GAL.items.forEach(function(x){t+=x.kb||0;});return (t/1024).toFixed(1);}
+/* bring over v9 photos (etis/media, small) once */
+function migrateOld(old){
+  if(!old||(!old.cover&&!(old.gallery||[]).length)||GAL.cover||GAL.items.length||RO)return;
+  var jobs=[];
+  if(old.cover)jobs.push(srcToImg(old.cover).then(function(img){var id=uid();imgPut(id,old.cover);GAL.cover={id:id,th:shrink(img,SZ.covTh),kb:kbOf(old.cover)};}));
+  (old.gallery||[]).slice(0,GAL_CAP).forEach(function(g){
+    jobs.push(srcToImg(g.img).then(function(img){var id=g.id||uid();imgPut(id,g.img);GAL.items.push({id:id,th:shrink(img,SZ.galTh),cap:g.cap||'',kb:kbOf(g.img)});}));
+  });
+  Promise.all(jobs.map(function(p){return p.catch(function(){});})).then(function(){galSave();softRender();});
+}
+function startMedia(){
+  if(unsubM){unsubM();unsubM=null;}
+  var first=true;
+  try{
+    unsubM=FB.onSnapshot(FB.doc(FB.db,'etis','gallery'),function(sn){
+      if(sn.metadata&&sn.metadata.hasPendingWrites)return;
+      if(!snapExists(sn)){
+        if(first){first=false;
+          FB.getDoc(FB.doc(FB.db,'etis','media')).then(function(o){if(snapExists(o)){try{migrateOld(JSON.parse(o.data().json));}catch(e){}}},function(){});}
+        return;
+      }
+      first=false;
+      try{var m=JSON.parse((sn.data()||{}).json);
+        if(m&&Array.isArray(m.items)&&JSON.stringify(m)!==JSON.stringify(GAL)){
+          GAL=m;try{localStorage.setItem(GKEY,JSON.stringify(m));}catch(e){}
+          var h=location.hash||'#/home';if((h==='#/home'||h==='#/'||h==='#/total'||h==='')&&!document.querySelector('.phv'))softRender();
+        }
+      }catch(e){}
+    },function(){});
+  }catch(e){}
+}
+(function(){try{var o=JSON.parse(localStorage.getItem('etis_media_v1'));if(o&&!GAL.items.length&&!GAL.cover)setTimeout(function(){if(MODE!=='cloud')migrateOld(o);},1500);}catch(e){}})();
+
+function coverHtml(){
+  var c=GAL.cover;
+  if(c)return '<div class="cover" data-act="coverView"><img id="covImg" src="'+esc(c.th)+'" alt="Cover photo"><div class="cbtns edonly"><button class="btn-s" data-act="coverChange"><i>'+I.ul+'</i>Change</button><button class="btn-s" data-act="coverDel" style="color:var(--bad)"><i>'+I.trash+'</i>Remove</button></div></div>';
+  return '<div class="coveradd edonly" data-act="coverChange"><i style="width:22px;height:22px;display:inline-flex">'+I.ul+'</i>Add cover photo</div>';
+}
+function bindCover(root){
+  if(GAL.cover)imgGet(GAL.cover.id).then(function(u){var el=document.getElementById('covImg');if(u&&el)el.src=u;});
+  root.addEventListener('click',function(e){
+    var b=e.target.closest('[data-act="coverChange"],[data-act="coverDel"],[data-act="coverView"]');if(!b)return;
+    e.stopPropagation();
+    if(b.dataset.act==='coverView'){photoViewer([{id:GAL.cover.id,th:GAL.cover.th,cap:'Cover photo'}],0);return;}
+    if(RO)return;
+    if(b.dataset.act==='coverDel'){if(!confirm('Remove the cover photo?'))return;imgDel(GAL.cover.id);GAL.cover=null;galSave();softRender();return;}
+    pickFiles(false,function(f){
+      toast('Preparing photo…');
+      makeImg(f[0],'cov','covTh').then(function(r){
+        var old=GAL.cover,id=uid();
+        return imgPut(id,r.full).then(function(ok){
+          if(!ok)return;
+          if(old)imgDel(old.id);
+          GAL.cover={id:id,th:r.th,kb:kbOf(r.full)};galSave();toast('Cover saved ('+kbOf(r.full)+' KB)');softRender();
+        });
+      },function(er){toast(er.message);});
+    });
+  },true);
+}
+function galleryHtml(){
+  var g=GAL.items;
+  var h='<section class="card"><div class="sec-h"><h3>Gallery</h3><button class="btn-s edonly" id="gAdd"><i>'+I.plus+'</i>Add photos</button></div>';
+  if(!g.length)h+='<div class="empty">No photos yet.<span class="edonly"> Tap “Add photos” to put Jibannagar pictures here.</span></div>';
+  else h+='<div class="gal">'+g.map(function(x,i){return '<div class="gi" data-gi="'+i+'"><img '+(i===0?'id="gi0" ':'')+'src="'+esc(x.th)+'" alt="'+esc(x.cap||'Photo '+(i+1))+'" loading="lazy">'+(x.cap?'<div class="gc">'+esc(x.cap)+'</div>':'')+'</div>';}).join('')+'</div>';
+  h+='<p class="muted" style="font-size:12px;margin-top:8px">Tap a photo to see it full screen'+(g.length>1?' · swipe for the next':'')+'<span class="edonly"> · '+g.length+' of '+GAL_CAP+' photos · '+galMB()+' MB</span></p></section>';
+  return h;
+}
+function bindGallery(root){
+  if(GAL.items[0])imgGet(GAL.items[0].id).then(function(u){var el=document.getElementById('gi0');if(u&&el)el.src=u;});
+  var add=root.querySelector('#gAdd');
+  if(add)add.onclick=function(){
+    var room=GAL_CAP-GAL.items.length;if(room<=0){toast('Gallery is full ('+GAL_CAP+' photos). Delete one first.');return;}
+    pickFiles(true,function(files){
+      var extra=files.length-room;files=files.slice(0,room);var added=0,bad=0;
+      toast('Preparing '+files.length+' photo'+(files.length===1?'':'s')+'…');
+      files.reduce(function(p,f){return p.then(function(){
+        return makeImg(f,'gal','galTh').then(function(r){var id=uid();return imgPut(id,r.full).then(function(ok){if(ok){GAL.items.push({id:id,th:r.th,cap:'',kb:kbOf(r.full)});added++;}else bad++;});},function(){bad++;});
+      });},Promise.resolve()).then(function(){
+        if(added)galSave();
+        toast(added+' photo'+(added===1?'':'s')+' added'+(bad?' · '+bad+' failed':'')+(extra>0?' · '+extra+' skipped (max '+GAL_CAP+')':''));softRender();
+      });
+    });
+  };
+  root.querySelectorAll('[data-gi]').forEach(function(el){el.onclick=function(){
+    photoViewer(GAL.items.map(function(x){return {id:x.id,th:x.th,cap:x.cap};}),+el.dataset.gi,{gallery:true});
+  };});
+}
+
+/* ================= FULL-SCREEN PHOTO VIEWER (pinch / double-tap zoom, swipe) ================= */
+function photoViewer(list,idx,opt){
+  opt=opt||{};if(!list.length)return;
+  var edit=opt.gallery&&!RO;
+  var d=document.createElement('div');d.className='phv';
+  d.innerHTML='<div class="pv-top"><span id="pvN"></span><button class="pv-x" aria-label="Close">'+I.x+'</button></div>'+
+    '<div class="pv-stage" id="pvS"><img id="pvI" alt="" draggable="false"></div>'+
+    (list.length>1?'<button class="pv-nav pv-p" aria-label="Previous">‹</button><button class="pv-nav pv-n" aria-label="Next">›</button>':'')+
+    '<div class="pv-bot"><div id="pvC" class="pv-cap"></div>'+
+    (edit?'<input class="cell" id="pvCi" placeholder="Caption (optional)" maxlength="80"><div class="pv-btns"><button class="btn-s" data-a="rep"><i>'+I.ul+'</i>Replace</button><button class="btn-s" data-a="del" style="color:var(--bad)"><i>'+I.trash+'</i>Delete</button></div>':'')+
+    '</div>';
+  document.body.appendChild(d);document.body.style.overflow='hidden';
+  var img=d.querySelector('#pvI'),stage=d.querySelector('#pvS'),S=1,X=0,Y=0,cur=idx;
+  function apply(anim){img.style.transition=anim?'transform .2s':'none';img.style.transform='translate('+X+'px,'+Y+'px) scale('+S+')';}
+  function show(i){
+    cur=(i+list.length)%list.length;var it=list[cur];S=1;X=0;Y=0;apply();
+    img.src=it.th||'';img.classList.add('ld');
+    d.querySelector('#pvN').textContent=list.length>1?(cur+1)+' / '+list.length:'';
+    d.querySelector('#pvC').textContent=edit?'':(it.cap||'');
+    var ci=d.querySelector('#pvCi');if(ci)ci.value=GAL.items[cur]?GAL.items[cur].cap||'':'';
+    imgGet(it.id).then(function(u){if(cur===list.indexOf(it)&&u){img.src=u;}img.classList.remove('ld');});
+  }
+  function saveCap(){var ci=d.querySelector('#pvCi');if(ci&&GAL.items[cur]&&ci.value.trim()!==(GAL.items[cur].cap||'')){GAL.items[cur].cap=ci.value.trim();galSave();}}
+  function close(){saveCap();document.removeEventListener('keydown',key);if(d.parentNode)d.parentNode.removeChild(d);document.body.style.overflow='';if(opt.gallery)softRender();}
+  function key(e){if(e.key==='Escape')close();else if(e.key==='ArrowRight')go(1);else if(e.key==='ArrowLeft')go(-1);}
+  function go(n){if(list.length<2)return;saveCap();show(cur+n);}
+  document.addEventListener('keydown',key);
+  d.querySelector('.pv-x').onclick=close;
+  if(list.length>1){d.querySelector('.pv-p').onclick=function(){go(-1);};d.querySelector('.pv-n').onclick=function(){go(1);};}
+  /* touch: pinch zoom, pan, swipe, double tap */
+  var t0=null,pinch=null,lastTap=0;
+  stage.addEventListener('touchstart',function(e){
+    if(e.touches.length===2){var a=e.touches[0],b=e.touches[1];pinch={dist:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY),S:S};t0=null;}
+    else if(e.touches.length===1){t0={x:e.touches[0].clientX,y:e.touches[0].clientY,X:X,Y:Y,t:Date.now()};}
+  },{passive:true});
+  stage.addEventListener('touchmove',function(e){
+    if(pinch&&e.touches.length===2){e.preventDefault();var a=e.touches[0],b=e.touches[1];S=Math.max(1,Math.min(5,pinch.S*Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)/pinch.dist));if(S===1){X=0;Y=0;}apply();}
+    else if(t0&&e.touches.length===1){e.preventDefault();var dx=e.touches[0].clientX-t0.x,dy=e.touches[0].clientY-t0.y;
+      if(S>1){X=t0.X+dx;Y=t0.Y+dy;}else{X=dx;Y=0;}apply();}
+  },{passive:false});
+  stage.addEventListener('touchend',function(e){
+    if(pinch){if(e.touches.length<2)pinch=null;return;}
+    if(!t0)return;var dx=X-t0.X,dt=Date.now()-t0.t,moved=Math.abs(e.changedTouches[0].clientX-t0.x)+Math.abs(e.changedTouches[0].clientY-t0.y);
+    if(S===1){
+      if(Math.abs(dx)>60&&list.length>1){go(dx<0?1:-1);}else{X=0;apply(true);}
+      if(moved<10&&dt<300){var now=Date.now();if(now-lastTap<300){S=2.5;apply(true);lastTap=0;}else lastTap=now;}
+    }else if(moved<10&&dt<300){var n2=Date.now();if(n2-lastTap<300){S=1;X=0;Y=0;apply(true);lastTap=0;}else lastTap=n2;}
+    t0=null;
+  });
+  stage.addEventListener('dblclick',function(){if(S>1){S=1;X=0;Y=0;}else S=2.5;apply(true);});
+  stage.addEventListener('wheel',function(e){e.preventDefault();S=Math.max(1,Math.min(5,S*(e.deltaY<0?1.15:0.87)));if(S===1){X=0;Y=0;}apply();},{passive:false});
+  d.addEventListener('click',function(e){
+    var b=e.target.closest('[data-a]');if(!b)return;
+    var it=GAL.items[cur];if(!it)return;
+    if(b.dataset.a==='del'){
+      if(!confirm('Delete this photo?'))return;
+      imgDel(it.id);GAL.items.splice(cur,1);galSave();toast('Photo deleted');
+      list.splice(cur,1);if(!list.length){close();return;}show(cur);
+    }else if(b.dataset.a==='rep'){
+      pickFiles(false,function(f){toast('Preparing photo…');makeImg(f[0],'gal','galTh').then(function(r){
+        var id=uid();return imgPut(id,r.full).then(function(ok){if(!ok)return;
+          imgDel(it.id);it.id=id;it.th=r.th;it.kb=kbOf(r.full);galSave();
+          list[cur]={id:id,th:r.th,cap:it.cap};show(cur);toast('Photo replaced ('+it.kb+' KB)');});
+      },function(er){toast(er.message);});});
+    }
+  });
+  show(idx);
+}
+
+/* ================= PROFILE PHOTOS ================= */
+/* obj.photo = small round icon (inside main data);  obj.photoFull = id of the ~200 KB photo shown when tapped */
+function avatarHtml(obj,fallback,cls,zoom){
+  if(!(obj&&obj.photo))return esc(String(fallback||'?').charAt(0).toUpperCase());
+  return '<img class="'+(cls||'avimg')+'" src="'+esc(obj.photo)+'" alt=""'+(zoom?' data-zoom="'+esc(obj.photoFull||'')+'" style="cursor:zoom-in"':'')+'>';
 }
 function resizePhoto(file,size){
-  return new Promise(function(res,rej){
-    var fr=new FileReader();
-    fr.onload=function(){
-      var img=new Image();
-      img.onload=function(){
-        var s=Math.min(img.width,img.height),cv=document.createElement('canvas');cv.width=size;cv.height=size;
-        cv.getContext('2d').drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,size,size);
-        res(cv.toDataURL('image/jpeg',0.72));
-      };
-      img.onerror=function(){rej(new Error('This picture could not be opened.'));};
-      img.src=fr.result;
-    };
-    fr.onerror=function(){rej(new Error('Could not read the picture.'));};
-    fr.readAsDataURL(file);
-  });
+  return fileToSrc(file).then(srcToImg).then(function(img){return shrink(img,{w:size,h:size,crop:true,maxChars:20000,q:0.75});});
 }
 function photoControls(obj,rerender){
   var id='ph'+Math.random().toString(36).slice(2,7);
   setTimeout(function(){
     var inp=document.getElementById(id),rm=document.getElementById(id+'r');
     if(inp)inp.onchange=function(){var f=this.files&&this.files[0];if(!f)return;
-      resizePhoto(f,144).then(function(u){obj.photo=u;save();toast('Photo saved ('+Math.round(u.length*0.75/1024)+' KB)');rerender();},function(e){toast(e.message);});};
-    if(rm)rm.onclick=function(){if(!confirm('Remove this photo?'))return;delete obj.photo;save();rerender();};
+      toast('Preparing photo…');
+      makeImg(f,'pro','proTh').then(function(r){
+        var nid=uid();
+        return imgPut(nid,r.full).then(function(ok){
+          if(!ok)return;
+          if(obj.photoFull)imgDel(obj.photoFull);
+          obj.photo=r.th;obj.photoFull=nid;save();toast('Photo saved ('+kbOf(r.full)+' KB)');rerender();
+        });
+      },function(e){toast(e.message);});};
+    if(rm)rm.onclick=function(){if(!confirm('Remove this photo?'))return;if(obj.photoFull)imgDel(obj.photoFull);delete obj.photo;delete obj.photoFull;save();rerender();};
   },0);
   return '<div class="phbtns edonly"><label class="btn-s" for="'+id+'" style="cursor:pointer"><i>'+I.ul+'</i>'+(obj.photo?'Change photo':'Add photo')+'</label><input type="file" id="'+id+'" accept="image/*" class="hidden">'+(obj.photo?'<button class="btn-s" id="'+id+'r" style="background:var(--bad-l);color:var(--bad)"><i>'+I.trash+'</i>Remove</button>':'')+'</div>';
+}
+document.addEventListener('click',function(e){
+  var z=e.target.closest('img[data-zoom]');if(!z)return;
+  e.preventDefault();e.stopPropagation();
+  photoViewer([{id:z.dataset.zoom,th:z.src,cap:''}],0);
+},true);
+
+/* ================= HAAT-BAZAR ================= */
+var WD=[6,0,1,2,3,4,5],WDBN={6:'শনি',0:'রবি',1:'সোম',2:'মঙ্গল',3:'বুধ',4:'বৃহঃ',5:'শুক্র'},WDEN={6:'Sat',0:'Sun',1:'Mon',2:'Tue',3:'Wed',4:'Thu',5:'Fri'};
+function todayBazars(){var t=new Date().getDay();return (data.bazars||[]).filter(function(b){return (b.days||[]).indexOf(t)>=0;});}
+function bzRso(b){var r=data.rsos.find(function(x){return x.id===b.rso;});return r?r.name:'';}
+function bzMap(b){
+  var la=parseFloat(b.lat),lo=parseFloat(b.lng);
+  if(isFinite(la)&&isFinite(lo))return 'https://www.google.com/maps/dir/?api=1&destination='+la+','+lo;
+  return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent((b.name||'')+(/bazar|haat|hat|বাজার|হাট/i.test(b.name||'')?'':' bazar')+', Jibannagar, Chuadanga');
+}
+function bzDays(b,hl){var t=new Date().getDay();return WD.filter(function(d){return (b.days||[]).indexOf(d)>=0;}).map(function(d){return '<span class="dchip'+(hl&&d===t?' on':'')+'">'+WDBN[d]+'</span>';}).join('')||'<span class="muted" style="font-size:12px">Day not set</span>';}
+function bazarText(){
+  var t=HDR+'*Jibannagar haat-bazar*\n',tb=todayBazars();
+  if(tb.length)t+='🛒 Today ('+WDBN[new Date().getDay()]+'): '+tb.map(function(b){return b.name;}).join(', ')+'\n';
+  t+='\n';
+  (data.bazars||[]).forEach(function(b,i){
+    t+=(i+1)+'. *'+b.name+'* — '+(WD.filter(function(d){return (b.days||[]).indexOf(d)>=0;}).map(function(d){return WDBN[d];}).join(', ')||'day not set')+
+      (bzRso(b)?' · RSO '+bzRso(b):'')+(num(b.ret)?' · '+fmt(b.ret)+' retailers':'')+(b.note?'\n   '+b.note:'')+'\n   📍 '+bzMap(b)+'\n';
+  });
+  return t;
+}
+function bazarCard(b,today){
+  return '<div class="card bz'+(today?' bz-today':'')+'">'+
+    '<div class="bz-h"><div style="min-width:0"><h3>'+esc(b.name||'Unnamed bazar')+'</h3><div class="dchips">'+bzDays(b,true)+'</div></div>'+
+    '<button class="btn-s edonly" data-bze="'+b.id+'">Edit</button></div>'+
+    '<div class="bz-m">'+(bzRso(b)?'<span>👤 '+esc(bzRso(b))+'</span>':'')+(num(b.ret)?'<span>🏪 '+fmt(b.ret)+' retailers</span>':'')+
+      (String(b.lat).trim()&&String(b.lng).trim()?'<span>📍 '+esc(b.lat)+', '+esc(b.lng)+'</span>':'<span class="muted">📍 No location yet</span>')+'</div>'+
+    (b.note?'<p class="bz-n">'+esc(b.note)+'</p>':'')+
+    '<a class="btn-o btn-blue bz-map" href="'+esc(bzMap(b))+'" target="_blank" rel="noopener"><i>'+I.globe+'</i>'+(String(b.lat).trim()?'Directions on Map':'Search on Map')+'</a></div>';
+}
+function bazarView(){
+  data.bazars=data.bazars||[];
+  top('হাট-বাজার','#/total','Jibannagar markets · '+data.bazars.length);
+  var t=new Date().getDay(),tb=todayBazars(),rest=data.bazars.filter(function(b){return tb.indexOf(b)<0;});
+  rest.sort(function(a,b){function nx(x){var ds=(x.days||[]).map(function(d){return (d-t+7)%7;});return ds.length?Math.min.apply(null,ds):9;}return nx(a)-nx(b)||String(a.name).localeCompare(String(b.name));});
+  view.innerHTML=
+    '<div class="sec-h"><span class="chip c-blue">আজ '+['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'][t]+' · '+tb.length+'টা বাজার</span><button class="btn-s edonly" data-bze="new"><i>'+I.plus+'</i>Add bazar</button></div>'+
+    (data.bazars.length?'':'<section class="card"><div class="empty">No bazar yet.<span class="edonly"> Tap “Add bazar” — name, days, location.</span></div></section>')+
+    (tb.length?'<div class="sec-title">🛒 আজকের বাজার</div>'+tb.map(function(b){return bazarCard(b,true);}).join(''):'')+
+    (rest.length?'<div class="sec-title">'+(tb.length?'অন্য দিনের বাজার':'সব বাজার')+' <span style="font-weight:600;text-transform:none;letter-spacing:0">next day first</span></div>'+rest.map(function(b){return bazarCard(b,false);}).join(''):'')+
+    (data.bazars.length?'<div class="actions mt">'+shareBtn('Share bazar list on WhatsApp')+'</div>':'');
+  view.onclick=function(e){var b=e.target.closest('[data-bze]');if(b)location.hash='#/bazare/'+b.dataset.bze;};
+  var sh=$('#share');
+  if(sh)sh.onclick=function(){
+    shareMenu({title:'Jibannagar haat-bazar',text:bazarText(),tables:[{cap:'Haat-bazar',head:['Bazar','Days','RSO','Retailers','Lat','Long','Note'],
+      rows:data.bazars.map(function(b){return [b.name,WD.filter(function(d){return (b.days||[]).indexOf(d)>=0;}).map(function(d){return WDEN[d];}).join(', '),bzRso(b),num(b.ret)||'',b.lat||'',b.lng||'',b.note||''];})}]});
+  };
+}
+function bazarEdit(id){
+  if(RO){location.hash='#/bazar';return;}
+  data.bazars=data.bazars||[];
+  var isNew=id==='new',b=isNew?{id:uid(),name:'',days:[],lat:'',lng:'',ret:'',note:'',rso:''}:data.bazars.find(function(x){return x.id===id;});
+  if(!b){location.hash='#/bazar';return;}
+  var w=JSON.parse(JSON.stringify(b));
+  top(isNew?'New bazar':'Edit bazar','#/bazar',isNew?'Jibannagar haat-bazar':b.name);
+  function paint(){
+    view.innerHTML='<section class="card">'+
+      '<div class="frow"><label class="flbl" for="bN">Bazar name</label><div class="fin"><input class="cell" id="bN" value="'+esc(w.name)+'" placeholder="e.g. Jibannagar Bazar"></div></div>'+
+      '<div class="frow"><span class="flbl">Bazar days</span><div class="fin dpick">'+WD.map(function(d){return '<button type="button" class="dchip big'+((w.days||[]).indexOf(d)>=0?' on':'')+'" data-d="'+d+'">'+WDBN[d]+'</button>';}).join('')+'</div></div>'+
+      '<div class="frow"><label class="flbl" for="bR">RSO in charge</label><div class="fin"><select class="cell" id="bR"><option value="">— None —</option>'+data.rsos.map(function(r){return '<option value="'+r.id+'"'+(r.id===w.rso?' selected':'')+'>'+esc(r.name)+'</option>';}).join('')+'</select></div></div>'+
+      '<div class="frow"><label class="flbl" for="bT">Retailers</label><div class="fin"><input class="cell" id="bT" type="number" inputmode="numeric" min="0" value="'+esc(w.ret)+'" placeholder="How many retailers"></div></div>'+
+      '<div class="frow"><label class="flbl" for="bO">Note</label><div class="fin"><textarea class="cell" id="bO" style="height:76px;font-family:inherit" placeholder="e.g. GP is strong here, big Saturday crowd">'+esc(w.note)+'</textarea></div></div>'+
+      '<div class="frow"><label class="flbl" for="bLa">Latitude</label><div class="fin"><input class="cell" id="bLa" inputmode="decimal" value="'+esc(w.lat)+'" placeholder="23.4xxxxx"></div></div>'+
+      '<div class="frow"><label class="flbl" for="bLo">Longitude</label><div class="fin"><input class="cell" id="bLo" inputmode="decimal" value="'+esc(w.lng)+'" placeholder="88.8xxxxx"></div></div>'+
+      '<div class="actions" style="margin-top:6px"><button class="btn-o" id="bGps"><i>'+I.globe+'</i>Use my current location</button></div>'+
+      '<p class="muted" style="font-size:12px;margin-top:6px">Stand at the bazar and tap the button, or copy lat/long from Google Maps (long-press a spot).</p>'+
+      '</section><div class="actions mt"><button class="btn btn-p" id="bSave" style="flex:1">Save bazar</button>'+(isNew?'':'<button class="btn-o" id="bDel" style="color:var(--bad)"><i>'+I.trash+'</i>Delete</button>')+'</div>';
+  }
+  paint();
+  function read(){w.name=$('#bN').value.trim();w.rso=$('#bR').value;w.ret=$('#bT').value.trim();w.note=$('#bO').value.trim();w.lat=$('#bLa').value.trim();w.lng=$('#bLo').value.trim();}
+  view.onclick=function(e){
+    var dc=e.target.closest('[data-d]');
+    if(dc){var d=+dc.dataset.d,i=w.days.indexOf(d);if(i>=0)w.days.splice(i,1);else w.days.push(d);dc.classList.toggle('on');return;}
+    if(e.target.closest('#bGps')){
+      if(!navigator.geolocation){toast('Location is not available on this browser');return;}
+      toast('Getting location…');
+      navigator.geolocation.getCurrentPosition(function(p){$('#bLa').value=p.coords.latitude.toFixed(6);$('#bLo').value=p.coords.longitude.toFixed(6);toast('Location added — tap Save');},
+        function(){toast('Could not get location. Turn on GPS or type lat/long.');},{enableHighAccuracy:true,timeout:15000});
+      return;
+    }
+    if(e.target.closest('#bSave')){
+      read();
+      if(!w.name){toast('Enter the bazar name');$('#bN').focus();return;}
+      if((w.lat&&!isFinite(parseFloat(w.lat)))||(w.lng&&!isFinite(parseFloat(w.lng)))){toast('Latitude/longitude must be numbers');return;}
+      if(isNew)data.bazars.push(w);else Object.assign(b,w);
+      save();toast('Bazar saved');location.hash='#/bazar';return;
+    }
+    if(e.target.closest('#bDel')){
+      if(!confirm('Delete "'+b.name+'"?'))return;
+      data.bazars=data.bazars.filter(function(x){return x.id!==b.id;});save();toast('Bazar deleted');location.hash='#/bazar';
+    }
+  };
 }
 
 /* ================= INSTALL (PWA) ================= */
@@ -2919,7 +3315,9 @@ function pageLabel(p){
     case 'rsos':return 'RSO list';
     case 'bps':return 'BP list';
     case 'rso':var mb=memberById(p[1]);return (mb?gLbl(mb.g):'RSO')+' · '+(mb?mb.m.name:'?');
-    case 'total':return 'KHUCHU04 In Total';
+    case 'total':return 'KHUCHU04/Jibannagar er সবকিছু';
+    case 'bazar':return 'Haat-bazar';
+    case 'bazare':return 'Haat-bazar · edit';
     case 'camp':return 'Campaigns';
     case 'brief':return 'Morning briefing';
     case 'trend':return 'Trend chart';
@@ -3001,6 +3399,8 @@ function render(){
     case 'bps':bpsView();break;
     case 'rso':rsoView(p[1],p[2]);break;
     case 'total':totalView();break;
+    case 'bazar':bazarView();break;
+    case 'bazare':bazarEdit(p[1]);break;
     case 'settings':settingsView();break;
     case 'links':linksView();break;
     case 'activity':activityView();break;
@@ -3077,7 +3477,7 @@ function checkRole(){
     if(r==='ok')setSync('● Live','live');else if(RO)setSync('View only','ro');else setSync('Offline','off');
   });
 }
-function stopListeners(){if(unsub){unsub();unsub=null;}if(unsubV){unsubV();unsubV=null;}}
+function stopListeners(){if(unsubM){unsubM();unsubM=null;}if(unsub){unsub();unsub=null;}if(unsubV){unsubV();unsubV=null;}}
 function snapExists(sn){return typeof sn.exists==='function'?sn.exists():!!sn.exists;}
 function startData(after){
   var first=true;
@@ -3092,7 +3492,7 @@ function startData(after){
         if(valid(nd)){lastJson=d.json;data=fix(nd);store.set(KEY,d.json);}
       }else onRemote(d.json,d.by);
     }
-    if(first){first=false;after().then(function(){READY=true;render();});}
+    if(first){first=false;startMedia();after().then(function(){READY=true;render();});}
     else if(!exists&&READY)softRender();
   },function(err){
     if(BLOCKED)return;
