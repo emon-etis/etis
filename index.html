@@ -235,6 +235,21 @@ textarea.cell{height:110px;padding:10px;font-size:13px;font-family:ui-monospace,
 #toast.on{opacity:1;transform:translate(-50%,0)}
 @media (min-width:600px){#sheet{align-items:center}.sh-card{border-radius:20px}}
 
+/* SYNC */
+.sync{font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:99px;white-space:nowrap;background:#eef0f4;color:var(--muted)}
+.sync.live{background:var(--good-l);color:#166534}
+.sync.ro{background:var(--blue-l);color:#1e40af}
+.sync.off{background:var(--warn-l);color:#8a5600}
+.lmode{font-size:12.5px;color:var(--muted);text-align:center;margin-top:12px}
+.linkbtn{color:var(--brand-d);font-weight:700;font-size:13px;text-decoration:underline;display:block;margin:12px auto 0}
+.btn:disabled{opacity:.6}
+.loading{text-align:center;padding:60px 16px;color:var(--muted)}
+.spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--brand);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+body.ro .kdel,body.ro .addcard,body.ro #addF,body.ro [data-delf],body.ro #addT,body.ro #del,body.ro #gps,body.ro #ren,body.ro .notice,body.ro .edonly{display:none!important}
+body.ro .cell{background:#fafbfc}
+@media (max-width:420px){.saved{display:none}}
+
 /* MOBILE */
 @media (max-width:760px){
   .stats{grid-template-columns:repeat(2,1fr);gap:10px}
@@ -271,10 +286,10 @@ textarea.cell{height:110px;padding:10px;font-size:13px;font-family:ui-monospace,
     <h1>ETIS <span>/</span> KHUCHU04</h1>
     <p class="lsub">Emon's Territory Intelligence System</p>
     <div class="field">
-      <label for="lu">Username</label>
+      <label for="lu" id="luL">Email</label>
       <div class="inwrap">
         <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></svg></span>
-        <input id="lu" type="text" placeholder="Enter username" autocapitalize="none" spellcheck="false">
+        <input id="lu" type="email" placeholder="you@example.com" autocapitalize="none" autocomplete="username" spellcheck="false">
       </div>
     </div>
     <div class="field">
@@ -286,8 +301,10 @@ textarea.cell{height:110px;padding:10px;font-size:13px;font-family:ui-monospace,
       </div>
     </div>
     <div class="lerr" id="lerr"></div>
-    <button class="btn btn-p" type="submit">Login</button>
-    <div class="demo" id="demo">Default login → Username: <b>admin</b> · Password: <b>123456</b><br>Change it any time from Settings.</div>
+    <button class="btn btn-p" type="submit" id="lbtn">Login</button>
+    <button type="button" class="linkbtn hidden" id="forgot">Forgot password?</button>
+    <p class="lmode" id="lmode">Connecting to cloud…</p>
+    <div class="demo hidden" id="demo">Default login → Username: <b>admin</b> · Password: <b>123456</b><br>Change it any time from Settings.</div>
   </form>
 </div>
 
@@ -298,6 +315,7 @@ textarea.cell{height:110px;padding:10px;font-size:13px;font-family:ui-monospace,
       <div class="tb-brand" id="tbBrand">E</div>
       <div class="tb-t"><b id="tbTitle">ETIS</b><small id="tbSub"></small></div>
       <span class="saved" id="saved">✓ Saved</span>
+      <span class="sync hidden" id="sync"></span>
       <button class="tb-ic" id="setBtn" aria-label="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
       <button class="tb-ic logout" id="logoutBtn" aria-label="Logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
     </div>
@@ -308,10 +326,52 @@ textarea.cell{height:110px;padding:10px;font-size:13px;font-family:ui-monospace,
 <div id="sheet" class="hidden"></div>
 <div id="toast"></div>
 
+<script type="module">
+/* Firebase loader — if it cannot load, the app falls back to offline (this-device) mode */
+const firebaseConfig = {
+  apiKey: "AIzaSyDNfF3NtePGgR_barsFDxltt-Qfpi1P49o",
+  authDomain: "etis-khuchu04.firebaseapp.com",
+  projectId: "etis-khuchu04",
+  storageBucket: "etis-khuchu04.firebasestorage.app",
+  messagingSenderId: "172916324789",
+  appId: "1:172916324789:web:9a584ea79b124a24f701fc"
+};
+const VERSIONS = ['13.2.0', '11.10.0'];
+(async function () {
+  for (const v of VERSIONS) {
+    try {
+      const base = 'https://www.gstatic.com/firebasejs/' + v + '/';
+      const [a, au, fs] = await Promise.all([
+        import(base + 'firebase-app.js'), import(base + 'firebase-auth.js'), import(base + 'firebase-firestore.js')
+      ]);
+      const app = a.initializeApp(firebaseConfig);
+      const auth = au.getAuth(app);
+      const db = fs.getFirestore(app);
+      window.ETIS_FB = {
+        db, doc: fs.doc, setDoc: fs.setDoc, serverTimestamp: fs.serverTimestamp,
+        onSnapshot: (ref, ok, er) => fs.onSnapshot(ref, ok, er),
+        onAuth: (cb) => au.onAuthStateChanged(auth, cb),
+        signIn: (e, p) => au.signInWithEmailAndPassword(auth, e, p),
+        signOut: () => au.signOut(auth),
+        reset: (e) => au.sendPasswordResetEmail(auth, e),
+        changePass: (cur, np) => au.reauthenticateWithCredential(auth.currentUser, au.EmailAuthProvider.credential(auth.currentUser.email, cur))
+          .then(() => au.updatePassword(auth.currentUser, np))
+      };
+      window.dispatchEvent(new Event('etis-fb'));
+      return;
+    } catch (e) { console.warn('Firebase ' + v + ' failed to load', e); }
+  }
+  window.ETIS_FB_FAIL = true;
+  window.dispatchEvent(new Event('etis-fb'));
+})();
+</script>
+
 <script>
 (function(){
 "use strict";
-var KEY='etis_data_v2', AUTH='etis_auth_v2';
+var KEY='etis_data_v2', AUTH='etis_auth_v2', SORTKEY='etis_sort';
+/* cloud state */
+var MODE='loading',FB=null,USER=null,READY=false,RO=false,CLOUD_EMPTY=false,pushT=null,lastJson='',pendingRemote=null,deferRender=false,unsub=null,FBDONE=false;
 var $=function(s){return document.querySelector(s);};
 var view=$('#view');
 
@@ -417,11 +477,29 @@ function load(){
 }
 var data=load();
 var savedT;
-function save(){
-  var ok=store.set(KEY,JSON.stringify(data));
-  var el=$('#saved');el.textContent=ok?'✓ Saved':'⚠ Not saved';el.style.color=ok?'':'var(--bad)';
+function flash(t,ok){
+  var el=$('#saved');el.textContent=t;el.style.color=ok?'':'var(--bad)';
   el.classList.add('on');clearTimeout(savedT);savedT=setTimeout(function(){el.classList.remove('on');},1200);
 }
+function save(){
+  if(RO)return;
+  var ok=store.set(KEY,JSON.stringify(data));
+  flash(ok?'✓ Saved':'⚠ Not saved',ok);
+  if(MODE==='cloud'&&READY&&USER&&!CLOUD_EMPTY){clearTimeout(pushT);pushT=setTimeout(push,700);setSync('Syncing…','');}
+}
+function setSync(t,cls){var s=$('#sync');s.textContent=t;s.className='sync'+(cls?' '+cls:'')+(t?'':' hidden');}
+function push(){
+  clearTimeout(pushT);pushT=null;
+  var json=JSON.stringify(data);lastJson=json;
+  return FB.setDoc(FB.doc(FB.db,'etis','main'),{json:json,v:2,by:(USER&&USER.email)||'',at:FB.serverTimestamp()})
+    .then(function(){setSync('● Live','live');flash('✓ Synced',true);})
+    .catch(function(e){
+      if(e&&e.code==='permission-denied'){RO=true;setSync('View only','ro');toast('You have view-only access');softRender();}
+      else{setSync('Not synced','off');toast('Could not sync. Check internet — it will sync on your next change.');}
+    });
+}
+function getSort(){return store.get(SORTKEY)||'default';}
+function setSort(v){store.set(SORTKEY,v);}
 function ensureMonth(){
   var cur=curKey();
   if(data.months[cur])return;
@@ -502,6 +580,11 @@ function formSheet(title,fields,submit,onSubmit){
     e.preventDefault();
     var vals=fields.map(function(f,i){return el.querySelector('#sf'+i).value.trim();});
     var err=onSubmit(vals);
+    if(err&&typeof err.then==='function'){
+      var btn=el.querySelector('button[type=submit]');btn.disabled=true;btn.textContent='Please wait…';
+      err.then(function(m){if(m){$('#sferr').textContent=m;btn.disabled=false;btn.textContent=submit;}else closeSheet();});
+      return;
+    }
     if(err){$('#sferr').textContent=err;return;}
     closeSheet();
   };
@@ -599,7 +682,8 @@ function home(){
   var mgr=data.people.manager.fields.find(function(f){return f.c==='name';});
   var kp=m.kpis.map(function(k){return {k:k,s:kpiSum(k)};});
   view.innerHTML=
-  '<section class="hero"><div><p class="hero-k">'+greet+', Emon 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
+  (CLOUD_EMPTY&&!RO?'<div class="notice" style="margin:0 0 14px"><span class="sp">☁️ <b>Cloud is empty.</b> Upload the data on this device so Naim and others can see it. Do this from the device that has your real numbers.</span><button data-act="upload">Upload this device\'s data</button></div>':'')+
+  '<section class="hero"><div><p class="hero-k">'+greet+(MODE==='cloud'?'':', Emon')+' 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
   '<div class="score"><b>'+pctTxt(sc)+'</b><small>'+mlabel(cur).split(' ')[0]+' score</small></div></section>'+
   (data.sampleNotice?'<div class="notice"><span class="sp">📌 This month\'s KPIs and the towers have <b>sample numbers</b> so you can test. Clear them before entering real data.</span><button data-act="clearSample">Clear sample numbers</button><button data-act="keepSample">Keep</button></div>':'')+
   '<div class="sec-title">KPI</div>'+
@@ -630,6 +714,10 @@ function home(){
       data.towers=data.towers.filter(function(t){return t.name.indexOf('Sample BTS')!==0;});
       data.sampleNotice=false;save();home();toast('Sample numbers cleared');
     }else if(b.dataset.act==='keepSample'){data.sampleNotice=false;save();home();}
+    else if(b.dataset.act==='upload'){
+      b.disabled=true;b.textContent='Uploading…';
+      CLOUD_EMPTY=false;push().then(function(){toast('Uploaded — live sync is on');home();});
+    }
   };
 }
 function terrVal(c){var f=data.territory.fields.find(function(x){return x.c===c;});return f?String(f.v).trim():'';}
@@ -673,14 +761,14 @@ function kpiView(k,id){
   var m=data.months[k];if(!m){location.hash='#/home';return;}
   var kp=m.kpis.find(function(x){return x.id===id;});if(!kp){location.hash='#/month/'+k;return;}
   top(kp.name,'#/month/'+k,mlabel(k)+' · RSO-wise');
-  var mode=data.sort.kpi||'default';
+  var mode=getSort();
   view.innerHTML='<div id="sum"></div>'+
   '<section class="card tablecard"><div class="sec-h"><h3>RSO-wise Performance</h3><div class="seg" id="seg">'+
   [['default','Serial'],['pctDesc','Top %'],['pctAsc','Low %'],['gapDesc','Big Gap']].map(function(o){return '<button data-s="'+o[0]+'" class="'+(mode===o[0]?'on':'')+'">'+o[1]+'</button>';}).join('')+
   '</div></div><table class="rso"><thead><tr><th>RSO</th><th>Target</th><th>Achievement</th><th>Gap</th><th>Achievement %</th></tr></thead><tbody id="tb"></tbody></table></section>'+
   '<div class="actions mt">'+shareBtn('Send '+esc(kp.name)+' report on WhatsApp')+'<button class="btn-o" id="ren"><i>'+I.edit+'</i>Rename KPI</button></div>';
   drawKpiSummary(k,kp);drawKpiRows(k,kp);
-  $('#seg').onclick=function(e){var b=e.target.closest('button');if(!b)return;data.sort.kpi=b.dataset.s;save();
+  $('#seg').onclick=function(e){var b=e.target.closest('button');if(!b)return;setSort(b.dataset.s);
     Array.prototype.forEach.call($('#seg').children,function(x){x.classList.toggle('on',x===b);});drawKpiRows(k,kp);};
   var tb=$('#tb');
   tb.addEventListener('input',function(e){
@@ -690,7 +778,7 @@ function kpiView(k,id){
     var c=calc(row.t,row.a);tr.querySelector('.gap').innerHTML=gapHtml(c.gap);tr.querySelector('.pc').innerHTML=pctHtml(c.pct);
     drawKpiSummary(k,kp);
   });
-  tb.addEventListener('change',function(){if((data.sort.kpi||'default')!=='default')drawKpiRows(k,kp);});
+  tb.addEventListener('change',function(){if((getSort())!=='default')drawKpiRows(k,kp);});
   $('#share').onclick=function(){openWA(kpiText(k,kp));};
   $('#ren').onclick=function(){formSheet('Rename KPI',[{label:'KPI name',value:kp.name}],'Save',function(v){
     if(!v[0])return 'Enter a KPI name.';
@@ -715,7 +803,7 @@ function drawKpiSummary(k,kp){
     '</div></section>';
 }
 function drawKpiRows(k,kp){
-  var mode=data.sort.kpi||'default';
+  var mode=getSort();
   var rows=data.rsos.map(function(r,i){var x=rowOf(kp,r.id),c=calc(x.t,x.a);c.r=r;c.i=i;return c;});
   if(mode==='pctDesc')rows.sort(function(a,b){return (b.pct==null?-1:b.pct)-(a.pct==null?-1:a.pct);});
   else if(mode==='pctAsc')rows.sort(function(a,b){return (a.pct==null?1e12:a.pct)-(b.pct==null?1e12:b.pct);});
@@ -727,6 +815,7 @@ function drawKpiRows(k,kp){
       '<td data-label="Achievement"><input class="cell n" data-f="a" type="number" inputmode="decimal" min="0" step="any" value="'+x.a+'" aria-label="Achievement for '+esc(x.r.name)+'"></td>'+
       '<td class="gap" data-label="Gap">'+gapHtml(x.gap)+'</td><td class="pc" data-label="Achievement %">'+pctHtml(x.pct)+'</td></tr>';
   }).join('');
+  if(RO)lockInputs();
 }
 
 function summaryView(k){
@@ -958,19 +1047,33 @@ function totalView(){
 function settingsView(){
   top('Settings','#/home','Login, backup & data');
   var isDef=data.auth.user==='admin'&&data.auth.pass==='123456';
+  var cloud=MODE==='cloud'&&USER;
   view.innerHTML=
-  '<section class="card"><div class="nc-h"><div class="icotile it-o">'+I.key+'</div><div><h2>Login</h2><p>Current username: <b>'+esc(data.auth.user)+'</b>'+(isDef?' · default password in use':'')+'</p></div></div>'+
-  '<div class="actions"><button class="btn-o" id="chg"><i>'+I.edit+'</i>Change username & password</button></div></section>'+
+  (cloud
+   ?'<section class="card"><div class="nc-h"><div class="icotile it-o">'+I.key+'</div><div><h2>Account</h2><p>Signed in as <b>'+esc(USER.email)+'</b><br>'+(RO?'👁️ View only — you can see data but not change it':'✏️ Editor — your changes sync live to everyone')+'</p></div></div>'+
+    '<div class="actions"><button class="btn-o" id="chg"><i>'+I.edit+'</i>Change my password</button></div></section>'
+   :'<section class="card"><div class="nc-h"><div class="icotile it-o">'+I.key+'</div><div><h2>Login (offline mode)</h2><p>Current username: <b>'+esc(data.auth.user)+'</b>'+(isDef?' · default password in use':'')+'</p></div></div>'+
+    '<div class="actions"><button class="btn-o" id="chg"><i>'+I.edit+'</i>Change username & password</button></div></section>')+
   '<section class="card mt"><div class="nc-h"><div class="icotile it-b">'+I.dl+'</div><div><h2>Backup</h2><p>Save all data (months, RSOs, towers, contacts) as a file</p></div></div>'+
   '<div class="actions"><button class="btn-o btn-blue" id="bk"><i>'+I.dl+'</i>Download backup file</button><button class="btn-o" id="bkc"><i>'+I.copy+'</i>Copy backup text</button></div></section>'+
-  '<section class="card mt"><div class="nc-h"><div class="icotile it-g">'+I.ul+'</div><div><h2>Restore</h2><p>Load a backup file. This replaces the data on this device.</p></div></div>'+
+  '<section class="card mt edonly"><div class="nc-h"><div class="icotile it-g">'+I.ul+'</div><div><h2>Restore</h2><p>Load a backup file. This replaces the current data'+(cloud?' for everyone':' on this device')+'.</p></div></div>'+
   '<div class="actions"><label class="btn-o" for="rf" style="cursor:pointer"><i>'+I.ul+'</i>Choose backup file</label></div><input type="file" id="rf" accept=".json,application/json,text/plain" class="hidden">'+
   '<p class="muted" style="font-size:12.5px;margin:12px 0 6px">Or paste backup text:</p><textarea class="cell" id="rt" placeholder="Paste backup text here"></textarea>'+
   '<div class="actions mt"><button class="btn-o" id="rtb">Restore from pasted text</button></div></section>'+
-  '<section class="card mt"><div class="nc-h"><div class="icotile it-y">'+I.trash+'</div><div><h2>Reset</h2><p>Start again with the default setup. Your login stays the same.</p></div></div>'+
+  '<section class="card mt edonly"><div class="nc-h"><div class="icotile it-y">'+I.trash+'</div><div><h2>Reset</h2><p>Start again with the default setup. Your login stays the same.</p></div></div>'+
   '<div class="actions"><button class="btn-o btn-danger" id="rst"><i>'+I.trash+'</i>Reset all data</button></div></section>'+
-  '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v2 · '+Object.keys(data.months).length+' month(s) saved</p>';
-  $('#chg').onclick=function(){
+  '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v3 '+(cloud?'· cloud sync':'· offline mode')+' · '+Object.keys(data.months).length+' month(s) saved</p>';
+  if(cloud){$('#chg').onclick=function(){
+    formSheet('Change my password',[
+      {label:'Current password',type:'password'},{label:'New password',type:'password',ph:'At least 6 characters'},{label:'Confirm new password',type:'password'}
+    ],'Save password',function(v){
+      if(!v[0])return 'Enter your current password.';
+      if(v[1].length<6)return 'New password needs at least 6 characters.';
+      if(v[1]!==v[2])return 'The two new passwords do not match.';
+      return FB.changePass(v[0],v[1]).then(function(){toast('Password changed');return '';},function(e){return authMsg(e);});
+    });
+  };}
+  else $('#chg').onclick=function(){
     formSheet('Change login',[
       {label:'Current password',type:'password'},{label:'New username',value:data.auth.user},
       {label:'New password',type:'password',ph:'At least 4 characters'},{label:'Confirm new password',type:'password'}
@@ -997,26 +1100,47 @@ function settingsView(){
     var d;try{d=JSON.parse(txt);}catch(e){toast('This is not a valid ETIS backup');return;}
     if(!valid(d)){toast('This is not a valid ETIS backup');return;}
     if(!confirm('Replace all data on this device with this backup?'))return;
-    data=fix(d);save();toast('Backup restored');location.hash='#/home';
+    data=fix(d);if(MODE==='cloud')CLOUD_EMPTY=false;save();toast('Backup restored');location.hash='#/home';
   }
   $('#rf').onchange=function(){var f=this.files&&this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){restore(String(r.result));};r.readAsText(f);this.value='';};
   $('#rtb').onclick=function(){var t=$('#rt').value.trim();if(!t){toast('Paste the backup text first');return;}restore(t);};
   $('#rst').onclick=function(){
     if(!confirm('Reset ALL data (months, towers, contacts) to the default setup?'))return;
-    var a=data.auth;data=seed();data.auth=a;save();toast('Data reset');location.hash='#/home';
+    var a=data.auth;data=seed();data.auth=a;if(MODE==='cloud')CLOUD_EMPTY=false;save();toast('Data reset');location.hash='#/home';
   };
 }
 
 /* ================= ROUTER & AUTH ================= */
+function busy(){
+  var a=document.activeElement;
+  return !$('#sheet').classList.contains('hidden')||(a&&view.contains(a)&&/INPUT|TEXTAREA|SELECT/.test(a.tagName));
+}
+function softRender(){
+  if(busy()){deferRender=true;return;}
+  deferRender=false;var y=window.scrollY;render();window.scrollTo(0,y);
+}
+function lockInputs(){view.querySelectorAll('input,textarea').forEach(function(i){if(i.type!=='file'&&i.id!=='rt')i.readOnly=true;});}
+function showLogin(){
+  $('#shell').classList.add('hidden');$('#login').classList.remove('hidden');
+  var local=MODE==='local',load=MODE==='loading';
+  $('#luL').textContent=local?'Username':'Email';
+  $('#lu').type=local?'text':'email';
+  $('#lu').placeholder=local?'Enter username':'you@example.com';
+  $('#demo').classList.toggle('hidden',!(local&&data.auth.user==='admin'&&data.auth.pass==='123456'));
+  $('#forgot').classList.toggle('hidden',MODE!=='cloud');
+  var b=$('#lbtn');b.disabled=load;b.textContent=load?'Connecting…':'Login';
+  $('#lmode').textContent=load?'Connecting to cloud…':local?'⚠️ Offline mode — cloud not reachable. Data stays on this device only.':'☁️ Live sync on — use the email and password from Firebase.';
+}
 function render(){
   closeSheet();
   view.onclick=null;view.oninput=null;view.onchange=null;
-  if(store.get(AUTH)!=='1'){
-    $('#shell').classList.add('hidden');$('#login').classList.remove('hidden');
-    $('#demo').classList.toggle('hidden',!(data.auth.user==='admin'&&data.auth.pass==='123456'));
-    return;
-  }
+  if(MODE==='loading'||(MODE==='cloud'&&!USER)||(MODE==='local'&&store.get(AUTH)!=='1')){showLogin();return;}
   $('#login').classList.add('hidden');$('#shell').classList.remove('hidden');
+  if(MODE==='cloud'&&!READY){
+    top('ETIS','','Loading data…');
+    view.innerHTML='<div class="loading"><div class="spin"></div>Loading territory data from the cloud…</div>';return;
+  }
+  document.body.classList.toggle('ro',RO);
   ensureMonth();
   var p=location.hash.replace(/^#\/?/,'').split('/').map(function(s){try{return decodeURIComponent(s);}catch(e){return s;}});
   switch(p[0]){
@@ -1033,6 +1157,7 @@ function render(){
     case 'settings':settingsView();break;
     default:home();
   }
+  if(RO)lockInputs();
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',render);
@@ -1045,21 +1170,124 @@ document.addEventListener('keydown',function(e){
   if(e.key==='Enter'&&e.target.matches&&e.target.matches('[role=button][data-go]'))location.hash=e.target.dataset.go;
   if(e.key==='Escape')closeSheet();
 });
+view.addEventListener('focusout',function(){
+  setTimeout(function(){
+    if(busy())return;
+    if(pendingRemote){var r=pendingRemote;pendingRemote=null;applyRemote(r.j,r.by);}
+    else if(deferRender)softRender();
+  },250);
+});
+
+/* ---------- auth messages ---------- */
+function authMsg(e){
+  var c=(e&&e.code)||'';
+  if(/invalid-credential|wrong-password|user-not-found|invalid-login/.test(c))return 'Wrong email or password. Try again.';
+  if(/invalid-email/.test(c))return 'That email address does not look right.';
+  if(/too-many-requests/.test(c))return 'Too many tries. Wait a few minutes, then try again.';
+  if(/network-request-failed/.test(c))return 'No internet connection. Check your data or Wi-Fi.';
+  if(/user-disabled/.test(c))return 'This account has been disabled.';
+  if(/weak-password/.test(c))return 'New password is too weak. Use at least 6 characters.';
+  if(/requires-recent-login/.test(c))return 'Please log out and log in again, then change the password.';
+  return 'Something went wrong ('+(c||'unknown')+'). Try again.';
+}
+function loginErr(m,good){
+  var el=$('#lerr');el.textContent=m;el.style.color=good?'var(--good)':'';
+  if(!good){var c=$('#loginForm');c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');}
+}
+
+/* ---------- cloud sync ---------- */
+function applyRemote(j,by){
+  if(j===lastJson)return;
+  var nd;try{nd=JSON.parse(j);}catch(e){return;}
+  if(!valid(nd))return;
+  lastJson=j;data=fix(nd);store.set(KEY,j);
+  if(by&&USER&&by!==USER.email)toast('Updated by '+by.split('@')[0]);
+  softRender();
+}
+function onRemote(j,by){
+  if(pushT)return;                     /* my unsent change wins */
+  if(busy()){pendingRemote={j:j,by:by};return;}
+  applyRemote(j,by);
+}
+function checkRole(){
+  var t=new Promise(function(res){setTimeout(function(){res('timeout');},7000);});
+  var w=FB.setDoc(FB.doc(FB.db,'meta','ping_'+USER.uid),{by:USER.email||'',at:FB.serverTimestamp()})
+    .then(function(){return 'ok';},function(e){return (e&&e.code)||'err';});
+  return Promise.race([w,t]).then(function(r){
+    RO=(r==='permission-denied');
+    if(r==='ok')setSync('● Live','live');else if(RO)setSync('View only','ro');else setSync('Offline','off');
+  });
+}
+function bootCloud(){
+  MODE='cloud';
+  FB.onAuth(function(u){
+    if(unsub){unsub();unsub=null;}
+    USER=u;READY=false;RO=false;CLOUD_EMPTY=false;pendingRemote=null;
+    document.body.classList.remove('ro');
+    if(!u){setSync('','');render();return;}
+    render();
+    var first=true;
+    unsub=FB.onSnapshot(FB.doc(FB.db,'etis','main'),function(snap){
+      if(snap.metadata&&snap.metadata.hasPendingWrites)return;
+      var exists=typeof snap.exists==='function'?snap.exists():snap.exists;
+      if(!exists){CLOUD_EMPTY=true;}
+      else{
+        CLOUD_EMPTY=false;var d=snap.data()||{};
+        if(first){
+          var nd;try{nd=JSON.parse(d.json);}catch(e){}
+          if(valid(nd)){lastJson=d.json;data=fix(nd);store.set(KEY,d.json);}
+        }else onRemote(d.json,d.by);
+      }
+      if(first){first=false;checkRole().then(function(){READY=true;render();});}
+      else if(!exists&&READY)softRender();
+    },function(err){
+      toast('Cloud error: '+((err&&err.code)||'unknown'));
+      if(first){first=false;READY=true;setSync('Offline','off');render();}
+    });
+  });
+}
+function bootFB(){
+  if(FBDONE)return;FBDONE=true;clearTimeout(fbTimer);
+  if(window.ETIS_FB){FB=window.ETIS_FB;bootCloud();}
+  else{MODE='local';render();}
+}
+
 $('#loginForm').addEventListener('submit',function(e){
   e.preventDefault();
-  if($('#lu').value.trim()===data.auth.user&&$('#lp').value===data.auth.pass){
+  var u=$('#lu').value.trim(),pw=$('#lp').value;
+  if(MODE==='loading')return;
+  if(MODE==='cloud'){
+    if(!u||!pw){loginErr('Enter your email and password.');return;}
+    var b=$('#lbtn');b.disabled=true;b.textContent='Logging in…';
+    FB.signIn(u,pw).then(function(){$('#lp').value='';$('#lerr').textContent='';if(location.hash!=='#/home')location.hash='#/home';},
+      function(er){loginErr(authMsg(er));}).then(function(){b.disabled=false;b.textContent='Login';});
+    return;
+  }
+  if(u===data.auth.user&&pw===data.auth.pass){
     store.set(AUTH,'1');$('#lerr').textContent='';$('#lp').value='';
     if(location.hash!=='#/home')location.hash='#/home';else render();
-  }else{
-    $('#lerr').textContent='Wrong username or password. Try again.';
-    var c=$('#loginForm');c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');
-  }
+  }else loginErr('Wrong username or password. Try again.');
 });
+$('#forgot').onclick=function(){
+  var u=$('#lu').value.trim();
+  if(!u){loginErr('Type your email above first, then tap “Forgot password?”.');return;}
+  FB.reset(u).then(function(){loginErr('Password reset email sent to '+u+'. Check your inbox and spam folder.',true);},function(er){loginErr(authMsg(er));});
+};
 $('#eye').onclick=function(){var i=$('#lp');i.type=i.type==='password'?'text':'password';};
 $('#setBtn').onclick=function(){location.hash='#/settings';};
-$('#logoutBtn').onclick=function(){if(!confirm('Log out of ETIS?'))return;store.del(AUTH);$('#lu').value='';location.hash='#/login';render();};
+$('#logoutBtn').onclick=function(){
+  if(!confirm('Log out of ETIS?'))return;
+  if(MODE==='cloud'){if(pushT)push();FB.signOut();location.hash='#/home';return;}
+  store.del(AUTH);$('#lu').value='';location.hash='#/login';render();
+};
 
+var fbTimer=null;
 render();
+if(window.ETIS_FB||window.ETIS_FB_FAIL)bootFB();
+else{
+  window.addEventListener('etis-fb',bootFB);
+  fbTimer=setTimeout(function(){if(!FBDONE){FBDONE=true;MODE='local';render();toast('Cloud not reachable — offline mode');}},15000);
+}
 })();
 </script>
 </body>
