@@ -250,6 +250,33 @@ body.ro .kdel,body.ro .addcard,body.ro #addF,body.ro [data-delf],body.ro #addT,b
 body.ro .cell{background:#fafbfc}
 @media (max-width:420px){.saved{display:none}}
 
+/* VIEWER LINKS / ACTIVITY */
+body.viewer #logoutBtn,body.viewer .novw{display:none!important}
+.lrow{display:grid;grid-template-columns:1fr auto;gap:10px 12px;padding:14px 0;border-bottom:1px solid #f0f2f6;align-items:center}
+.lrow:last-child{border-bottom:0}
+.lrow .lname{font-weight:800;font-size:15.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
+.lrow .lmeta{font-size:12.5px;color:var(--muted);margin-top:2px}
+.lrow .lact{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px}
+.lrow .lact button{height:36px;padding:0 12px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.lrow .lact button i{width:15px;height:15px;display:block}
+.lrow .lact .wa{background:var(--wa);border-color:var(--wa);color:#fff}
+.lrow .lact .del{color:var(--bad);border-color:#f3c6c6}
+.lrow.off .lname{color:var(--muted)}
+.lurl{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--muted);word-break:break-all;background:var(--bg);border-radius:8px;padding:6px 8px;margin-top:6px;grid-column:1/-1}
+.arow{display:grid;grid-template-columns:72px 1fr;gap:10px;padding:9px 0;border-bottom:1px solid #f0f2f6;align-items:baseline}
+.arow:last-child{border-bottom:0}
+.arow .t{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px;font-weight:700}
+.arow b{font-size:14px}
+.arow small{display:block;color:var(--muted);font-size:12px}
+.aday{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--brand-d);margin:16px 0 4px}
+.aday:first-child{margin-top:0}
+.pgchip{font-size:11.5px;background:var(--bg);border-radius:99px;padding:3px 8px;color:var(--ink);font-weight:600}
+#gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px;background:var(--bg)}
+#gate .lcard{text-align:center}
+#gate .logo{margin:0 auto 16px}
+#gate h2{font-size:20px;margin-bottom:6px}
+#gate p{color:var(--muted);font-size:14px}
+
 /* MOBILE */
 @media (max-width:760px){
   .stats{grid-template-columns:repeat(2,1fr);gap:10px}
@@ -323,6 +350,7 @@ body.ro .cell{background:#fafbfc}
   <main class="wrap" id="view"></main>
 </div>
 
+<div id="gate" class="hidden"><div class="lcard"><div class="logo">E</div><div id="gateBody"></div></div></div>
 <div id="sheet" class="hidden"></div>
 <div id="toast"></div>
 
@@ -353,6 +381,9 @@ const VERSIONS = ['13.2.0', '11.10.0'];
         onAuth: (cb) => au.onAuthStateChanged(auth, cb),
         signIn: (e, p) => au.signInWithEmailAndPassword(auth, e, p),
         signOut: () => au.signOut(auth),
+        signInAnon: () => au.signInAnonymously(auth),
+        getDoc: fs.getDoc, getDocs: fs.getDocs, addDoc: fs.addDoc, updateDoc: fs.updateDoc, deleteDoc: fs.deleteDoc,
+        collection: (c) => fs.collection(db, c), query: fs.query, orderBy: fs.orderBy, limit: fs.limit,
         reset: (e) => au.sendPasswordResetEmail(auth, e),
         changePass: (cur, np) => au.reauthenticateWithCredential(auth.currentUser, au.EmailAuthProvider.credential(auth.currentUser.email, cur))
           .then(() => au.updatePassword(auth.currentUser, np))
@@ -371,6 +402,10 @@ const VERSIONS = ['13.2.0', '11.10.0'];
 "use strict";
 var KEY='etis_data_v2', AUTH='etis_auth_v2', SORTKEY='etis_sort';
 /* cloud state */
+var URLTOKEN=(function(){try{return new URLSearchParams(location.search).get('v')||'';}catch(e){return '';}})();
+var TOKEN=URLTOKEN||store0('etis_vtoken');
+var VIEWER=null,OWNER=false,BLOCKED='',unsubV=null,lastLog={p:'',t:0};
+function store0(k){try{return localStorage.getItem(k)||'';}catch(e){return '';}}
 var MODE='loading',FB=null,USER=null,READY=false,RO=false,CLOUD_EMPTY=false,pushT=null,lastJson='',pendingRemote=null,deferRender=false,unsub=null,FBDONE=false;
 var $=function(s){return document.querySelector(s);};
 var view=$('#view');
@@ -683,7 +718,7 @@ function home(){
   var kp=m.kpis.map(function(k){return {k:k,s:kpiSum(k)};});
   view.innerHTML=
   (CLOUD_EMPTY&&!RO?'<div class="notice" style="margin:0 0 14px"><span class="sp">☁️ <b>Cloud is empty.</b> Upload the data on this device so Naim and others can see it. Do this from the device that has your real numbers.</span><button data-act="upload">Upload this device\'s data</button></div>':'')+
-  '<section class="hero"><div><p class="hero-k">'+greet+(MODE==='cloud'?'':', Emon')+' 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
+  '<section class="hero"><div><p class="hero-k">'+greet+(VIEWER?', '+esc(VIEWER.name):MODE==='cloud'?'':', Emon')+' 👋</p><h1>Territory Command Center</h1><p class="hero-s">'+new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+' · '+daysLeft()+' day(s) left</p></div>'+
   '<div class="score"><b>'+pctTxt(sc)+'</b><small>'+mlabel(cur).split(' ')[0]+' score</small></div></section>'+
   (data.sampleNotice?'<div class="notice"><span class="sp">📌 This month\'s KPIs and the towers have <b>sample numbers</b> so you can test. Clear them before entering real data.</span><button data-act="clearSample">Clear sample numbers</button><button data-act="keepSample">Keep</button></div>':'')+
   '<div class="sec-title">KPI</div>'+
@@ -1049,12 +1084,19 @@ function settingsView(){
   var isDef=data.auth.user==='admin'&&data.auth.pass==='123456';
   var cloud=MODE==='cloud'&&USER;
   view.innerHTML=
-  (cloud
-   ?'<section class="card"><div class="nc-h"><div class="icotile it-o">'+I.key+'</div><div><h2>Account</h2><p>Signed in as <b>'+esc(USER.email)+'</b><br>'+(RO?'👁️ View only — you can see data but not change it':'✏️ Editor — your changes sync live to everyone')+'</p></div></div>'+
+  (VIEWER
+   ?'<section class="card"><div class="nc-h"><div class="icotile it-b">'+I.user+'</div><div><h2>Viewing as '+esc(VIEWER.name)+'</h2><p>👁️ View-only link from Emon. You can see everything but cannot change data.</p></div></div></section>'
+   :'')+
+  (OWNER
+   ?'<section class="card"><div class="nc-h"><div class="icotile it-p">'+I.team+'</div><div><h2>Viewer Links & Activity</h2><p>Password-free view-only links for boss, Kawsar bhai and others. Only you can see this.</p></div></div>'+
+    '<div class="actions"><button class="btn-o btn-blue" data-go="#/links"><i>'+I.plus+'</i>Viewer Links</button><button class="btn-o" data-go="#/activity"><i>'+I.kpi+'</i>Viewer Activity</button></div></section>'
+   :'')+
+  (VIEWER?'':cloud
+   ?'<section class="card'+(OWNER?' mt':'')+'"><div class="nc-h"><div class="icotile it-o">'+I.key+'</div><div><h2>Account</h2><p>Signed in as <b>'+esc(USER.email)+'</b><br>'+(RO?'👁️ View only — you can see data but not change it':'✏️ Editor — your changes sync live to everyone')+'</p></div></div>'+
     '<div class="actions"><button class="btn-o" id="chg"><i>'+I.edit+'</i>Change my password</button></div></section>'
    :'<section class="card"><div class="nc-h"><div class="icotile it-o">'+I.key+'</div><div><h2>Login (offline mode)</h2><p>Current username: <b>'+esc(data.auth.user)+'</b>'+(isDef?' · default password in use':'')+'</p></div></div>'+
     '<div class="actions"><button class="btn-o" id="chg"><i>'+I.edit+'</i>Change username & password</button></div></section>')+
-  '<section class="card mt"><div class="nc-h"><div class="icotile it-b">'+I.dl+'</div><div><h2>Backup</h2><p>Save all data (months, RSOs, towers, contacts) as a file</p></div></div>'+
+  '<section class="card mt novw"><div class="nc-h"><div class="icotile it-b">'+I.dl+'</div><div><h2>Backup</h2><p>Save all data (months, RSOs, towers, contacts) as a file</p></div></div>'+
   '<div class="actions"><button class="btn-o btn-blue" id="bk"><i>'+I.dl+'</i>Download backup file</button><button class="btn-o" id="bkc"><i>'+I.copy+'</i>Copy backup text</button></div></section>'+
   '<section class="card mt edonly"><div class="nc-h"><div class="icotile it-g">'+I.ul+'</div><div><h2>Restore</h2><p>Load a backup file. This replaces the current data'+(cloud?' for everyone':' on this device')+'.</p></div></div>'+
   '<div class="actions"><label class="btn-o" for="rf" style="cursor:pointer"><i>'+I.ul+'</i>Choose backup file</label></div><input type="file" id="rf" accept=".json,application/json,text/plain" class="hidden">'+
@@ -1063,7 +1105,8 @@ function settingsView(){
   '<section class="card mt edonly"><div class="nc-h"><div class="icotile it-y">'+I.trash+'</div><div><h2>Reset</h2><p>Start again with the default setup. Your login stays the same.</p></div></div>'+
   '<div class="actions"><button class="btn-o btn-danger" id="rst"><i>'+I.trash+'</i>Reset all data</button></div></section>'+
   '<p class="muted" style="font-size:12px;margin-top:16px;text-align:center">ETIS / KHUCHU04 · v3 '+(cloud?'· cloud sync':'· offline mode')+' · '+Object.keys(data.months).length+' month(s) saved</p>';
-  if(cloud){$('#chg').onclick=function(){
+  if(VIEWER){}
+  else if(cloud){$('#chg').onclick=function(){
     formSheet('Change my password',[
       {label:'Current password',type:'password'},{label:'New password',type:'password',ph:'At least 6 characters'},{label:'Confirm new password',type:'password'}
     ],'Save password',function(v){
@@ -1111,6 +1154,168 @@ function settingsView(){
 }
 
 /* ================= ROUTER & AUTH ================= */
+/* ================= VIEWER LINKS & ACTIVITY (owner only) ================= */
+function genToken(){
+  var a=new Uint8Array(15);(window.crypto||window.msCrypto).getRandomValues(a);
+  return Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2);}).join('');
+}
+function linkUrl(t){return location.origin+location.pathname+'?v='+t;}
+function copyText(t){
+  function fb(){var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');toast('Link copied');}catch(e){toast('Could not copy — long-press the link to copy');}ta.remove();}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(function(){toast('Link copied');},fb);else fb();
+}
+function ago(ms){
+  if(!ms)return 'never';var d=(Date.now()-ms)/1000;
+  if(d<60)return 'just now';if(d<3600)return Math.floor(d/60)+' min ago';if(d<86400)return Math.floor(d/3600)+' hr ago';
+  if(d<86400*7)return Math.floor(d/86400)+' day'+(d<172800?'':'s')+' ago';
+  return new Date(ms).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+}
+function hhmm(ms){return new Date(ms).toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',hour12:true}).replace(' ',' ');}
+function dayLbl(ms){
+  var d=new Date(ms),t=new Date();t.setHours(0,0,0,0);var x=new Date(d);x.setHours(0,0,0,0);
+  var diff=Math.round((t-x)/86400000);
+  return diff===0?'Today':diff===1?'Yesterday':d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'});
+}
+function docsOf(snap){var out=[];snap.forEach(function(d){var x=d.data();x._id=d.id;out.push(x);});return out;}
+function loadingHtml(t){return '<div class="loading"><div class="spin"></div>'+t+'</div>';}
+function fetchActivity(){
+  return FB.getDocs(FB.query(FB.collection('activity'),FB.orderBy('atMs','desc'),FB.limit(600))).then(function(sn){return docsOf(sn).sort(function(a,b){return (b.atMs||0)-(a.atMs||0);});});
+}
+function linksView(){
+  if(!OWNER){location.hash='#/home';return;}
+  top('Viewer Links','#/settings','Password-free · view only');
+  view.innerHTML=loadingHtml('Loading links…');
+  Promise.all([FB.getDocs(FB.collection('viewers')).then(docsOf),fetchActivity().catch(function(){return [];})]).then(function(r){
+    if(location.hash!=='#/links')return;
+    var links=r[0].sort(function(a,b){return (b.createdMs||0)-(a.createdMs||0);}),act=r[1],stat={};
+    act.forEach(function(a){var s=stat[a.token]||(stat[a.token]={n:0,last:0,dev:''});s.n++;if(a.atMs>s.last){s.last=a.atMs;s.dev=a.dev||'';}});
+    var on=links.filter(function(l){return l.active;}).length;
+    view.innerHTML=
+    '<section class="card"><div class="sec-h"><div><h3>Your viewer links</h3><p class="muted" style="font-size:13px">'+links.length+' link'+(links.length===1?'':'s')+' · '+on+' active</p></div><button class="btn-s" id="newL"><i>'+I.plus+'</i>New link</button></div>'+
+    (links.length?links.map(function(l){
+      var st=stat[l._id]||{n:0,last:0};
+      return '<div class="lrow'+(l.active?'':' off')+'" data-t="'+l._id+'">'+
+        '<div style="min-width:0"><div class="lname">'+esc(l.name)+' <span class="pill '+(l.active?'p-good':'p-na')+'">'+(l.active?'Active':'Turned off')+'</span></div>'+
+        '<div class="lmeta">'+(st.last?'Last seen '+ago(st.last)+' · '+st.n+' page view'+(st.n===1?'':'s')+(st.dev?' · '+esc(st.dev):''):'Not opened yet')+'</div></div>'+
+        '<div></div>'+
+        '<div class="lurl">'+esc(linkUrl(l._id))+'</div>'+
+        '<div class="lact">'+
+          (l.active?'<button class="wa" data-l="wa"><i>'+I.wa+'</i>WhatsApp</button><button data-l="copy"><i>'+I.copy+'</i>Copy</button><button data-l="off"><i>'+I.x+'</i>Turn off</button>'
+                   :'<button data-l="on"><i>'+I.plus+'</i>Turn on again</button>')+
+          '<button class="del" data-l="del"><i>'+I.trash+'</i>Delete</button></div></div>';
+    }).join(''):'<div class="empty">No links yet. Tap “New link”, type a name like “Kawsar bhai”, then send it on WhatsApp.</div>')+
+    '</section>'+
+    '<p class="muted" style="font-size:12.5px;margin-top:10px">Anyone with a link can view the app without a password, but cannot change anything. If someone forwards a link, turn it off and make a new one. Each person should get their own link so you can see who viewed what.</p>'+
+    '<div class="actions mt"><button class="btn-o" data-go="#/activity"><i>'+I.kpi+'</i>See viewer activity</button></div>';
+    $('#newL').onclick=function(){
+      formSheet('New viewer link',[{label:'Who is this link for?',ph:'e.g. Kawsar bhai, Arif bhai (Boss)'}],'Create link',function(v){
+        if(!v[0])return 'Type a name so you know who is viewing.';
+        var t=genToken();
+        return FB.setDoc(FB.doc(FB.db,'viewers',t),{name:v[0],active:true,createdAt:FB.serverTimestamp(),createdMs:Date.now()})
+          .then(function(){toast('Link created — tap WhatsApp to send');linksView();return '';},function(e){return 'Could not create the link ('+((e&&e.code)||'error')+'). Check internet and Firebase rules.';});
+      });
+    };
+    view.onclick=function(e){
+      var b=e.target.closest('[data-l]');if(!b)return;
+      var row=b.closest('[data-t]'),t=row.dataset.t,l=links.find(function(x){return x._id===t;});if(!l)return;
+      var a=b.dataset.l,url=linkUrl(t);
+      if(a==='wa')openWA('Hello '+l.name+'! 👋\nHere is your view-only link to *ETIS / KHUCHU04* — Emon\'s territory dashboard (KPI, towers, RSO performance).\nNo password needed, just tap:\n'+url);
+      else if(a==='copy')copyText(url);
+      else if(a==='off'||a==='on'){
+        b.disabled=true;
+        FB.updateDoc(FB.doc(FB.db,'viewers',t),{active:a==='on'}).then(function(){toast(a==='on'?'Link turned on':'Link turned off — it no longer opens the app');linksView();},function(){b.disabled=false;toast('Could not update. Check internet.');});
+      }else if(a==='del'){
+        if(!confirm('Delete the link for "'+l.name+'"? It will stop working. Activity history stays.'))return;
+        FB.deleteDoc(FB.doc(FB.db,'viewers',t)).then(function(){toast('Link deleted');linksView();},function(){toast('Could not delete. Check internet.');});
+      }
+    };
+  },function(e){view.innerHTML='<div class="empty">Could not load links ('+esc((e&&e.code)||'error')+'). Check that the new Firebase rules are published.</div>';});
+}
+var actFilter='all';
+function activityView(){
+  if(!OWNER){location.hash='#/home';return;}
+  top('Viewer Activity','#/settings','Who opened what, and when');
+  view.innerHTML=loadingHtml('Loading activity…');
+  fetchActivity().then(function(act){
+    if(location.hash!=='#/activity')return;
+    function draw(){
+      var names={};act.forEach(function(a){names[a.token]=a.name||'Viewer';});
+      var list=actFilter==='all'?act:act.filter(function(a){return a.token===actFilter;});
+      var t0=new Date();t0.setHours(0,0,0,0);var wk=Date.now()-7*86400000;
+      var today=list.filter(function(a){return a.atMs>=t0.getTime();}).length;
+      var week=list.filter(function(a){return a.atMs>=wk;});
+      var who={};week.forEach(function(a){who[a.token]=1;});
+      var per={};list.forEach(function(a){var p=per[a.token]||(per[a.token]={name:a.name||'Viewer',n:0,last:0,dev:'',pages:{}});p.n++;if(a.atMs>p.last){p.last=a.atMs;p.dev=a.dev||'';}var sec=String(a.page||'').split(' · ')[0];p.pages[sec]=(p.pages[sec]||0)+1;});
+      var people=Object.keys(per).map(function(k){per[k].t=k;return per[k];}).sort(function(a,b){return b.last-a.last;});
+      var html='<div class="sec-h"><select class="msel" id="af" aria-label="Filter by viewer"><option value="all">All viewers</option>'+
+        Object.keys(names).map(function(k){return '<option value="'+esc(k)+'"'+(k===actFilter?' selected':'')+'>'+esc(names[k])+'</option>';}).join('')+
+        '</select><button class="btn-s" id="aref"><i>'+I.gps+'</i>Refresh</button></div>'+
+        '<div class="stats"><div class="stat" style="--c:var(--brand)"><small>Views today</small><b>'+today+'</b><em>Page opens</em></div>'+
+        '<div class="stat" style="--c:var(--blue)"><small>Last 7 days</small><b>'+week.length+'</b><em>Page opens</em></div>'+
+        '<div class="stat" style="--c:var(--good)"><small>Viewers (7 days)</small><b>'+Object.keys(who).length+'</b><em>Different people</em></div>'+
+        '<div class="stat" style="--c:var(--warn)"><small>Last view</small><b style="font-size:17px">'+(list[0]?ago(list[0].atMs):'—')+'</b><em>'+(list[0]?esc(list[0].name||''):'No views yet')+'</em></div></div>';
+      if(!list.length){html+='<div class="empty">No views yet. When someone opens their viewer link, every page they open shows up here.</div>';view.innerHTML=html;bind();return;}
+      html+='<div class="sec-title">By person</div><section class="card">'+people.map(function(p){
+        var top3=Object.keys(p.pages).sort(function(a,b){return p.pages[b]-p.pages[a];}).slice(0,3);
+        return '<div class="trow" role="button" tabindex="0" data-af="'+esc(p.t)+'"><div class="tn"><b>'+esc(p.name)+'</b><small>Last seen '+ago(p.last)+(p.dev?' · '+esc(p.dev):'')+'</small>'+
+          '<div class="chips" style="margin-top:6px">'+top3.map(function(x){return '<span class="pgchip">'+esc(x)+' ×'+p.pages[x]+'</span>';}).join('')+'</div></div>'+
+          '<div class="tr">'+p.n+'<small>views</small></div></div>';
+      }).join('')+'</section>';
+      html+='<div class="sec-title">Timeline <span style="text-transform:none;letter-spacing:0;font-weight:600">latest '+Math.min(list.length,300)+'</span></div><section class="card">';
+      var lastDay='';
+      list.slice(0,300).forEach(function(a){
+        var dl=dayLbl(a.atMs);if(dl!==lastDay){html+='<div class="aday">'+dl+'</div>';lastDay=dl;}
+        html+='<div class="arow"><span class="t">'+hhmm(a.atMs)+'</span><div><b>'+esc(a.name||'Viewer')+'</b> <span class="muted" style="font-size:13.5px">opened</span> '+esc(a.page||'—')+'<small>'+esc(a.dev||'')+'</small></div></div>';
+      });
+      html+='</section>';
+      view.innerHTML=html;bind();
+    }
+    function bind(){
+      $('#af').onchange=function(){actFilter=this.value;draw();};
+      $('#aref').onclick=activityView;
+      view.onclick=function(e){var r=e.target.closest('[data-af]');if(r){actFilter=r.dataset.af;draw();window.scrollTo(0,0);}};
+    }
+    draw();
+  },function(e){view.innerHTML='<div class="empty">Could not load activity ('+esc((e&&e.code)||'error')+'). Check that the new Firebase rules are published.</div>';});
+}
+
+/* page-view logging for viewer links */
+function pageLabel(p){
+  var mm=function(k){return data.months[k]?mlabel(k):'';};
+  switch(p[0]){
+    case 'summary':return 'Overall KPI Summary · '+mlabel(data.months[p[1]]?p[1]:curKey());
+    case 'month':return 'Monthly KPI · '+mm(p[1]);
+    case 'kpi':var M=data.months[p[1]],kp=M&&M.kpis.find(function(x){return x.id===p[2];});return 'KPI · '+(kp?kp.name:'?')+' · '+mm(p[1]);
+    case 'towers':return 'Tower list';
+    case 'tower':var t=data.towers.find(function(x){return x.id===p[1];});return 'BTS · '+(t?t.name:'?');
+    case 'ff':return 'FF Details';
+    case 'person':return 'FF · '+((data.people[p[1]]||{}).title||p[1]);
+    case 'rsos':return 'RSO list';
+    case 'rso':var r=data.rsos.find(function(x){return x.id===p[1];});return 'RSO · '+(r?r.name:'?');
+    case 'total':return 'KHUCHU04 In Total';
+    case 'settings':return 'Settings';
+    default:return 'Home';
+  }
+}
+function devName(){
+  var u=navigator.userAgent;
+  var os=/Android/.test(u)?'Android':/iPhone|iPad/.test(u)?'iPhone':/Windows/.test(u)?'Windows':/Mac OS/.test(u)?'Mac':'Other';
+  var br=/Edg\//.test(u)?'Edge':/SamsungBrowser/.test(u)?'Samsung':/Chrome\//.test(u)?'Chrome':/Firefox/.test(u)?'Firefox':/Safari/.test(u)?'Safari':'Browser';
+  return os+' · '+br;
+}
+function logView(p){
+  if(!VIEWER||!READY||!USER)return;
+  var label=pageLabel(p),now=Date.now();
+  if(lastLog.p===label&&now-lastLog.t<20000)return;
+  lastLog={p:label,t:now};
+  FB.addDoc(FB.collection('activity'),{uid:USER.uid,token:TOKEN,name:VIEWER.name,page:label,path:location.hash||'#/home',dev:devName(),atMs:now,at:FB.serverTimestamp()}).catch(function(){});
+}
+function showGate(spin,title,text){
+  $('#login').classList.add('hidden');$('#shell').classList.add('hidden');$('#gate').classList.remove('hidden');
+  $('#gateBody').innerHTML=(spin?'<div class="spin"></div>':'')+'<h2>'+esc(title)+'</h2><p>'+esc(text)+'</p>';
+}
+
 function busy(){
   var a=document.activeElement;
   return !$('#sheet').classList.contains('hidden')||(a&&view.contains(a)&&/INPUT|TEXTAREA|SELECT/.test(a.tagName));
@@ -1121,7 +1326,7 @@ function softRender(){
 }
 function lockInputs(){view.querySelectorAll('input,textarea').forEach(function(i){if(i.type!=='file'&&i.id!=='rt')i.readOnly=true;});}
 function showLogin(){
-  $('#shell').classList.add('hidden');$('#login').classList.remove('hidden');
+  $('#gate').classList.add('hidden');$('#shell').classList.add('hidden');$('#login').classList.remove('hidden');
   var local=MODE==='local',load=MODE==='loading';
   $('#luL').textContent=local?'Username':'Email';
   $('#lu').type=local?'text':'email';
@@ -1134,6 +1339,13 @@ function showLogin(){
 function render(){
   closeSheet();
   view.onclick=null;view.oninput=null;view.onchange=null;
+  $('#gate').classList.add('hidden');
+  if(BLOCKED){
+    if(BLOCKED==='off')showGate(false,'This link is turned off','Ask Emon to send you a new link.');
+    else showGate(false,'Could not open the link',BLOCKED);
+    return;
+  }
+  if(TOKEN&&MODE!=='local'&&(!USER||USER.isAnonymous)&&!READY){showGate(true,'Opening ETIS…','Loading Emon\'s territory dashboard');return;}
   if(MODE==='loading'||(MODE==='cloud'&&!USER)||(MODE==='local'&&store.get(AUTH)!=='1')){showLogin();return;}
   $('#login').classList.add('hidden');$('#shell').classList.remove('hidden');
   if(MODE==='cloud'&&!READY){
@@ -1141,6 +1353,7 @@ function render(){
     view.innerHTML='<div class="loading"><div class="spin"></div>Loading territory data from the cloud…</div>';return;
   }
   document.body.classList.toggle('ro',RO);
+  document.body.classList.toggle('viewer',!!VIEWER);
   ensureMonth();
   var p=location.hash.replace(/^#\/?/,'').split('/').map(function(s){try{return decodeURIComponent(s);}catch(e){return s;}});
   switch(p[0]){
@@ -1155,9 +1368,12 @@ function render(){
     case 'rso':rsoView(p[1],p[2]);break;
     case 'total':totalView();break;
     case 'settings':settingsView();break;
+    case 'links':linksView();break;
+    case 'activity':activityView();break;
     default:home();
   }
   if(RO)lockInputs();
+  logView(p);
   window.scrollTo(0,0);
 }
 window.addEventListener('hashchange',render);
@@ -1218,32 +1434,80 @@ function checkRole(){
     if(r==='ok')setSync('● Live','live');else if(RO)setSync('View only','ro');else setSync('Offline','off');
   });
 }
+function stopListeners(){if(unsub){unsub();unsub=null;}if(unsubV){unsubV();unsubV=null;}}
+function snapExists(sn){return typeof sn.exists==='function'?sn.exists():!!sn.exists;}
+function startData(after){
+  var first=true;
+  unsub=FB.onSnapshot(FB.doc(FB.db,'etis','main'),function(snap){
+    if(snap.metadata&&snap.metadata.hasPendingWrites)return;
+    var exists=snapExists(snap);
+    if(!exists){CLOUD_EMPTY=true;}
+    else{
+      CLOUD_EMPTY=false;var d=snap.data()||{};
+      if(first){
+        var nd;try{nd=JSON.parse(d.json);}catch(e){}
+        if(valid(nd)){lastJson=d.json;data=fix(nd);store.set(KEY,d.json);}
+      }else onRemote(d.json,d.by);
+    }
+    if(first){first=false;after().then(function(){READY=true;render();});}
+    else if(!exists&&READY)softRender();
+  },function(err){
+    if(BLOCKED)return;
+    if(VIEWER&&err&&err.code==='permission-denied'){BLOCKED='off';stopListeners();render();return;}
+    toast('Cloud error: '+((err&&err.code)||'unknown'));
+    if(first){first=false;READY=true;setSync('Offline','off');render();}
+  });
+}
+function checkOwner(){
+  return FB.getDoc(FB.doc(FB.db,'meta','ownercheck')).then(function(){OWNER=true;},function(){OWNER=false;});
+}
+function enterViewer(u){
+  FB.getDoc(FB.doc(FB.db,'viewers',TOKEN)).then(function(sn){
+    var d=snapExists(sn)?sn.data():null;
+    if(!d||!d.active){BLOCKED='off';try{localStorage.removeItem('etis_vtoken');}catch(e){}render();return;}
+    VIEWER={name:d.name||'Viewer'};
+    return FB.setDoc(FB.doc(FB.db,'sessions',u.uid),{token:TOKEN,name:VIEWER.name,dev:devName(),atMs:Date.now(),at:FB.serverTimestamp()}).then(function(){
+      store.set('etis_vtoken',TOKEN);RO=true;CLOUD_EMPTY=false;setSync('View only','ro');
+      unsubV=FB.onSnapshot(FB.doc(FB.db,'viewers',TOKEN),function(s2){
+        var d2=snapExists(s2)?s2.data():null;
+        if(!d2||!d2.active){BLOCKED='off';stopListeners();try{localStorage.removeItem('etis_vtoken');}catch(e){}render();}
+      },function(){});
+      startData(function(){return Promise.resolve();});
+    });
+  }).catch(function(e){
+    BLOCKED=(e&&e.code==='permission-denied')?'off':'Check your internet connection and open the link again.';render();
+  });
+}
 function bootCloud(){
   MODE='cloud';
   FB.onAuth(function(u){
-    if(unsub){unsub();unsub=null;}
-    USER=u;READY=false;RO=false;CLOUD_EMPTY=false;pendingRemote=null;
-    document.body.classList.remove('ro');
-    if(!u){setSync('','');render();return;}
-    render();
-    var first=true;
-    unsub=FB.onSnapshot(FB.doc(FB.db,'etis','main'),function(snap){
-      if(snap.metadata&&snap.metadata.hasPendingWrites)return;
-      var exists=typeof snap.exists==='function'?snap.exists():snap.exists;
-      if(!exists){CLOUD_EMPTY=true;}
-      else{
-        CLOUD_EMPTY=false;var d=snap.data()||{};
-        if(first){
-          var nd;try{nd=JSON.parse(d.json);}catch(e){}
-          if(valid(nd)){lastJson=d.json;data=fix(nd);store.set(KEY,d.json);}
-        }else onRemote(d.json,d.by);
+    stopListeners();
+    USER=u;READY=false;RO=false;CLOUD_EMPTY=false;pendingRemote=null;VIEWER=null;OWNER=false;
+    document.body.classList.remove('ro','viewer');
+    if(!u){
+      setSync('','');
+      if(TOKEN&&!BLOCKED){
+        render();
+        FB.signInAnon().catch(function(e){
+          BLOCKED=(e&&/admin-restricted|operation-not-allowed/.test(e.code||''))
+            ?'Viewer links are not switched on yet. Ask Emon to enable them in Firebase.'
+            :'Check your internet connection and open the link again.';
+          render();
+        });
+        return;
       }
-      if(first){first=false;checkRole().then(function(){READY=true;render();});}
-      else if(!exists&&READY)softRender();
-    },function(err){
-      toast('Cloud error: '+((err&&err.code)||'unknown'));
-      if(first){first=false;READY=true;setSync('Offline','off');render();}
-    });
+      render();return;
+    }
+    if(u.isAnonymous){
+      if(!TOKEN){FB.signOut();return;}
+      render();enterViewer(u);return;
+    }
+    /* email user: editor or owner */
+    BLOCKED='';
+    if(URLTOKEN)toast('You are logged in as editor. To test a viewer link, open it in an incognito window.');
+    TOKEN='';try{localStorage.removeItem('etis_vtoken');}catch(e){}
+    render();
+    startData(function(){return Promise.all([checkRole(),checkOwner()]);});
   });
 }
 function bootFB(){
